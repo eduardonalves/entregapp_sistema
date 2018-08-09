@@ -1,0 +1,931 @@
+[20-Jan-2015 22:13:42] PHP Fatal error:  Class 'HtmlHelper' not found in /home/lojac367/public_html/appedido/app/View/Helper/BootstrapHtmlHelper.php on line 5
+[20-Jan-2015 22:55:30] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/RestClientesController.php on line 48
+[20-Jan-2015 22:55:58] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/RestClientesController.php on line 48
+[20-Jan-2015 22:56:18] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/RestClientesController.php on line 48
+[20-Jan-2015 22:57:25] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/RestClientesController.php on line 48
+[23-Jan-2015 21:06:52] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 67
+[23-Jan-2015 21:09:52] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 227
+[23-Jan-2015 21:12:40] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 475
+[23-Jan-2015 22:00:35] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/View/Pedidos/mapa.ctp on line 6
+[23-Jan-2015 22:18:39] PHP Parse error:  syntax error, unexpected T_VARIABLE, expecting ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 71
+[23-Jan-2015 22:19:36] PHP Parse error:  syntax error, unexpected T_VARIABLE, expecting ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 71
+[23-Jan-2015 22:28:04] PHP Parse error:  syntax error, unexpected T_VARIABLE, expecting ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 71
+[23-Jan-2015 22:35:00] PHP Parse error:  syntax error, unexpected T_VARIABLE, expecting ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 71
+[28-Jan-2015 22:07:38] PHP Parse error:  syntax error, unexpected T_ELSE, expecting '(' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 73
+[02-Feb-2015 22:17:01] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/appedido/app/Controller/EntregadorsController.php on line 43
+[02-Feb-2015 22:17:28] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/EntregadorsController.php on line 41
+[02-Feb-2015 22:17:49] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/EntregadorsController.php on line 41
+[02-Feb-2015 22:26:39] PHP Fatal error:  Call to a member function format() on a non-object in /home/lojac367/public_html/appedido/app/View/Entregadors/view.ctp on line 29
+[02-Feb-2015 22:27:52] PHP Fatal error:  Call to a member function format() on a non-object in /home/lojac367/public_html/appedido/app/View/Entregadors/view.ctp on line 29
+[02-Feb-2015 22:32:15] PHP Fatal error:  Call to a member function format() on a non-object in /home/lojac367/public_html/appedido/app/View/Entregadors/view.ctp on line 29
+[02-Feb-2015 22:49:19] PHP Parse error:  syntax error, unexpected '<' in /home/lojac367/public_html/appedido/app/View/Entregadors/view.ctp on line 31
+[02-Feb-2015 22:58:56] PHP Fatal error:  Call to a member function format() on a non-object in /home/lojac367/public_html/appedido/app/View/Entregadors/view.ctp on line 29
+[24-Feb-2015 20:33:20] PHP Parse error:  syntax error, unexpected ')', expecting ',' or ';' in /home/lojac367/public_html/appedido/app/View/Users/login.ctp on line 50
+[02-Mar-2015 20:43:02] PHP Parse error:  syntax error, unexpected ';' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 549
+[02-Mar-2015 20:43:35] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 487
+[02-Mar-2015 20:44:22] PHP Parse error:  syntax error, unexpected ';' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 551
+[04-Mar-2015 21:01:55] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 553
+[04-Mar-2015 22:33:50] PHP Parse error:  syntax error, unexpected T_VARIABLE, expecting T_FUNCTION in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 551
+[04-Mar-2015 22:35:37] PHP Parse error:  syntax error, unexpected T_VARIABLE, expecting T_FUNCTION in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 551
+[04-Mar-2015 22:44:33] PHP Fatal error:  Call to undefined method PedidosController::geraSenha() in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 424
+[05-Mar-2015 11:48:23] PHP Parse error:  syntax error, unexpected ',', expecting ')' in /home/lojac367/public_html/appedido/app/View/Clientes/add.ctp on line 82
+[05-Mar-2015 18:05:15] PHP Fatal error:  Call to a member function create() on a non-object in /home/lojac367/public_html/appedido/app/Controller/ProdutosController.php on line 108
+[05-Mar-2015 18:05:48] PHP Fatal error:  Call to a member function create() on a non-object in /home/lojac367/public_html/appedido/app/Controller/ProdutosController.php on line 108
+[05-Mar-2015 18:06:06] PHP Fatal error:  Call to undefined method PaginatorComponent::create() in /home/lojac367/public_html/appedido/app/Controller/ProdutosController.php on line 108
+[05-Mar-2015 18:27:04] PHP Fatal error:  Call to undefined function  dubug() in /home/lojac367/public_html/appedido/app/Controller/ClientesController.php on line 49
+[06-Mar-2015 16:56:38] PHP Parse error:  syntax error, unexpected $end, expecting ']' in /home/lojac367/public_html/appedido/app/View/Clientes/add.ctp on line 93
+[06-Mar-2015 18:49:22] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/ProdutosController.php on line 64
+[06-Mar-2015 18:49:28] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/ProdutosController.php on line 64
+[06-Mar-2015 18:49:32] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/ProdutosController.php on line 64
+[06-Mar-2015 18:49:32] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/ProdutosController.php on line 64
+[06-Mar-2015 18:49:33] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/ProdutosController.php on line 64
+[06-Mar-2015 18:49:33] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/ProdutosController.php on line 64
+[06-Mar-2015 18:49:34] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/ProdutosController.php on line 64
+[06-Mar-2015 18:49:34] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/ProdutosController.php on line 64
+[06-Mar-2015 18:49:47] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/ProdutosController.php on line 64
+[06-Mar-2015 18:50:32] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/ProdutosController.php on line 64
+[06-Mar-2015 18:50:35] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/ProdutosController.php on line 64
+[06-Mar-2015 18:50:35] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/ProdutosController.php on line 64
+[06-Mar-2015 18:50:36] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/ProdutosController.php on line 64
+[06-Mar-2015 18:50:36] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/ProdutosController.php on line 64
+[06-Mar-2015 18:50:37] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/ProdutosController.php on line 64
+[06-Mar-2015 18:50:37] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/ProdutosController.php on line 64
+[06-Mar-2015 18:50:38] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/ProdutosController.php on line 64
+[06-Mar-2015 18:50:38] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/ProdutosController.php on line 64
+[06-Mar-2015 18:51:02] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/ProdutosController.php on line 64
+[06-Mar-2015 18:51:36] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/ProdutosController.php on line 64
+[06-Mar-2015 18:54:17] PHP Parse error:  syntax error, unexpected $end, expecting ')' in /home/lojac367/public_html/appedido/app/Controller/ProdutosController.php on line 62
+[06-Mar-2015 22:41:47] PHP Parse error:  syntax error, unexpected ';' in /home/lojac367/public_html/appedido/app/Controller/EntregadorsController.php on line 139
+[07-Mar-2015 00:30:53] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/appedido/app/View/Clientes/edit.ctp on line 15
+[07-Mar-2015 00:30:59] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/appedido/app/View/Clientes/edit.ctp on line 15
+[07-Mar-2015 00:31:09] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/appedido/app/View/Clientes/edit.ctp on line 15
+[07-Mar-2015 00:31:14] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/appedido/app/View/Clientes/edit.ctp on line 15
+[09-Mar-2015 22:12:17] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 666
+[09-Mar-2015 22:13:35] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 667
+[09-Mar-2015 22:18:04] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 667
+[09-Mar-2015 22:43:28] PHP Warning:  Unexpected character in input:  ''' (ASCII=39) state=1 in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 637
+[09-Mar-2015 22:43:28] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 637
+[09-Mar-2015 22:46:24] PHP Parse error:  syntax error, unexpected T_AS in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 709
+[09-Mar-2015 22:55:00] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/lojac367/public_html/appedido/app/View/Pedidos/edit.ctp on line 46
+[09-Mar-2015 22:55:06] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/lojac367/public_html/appedido/app/View/Pedidos/edit.ctp on line 46
+[09-Mar-2015 22:55:08] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/lojac367/public_html/appedido/app/View/Pedidos/edit.ctp on line 46
+[09-Mar-2015 22:55:09] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/lojac367/public_html/appedido/app/View/Pedidos/edit.ctp on line 46
+[09-Mar-2015 22:55:19] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/lojac367/public_html/appedido/app/View/Pedidos/edit.ctp on line 46
+[09-Mar-2015 22:56:03] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/lojac367/public_html/appedido/app/View/Pedidos/edit.ctp on line 46
+[09-Mar-2015 22:56:05] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/lojac367/public_html/appedido/app/View/Pedidos/edit.ctp on line 46
+[09-Mar-2015 22:56:06] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/lojac367/public_html/appedido/app/View/Pedidos/edit.ctp on line 46
+[09-Mar-2015 22:56:22] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/lojac367/public_html/appedido/app/View/Pedidos/edit.ctp on line 46
+[09-Mar-2015 23:01:45] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/appedido/app/View/Pedidos/edit.ctp on line 44
+[10-Mar-2015 17:04:07] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 91
+[10-Mar-2015 17:04:14] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 91
+[10-Mar-2015 17:04:34] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 91
+[10-Mar-2015 17:04:40] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 91
+[10-Mar-2015 17:04:54] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 91
+[10-Mar-2015 17:05:10] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 91
+[10-Mar-2015 17:05:14] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 91
+[10-Mar-2015 17:05:34] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 91
+[10-Mar-2015 17:05:45] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 91
+[10-Mar-2015 17:05:48] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 91
+[10-Mar-2015 17:05:54] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 91
+[10-Mar-2015 17:06:14] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 91
+[10-Mar-2015 17:06:34] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 91
+[10-Mar-2015 17:06:54] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 91
+[10-Mar-2015 17:07:14] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 91
+[10-Mar-2015 17:07:34] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 91
+[10-Mar-2015 17:07:54] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 91
+[10-Mar-2015 17:08:14] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 91
+[10-Mar-2015 17:08:34] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 91
+[10-Mar-2015 22:28:16] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 60
+[11-Mar-2015 20:07:16] PHP Fatal error:  Unsupported operand types in /home/lojac367/public_html/appedido/lib/Cake/Core/CakePlugin.php on line 76
+[12-Mar-2015 15:08:13] PHP Parse error:  syntax error, unexpected ';' in /home/lojac367/public_html/appedido/app/Controller/FuncaosController.php on line 61
+[12-Mar-2015 15:08:49] PHP Parse error:  syntax error, unexpected ';' in /home/lojac367/public_html/appedido/app/Controller/FuncaosController.php on line 61
+[12-Mar-2015 15:09:57] PHP Parse error:  syntax error, unexpected ';' in /home/lojac367/public_html/appedido/app/Controller/FuncaosController.php on line 71
+[12-Mar-2015 15:32:19] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/appedido/app/View/Funcaos/add.ctp on line 45
+[12-Mar-2015 15:32:40] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING, expecting ')' in /home/lojac367/public_html/appedido/app/View/Funcaos/add.ctp on line 49
+[12-Mar-2015 16:22:58] PHP Parse error:  syntax error, unexpected ',', expecting ')' in /home/lojac367/public_html/appedido/app/View/Funcaos/add.ctp on line 82
+[13-Mar-2015 11:36:57] PHP Fatal error:  Cannot pass parameter 1 by reference in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 402
+[13-Mar-2015 11:56:23] PHP Parse error:  syntax error, unexpected T_CLASS in /home/lojac367/public_html/appedido/app/Controller/ClientesController.php on line 10
+[13-Mar-2015 11:57:19] PHP Fatal error:  Cannot pass parameter 1 by reference in /home/lojac367/public_html/appedido/app/Controller/ClientesController.php on line 61
+[13-Mar-2015 11:58:48] PHP Fatal error:  Call to a member function read() on a non-object in /home/lojac367/public_html/appedido/app/Controller/AutorizacaosController.php on line 113
+[13-Mar-2015 12:00:41] PHP Fatal error:  Call to a member function setFlash() on a non-object in /home/lojac367/public_html/appedido/app/Controller/AutorizacaosController.php on line 118
+[13-Mar-2015 12:05:47] PHP Fatal error:  Call to undefined method ClientesController::setAutorizacao() in /home/lojac367/public_html/appedido/app/Controller/ClientesController.php on line 68
+[13-Mar-2015 12:06:46] PHP Fatal error:  Call to undefined method ClientesController::setAutorizacao() in /home/lojac367/public_html/appedido/app/Controller/ClientesController.php on line 68
+[13-Mar-2015 12:07:05] PHP Fatal error:  Call to undefined method ClientesController::setAutorizacao() in /home/lojac367/public_html/appedido/app/Controller/ClientesController.php on line 68
+[13-Mar-2015 12:12:35] PHP Fatal error:  Class 'AutorizacaosController' not found in /home/lojac367/public_html/appedido/app/Controller/ProdutosController.php on line 78
+[13-Mar-2015 12:28:04] PHP Fatal error:  Class 'AutorizacaosController' not found in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 399
+[13-Mar-2015 12:28:55] PHP Fatal error:  Class 'AutorizacaosController' not found in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 399
+[13-Mar-2015 12:30:12] PHP Fatal error:  Class 'AutorizacaosController' not found in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 399
+[13-Mar-2015 21:13:10] PHP Fatal error:  Class 'AutorizacaosController' not found in /home/lojac367/public_html/appedido/app/Controller/UsersController.php on line 49
+[13-Mar-2015 21:29:59] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 408
+[13-Mar-2015 22:11:47] PHP Parse error:  syntax error, unexpected '{' in /home/lojac367/public_html/appedido/app/View/Pedidos/edit.ctp on line 111
+[13-Mar-2015 22:21:02] PHP Parse error:  syntax error, unexpected T_BOOLEAN_OR in /home/lojac367/public_html/appedido/app/View/Pedidos/edit.ctp on line 51
+[17-Mar-2015 13:16:31] PHP Parse error:  syntax error, unexpected ';' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 876
+[17-Mar-2015 13:20:59] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 917
+[17-Mar-2015 23:20:42] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 699
+[17-Mar-2015 23:21:59] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 699
+[17-Mar-2015 23:23:45] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 408
+[17-Mar-2015 23:24:56] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 408
+[17-Mar-2015 23:59:19] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 1047
+[18-Mar-2015 00:07:50] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 1272
+[18-Mar-2015 00:10:31] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 61
+[18-Mar-2015 00:13:16] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 644
+[18-Mar-2015 00:17:59] PHP Warning:  Unexpected character in input:  ''' (ASCII=39) state=1 in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 1194
+[18-Mar-2015 00:17:59] PHP Parse error:  syntax error, unexpected $end, expecting ']' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 1194
+[18-Mar-2015 00:22:45] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 1295
+[18-Mar-2015 00:26:54] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 682
+[18-Mar-2015 00:28:36] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 644
+[18-Mar-2015 10:03:15] PHP Warning:  Unexpected character in input:  ''' (ASCII=39) state=1 in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 1299
+[18-Mar-2015 10:03:15] PHP Parse error:  syntax error, unexpected $end, expecting ']' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 1299
+[18-Mar-2015 10:03:35] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 1349
+[18-Mar-2015 10:05:34] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 1245
+[18-Mar-2015 10:14:12] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 1393
+[18-Mar-2015 12:24:14] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 684
+[18-Mar-2015 12:43:54] PHP Fatal error:  Call to undefined function  dubug() in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 698
+[18-Mar-2015 14:29:24] PHP Warning:  Unexpected character in input:  ''' (ASCII=39) state=1 in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 283
+[18-Mar-2015 14:29:24] PHP Parse error:  syntax error, unexpected $end, expecting ']' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 283
+[18-Mar-2015 16:19:59] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 1039
+[18-Mar-2015 16:22:51] PHP Parse error:  syntax error, unexpected $end, expecting T_VARIABLE or '$' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 685
+[18-Mar-2015 16:27:37] PHP Warning:  Unexpected character in input:  ''' (ASCII=39) state=1 in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 1228
+[18-Mar-2015 16:27:37] PHP Parse error:  syntax error, unexpected T_STRING in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 1228
+[18-Mar-2015 16:30:57] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 1041
+[18-Mar-2015 19:33:09] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 1038
+[18-Mar-2015 19:50:16] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 601
+[18-Mar-2015 20:02:38] PHP Parse error:  syntax error, unexpected $end, expecting T_VARIABLE or '$' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 685
+[18-Mar-2015 20:18:20] PHP Parse error:  syntax error, unexpected $end, expecting ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 559
+[18-Mar-2015 20:20:46] PHP Parse error:  syntax error, unexpected T_LNUMBER, expecting T_VARIABLE or '$' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 1027
+[18-Mar-2015 20:44:27] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 1051
+[18-Mar-2015 20:50:37] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 644
+[18-Mar-2015 21:17:29] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 328
+[18-Mar-2015 21:18:11] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 328
+[18-Mar-2015 21:19:08] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 492
+[18-Mar-2015 22:22:51] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 1158
+[18-Mar-2015 22:25:19] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 1034
+[18-Mar-2015 22:33:04] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 1399
+[18-Mar-2015 22:57:47] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 1006
+[18-Mar-2015 23:09:47] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 1082
+[18-Mar-2015 23:11:49] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 1307
+[18-Mar-2015 23:14:28] PHP Parse error:  syntax error, unexpected $end, expecting '(' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 598
+[18-Mar-2015 23:58:28] PHP Parse error:  syntax error, unexpected ')', expecting ']' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 887
+[18-Mar-2015 23:58:33] PHP Parse error:  syntax error, unexpected ')', expecting ']' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 887
+[18-Mar-2015 23:58:49] PHP Parse error:  syntax error, unexpected ')', expecting ']' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 887
+[18-Mar-2015 23:59:10] PHP Parse error:  syntax error, unexpected ')', expecting ']' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 887
+[18-Mar-2015 23:59:44] PHP Parse error:  syntax error, unexpected ')', expecting ']' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 888
+[19-Mar-2015 00:31:47] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 1238
+[19-Mar-2015 00:32:47] PHP Parse error:  syntax error, unexpected $end, expecting ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 1058
+[19-Mar-2015 00:39:02] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 1024
+[03-Apr-2015 11:31:04] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 1003
+[03-Apr-2015 11:36:55] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 892
+[06-Apr-2015 21:00:56] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 39
+[06-Apr-2015 21:14:57] PHP Parse error:  syntax error, unexpected $end, expecting T_VARIABLE or '$' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 1244
+[06-Apr-2015 23:56:50] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 39
+[07-Apr-2015 00:40:13] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 39
+[07-Apr-2015 21:18:27] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 39
+[07-Apr-2015 22:35:01] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 39
+[11-Apr-2015 19:57:28] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/appedido/app/Controller/RestPedidosController.php on line 115
+[11-Apr-2015 19:57:35] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/appedido/app/Controller/RestPedidosController.php on line 115
+[11-Apr-2015 19:57:45] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/appedido/app/Controller/RestPedidosController.php on line 115
+[11-Apr-2015 19:57:53] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/appedido/app/Controller/RestPedidosController.php on line 115
+[11-Apr-2015 19:58:30] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/appedido/app/Controller/RestPedidosController.php on line 115
+[11-Apr-2015 20:00:56] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 39
+[11-Apr-2015 20:01:08] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 39
+[11-Apr-2015 20:02:27] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 39
+[11-Apr-2015 20:02:30] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 39
+[11-Apr-2015 20:19:09] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/appedido/app/Controller/RestPedidosController.php on line 115
+[12-Apr-2015 15:14:37] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 15:14:51] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 15:14:57] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 15:15:06] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 15:15:13] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 15:15:36] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 15:15:49] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 15:15:57] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 15:16:05] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 15:16:35] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 15:17:05] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 15:17:35] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 15:18:05] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 15:18:35] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 15:18:47] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 15:19:18] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 15:19:32] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 15:47:10] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 15:47:40] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 15:48:10] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 15:48:19] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 15:48:40] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 15:48:43] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 15:48:46] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 15:48:57] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 15:49:02] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 15:49:10] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 15:49:13] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 15:49:42] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 15:49:43] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 15:50:17] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 15:50:47] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 15:51:17] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 15:53:09] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 18:47:14] PHP Fatal error:  Call to undefined method RestPedidosController::calculaFilaProdutos() in /home/lojac367/public_html/appedido/app/Controller/RestPedidosController.php on line 338
+[12-Apr-2015 18:47:27] PHP Fatal error:  Call to undefined method RestPedidosController::calculaFilaProdutos() in /home/lojac367/public_html/appedido/app/Controller/RestPedidosController.php on line 338
+[12-Apr-2015 18:47:34] PHP Fatal error:  Call to undefined method RestPedidosController::calculaFilaProdutos() in /home/lojac367/public_html/appedido/app/Controller/RestPedidosController.php on line 338
+[12-Apr-2015 18:47:48] PHP Fatal error:  Call to undefined method RestPedidosController::calculaFilaProdutos() in /home/lojac367/public_html/appedido/app/Controller/RestPedidosController.php on line 338
+[12-Apr-2015 18:50:49] PHP Fatal error:  Call to undefined method RestPedidosController::calculaFilaProdutos() in /home/lojac367/public_html/appedido/app/Controller/RestPedidosController.php on line 338
+[12-Apr-2015 18:57:28] PHP Fatal error:  Call to undefined method RestPedidosController::calculaFilaProdutos() in /home/lojac367/public_html/appedido/app/Controller/RestPedidosController.php on line 338
+[12-Apr-2015 18:57:54] PHP Fatal error:  Call to undefined method RestPedidosController::calculaFilaProdutos() in /home/lojac367/public_html/appedido/app/Controller/RestPedidosController.php on line 338
+[12-Apr-2015 23:45:28] PHP Warning:  Unterminated comment starting line 589 in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 589
+[12-Apr-2015 23:45:28] PHP Fatal error:  fatal flex scanner internal error--end of buffer missed in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 589
+[12-Apr-2015 23:53:08] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 23:53:14] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 23:53:38] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 23:53:41] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 23:53:53] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 23:54:04] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 23:54:08] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 23:54:23] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 23:54:30] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 23:54:38] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 23:54:53] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 23:55:01] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 23:55:08] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 23:55:23] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 23:55:30] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 23:55:38] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 23:55:46] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 23:55:52] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 23:56:16] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 23:56:18] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 23:56:46] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 23:56:48] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 23:57:16] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 23:57:19] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 23:57:46] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 23:57:48] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 23:58:16] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 23:58:18] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 23:58:46] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 23:58:48] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 23:59:16] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 23:59:18] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 23:59:39] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[12-Apr-2015 23:59:59] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[13-Apr-2015 00:02:35] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[13-Apr-2015 00:02:55] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[13-Apr-2015 00:03:11] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[13-Apr-2015 00:03:41] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[13-Apr-2015 00:04:12] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[13-Apr-2015 00:04:42] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[13-Apr-2015 00:05:29] PHP Parse error:  syntax error, unexpected T_PUBLIC in /home/lojac367/public_html/appedido/app/Controller/RestPedidosController.php on line 648
+[13-Apr-2015 00:05:57] PHP Parse error:  syntax error, unexpected T_PUBLIC in /home/lojac367/public_html/appedido/app/Controller/RestPedidosController.php on line 648
+[13-Apr-2015 00:07:07] PHP Parse error:  syntax error, unexpected T_PUBLIC in /home/lojac367/public_html/appedido/app/Controller/RestPedidosController.php on line 648
+[13-Apr-2015 00:08:41] PHP Parse error:  syntax error, unexpected T_PUBLIC in /home/lojac367/public_html/appedido/app/Controller/RestPedidosController.php on line 650
+[13-Apr-2015 00:08:47] PHP Parse error:  syntax error, unexpected T_PUBLIC in /home/lojac367/public_html/appedido/app/Controller/RestPedidosController.php on line 650
+[13-Apr-2015 00:48:58] PHP Fatal error:  Class 'AutorizacaosController' not found in /home/lojac367/public_html/appedido/app/Controller/RestPedidosController.php on line 476
+[13-Apr-2015 00:50:53] PHP Fatal error:  Class 'AutorizacaosController' not found in /home/lojac367/public_html/appedido/app/Controller/RestPedidosController.php on line 478
+[13-Apr-2015 00:51:28] PHP Fatal error:  Class 'RoteirosController' not found in /home/lojac367/public_html/appedido/app/Controller/RestPedidosController.php on line 479
+[13-Apr-2015 00:56:08] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[13-Apr-2015 00:56:39] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[13-Apr-2015 00:57:09] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[13-Apr-2015 00:57:39] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[13-Apr-2015 00:58:09] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[13-Apr-2015 00:58:39] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[13-Apr-2015 00:59:09] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[13-Apr-2015 00:59:24] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[13-Apr-2015 00:59:54] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[13-Apr-2015 01:00:24] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[13-Apr-2015 01:00:54] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[13-Apr-2015 01:01:24] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[13-Apr-2015 01:01:54] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[13-Apr-2015 01:03:00] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[13-Apr-2015 01:03:30] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[13-Apr-2015 01:03:45] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[13-Apr-2015 01:04:16] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[13-Apr-2015 01:04:37] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[13-Apr-2015 01:04:46] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[13-Apr-2015 01:05:18] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[13-Apr-2015 01:05:46] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[13-Apr-2015 01:06:16] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[13-Apr-2015 01:12:39] PHP Fatal error:  Call to undefined method RestAtendimentosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 203
+[13-Apr-2015 01:12:56] PHP Fatal error:  Call to undefined method RestPedidosController::converteparasegundos() in /home/lojac367/public_html/appedido/app/Controller/RestPedidosController.php on line 563
+[16-Apr-2015 17:38:27] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING, expecting ')' in /home/lojac367/public_html/appedido/app/View/Users/view.ctp on line 41
+[16-Apr-2015 17:38:30] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING, expecting ')' in /home/lojac367/public_html/appedido/app/View/Users/view.ctp on line 41
+[16-Apr-2015 17:41:54] PHP Fatal error:  Call to undefined function  printf_r() in /home/lojac367/public_html/appedido/app/View/Users/view.ctp on line 13
+[16-Apr-2015 18:04:09] PHP Parse error:  syntax error, unexpected T_IS_NOT_EQUAL, expecting ',' or ')' in /home/lojac367/public_html/appedido/app/View/Users/view.ctp on line 22
+[16-Apr-2015 18:04:12] PHP Parse error:  syntax error, unexpected T_IS_NOT_EQUAL, expecting ',' or ')' in /home/lojac367/public_html/appedido/app/View/Users/view.ctp on line 22
+[16-Apr-2015 18:04:14] PHP Parse error:  syntax error, unexpected T_IS_NOT_EQUAL, expecting ',' or ')' in /home/lojac367/public_html/appedido/app/View/Users/view.ctp on line 22
+[16-Apr-2015 18:04:14] PHP Parse error:  syntax error, unexpected T_IS_NOT_EQUAL, expecting ',' or ')' in /home/lojac367/public_html/appedido/app/View/Users/view.ctp on line 22
+[16-Apr-2015 18:04:15] PHP Parse error:  syntax error, unexpected T_IS_NOT_EQUAL, expecting ',' or ')' in /home/lojac367/public_html/appedido/app/View/Users/view.ctp on line 22
+[28-Apr-2015 23:11:07] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/Controller/RestClientesController.php on line 168
+[28-Apr-2015 23:11:10] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/Controller/RestClientesController.php on line 168
+[28-Apr-2015 23:11:16] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/Controller/RestClientesController.php on line 168
+[28-Apr-2015 23:11:23] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/Controller/RestClientesController.php on line 168
+[28-Apr-2015 23:11:33] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/Controller/RestClientesController.php on line 168
+[28-Apr-2015 23:55:00] PHP Fatal error:  Uncaught exception 'RuntimeException' with message 'SplFileObject::__construct(/home/lojac367/public_html/appedido/app/tmp/cache/models/myapp_cake_model_default_lojac367_appedido_empresas) [<a href='splfileobject.--construct'>splfileobject.--construct</a>]: failed to open stream: No such file or directory' in /home/lojac367/public_html/appedido/lib/Cake/Cache/Engine/FileEngine.php:278
+Stack trace:
+#0 /home/lojac367/public_html/appedido/lib/Cake/Cache/Engine/FileEngine.php(278): SplFileObject->__construct('/home/lojac367/...', 'r')
+#1 /home/lojac367/public_html/appedido/lib/Cake/Cache/Engine/FileEngine.php(235): FileEngine->_clearDirectory('/home/lojac367/...', 1430276100, 1430276090)
+#2 /home/lojac367/public_html/appedido/lib/Cake/Cache/Engine/FileEngine.php(100): FileEngine->clear(true)
+#3 /home/lojac367/public_html/appedido/lib/Cake/Cache/Cache.php(184): FileEngine->gc()
+#4 /home/lojac367/public_html/appedido/lib/Cake/Cache/Cache.php(151): Cache::_buildEngine('_cake_model_')
+#5 /home/lojac367/public_html/ap in /home/lojac367/public_html/appedido/lib/Cake/Cache/Engine/FileEngine.php on line 278
+[02-May-2015 16:14:29] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/appedido/app/Controller/RestClientesController.php on line 168
+[02-May-2015 16:14:32] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/appedido/app/Controller/RestClientesController.php on line 168
+[02-May-2015 16:15:26] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/appedido/app/Controller/RestClientesController.php on line 168
+[02-May-2015 16:15:29] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/appedido/app/Controller/RestClientesController.php on line 168
+[02-May-2015 19:47:18] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/appedido/app/Controller/RestPedidosController.php on line 115
+[02-May-2015 19:47:21] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/appedido/app/Controller/RestPedidosController.php on line 115
+[03-May-2015 22:19:45] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/appedido/app/Controller/RestPedidosController.php on line 115
+[03-May-2015 22:19:56] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/appedido/app/Controller/RestPedidosController.php on line 115
+[03-May-2015 22:20:36] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/appedido/app/Controller/RestPedidosController.php on line 115
+[03-May-2015 22:20:45] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/appedido/app/Controller/RestPedidosController.php on line 115
+[03-May-2015 22:22:03] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/appedido/app/Controller/RestPedidosController.php on line 115
+[03-May-2015 22:26:31] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/appedido/app/Controller/RestPedidosController.php on line 115
+[03-May-2015 22:27:32] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/appedido/app/Controller/RestPedidosController.php on line 115
+[03-May-2015 22:27:48] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/appedido/app/Controller/RestPedidosController.php on line 115
+[04-May-2015 23:04:30] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 331
+[04-May-2015 23:04:54] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 331
+[05-May-2015 21:45:02] PHP Parse error:  syntax error, unexpected T_IF in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 365
+[06-May-2015 23:55:19] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 1534
+[06-May-2015 23:55:21] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 1534
+[06-May-2015 23:55:39] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 1534
+[06-May-2015 23:55:41] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 1534
+[06-May-2015 23:55:48] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 1534
+[06-May-2015 23:55:59] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 1534
+[06-May-2015 23:56:01] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 1534
+[06-May-2015 23:56:59] PHP Warning:  Unexpected character in input:  ''' (ASCII=39) state=1 in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 727
+[06-May-2015 23:56:59] PHP Parse error:  syntax error, unexpected $end, expecting ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 727
+[07-May-2015 00:06:29] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 1537
+[07-May-2015 13:21:49] PHP Parse error:  syntax error, unexpected '=', expecting ')' in /home/lojac367/public_html/appedido/app/View/Entregadors/add.ctp on line 46
+[07-May-2015 13:22:30] PHP Parse error:  syntax error, unexpected '=', expecting ')' in /home/lojac367/public_html/appedido/app/View/Entregadors/add.ctp on line 46
+[07-May-2015 13:22:32] PHP Parse error:  syntax error, unexpected '=', expecting ')' in /home/lojac367/public_html/appedido/app/View/Entregadors/add.ctp on line 46
+[07-May-2015 13:22:50] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW, expecting ')' in /home/lojac367/public_html/appedido/app/View/Entregadors/add.ctp on line 46
+[07-May-2015 13:22:53] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW, expecting ')' in /home/lojac367/public_html/appedido/app/View/Entregadors/add.ctp on line 46
+[07-May-2015 23:35:25] PHP Parse error:  syntax error, unexpected T_PUBLIC in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 618
+[07-May-2015 23:35:29] PHP Parse error:  syntax error, unexpected T_PUBLIC in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 618
+[07-May-2015 23:35:30] PHP Parse error:  syntax error, unexpected T_PUBLIC in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 618
+[07-May-2015 23:35:50] PHP Parse error:  syntax error, unexpected T_PUBLIC in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 618
+[07-May-2015 23:35:51] PHP Parse error:  syntax error, unexpected T_PUBLIC in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 618
+[07-May-2015 23:36:12] PHP Parse error:  syntax error, unexpected T_PUBLIC in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 618
+[07-May-2015 23:36:32] PHP Parse error:  syntax error, unexpected T_PUBLIC in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 618
+[07-May-2015 23:36:52] PHP Parse error:  syntax error, unexpected T_PUBLIC in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 618
+[07-May-2015 23:37:12] PHP Parse error:  syntax error, unexpected T_PUBLIC in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 618
+[07-May-2015 23:38:16] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 1711
+[09-May-2015 15:19:07] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW, expecting ')' in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 381
+[09-May-2015 15:19:18] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW, expecting ')' in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 381
+[09-May-2015 15:19:37] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW, expecting ')' in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 381
+[12-May-2015 21:38:43] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/lojac367/public_html/appedido/app/Controller/Component/checkbfuncComponent.php on line 119
+[12-May-2015 21:39:42] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/lojac367/public_html/appedido/app/Controller/RestPedidosController.php on line 350
+[13-May-2015 16:02:33] PHP Parse error:  syntax error, unexpected ';' in /home/lojac367/public_html/appedido/app/View/Layouts/default.ctp on line 87
+[14-May-2015 23:04:41] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 168
+[14-May-2015 23:04:46] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 168
+[14-May-2015 23:04:51] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 168
+[14-May-2015 23:04:56] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 168
+[14-May-2015 23:05:01] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 168
+[14-May-2015 23:05:06] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 168
+[14-May-2015 23:05:11] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 168
+[14-May-2015 23:05:12] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 168
+[14-May-2015 23:05:16] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 168
+[14-May-2015 23:05:21] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 168
+[14-May-2015 23:05:26] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 168
+[14-May-2015 23:25:29] PHP Parse error:  syntax error, unexpected $end, expecting ')' in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 251
+[14-May-2015 23:25:29] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 676
+[14-May-2015 23:38:46] PHP Parse error:  syntax error, unexpected '{' in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 176
+[14-May-2015 23:44:52] PHP Parse error:  syntax error, unexpected T_BOOLEAN_AND in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 176
+[14-May-2015 23:48:19] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW, expecting ')' in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 174
+[14-May-2015 23:49:08] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW, expecting ')' in /home/lojac367/public_html/appedido/app/Controller/RestAtendimentosController.php on line 174
+[18-May-2015 22:20:12] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 95
+[18-May-2015 22:20:14] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 95
+[18-May-2015 22:20:18] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 95
+[18-May-2015 22:20:21] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 95
+[18-May-2015 22:51:15] PHP Parse error:  syntax error, unexpected $end, expecting ')' in /home/lojac367/public_html/appedido/app/Controller/PedidosController.php on line 1823
+[21-May-2015 20:25:18] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/appedido/app/View/Produtos/add.ctp on line 72
+[10-Jun-2015 21:09:04] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/exemplo/app/Controller/EmpresasController.php on line 117
+[10-Jun-2015 21:16:45] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/exemplo/app/Controller/EmpresasController.php on line 117
+[04-Jul-2015 20:13:20] PHP Fatal error:  Uncaught exception 'RuntimeException' with message 'SplFileObject::__construct(/home/lojac367/public_html/exemplo/app/tmp/cache/models/myapp_cake_model_default_lojac367_appedido_produtos) [<a href='splfileobject.--construct'>splfileobject.--construct</a>]: failed to open stream: No such file or directory' in /home/lojac367/public_html/exemplo/lib/Cake/Cache/Engine/FileEngine.php:278
+Stack trace:
+#0 /home/lojac367/public_html/exemplo/lib/Cake/Cache/Engine/FileEngine.php(278): SplFileObject->__construct('/home/lojac367/...', 'r')
+#1 /home/lojac367/public_html/exemplo/lib/Cake/Cache/Engine/FileEngine.php(235): FileEngine->_clearDirectory('/home/lojac367/...', 1436051600, 1436051590)
+#2 /home/lojac367/public_html/exemplo/lib/Cake/Cache/Engine/FileEngine.php(100): FileEngine->clear(true)
+#3 /home/lojac367/public_html/exemplo/lib/Cake/Cache/Cache.php(184): FileEngine->gc()
+#4 /home/lojac367/public_html/exemplo/lib/Cake/Cache/Cache.php(151): Cache::_buildEngine('_cake_model_')
+#5 /home/lojac367/public_html/exemplo/a in /home/lojac367/public_html/exemplo/lib/Cake/Cache/Engine/FileEngine.php on line 278
+[14-Jul-2015 22:02:20] PHP Fatal error:  Call to a member function input() on a non-object in /home/lojac367/public_html/exemplo/app/View/Users/edit.ctp on line 60
+[14-Jul-2015 22:04:21] PHP Fatal error:  Call to a member function value() on a non-object in /home/lojac367/public_html/exemplo/app/View/Users/edit.ctp on line 65
+[14-Jul-2015 22:08:41] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/exemplo/app/Controller/UsersController.php on line 122
+[14-Jul-2015 22:08:43] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/exemplo/app/Controller/UsersController.php on line 122
+[14-Jul-2015 22:13:09] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/exemplo/app/Controller/UsersController.php on line 122
+[14-Jul-2015 22:17:43] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/exemplo/app/Controller/UsersController.php on line 125
+[14-Jul-2015 22:18:34] PHP Fatal error:  Call to a member function value() on a non-object in /home/lojac367/public_html/exemplo/app/View/Users/edit.ctp on line 65
+[14-Jul-2015 22:51:12] PHP Fatal error:  Call to undefined method UsersController::query() in /home/lojac367/public_html/exemplo/app/Controller/UsersController.php on line 122
+[14-Jul-2015 22:53:27] PHP Fatal error:  Call to undefined method UsersController::getDataSource() in /home/lojac367/public_html/exemplo/app/Controller/UsersController.php on line 122
+[14-Jul-2015 23:02:37] PHP Fatal error:  Call to a member function bindModel() on a non-object in /home/lojac367/public_html/exemplo/app/Controller/UsersController.php on line 130
+[14-Jul-2015 23:20:24] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/exemplo/app/Controller/UsersController.php on line 132
+[14-Jul-2015 23:21:08] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/exemplo/app/Controller/UsersController.php on line 132
+[14-Jul-2015 23:21:09] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/exemplo/app/Controller/UsersController.php on line 132
+[15-Jul-2015 00:25:51] PHP Parse error:  syntax error, unexpected '*' in /home/lojac367/public_html/exemplo/app/Controller/UsersController.php on line 161
+[15-Jul-2015 00:31:32] PHP Parse error:  syntax error, unexpected ',' in /home/lojac367/public_html/exemplo/app/Controller/UsersController.php on line 164
+[16-Jul-2015 20:08:04] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/exemplo/app/Controller/UsersController.php on line 103
+[16-Jul-2015 21:22:01] PHP Parse error:  syntax error, unexpected T_ECHO in /home/lojac367/public_html/exemplo/app/View/Users/edit.ctp on line 24
+[16-Jul-2015 21:46:37] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 79
+[16-Jul-2015 21:47:59] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 79
+[16-Jul-2015 21:48:41] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 79
+[16-Jul-2015 21:50:15] PHP Parse error:  syntax error, unexpected '=', expecting ')' in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 79
+[16-Jul-2015 21:50:38] PHP Parse error:  syntax error, unexpected '=', expecting ')' in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 79
+[16-Jul-2015 21:50:40] PHP Parse error:  syntax error, unexpected '=', expecting ')' in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 79
+[16-Jul-2015 21:51:14] PHP Parse error:  syntax error, unexpected '=', expecting ')' in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 79
+[16-Jul-2015 21:55:11] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 79
+[16-Jul-2015 21:55:26] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 79
+[16-Jul-2015 21:55:53] PHP Fatal error:  Call to a member function read() on a non-object in /home/lojac367/public_html/exemplo/app/Controller/UsersController.php on line 283
+[16-Jul-2015 21:57:35] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW, expecting ')' in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 77
+[16-Jul-2015 21:58:25] PHP Parse error:  syntax error, unexpected ')' in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 77
+[16-Jul-2015 22:07:05] PHP Fatal error:  Class 'UsersController' not found in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 59
+[16-Jul-2015 22:07:35] PHP Fatal error:  Call to a member function read() on a non-object in /home/lojac367/public_html/exemplo/app/Controller/UsersController.php on line 283
+[16-Jul-2015 22:08:14] PHP Fatal error:  Call to a member function read() on a non-object in /home/lojac367/public_html/exemplo/app/Controller/UsersController.php on line 283
+[16-Jul-2015 22:08:18] PHP Fatal error:  Call to a member function read() on a non-object in /home/lojac367/public_html/exemplo/app/Controller/UsersController.php on line 283
+[16-Jul-2015 22:08:37] PHP Fatal error:  Call to a member function read() on a non-object in /home/lojac367/public_html/exemplo/app/Controller/UsersController.php on line 283
+[16-Jul-2015 22:09:05] PHP Fatal error:  Call to a member function read() on a non-object in /home/lojac367/public_html/exemplo/app/Controller/UsersController.php on line 283
+[16-Jul-2015 22:09:55] PHP Fatal error:  Call to a member function query() on a non-object in /home/lojac367/public_html/exemplo/app/Controller/UsersController.php on line 284
+[16-Jul-2015 23:50:01] PHP Parse error:  syntax error, unexpected ',' in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 754
+[20-Jul-2015 20:21:15] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 412
+[20-Jul-2015 20:21:15] PHP Warning:  Unexpected character in input:  ''' (ASCII=39) state=1 in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 923
+[20-Jul-2015 20:21:15] PHP Parse error:  syntax error, unexpected $end, expecting ']' in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 923
+[20-Jul-2015 20:33:47] PHP Warning:  Unexpected character in input:  ''' (ASCII=39) state=1 in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 1870
+[20-Jul-2015 20:33:47] PHP Parse error:  syntax error, unexpected $end, expecting ')' in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 1870
+[20-Jul-2015 20:34:16] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 1741
+[20-Jul-2015 20:48:17] PHP Warning:  Unexpected character in input:  ''' (ASCII=39) state=1 in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 1008
+[20-Jul-2015 20:48:17] PHP Parse error:  syntax error, unexpected $end, expecting ')' in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 1008
+[20-Jul-2015 20:52:08] PHP Warning:  Unexpected character in input:  ''' (ASCII=39) state=1 in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 1590
+[20-Jul-2015 20:52:08] PHP Parse error:  syntax error, unexpected T_STRING in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 1590
+[20-Jul-2015 21:11:18] PHP Fatal error:  Call to undefined method UsersController::getSelectFiliais() in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 829
+[20-Jul-2015 21:16:23] PHP Parse error:  syntax error, unexpected '=', expecting ')' in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 153
+[20-Jul-2015 22:20:21] PHP Fatal error:  Call to undefined function  reload() in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 1024
+[20-Jul-2015 22:57:52] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/exemplo/app/Controller/UsersController.php on line 41
+[20-Jul-2015 22:57:54] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/exemplo/app/Controller/UsersController.php on line 41
+[20-Jul-2015 23:06:31] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/exemplo/app/Controller/UsersController.php on line 43
+[20-Jul-2015 23:06:33] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/exemplo/app/Controller/UsersController.php on line 43
+[20-Jul-2015 23:06:33] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/exemplo/app/Controller/UsersController.php on line 43
+[20-Jul-2015 23:44:50] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 1346
+[21-Jul-2015 20:22:46] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 64
+[21-Jul-2015 20:22:46] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 445
+[21-Jul-2015 20:38:18] PHP Parse error:  syntax error, unexpected $end, expecting ')' in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 214
+[21-Jul-2015 21:31:02] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 1475
+[21-Jul-2015 21:47:11] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 1355
+[21-Jul-2015 21:48:29] PHP Warning:  Unexpected character in input:  ''' (ASCII=39) state=1 in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 793
+[21-Jul-2015 21:48:29] PHP Parse error:  syntax error, unexpected T_STRING, expecting ')' in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 793
+[21-Jul-2015 22:27:22] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 1128
+[21-Jul-2015 22:27:25] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 1128
+[21-Jul-2015 22:27:27] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 1128
+[22-Jul-2015 20:14:43] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 949
+[22-Jul-2015 20:25:31] PHP Parse error:  syntax error, unexpected $end, expecting ']' in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 1720
+[22-Jul-2015 21:26:06] PHP Fatal error:  Cannot use string offset as an array in /home/lojac367/public_html/exemplo/app/View/Pedidos/mapa.ctp on line 50
+[22-Jul-2015 21:26:09] PHP Fatal error:  Cannot use string offset as an array in /home/lojac367/public_html/exemplo/app/View/Pedidos/mapa.ctp on line 50
+[22-Jul-2015 21:26:11] PHP Fatal error:  Cannot use string offset as an array in /home/lojac367/public_html/exemplo/app/View/Pedidos/mapa.ctp on line 50
+[22-Jul-2015 21:26:26] PHP Fatal error:  Cannot use string offset as an array in /home/lojac367/public_html/exemplo/app/View/Pedidos/mapa.ctp on line 50
+[22-Jul-2015 21:26:29] PHP Fatal error:  Cannot use string offset as an array in /home/lojac367/public_html/exemplo/app/View/Pedidos/mapa.ctp on line 50
+[22-Jul-2015 21:26:38] PHP Fatal error:  Cannot use string offset as an array in /home/lojac367/public_html/exemplo/app/View/Pedidos/mapa.ctp on line 50
+[22-Jul-2015 21:26:56] PHP Fatal error:  Cannot use string offset as an array in /home/lojac367/public_html/exemplo/app/View/Pedidos/mapa.ctp on line 50
+[22-Jul-2015 21:27:25] PHP Fatal error:  Cannot use string offset as an array in /home/lojac367/public_html/exemplo/app/View/Pedidos/mapa.ctp on line 50
+[22-Jul-2015 21:27:27] PHP Fatal error:  Cannot use string offset as an array in /home/lojac367/public_html/exemplo/app/View/Pedidos/mapa.ctp on line 50
+[22-Jul-2015 21:27:58] PHP Fatal error:  Cannot use string offset as an array in /home/lojac367/public_html/exemplo/app/View/Pedidos/mapa.ctp on line 50
+[22-Jul-2015 21:29:06] PHP Fatal error:  Cannot use string offset as an array in /home/lojac367/public_html/exemplo/app/View/Pedidos/mapa.ctp on line 50
+[22-Jul-2015 21:29:40] PHP Fatal error:  Cannot use string offset as an array in /home/lojac367/public_html/exemplo/app/View/Pedidos/mapa.ctp on line 50
+[22-Jul-2015 21:29:43] PHP Fatal error:  Cannot use string offset as an array in /home/lojac367/public_html/exemplo/app/View/Pedidos/mapa.ctp on line 50
+[22-Jul-2015 21:30:17] PHP Fatal error:  Cannot use string offset as an array in /home/lojac367/public_html/exemplo/app/View/Pedidos/mapa.ctp on line 50
+[22-Jul-2015 21:40:06] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 104
+[22-Jul-2015 21:40:08] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 104
+[22-Jul-2015 21:40:09] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 104
+[22-Jul-2015 22:00:06] PHP Fatal error:  Class 'UsersController' not found in /home/lojac367/public_html/exemplo/app/Controller/ClientesController.php on line 62
+[22-Jul-2015 22:12:45] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/exemplo/app/Controller/ProdutosController.php on line 138
+[22-Jul-2015 22:25:00] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/exemplo/app/Controller/EntregadorsController.php on line 120
+[22-Jul-2015 22:34:35] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/exemplo/app/Controller/PagamentosController.php on line 92
+[23-Jul-2015 21:16:23] PHP Fatal error:  Call to a member function getFiliais() on a non-object in /home/lojac367/public_html/exemplo/app/Controller/UsersController.php on line 60
+[23-Jul-2015 22:04:04] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING, expecting ')' in /home/lojac367/public_html/exemplo/app/Controller/UsersController.php on line 118
+[23-Jul-2015 22:54:44] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/exemplo/app/Controller/UsersController.php on line 140
+[23-Jul-2015 22:56:58] PHP Parse error:  syntax error, unexpected $end, expecting T_VARIABLE in /home/lojac367/public_html/exemplo/app/Controller/UsersController.php on line 350
+[23-Jul-2015 23:22:54] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/exemplo/app/Controller/UsersController.php on line 181
+[23-Jul-2015 23:27:32] PHP Parse error:  syntax error, unexpected ',', expecting ')' in /home/lojac367/public_html/exemplo/app/Controller/UsersController.php on line 118
+[23-Jul-2015 23:27:35] PHP Parse error:  syntax error, unexpected ',', expecting ')' in /home/lojac367/public_html/exemplo/app/Controller/UsersController.php on line 118
+[23-Jul-2015 23:33:16] PHP Parse error:  syntax error, unexpected $end, expecting '&' or T_VARIABLE in /home/lojac367/public_html/exemplo/app/Controller/UsersController.php on line 399
+[24-Jul-2015 22:54:43] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/exemplo/app/Controller/RestProdutosController.php on line 47
+[24-Jul-2015 23:01:41] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/exemplo/app/Controller/RestProdutosController.php on line 47
+[24-Jul-2015 23:01:45] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/exemplo/app/Controller/RestProdutosController.php on line 47
+[08-Aug-2015 14:13:14] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 1858
+[08-Aug-2015 14:15:55] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 1413
+[08-Aug-2015 14:41:48] PHP Parse error:  syntax error, unexpected ')', expecting ']' in /home/lojac367/public_html/exemplo/app/Controller/RestProdutosController.php on line 54
+[08-Aug-2015 14:41:53] PHP Parse error:  syntax error, unexpected ')', expecting ']' in /home/lojac367/public_html/exemplo/app/Controller/RestProdutosController.php on line 54
+[08-Aug-2015 14:42:13] PHP Parse error:  syntax error, unexpected ')', expecting ']' in /home/lojac367/public_html/exemplo/app/Controller/RestProdutosController.php on line 54
+[08-Aug-2015 16:56:01] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 722
+[12-Aug-2015 20:45:12] PHP Fatal error:  Call to undefined method ProdutosController::diminueEstoque() in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 1217
+[12-Aug-2015 21:29:06] PHP Warning:  Unexpected character in input:  ''' (ASCII=39) state=1 in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 2018
+[12-Aug-2015 21:29:06] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 2018
+[12-Aug-2015 21:37:49] PHP Warning:  Unexpected character in input:  ''' (ASCII=39) state=1 in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 2019
+[12-Aug-2015 21:37:49] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 2019
+[12-Aug-2015 21:58:54] PHP Parse error:  syntax error, unexpected $end, expecting ')' in /home/lojac367/public_html/exemplo/app/Controller/PedidosController.php on line 2017
+[12-Aug-2015 22:00:34] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/exemplo/app/Controller/ProdutosController.php on line 146
+[12-Aug-2015 22:54:57] PHP Parse error:  syntax error, unexpected ';' in /home/lojac367/public_html/exemplo/app/Controller/ClientesController.php on line 165
+[25-Aug-2015 22:03:48] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/sistema/app/View/Layouts/default.ctp on line 178
+[25-Aug-2015 22:03:50] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/sistema/app/View/Layouts/default.ctp on line 178
+[26-Aug-2015 21:34:34] PHP Fatal error:  Call to a member function getFiliais() on a non-object in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 1845
+[31-Aug-2015 22:04:16] PHP Fatal error:  Call to undefined function  deubug() in /home/lojac367/public_html/sistema/app/Controller/RestProdutosController.php on line 82
+[07-Sep-2015 22:42:19] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 81
+[07-Sep-2015 22:42:22] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 81
+[07-Sep-2015 22:42:27] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 81
+[07-Sep-2015 22:42:30] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 81
+[07-Sep-2015 22:42:33] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 81
+[07-Sep-2015 22:42:39] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 81
+[07-Sep-2015 22:42:41] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 81
+[07-Sep-2015 22:42:50] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 81
+[07-Sep-2015 22:42:54] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 81
+[07-Sep-2015 22:42:59] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 81
+[07-Sep-2015 22:43:02] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 81
+[07-Sep-2015 22:43:09] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 81
+[07-Sep-2015 22:43:10] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 81
+[07-Sep-2015 22:43:19] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 81
+[07-Sep-2015 22:43:22] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 81
+[07-Sep-2015 22:43:30] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 81
+[07-Sep-2015 22:43:39] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 81
+[07-Sep-2015 22:43:42] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 81
+[07-Sep-2015 22:43:50] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 81
+[07-Sep-2015 22:43:59] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 81
+[07-Sep-2015 22:44:02] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 81
+[07-Sep-2015 22:44:02] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 81
+[07-Sep-2015 22:44:10] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 81
+[07-Sep-2015 22:44:30] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 81
+[14-Sep-2015 22:09:54] PHP Parse error:  syntax error, unexpected ',', expecting ')' in /home/lojac367/public_html/sistema/app/View/Produtos/edit.ctp on line 75
+[14-Sep-2015 22:09:57] PHP Parse error:  syntax error, unexpected ',', expecting ')' in /home/lojac367/public_html/sistema/app/View/Produtos/edit.ctp on line 75
+[14-Sep-2015 22:10:06] PHP Parse error:  syntax error, unexpected ',', expecting ')' in /home/lojac367/public_html/sistema/app/View/Produtos/edit.ctp on line 75
+[14-Sep-2015 22:10:06] PHP Parse error:  syntax error, unexpected ',', expecting ')' in /home/lojac367/public_html/sistema/app/View/Produtos/edit.ctp on line 75
+[14-Sep-2015 22:10:07] PHP Parse error:  syntax error, unexpected ',', expecting ')' in /home/lojac367/public_html/sistema/app/View/Produtos/edit.ctp on line 75
+[14-Sep-2015 22:10:08] PHP Parse error:  syntax error, unexpected ',', expecting ')' in /home/lojac367/public_html/sistema/app/View/Produtos/edit.ctp on line 75
+[21-Sep-2015 22:10:01] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/sistema/app/Controller/RestProdutosController.php on line 144
+[27-Sep-2015 13:02:54] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 2013
+[27-Sep-2015 13:04:48] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 2013
+[27-Sep-2015 13:07:44] PHP Warning:  Unexpected character in input:  ''' (ASCII=39) state=1 in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 1503
+[27-Sep-2015 13:07:44] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 1503
+[27-Sep-2015 13:07:44] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 2013
+[27-Sep-2015 13:08:49] PHP Warning:  Unexpected character in input:  ''' (ASCII=39) state=1 in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 2012
+[27-Sep-2015 13:08:49] PHP Parse error:  syntax error, unexpected $end, expecting ']' in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 2012
+[27-Sep-2015 13:08:49] PHP Warning:  Unexpected character in input:  ''' (ASCII=39) state=1 in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 2012
+[27-Sep-2015 13:08:49] PHP Parse error:  syntax error, unexpected $end, expecting ']' in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 2012
+[27-Sep-2015 13:35:35] PHP Warning:  Unexpected character in input:  ''' (ASCII=39) state=1 in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 1710
+[27-Sep-2015 13:35:35] PHP Parse error:  syntax error, unexpected T_STRING in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 1710
+[27-Sep-2015 13:56:26] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 13:56:32] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 13:56:34] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 13:56:52] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 13:56:54] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 13:56:56] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 13:57:12] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 13:57:14] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 13:57:26] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 13:57:33] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 13:57:35] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 13:57:53] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 13:57:55] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 13:57:56] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 13:58:13] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 13:58:14] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 13:58:26] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 13:58:33] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 13:58:34] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 13:58:53] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 13:58:54] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 13:58:56] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 13:59:13] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 13:59:14] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 13:59:26] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 13:59:33] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 13:59:34] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 13:59:53] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 13:59:54] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 13:59:56] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 14:00:13] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 14:00:14] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 14:00:26] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 14:00:33] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 14:00:34] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 14:00:53] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 14:00:54] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 14:00:56] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 14:01:13] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 14:01:14] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 14:01:26] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 14:01:33] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 14:01:34] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 14:01:53] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 14:01:54] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 14:01:56] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 14:02:13] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 14:02:14] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 14:02:26] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 14:02:33] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 14:02:34] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 14:02:53] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 14:02:54] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 14:02:56] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 14:03:13] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 14:03:14] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 14:03:25] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 14:03:26] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 14:03:28] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 14:03:31] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 14:03:34] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 14:03:36] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 14:03:54] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 14:03:56] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 14:04:04] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 14:04:14] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 14:04:26] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 14:04:34] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 14:04:54] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 979
+[27-Sep-2015 14:04:56] PHP Warning:  Unterminated comment starting line 2009 in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 2009
+[27-Sep-2015 14:04:56] PHP Fatal error:  fatal flex scanner internal error--end of buffer missed in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 2009
+[27-Sep-2015 14:04:56] PHP Warning:  Unterminated comment starting line 2009 in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 2009
+[27-Sep-2015 14:04:56] PHP Fatal error:  fatal flex scanner internal error--end of buffer missed in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 2009
+[27-Sep-2015 14:11:37] PHP Warning:  Unterminated comment starting line 2009 in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 2009
+[27-Sep-2015 14:11:37] PHP Fatal error:  fatal flex scanner internal error--end of buffer missed in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 2009
+[27-Sep-2015 14:14:52] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 1494
+[27-Sep-2015 14:14:52] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 1494
+[27-Sep-2015 14:31:27] PHP Parse error:  syntax error, unexpected $end, expecting ')' in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 262
+[27-Sep-2015 14:31:33] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:31:37] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:31:53] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:31:56] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:31:58] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:32:13] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:32:16] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:32:28] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:32:33] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:32:53] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:32:57] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:32:58] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:33:13] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:33:17] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:33:29] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:33:33] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:33:37] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:33:54] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:33:57] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:33:58] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:34:13] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:34:17] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:34:28] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:34:33] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:34:38] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:34:53] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:34:57] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:34:58] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:35:14] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:35:18] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:35:28] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:35:34] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:35:38] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:35:53] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:35:57] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:35:58] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:36:13] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:36:18] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:36:29] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:36:33] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:36:38] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:36:54] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:36:57] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:36:58] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:37:04] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:37:07] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:37:10] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:37:17] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:37:28] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:37:38] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:37:58] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:37:58] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:38:18] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:38:23] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:38:26] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:38:28] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:38:38] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:38:57] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:38:59] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:38:59] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:39:01] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:39:17] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:39:28] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 912
+[27-Sep-2015 14:39:30] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 320
+[27-Sep-2015 14:43:04] PHP Warning:  Unexpected character in input:  ''' (ASCII=39) state=1 in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 1354
+[27-Sep-2015 14:43:04] PHP Parse error:  syntax error, unexpected $end, expecting ']' in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 1354
+[27-Sep-2015 14:46:57] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 595
+[27-Sep-2015 14:46:57] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 595
+[27-Sep-2015 14:46:59] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 1819
+[27-Sep-2015 15:06:11] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 1136
+[27-Sep-2015 15:06:14] PHP Warning:  Unexpected character in input:  ''' (ASCII=39) state=1 in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 2049
+[27-Sep-2015 15:06:14] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 2049
+[01-Oct-2015 21:44:08] PHP Parse error:  syntax error, unexpected '{' in /home/lojac367/public_html/sistema/app/Controller/RestClientesController.php on line 118
+[01-Oct-2015 21:44:16] PHP Parse error:  syntax error, unexpected '{' in /home/lojac367/public_html/sistema/app/Controller/RestClientesController.php on line 118
+[01-Oct-2015 21:44:34] PHP Parse error:  syntax error, unexpected '{' in /home/lojac367/public_html/sistema/app/Controller/RestClientesController.php on line 118
+[01-Oct-2015 21:45:02] PHP Fatal error:  Cannot pass parameter 2 by reference in /home/lojac367/public_html/sistema/app/Controller/RestClientesController.php on line 68
+[01-Oct-2015 21:45:12] PHP Fatal error:  Cannot pass parameter 2 by reference in /home/lojac367/public_html/sistema/app/Controller/RestClientesController.php on line 68
+[04-Oct-2015 21:12:49] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 1817
+[04-Oct-2015 21:34:00] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/sistema/app/Controller/ProdutosController.php on line 392
+[05-Oct-2015 22:28:19] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/sistema/app/Controller/RestPedidosController.php on line 689
+[05-Oct-2015 22:28:52] PHP Warning:  Unexpected character in input:  ''' (ASCII=39) state=1 in /home/lojac367/public_html/sistema/app/Controller/RestPedidosController.php on line 688
+[05-Oct-2015 22:28:52] PHP Parse error:  syntax error, unexpected $end, expecting ']' in /home/lojac367/public_html/sistema/app/Controller/RestPedidosController.php on line 688
+[05-Oct-2015 22:29:17] PHP Warning:  Unexpected character in input:  ''' (ASCII=39) state=1 in /home/lojac367/public_html/sistema/app/Controller/RestPedidosController.php on line 688
+[05-Oct-2015 22:29:17] PHP Parse error:  syntax error, unexpected $end, expecting ']' in /home/lojac367/public_html/sistema/app/Controller/RestPedidosController.php on line 688
+[05-Oct-2015 22:32:38] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/sistema/app/Controller/RestPedidosController.php on line 689
+[06-Oct-2015 23:35:03] PHP Fatal error:  Call to a member function removeDetritos() on a non-object in /home/lojac367/public_html/sistema/app/Controller/CidadsController.php on line 126
+[06-Oct-2015 23:37:01] PHP Fatal error:  Call to undefined method checkbfuncComponent::removeDetritos() in /home/lojac367/public_html/sistema/app/Controller/CidadsController.php on line 126
+[06-Oct-2015 23:37:05] PHP Fatal error:  Call to undefined method checkbfuncComponent::removeDetritos() in /home/lojac367/public_html/sistema/app/Controller/CidadsController.php on line 126
+[06-Oct-2015 23:37:35] PHP Fatal error:  Call to undefined method checkbfuncComponent::removeDetritos() in /home/lojac367/public_html/sistema/app/Controller/CidadsController.php on line 126
+[06-Oct-2015 23:37:59] PHP Parse error:  syntax error, unexpected ';', expecting T_FUNCTION in /home/lojac367/public_html/sistema/app/Controller/Component/checkbfuncComponent.php on line 159
+[06-Oct-2015 23:39:07] PHP Fatal error:  Cannot use string offset as an array in /home/lojac367/public_html/sistema/app/View/Cidads/add.ctp on line 95
+[06-Oct-2015 23:39:43] PHP Fatal error:  Cannot use string offset as an array in /home/lojac367/public_html/sistema/app/View/Cidads/add.ctp on line 95
+[06-Oct-2015 23:40:36] PHP Fatal error:  Cannot use string offset as an array in /home/lojac367/public_html/sistema/app/View/Cidads/add.ctp on line 95
+[06-Oct-2015 23:45:42] PHP Fatal error:  Cannot use string offset as an array in /home/lojac367/public_html/sistema/app/View/Cidads/add.ctp on line 97
+[06-Oct-2015 23:45:44] PHP Fatal error:  Cannot use string offset as an array in /home/lojac367/public_html/sistema/app/View/Cidads/add.ctp on line 97
+[06-Oct-2015 23:45:51] PHP Fatal error:  Cannot use string offset as an array in /home/lojac367/public_html/sistema/app/View/Cidads/add.ctp on line 97
+[06-Oct-2015 23:46:08] PHP Fatal error:  Cannot use string offset as an array in /home/lojac367/public_html/sistema/app/View/Cidads/add.ctp on line 97
+[07-Oct-2015 21:12:44] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/sistema/app/Controller/EstadosController.php on line 173
+[07-Oct-2015 21:48:06] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/sistema/app/Controller/BairrosController.php on line 76
+[07-Oct-2015 21:48:08] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/sistema/app/Controller/BairrosController.php on line 76
+[07-Oct-2015 22:05:26] PHP Parse error:  syntax error, unexpected T_ELSE in /home/lojac367/public_html/sistema/app/View/Cidads/add.ctp on line 108
+[07-Oct-2015 22:05:28] PHP Parse error:  syntax error, unexpected T_ELSE in /home/lojac367/public_html/sistema/app/View/Cidads/add.ctp on line 108
+[07-Oct-2015 22:20:56] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/sistema/app/Controller/BairrosController.php on line 66
+[07-Oct-2015 22:20:57] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/sistema/app/Controller/BairrosController.php on line 66
+[07-Oct-2015 22:21:46] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/sistema/app/Controller/BairrosController.php on line 66
+[07-Oct-2015 22:22:11] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/sistema/app/Controller/BairrosController.php on line 66
+[07-Oct-2015 22:22:13] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/lojac367/public_html/sistema/app/Controller/BairrosController.php on line 66
+[08-Oct-2015 21:27:09] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 154
+[08-Oct-2015 21:28:39] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 154
+[08-Oct-2015 21:30:10] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 154
+[08-Oct-2015 21:30:20] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 154
+[08-Oct-2015 21:30:32] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 154
+[08-Oct-2015 21:30:38] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 154
+[08-Oct-2015 21:30:46] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 154
+[08-Oct-2015 21:31:17] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 154
+[08-Oct-2015 21:31:20] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 154
+[08-Oct-2015 21:31:22] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 154
+[08-Oct-2015 21:31:23] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 154
+[08-Oct-2015 21:31:33] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 154
+[08-Oct-2015 21:31:40] PHP Parse error:  syntax error, unexpected '}' in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 154
+[08-Oct-2015 21:46:05] PHP Fatal error:  Class 'EmpresasController' not found in /home/lojac367/public_html/sistema/app/Controller/RestAtendimentosController.php on line 150
+[08-Oct-2015 21:56:31] PHP Fatal error:  Call to a member function removeDetritos() on a non-object in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 143
+[08-Oct-2015 21:56:39] PHP Fatal error:  Call to a member function removeDetritos() on a non-object in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 143
+[08-Oct-2015 21:57:49] PHP Fatal error:  Call to a member function removeDetritos() on a non-object in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 143
+[08-Oct-2015 21:59:46] PHP Fatal error:  Call to a member function removeDetritos() on a non-object in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 143
+[08-Oct-2015 22:28:23] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 144
+[08-Oct-2015 22:28:25] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 144
+[08-Oct-2015 22:28:43] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 144
+[08-Oct-2015 22:28:45] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 144
+[08-Oct-2015 22:28:46] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 144
+[08-Oct-2015 22:28:55] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 144
+[08-Oct-2015 22:28:58] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 144
+[08-Oct-2015 22:29:03] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 144
+[08-Oct-2015 22:29:05] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 144
+[08-Oct-2015 22:29:13] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 144
+[08-Oct-2015 22:29:23] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 144
+[08-Oct-2015 22:29:25] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 144
+[08-Oct-2015 22:29:25] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 144
+[08-Oct-2015 22:29:43] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 144
+[08-Oct-2015 22:29:45] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 144
+[08-Oct-2015 22:30:03] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 144
+[08-Oct-2015 22:30:05] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 144
+[08-Oct-2015 22:30:06] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 144
+[08-Oct-2015 22:30:16] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 144
+[08-Oct-2015 22:30:18] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 144
+[08-Oct-2015 22:30:23] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 144
+[08-Oct-2015 22:30:25] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 144
+[08-Oct-2015 22:30:43] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 144
+[08-Oct-2015 22:30:45] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 144
+[08-Oct-2015 22:49:30] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 167
+[08-Oct-2015 22:49:33] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 167
+[08-Oct-2015 22:49:50] PHP Parse error:  syntax error, unexpected $end in /home/lojac367/public_html/sistema/app/Controller/EmpresasController.php on line 57
+[08-Oct-2015 23:27:35] PHP Fatal error:  Class 'EmpresasController' not found in /home/lojac367/public_html/sistema/app/Controller/RestAtendimentosController.php on line 150
+[15-Oct-2015 21:15:50] PHP Fatal error:  require_once() [<a href='http://php.net/function.require'>function.require</a>]: Failed opening required '/home/lojac367/public_html/sistema/app/Vendor/lib/src/EscposImage.php' (include_path='/home/lojac367/public_html/sistema/lib:.:/usr/lib/php:/usr/local/lib/php') in /home/lojac367/public_html/sistema/app/Vendor/lib/Escpos.php on line 45
+[15-Oct-2015 21:21:04] PHP Fatal error:  require_once() [<a href='http://php.net/function.require'>function.require</a>]: Failed opening required '/home/lojac367/public_html/sistema/app/Vendor/lib/src/EscposImage.php' (include_path='/home/lojac367/public_html/sistema/lib:.:/usr/lib/php:/usr/local/lib/php') in /home/lojac367/public_html/sistema/app/Vendor/lib/Escpos.php on line 45
+[15-Oct-2015 21:22:15] PHP Fatal error:  require_once() [<a href='http://php.net/function.require'>function.require</a>]: Failed opening required '/home/lojac367/public_html/sistema/app/Vendor/lib/src/EscposImage.php' (include_path='/home/lojac367/public_html/sistema/lib:.:/usr/lib/php:/usr/local/lib/php') in /home/lojac367/public_html/sistema/app/Vendor/lib/Escpos.php on line 45
+[15-Oct-2015 21:23:46] PHP Parse error:  syntax error, unexpected T_STATIC, expecting T_STRING or T_VARIABLE or '$' in /home/lojac367/public_html/sistema/app/Vendor/lib/src/AbstractCapabilityProfile.php on line 57
+[15-Oct-2015 21:32:17] PHP Parse error:  syntax error, unexpected T_STATIC, expecting T_STRING or T_VARIABLE or '$' in /home/lojac367/public_html/sistema/app/Vendor/lib/src/AbstractCapabilityProfile.php on line 57
+[15-Oct-2015 21:32:21] PHP Parse error:  syntax error, unexpected T_STATIC, expecting T_STRING or T_VARIABLE or '$' in /home/lojac367/public_html/sistema/app/Vendor/lib/src/AbstractCapabilityProfile.php on line 57
+[15-Oct-2015 21:32:43] PHP Parse error:  syntax error, unexpected T_STATIC, expecting T_STRING or T_VARIABLE or '$' in /home/lojac367/public_html/sistema/app/Vendor/lib/src/AbstractCapabilityProfile.php on line 57
+[15-Oct-2015 21:33:15] PHP Fatal error:  Call to undefined function  php_info() in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 66
+[15-Oct-2015 21:38:36 Brazil/East] PHP Fatal error:  Call to a member function write() on a non-object in /home/lojac367/public_html/sistema/app/Vendor/lib/Escpos.php on line 460
+[15-Oct-2015 21:41:34 Brazil/East] PHP Fatal error:  require_once() [<a href='http://php.net/function.require'>function.require</a>]: Failed opening required '/home/lojac367/public_html/sistema/app/Controller/Escpos.php' (include_path='/home/lojac367/public_html/sistema/lib:.:/opt/php55/lib/php') in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 80
+[15-Oct-2015 21:43:43 Brazil/East] PHP Fatal error:  Call to a member function write() on a non-object in /home/lojac367/public_html/sistema/app/Vendor/lib/Escpos.php on line 460
+[15-Oct-2015 20:08:47 America/Chicago] PHP Parse error:  syntax error, unexpected ''P' (T_ENCAPSED_AND_WHITESPACE), expecting ']' in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 1981
+[15-Oct-2015 20:09:37 America/Chicago] PHP Parse error:  syntax error, unexpected end of file, expecting variable (T_VARIABLE) or '$' in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 2069
+[15-Oct-2015 20:09:57 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 1980
+[15-Oct-2015 20:10:11 America/Chicago] PHP Parse error:  syntax error, unexpected ''O sistema está temporáriame' (T_ENCAPSED_AND_WHITESPACE) in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 1917
+[15-Oct-2015 20:11:19 America/Chicago] PHP Parse error:  syntax error, unexpected ''P' (T_ENCAPSED_AND_WHITESPACE), expecting ']' in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 1981
+[15-Oct-2015 20:11:55 America/Chicago] PHP Parse error:  syntax error, unexpected ''Pe' (T_ENCAPSED_AND_WHITESPACE), expecting ']' in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 1981
+[15-Oct-2015 20:12:25 America/Chicago] PHP Parse error:  syntax error, unexpected end of file, expecting ')' in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 2069
+[15-Oct-2015 20:13:19 America/Chicago] PHP Parse error:  syntax error, unexpected end of file, expecting variable (T_VARIABLE) or ${ (T_DOLLAR_OPEN_CURLY_BRACES) or {$ (T_CURLY_OPEN) in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 1884
+[15-Oct-2015 20:32:19 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 1978
+[15-Oct-2015 20:36:45 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 2030
+[15-Oct-2015 20:51:51 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 1978
+[15-Oct-2015 20:52:36 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 1978
+[15-Oct-2015 20:59:09 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 1978
+[15-Oct-2015 21:10:03 America/Chicago] PHP Parse error:  syntax error, unexpected end of file, expecting identifier (T_STRING) or variable (T_VARIABLE) or '{' or '$' in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 1978
+[15-Oct-2015 21:11:00 America/Chicago] PHP Parse error:  syntax error, unexpected 'e' in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 1882
+[15-Oct-2015 21:18:12 America/Chicago] PHP Parse error:  syntax error, unexpected 'copy' (T_STRING), expecting ',' or ';' in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 81
+[15-Oct-2015 21:18:14 America/Chicago] PHP Parse error:  syntax error, unexpected 'copy' (T_STRING), expecting ',' or ';' in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 81
+[15-Oct-2015 21:18:16 America/Chicago] PHP Parse error:  syntax error, unexpected 'copy' (T_STRING), expecting ',' or ';' in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 81
+[15-Oct-2015 21:18:16 America/Chicago] PHP Parse error:  syntax error, unexpected 'copy' (T_STRING), expecting ',' or ';' in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 81
+[15-Oct-2015 21:26:05 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 2030
+[15-Oct-2015 21:26:48 America/Chicago] PHP Parse error:  syntax error, unexpected end of file, expecting ')' in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 2113
+[15-Oct-2015 21:39:09 America/Chicago] PHP Parse error:  syntax error, unexpected ''status_n' (T_ENCAPSED_AND_WHITESPACE), expecting ']' in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 1982
+[15-Oct-2015 21:39:48 America/Chicago] PHP Parse error:  syntax error, unexpected end of file, expecting ')' in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 2070
+[15-Oct-2015 21:48:26 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 2070
+[18-Oct-2015 13:55:26 Brazil/East] PHP Fatal error:  Call to undefined function print_array() in /home/lojac367/public_html/sistema/app/View/Pedidos/add.ctp on line 104
+[18-Oct-2015 13:55:28 Brazil/East] PHP Fatal error:  Call to undefined function print_array() in /home/lojac367/public_html/sistema/app/View/Pedidos/add.ctp on line 104
+[18-Oct-2015 14:35:01 Brazil/East] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/lojac367/public_html/sistema/app/View/Pedidos/add.ctp on line 12
+[18-Oct-2015 14:32:24 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home/lojac367/public_html/sistema/app/Controller/PedidosController.php on line 1994
+[20-Oct-2015 19:42:53 America/Chicago] PHP Parse error:  syntax error, unexpected '.' in /home/lojac367/public_html/sistema/app/Controller/CategoriasController.php on line 52
+[21-Oct-2015 18:37:44 America/Chicago] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/lojac367/public_html/sistema/app/Controller/RestPedidosController.php on line 230
+[21-Oct-2015 18:37:45 America/Chicago] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/lojac367/public_html/sistema/app/Controller/RestPedidosController.php on line 230
+[21-Oct-2015 18:37:55 America/Chicago] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/lojac367/public_html/sistema/app/Controller/RestPedidosController.php on line 230
+[21-Oct-2015 18:38:06 America/Chicago] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/lojac367/public_html/sistema/app/Controller/RestPedidosController.php on line 230
+[21-Oct-2015 18:39:40 America/Chicago] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/lojac367/public_html/sistema/app/Controller/RestPedidosController.php on line 230
+[21-Oct-2015 18:40:01 America/Chicago] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/lojac367/public_html/sistema/app/Controller/RestPedidosController.php on line 230
+[21-Oct-2015 18:40:13 America/Chicago] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/lojac367/public_html/sistema/app/Controller/RestPedidosController.php on line 230
+[21-Oct-2015 18:40:22 America/Chicago] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/lojac367/public_html/sistema/app/Controller/RestPedidosController.php on line 230
+[21-Oct-2015 18:40:28 America/Chicago] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/lojac367/public_html/sistema/app/Controller/RestPedidosController.php on line 230
+[21-Oct-2015 18:40:43 America/Chicago] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/lojac367/public_html/sistema/app/Controller/RestPedidosController.php on line 230
+[21-Oct-2015 18:41:45 America/Chicago] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/lojac367/public_html/sistema/app/Controller/RestPedidosController.php on line 230
+[21-Oct-2015 18:42:04 America/Chicago] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/lojac367/public_html/sistema/app/Controller/RestPedidosController.php on line 230
+[21-Oct-2015 18:43:08 America/Chicago] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/lojac367/public_html/sistema/app/Controller/RestPedidosController.php on line 230
+[21-Oct-2015 18:43:11 America/Chicago] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/lojac367/public_html/sistema/app/Controller/RestPedidosController.php on line 230
+[30-Oct-2015 10:54:57 Brazil/East] PHP Parse error:  syntax error, unexpected '?>' in /home/lojac367/public_html/sistema/app/View/Pedidos/mensagensativas.ctp on line 17
+[30-Oct-2015 10:55:26 Brazil/East] PHP Parse error:  syntax error, unexpected '?>' in /home/lojac367/public_html/sistema/app/View/Pedidos/mensagensativas.ctp on line 17
+[30-Oct-2015 10:55:37 Brazil/East] PHP Parse error:  syntax error, unexpected '?>' in /home/lojac367/public_html/sistema/app/View/Pedidos/mensagensativas.ctp on line 17
+[30-Oct-2015 10:55:46 Brazil/East] PHP Parse error:  syntax error, unexpected '?>' in /home/lojac367/public_html/sistema/app/View/Pedidos/mensagensativas.ctp on line 17
+[30-Oct-2015 10:56:06 Brazil/East] PHP Parse error:  syntax error, unexpected '?>' in /home/lojac367/public_html/sistema/app/View/Pedidos/mensagensativas.ctp on line 17
+[30-Oct-2015 22:52:27 Brazil/East] PHP Parse error:  syntax error, unexpected ')', expecting ',' or ';' in /home/lojac367/public_html/sistema/app/View/Pedidos/index.ctp on line 348
+[30-Oct-2015 22:52:29 Brazil/East] PHP Parse error:  syntax error, unexpected ')', expecting ',' or ';' in /home/lojac367/public_html/sistema/app/View/Pedidos/index.ctp on line 348
+[30-Oct-2015 22:52:50 Brazil/East] PHP Parse error:  syntax error, unexpected ')', expecting ',' or ';' in /home/lojac367/public_html/sistema/app/View/Pedidos/index.ctp on line 348
+[30-Oct-2015 20:17:18 America/Chicago] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in /home/lojac367/public_html/sistema/app/Controller/RestMensagensController.php on line 80
+[30-Oct-2015 20:17:20 America/Chicago] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in /home/lojac367/public_html/sistema/app/Controller/RestMensagensController.php on line 80
+[30-Oct-2015 20:17:21 America/Chicago] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in /home/lojac367/public_html/sistema/app/Controller/RestMensagensController.php on line 80
+[30-Oct-2015 20:17:22 America/Chicago] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in /home/lojac367/public_html/sistema/app/Controller/RestMensagensController.php on line 80
+[30-Oct-2015 20:17:30 America/Chicago] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in /home/lojac367/public_html/sistema/app/Controller/RestMensagensController.php on line 80
+[31-Oct-2015 11:35:00 America/Chicago] PHP Fatal error:  Uncaught exception 'RuntimeException' with message 'SplFileObject::__construct(/home/lojac367/public_html/sistema/app/tmp/cache/persistent/myapp_cake_core_entrega_app_pt-br): failed to open stream: No such file or directory' in /home/lojac367/public_html/sistema/lib/Cake/Cache/Engine/FileEngine.php:278
+Stack trace:
+#0 /home/lojac367/public_html/sistema/lib/Cake/Cache/Engine/FileEngine.php(278): SplFileObject->__construct('/home/lojac367/...', 'r')
+#1 /home/lojac367/public_html/sistema/lib/Cake/Cache/Engine/FileEngine.php(235): FileEngine->_clearDirectory('/home/lojac367/...', 1446309300, 1446309290)
+#2 /home/lojac367/public_html/sistema/lib/Cake/Cache/Engine/FileEngine.php(100): FileEngine->clear(true)
+#3 /home/lojac367/public_html/sistema/lib/Cake/Cache/Cache.php(184): FileEngine->gc()
+#4 /home/lojac367/public_html/sistema/lib/Cake/Cache/Cache.php(151): Cache::_buildEngine('_cake_core_')
+#5 /home/lojac367/public_html/sistema/app/Config/core.php(373): Cache::config('_cake_core_', Array)
+#6 /home/lojac367/publ in /home/lojac367/public_html/sistema/lib/Cake/Cache/Engine/FileEngine.php on line 278
+[31-Oct-2015 16:36:40 America/Chicago] PHP Fatal error:  Uncaught exception 'RuntimeException' with message 'SplFileObject::__construct(/home/lojac367/public_html/sistema/app/tmp/cache/persistent/myapp_cake_core_cake_pt-br): failed to open stream: No such file or directory' in /home/lojac367/public_html/sistema/lib/Cake/Cache/Engine/FileEngine.php:278
+Stack trace:
+#0 /home/lojac367/public_html/sistema/lib/Cake/Cache/Engine/FileEngine.php(278): SplFileObject->__construct('/home/lojac367/...', 'r')
+#1 /home/lojac367/public_html/sistema/lib/Cake/Cache/Engine/FileEngine.php(235): FileEngine->_clearDirectory('/home/lojac367/...', 1446327400, 1446327390)
+#2 /home/lojac367/public_html/sistema/lib/Cake/Cache/Engine/FileEngine.php(100): FileEngine->clear(true)
+#3 /home/lojac367/public_html/sistema/lib/Cake/Cache/Cache.php(184): FileEngine->gc()
+#4 /home/lojac367/public_html/sistema/lib/Cake/Cache/Cache.php(151): Cache::_buildEngine('_cake_core_')
+#5 /home/lojac367/public_html/sistema/app/Config/core.php(373): Cache::config('_cake_core_', Array)
+#6 /home/lojac367/public_html in /home/lojac367/public_html/sistema/lib/Cake/Cache/Engine/FileEngine.php on line 278
+[31-Oct-2015 22:12:07 Brazil/East] PHP Fatal error:  Call to a member function find() on a non-object in /home/lojac367/public_html/sistema/app/Controller/RestClientesController.php on line 124
+[10-Nov-2015 23:52:35 Brazil/East] PHP Parse error:  syntax error, unexpected ''req' (T_ENCAPSED_AND_WHITESPACE), expecting ')' in /home/lojac367/public_html/sistema/app/View/Bairros/add.ctp on line 71
+[14-Nov-2015 09:41:40 America/Chicago] PHP Fatal error:  Uncaught exception 'RuntimeException' with message 'SplFileObject::__construct(/home/lojac367/public_html/sistema/app/tmp/cache/models/myapp_cake_model_default_lojac367_appedido_produtos): failed to open stream: No such file or directory' in /home/lojac367/public_html/sistema/lib/Cake/Cache/Engine/FileEngine.php:278
+Stack trace:
+#0 /home/lojac367/public_html/sistema/lib/Cake/Cache/Engine/FileEngine.php(278): SplFileObject->__construct('/home/lojac367/...', 'r')
+#1 /home/lojac367/public_html/sistema/lib/Cake/Cache/Engine/FileEngine.php(235): FileEngine->_clearDirectory('/home/lojac367/...', 1447515700, 1447515690)
+#2 /home/lojac367/public_html/sistema/lib/Cake/Cache/Engine/FileEngine.php(100): FileEngine->clear(true)
+#3 /home/lojac367/public_html/sistema/lib/Cake/Cache/Cache.php(184): FileEngine->gc()
+#4 /home/lojac367/public_html/sistema/lib/Cake/Cache/Cache.php(151): Cache::_buildEngine('_cake_model_')
+#5 /home/lojac367/public_html/sistema/app/Config/core.php(385): Cache::config('_cake_model_', Array)
+#6 /ho in /home/lojac367/public_html/sistema/lib/Cake/Cache/Engine/FileEngine.php on line 278
+[15-Nov-2015 14:10:00 America/Chicago] PHP Fatal error:  Uncaught exception 'RuntimeException' with message 'SplFileObject::__construct(/home/lojac367/public_html/sistema/app/tmp/cache/models/myapp_cake_model_default_lojac367_appedido_categorias): failed to open stream: No such file or directory' in /home/lojac367/public_html/sistema/lib/Cake/Cache/Engine/FileEngine.php:278
+Stack trace:
+#0 /home/lojac367/public_html/sistema/lib/Cake/Cache/Engine/FileEngine.php(278): SplFileObject->__construct('/home/lojac367/...', 'r')
+#1 /home/lojac367/public_html/sistema/lib/Cake/Cache/Engine/FileEngine.php(235): FileEngine->_clearDirectory('/home/lojac367/...', 1447618200, 1447618190)
+#2 /home/lojac367/public_html/sistema/lib/Cake/Cache/Engine/FileEngine.php(100): FileEngine->clear(true)
+#3 /home/lojac367/public_html/sistema/lib/Cake/Cache/Cache.php(184): FileEngine->gc()
+#4 /home/lojac367/public_html/sistema/lib/Cake/Cache/Cache.php(151): Cache::_buildEngine('_cake_model_')
+#5 /home/lojac367/public_html/sistema/app/Config/core.php(385): Cache::config('_cake_model_', Array)
+#6 / in /home/lojac367/public_html/sistema/lib/Cake/Cache/Engine/FileEngine.php on line 278
+[16-Nov-2015 23:10:51 Brazil/East] PHP Parse error:  syntax error, unexpected ',' in /home/lojac367/public_html/sistema/app/View/Pedidos/index.ctp on line 178
+[16-Nov-2015 23:10:53 Brazil/East] PHP Parse error:  syntax error, unexpected ',' in /home/lojac367/public_html/sistema/app/View/Pedidos/index.ctp on line 178
+[16-Nov-2015 23:11:02 Brazil/East] PHP Parse error:  syntax error, unexpected ',' in /home/lojac367/public_html/sistema/app/View/Pedidos/index.ctp on line 178
+[16-Nov-2015 23:11:05 Brazil/East] PHP Parse error:  syntax error, unexpected ',' in /home/lojac367/public_html/sistema/app/View/Pedidos/index.ctp on line 178
+[22-Nov-2015 12:33:51 America/Chicago] PHP Parse error:  syntax error, unexpected end of file, expecting '&' or variable (T_VARIABLE) in /home/lojac367/public_html/sistema/app/Controller/RestPedidosController.php on line 779
+[23-Nov-2015 16:01:06 America/Chicago] PHP Fatal error:  Cannot use isset() on the result of an expression (you can use "null !== expression" instead) in /home/lojac367/public_html/sistema/app/Controller/ProdutosController.php on line 252
+[23-Nov-2015 16:01:08 America/Chicago] PHP Fatal error:  Cannot use isset() on the result of an expression (you can use "null !== expression" instead) in /home/lojac367/public_html/sistema/app/Controller/ProdutosController.php on line 252
+[23-Nov-2015 16:01:11 America/Chicago] PHP Fatal error:  Cannot use isset() on the result of an expression (you can use "null !== expression" instead) in /home/lojac367/public_html/sistema/app/Controller/ProdutosController.php on line 252
+[23-Nov-2015 16:01:15 America/Chicago] PHP Fatal error:  Cannot use isset() on the result of an expression (you can use "null !== expression" instead) in /home/lojac367/public_html/sistema/app/Controller/ProdutosController.php on line 252
+[23-Nov-2015 16:01:22 America/Chicago] PHP Fatal error:  Cannot use isset() on the result of an expression (you can use "null !== expression" instead) in /home/lojac367/public_html/sistema/app/Controller/ProdutosController.php on line 252
+[23-Nov-2015 16:01:26 America/Chicago] PHP Fatal error:  Cannot use isset() on the result of an expression (you can use "null !== expression" instead) in /home/lojac367/public_html/sistema/app/Controller/ProdutosController.php on line 252
+[23-Nov-2015 16:01:28 America/Chicago] PHP Fatal error:  Cannot use isset() on the result of an expression (you can use "null !== expression" instead) in /home/lojac367/public_html/sistema/app/Controller/ProdutosController.php on line 252
+[23-Nov-2015 20:23:24 Brazil/East] PHP Fatal error:  Call to undefined function print_array() in /home/lojac367/public_html/sistema/app/Controller/ProdutosController.php on line 245
+[23-Nov-2015 20:23:27 Brazil/East] PHP Fatal error:  Call to undefined function print_array() in /home/lojac367/public_html/sistema/app/Controller/ProdutosController.php on line 245
+[23-Nov-2015 16:23:46 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home/lojac367/public_html/sistema/app/Controller/ProdutosController.php on line 341
+[23-Nov-2015 16:36:31 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home/lojac367/public_html/sistema/app/Controller/ProdutosController.php on line 336
+[24-Nov-2015 09:38:20 America/Chicago] PHP Fatal error:  Uncaught exception 'RuntimeException' with message 'SplFileObject::__construct(/home/lojac367/public_html/sistema/app/tmp/cache/models/myapp_cake_model_default_lojac367_appedido_pagamentos): failed to open stream: No such file or directory' in /home/lojac367/public_html/sistema/lib/Cake/Cache/Engine/FileEngine.php:278
+Stack trace:
+#0 /home/lojac367/public_html/sistema/lib/Cake/Cache/Engine/FileEngine.php(278): SplFileObject->__construct('/home/lojac367/...', 'r')
+#1 /home/lojac367/public_html/sistema/lib/Cake/Cache/Engine/FileEngine.php(235): FileEngine->_clearDirectory('/home/lojac367/...', 1448379500, 1448379490)
+#2 /home/lojac367/public_html/sistema/lib/Cake/Cache/Engine/FileEngine.php(100): FileEngine->clear(true)
+#3 /home/lojac367/public_html/sistema/lib/Cake/Cache/Cache.php(184): FileEngine->gc()
+#4 /home/lojac367/public_html/sistema/lib/Cake/Cache/Cache.php(151): Cache::_buildEngine('_cake_model_')
+#5 /home/lojac367/public_html/sistema/app/Config/core.php(385): Cache::config('_cake_model_', Array)
+#6 / in /home/lojac367/public_html/sistema/lib/Cake/Cache/Engine/FileEngine.php on line 278

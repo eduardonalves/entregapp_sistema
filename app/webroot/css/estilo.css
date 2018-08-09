@@ -1,0 +1,362 @@
+@charset "utf-8";
+
+@const tema-preenchimento: #D91E19;
+@const tema-borda: #EF4836;
+
+
+html, body{
+	height: 100%;
+}
+
+/************************************************** NAVEGAÇÃO ****************************************************/
+.navbar-default {
+  background-color: #D91E19;
+  box-shadow: 0px 0px 5px black;
+  border-bottom: none;
+  padding: 0px 30px 0px 30px;
+}
+
+	.navbar-default .navbar-brand {
+	  color: #FFF !important;
+	}
+	.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+	  color: #FFF !important;
+	}
+
+	.navbar-default .navbar-text {
+	  color: #FFF !important;
+	}
+	.navbar-default .navbar-nav > li > a {
+	  color: #FFF !important;
+	}
+	.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+	  color: #FFF !important;
+	}
+	.navbar-default li:hover{
+		background: #EF4836;
+	}
+	.navbar-default.navbar-right{
+
+	}
+	.navbar-default .dropdown:last-child{
+
+	}
+	.navbar-default .dropdown-menu {
+	  border: none;
+	  padding: 6px 0px 0px 0px;
+	}
+	.navbar-default .dropdown-menu li{
+		height: 40px;
+		font-weight: bold;
+	}
+	.navbar-default .navbar-nav > li > .dropdown-menu {
+	  background-color: #EF4836 !important;
+	  border-bottom: 5px solid var(--vermelho-escuro);
+	  border-radius: 0px;
+	}
+
+	.navbar-default .navbar-nav > li > .dropdown-menu > li > a {
+	  color: #FFF !important;
+	  display: block;
+	  height: 100%;
+	  width: 100%;
+	  line-height: 35px;
+	}
+	.navbar-default .navbar-nav > li > .dropdown-menu > li > a:hover,
+	.navbar-default .navbar-nav > li > .dropdown-menu > li > a:focus {
+	  color: #ecf0f1 !important;
+	  background-color: #b30707 !important;
+	}
+
+	.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+	  color: #ecf0f1 !important;
+	  background-color: #b30707 !important;
+	}
+	.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+	  color: #ecf0f1 !important;
+	  background-color: #EF4836 !important;
+	}
+	.navbar-default .navbar-toggle {
+	  border-color: #b30707 !important;
+	}
+	.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+	  background-color: #b30707 !important;
+	}
+	.navbar-default .navbar-toggle .icon-bar {
+	  background-color: #ecf0f1 !important;
+	}
+	.navbar-default .navbar-collapse,
+	.navbar-default .navbar-form {
+	  border-color: #ecf0f1 !important;
+	}
+	.navbar-default .navbar-link {
+	  color: #ecf0f1 !important;
+	}
+	.navbar-default .navbar-link:hover {
+	  color: #ecf0f1 !important;
+	}
+
+	.caret{
+		background: transparent url("../img/seta_baixo.png") no-repeat scroll 0% 0%;
+		border: medium none;
+		background-size: 100%;
+		width: 12px;
+		height: 7px;
+		margin: auto 5px;
+	}
+	.icon-menu{
+		margin-right: 10px;
+	}
+	#relat-menu{
+		line-height: 24px !important;
+	}
+	@media (max-width: 767px) {
+	  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+		color: #ecf0f1 !important;
+	  }
+	  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+		color: #ecf0f1 !important;
+	  }
+	  .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+		color: #ecf0f1 !important;
+		background-color: #b30707 !important;
+	  }
+	  .navbar-default .dropdown,
+	  .navbar-default .navbar-right .dropdown{
+		border: none !important;
+	  }
+	}
+
+
+/*********************************************** CONTEÚDO  *************************************************/
+
+/** ESTRUTURA CONTEÚDO **/
+
+.content{
+	padding-top: 90px;
+}
+
+
+
+/********** FORMULÁRIOS  **********/
+.input-default,
+.custom-combobox-input{
+	height: 32px !important;
+	width: 100% !important;
+}
+
+input#dataPedido,
+input#filterDataPedido-between{
+	width: 40%;
+	height: 32px;
+}
+input#filterDataPedido-between{
+	margin-left: 30px;
+}
+.separador-filter{
+	display: none;
+}
+
+		/*
+			PESQUISA DE PEDIDOS INDEX
+		*/
+
+
+		.span3 .filtrar{
+			width: 80px !important;
+			margin-top: 6px;
+		}
+
+
+/*
+	PESQUISA DE PEDIDOS INDEX
+*/
+#quadro-mensagem{
+	margin-bottom: 40px;
+}
+#titulo-mensagem{
+	display: block;
+	width: 250px;
+	height: 30px;
+	border-bottom: 1px solid #ccc;
+}
+#titulo-mensagem span{
+	float: left;
+	cursor: pointer;
+}
+	#titulo-mensagem .titulo{
+		color: #e32;
+		font-weight: bold;
+	}
+#mensagens{
+	display: none;
+	padding: 10px;
+	background: rgba(232, 232, 232, 0.47);
+	max-height: 200px;
+	overflow: auto;
+	border-top: none;
+	border: 1px solid #ccc;
+	margin-top: -11px;
+}
+	#mensagens a{
+		cursor: pointer;
+	}
+#msg-qtd{
+	color: #FFF;
+	background: #FF9406;
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	font-size: 15px;
+	text-align: center;
+	border-radius: 5px;
+	display: block;
+	margin-left: 5px;
+	margin-top: -1px;
+}
+
+
+
+/*
+  INICIO ADD NOVO PEDIDO
+*/
+.bts-add{
+	height: 25px;
+	padding: 4px;
+	text-align: center;
+	margin-bottom: 5px;
+	line-height: 10px;
+  }
+#modalBodyCadastrarMesa{height: 130px; overflow: hidden; padding-top: 73px; }
+	.close{color:#fff;}
+	th{
+		background-color:#E87C00;
+		color:#FFFFFF;
+
+	}
+table {margin-top: 10px; font-size:80%;}
+
+
+
+.table-striped tbody tr:nth-child(odd) td {
+   background-color: #E8E8E8;
+}
+
+.table-striped tbody tr:nth-child(even) td {
+   background-color: #F9F9F9;
+}
+.btn-comprar{margin-top: 15px;}
+.layerslide{
+	background-color: rgba(0, 0, 0, 0.8);
+	color:white;
+
+
+	max-height: 30%;
+	overflow:hidden;
+	padding: 9px;
+	margin-top:15px;
+
+}
+
+.slider{
+	padding: 1px;
+
+}
+.accordion-group {border: 2px solid #FFFFFF;
+
+}
+#pedir{float:left;}
+.loaderAjax{color:#FFFFFF; float: left; margin-left: 8px; margin-top: 7px; display:none;}
+.loaderAjax small{margin-left:5px;}
+.erroqtde{color:#FFFFFF; float: left; margin-left: 8px; margin-top: 7px; display:none;}
+
+
+.combo-pequena input,
+.combo-pequena select{
+	width: 200px;
+}
+.ui-autocomplete{
+	max-height: 200px;
+	overflow: auto;
+}
+.linhaTotal{
+	text-align: right !important;
+}
+
+.addCliente{
+	float: right;
+	margin-right: 5px;
+	margin-top: 15px;
+}
+
+/**** MODAL VISUALISAR PEDIDO *****/
+.modal-subtitulo{
+	display: block;
+	width: 100%;
+	padding: 0;
+	text-align: center;
+	font-size: 21px;
+	line-height: inherit;
+	color: #333;
+	border: 0;
+	border-bottom: 1px solid #e5e5e5;
+}
+	.modal-subtitulo h3{
+		margin-top: 0px !important;
+	}
+.modal form {
+    width: 95% !important;
+  margin: 0 auto !important;
+}
+.modal p{
+	margin: 0;
+}
+.modal.modal-viewPedido .checkout-wrap{
+	  margin: 35px auto !important;
+	  width: 105%;
+}
+
+
+@media (max-width: 767px) {
+
+	#pedir{
+		margin: 20px 21px !important;
+	}
+
+}
+
+@media (max-width: 480px) {
+	.combo-pequena input,
+	.combo-pequena select{
+		width: 100%;
+	}
+
+	#pedir{
+		margin: 20px 21px !important;
+	}
+}
+
+@media (min-width: 1200px){
+	.modal .row-fluid [class*="span"]:first-child {
+	  margin-left: 2.564102564102564% !important;
+	}
+}
+
+/*********************************************** RODAPÉ  *************************************************/
+#rodape{
+	 box-shadow: 0px 0px 5px black;
+	border-bottom: none !important;
+	background: #D91E19;
+	width: 100%;
+	position: relative;
+	bottom: 0px;
+	text-align: center;
+}
+	#rodape p,
+	#rodape a{
+		margin: 0px;
+		padding: 0px;
+		color: #fff;
+		font-size: 12px;
+		padding: 15px;
+	}

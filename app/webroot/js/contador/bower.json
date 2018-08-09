@@ -1,0 +1,26 @@
+{
+  "name": "jquery-countdown",
+  "version": "0.1.1",
+  "homepage": "https://github.com/vstirbu/jquery-countdown",
+  "authors": [
+    "Vlad Stirbu <vstirbu@gmail.com>"
+  ],
+  "description": "jQuery Countdown plugin that doesn't sucks!",
+  "main": "jquery.countdown.js",
+  "keywords": [
+    "jquery",
+    "countdown"
+  ],
+  "license": "MIT GPL",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "*"
+  }
+}

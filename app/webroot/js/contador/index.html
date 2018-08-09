@@ -1,0 +1,98 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>jQuery Countdown Plugin Demo</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="jquery.countdown.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+      $(function(){
+        $('#counter').countdown({
+          image: 'img/digits.png',
+          startTime: '01:12:12:00'
+        });
+
+        $('#counter_2').countdown({
+          image: 'img/digits.png',
+          startTime: '00:10',
+          timerEnd: function(){ alert('end!'); },
+          format: 'mm:ss'
+        });
+      });
+    </script>
+    <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+      br { clear: both; }
+      .cntSeparator {
+        font-size: 54px;
+        margin: 10px 7px;
+        color: #000;
+      }
+      .desc { margin: 7px 3px; }
+      .desc div {
+        float: left;
+        font-family: Arial;
+        width: 70px;
+        margin-right: 65px;
+        font-size: 13px;
+        font-weight: bold;
+        color: #000;
+      }
+    </style>
+  </head>
+<body>
+<div id="jquery-script-menu">
+<div class="jquery-script-center">
+<ul>
+<li><a href="http://www.jqueryscript.net/time-clock/Beautiful-Lightweight-Countdown-Plugin.html">Download This Plugin</a></li>
+<li><a href="http://www.jqueryscript.net/">Back To jQueryScript.Net</a></li>
+</ul>
+<div class="jquery-script-ads"><script type="text/javascript"><!--
+google_ad_client = "ca-pub-2783044520727903";
+/* jQuery_demo */
+google_ad_slot = "2780937993";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div class="jquery-script-clear"></div>
+</div>
+</div>
+<h1 style="margin-top:150px;">jQuery Countdown Plugin Demo</h1>
+  <div id="counter"></div>
+  <div class="desc">
+    <div>D��as</div>
+    <div>Horas</div>
+    <div>Minutos</div>
+    <div>Segundos</div>
+  </div>
+  <br />
+  <br />
+  <br />
+  <div id="counter_2"></div>
+  <div class="desc">
+    <div>Minutos</div>
+    <div>Segundos</div>
+  </div>
+  <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36251023-1']);
+  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>
