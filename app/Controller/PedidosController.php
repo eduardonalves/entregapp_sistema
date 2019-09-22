@@ -1196,8 +1196,20 @@ class PedidosController extends AppController {
 		}
 
 		if ($this->request->is('post')) {
+			$this->loadModel('Fechamento');
 
-
+			$fechamentoObj =$this->Fechamento->find('first', array(
+				'order'=> array('Fechamento.id'=> 'desc'),
+					'conditions'=> array(
+						'Fechamento.filial_id'=> $this->request->data['Pedido']['filial_id'],
+						'status'=> 1
+					)
+				)
+			);
+			if(empty($fechamentoObj)){
+				$this->Session->setFlash(__('No momento não existe caixa aberto. Por favor, abra o caixa e tente novamente!'), 'default', array('class' => 'error-flash alert alert-danger'));
+						return $this->redirect( $this->referer() );
+			}
 
 			if(!$Autorizacao->setAutoIncuir($autTipo,$userfuncao)){
 				$this->Session->setFlash(__('Acesso Negado!'), 'default', array('class' => 'error-flash alert alert-danger'));
@@ -1233,6 +1245,18 @@ class PedidosController extends AppController {
 				$entregadorID="";
 				if(isset($this->request->data['Pedido']['entregador_id'])){
 					$entregadorID= $this->request->data['Pedido']['entregador_id'];
+				}
+
+				if(isset($this->request->data['Pedido']['trocovalor'])){
+					if($this->request->data['Pedido']['trocovalor'] =' '){
+						$entregadorID= $this->request->data['Pedido']['trocovalor']=0;	
+					}
+				}
+
+				if(isset($this->request->data['Pedido']['entregador_id'])){
+					if($this->request->data['Pedido']['entregador_id'] =' '){
+						$entregadorID= $this->request->data['Pedido']['entregador_id']=0;	
+					}
 				}
 
 				$ultimopedido="";

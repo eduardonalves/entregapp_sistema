@@ -31,12 +31,14 @@ class RestClientesController extends AppController {
 		header("Access-Control-Allow-Origin: *");
     $ultimopedido = array();
     $salt = $this->Salt->find('first', array('conditions' => array('Salt.id' => 1)));
+
   //  if ($this->request->is('post')) {
 
       //if($this->request->data['salt'] == $salt['Salt']['salt']){
 
         $this->loadModel('Pedido');
         $pedidos = $this->Pedido->find('all', array('fields' => 'Pedido.nomecadcliente','group'=> 'Pedido.nomecadcliente','recursive' => -1, 'conditions'=>array('Pedido.mesa_id'=> $this->request->data['mesa_id'],'Pedido.status_finalizado !=' => 1 )));
+        
 
         foreach ($pedidos as $key5 => $value5) {
 
@@ -60,6 +62,7 @@ class RestClientesController extends AppController {
 		$senha= $this->Auth->password($this->request->data['password']);
 		$usuario =$this->request->data['username'];
 		$saltenviado = $this->request->data['salt'];
+        $ultimopedido='';
 
 		if ($this->request->is('post')) {
 
@@ -74,6 +77,7 @@ class RestClientesController extends AppController {
             $isAtendente = true;
           }
         }
+
         if($isAtendente == false){
             $user=$this->Cliente->find('first', array('recursive' => -1,'conditions' => array('AND' => array( array('Cliente.password' => $senha), array('Cliente.username' => $usuario)))));
         }else{
@@ -84,12 +88,14 @@ class RestClientesController extends AppController {
 
 				$Empresa = new EmpresasController;
 				if($Empresa->empresaIdAtiva($this->request->data['empresa']) ==false && $isAtendente == false){
+                   
 					$ultimopedido="EmpresaInativa";
 				}else{
 
           $ultimopedido=$user;
 					if(!empty($user)){
             if($isAtendente == true){
+                
 
               $user['Cliente']['email'] = $user['Atendente']['email'];
               $user['Cliente']['ativo'] = $user['Atendente']['ativo'];
@@ -100,9 +106,13 @@ class RestClientesController extends AppController {
               $user['Cliente']['empresa_id'] = $user['Atendente']['empresa_id'];
               $user['Cliente']['ativo'] = $user['Atendente']['ativo'];
               $user['Cliente']['token'] = $user['Atendente']['token'];
+
               //Inicio minhasMesas
               $this->loadModel('Mesa');
-							$mesas = $this->Mesa->find('all', array('recursive' => -1, 'conditions'=>array('Mesa.atendente_id'=>  $user['Atendente']['id'])));
+							$mesas = $this->Mesa->find('all', array('recursive' => -1, 'conditions'=>
+                                    array('Mesa.filial_id'=>  $user['Atendente']['filial_id'])
+                                )
+                        );
 
 							foreach ($mesas as $key5 => $value5) {
 								$ultimopedido['Mesa'][$key5]= $value5['Mesa'];
@@ -125,11 +135,14 @@ class RestClientesController extends AppController {
               }
 							$empresa= $this->Empresa->find('first', array('recursive' => -1,'conditions' => array('Empresa.id' => $this->request->data['empresa'])));
               if($isAtendente != true){
+
 							         $uptadeToken = array('id' => $user['Cliente']['id'],'token' => $token, 'latdest' =>$empresa['Empresa']['lat'], 'lgndest'=> $empresa['Empresa']['lng'] );
+                                     
               }else{
                 $uptadeToken = array('id' => $user['Atendente']['id'],'token' => $token );
-                $this->Atendente->create();
-  							$this->Atendente->save($uptadeToken);
+                
+  				$this->Atendente->save($uptadeToken);
+                
               }
               if($isAtendente != true){
                   $ultimopedido['Cliente']['latdest']= $empresa['Empresa']['lat'];
@@ -196,7 +209,10 @@ class RestClientesController extends AppController {
 
 			}
 		}
-
+            $this->set(array(
+                    'ultimopedido' => $ultimopedido,
+                    '_serialize' => array('ultimopedido')
+                ));
     }
     	   public function getPromoDia(){
     	   	header("Access-Control-Allow-Origin: *");

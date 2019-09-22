@@ -215,7 +215,7 @@ app.controller('monitorarCrtl', function ($scope, $http, $timeout) {
 		{
 		   var tmp = document.createElement("DIV");
 		   tmp.innerHTML = html;
-			 console.log('aqio');
+			 
 		   return tmp.textContent || tmp.innerText || "";
 		}
     $scope.setPage = function(pageNo) {

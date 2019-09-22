@@ -1108,7 +1108,7 @@ class VendasController extends AppController {
 		$userid = $this->Session->read('Auth.User.id');
 		$minhasFiliais = $User->getFiliais($userid);
 
-
+		
 		 date_default_timezone_set("Brazil/East");
 		 $this->layout='liso';
 
@@ -1152,7 +1152,7 @@ class VendasController extends AppController {
 
 			$this->loadModel('Itensdevenda');
 
-
+			
 				$this->request->data['Venda']['data']=date('Y-m-d');
 				$this->request->data['Venda']['user_id']=$this->Session->read('Auth.User.id');
 				$this->request->data['Venda']['empresa_id']=$this->Session->read('Auth.User.empresa_id');
@@ -1194,7 +1194,7 @@ class VendasController extends AppController {
 						$lat = $empresa['Filial']['lat'];
 						$lng = $empresa['Filial']['lng'];
 						$dadosatendimento = array('ativo' => 1, 'usado' => 0, 'codigo' => $codigo, 'tipo' => 'EXTERNO', 'cliente_id' => (int)  $clt, 'lat' => $lat, 'lng' => $lng, 'entregador_id' => (int)  $entregadorID, 'filial_id'=> (int) $this->request->data['Venda']['filial_id'], 'empresa_id'=>$this->Session->read('Auth.User.empresa_id'));
-
+						
 						if ($this->Atendimento->save($dadosatendimento)) {
 
 							$ultimoAtend = $this->Atendimento->find('first', array('conditions' => array('Atendimento.filial_id'=> $this->request->data['Venda']['filial_id']),'order' => array('Atendimento.id' => 'desc'), 'recursive' =>1));

@@ -110,17 +110,7 @@ $cakeDescription = __d('entrega_app', 'EntragApp Delivery');
 					      <ul class="nav navbar-nav">
 					        <!--<li class="active"><a href="#">Início <span class="sr-only">(current)</span></a></li>-->
 
-									<?php if($isCatalog==false): ?>
-						        <li>
-										  <?php
-												echo $this->Html->link(
-													$this->Html->image("lista-pedidos.png", array("alt" => "Pedidos")).'&nbsp; Pedidos',
-													"/pedidos",
-													array('escape' => false)
-												);
-											?>
-						        </li>
-									<?php endif;?>
+							
 									<?php //if($isCatalog==false): ?>
 					          <!--<li>-->
 										<?php
@@ -142,6 +132,37 @@ $cakeDescription = __d('entrega_app', 'EntragApp Delivery');
 									);*/
 								?>
 							</li>-->
+
+					        <li class="dropdown">
+
+					          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <?php echo $this->Html->image('lista-pedidos.png',array('class'=>'icon-menu')); ?>Acões<span class="caret"></span></a>
+					          <ul class="dropdown-menu" role="menu">
+					        
+								<?php if($isCatalog==false): ?>
+									<li><?php echo $this->Html->link(__('Pedidos'), '/Pedidos'); ?></li>
+									<li><?php echo $this->Html->link(__('Vendas'), '/Vendas'); ?></li>
+									<li><?php echo $this->Html->link(__('Salão'), '/mesas/salao'); ?></li>
+									<li><?php echo $this->Html->link(__('Solicitações p/ Fazer'), '/Setores/monitorar'); ?></li>
+									<li><?php echo $this->Html->link(__('Solicitações p/ Entrega'), '/Setores/prontos'); ?></li>
+									<li><?php echo $this->Html->link(__('Movimentos'), '/Fechamentos'); ?></li>
+									<li><?php echo $this->Form->postLink(
+										  'Abrir Caixa', //le image
+										  array('controller'=>'Fechamentos','action' => 'abrirmovimento',1), //le url
+										  array('escape' => false), //le escape
+										  __('Deseja abrir o caixa?')
+									);?></li>
+									<li><?php echo $this->Form->postLink(
+										  'Fechar Movimento', //le image
+										  array('controller'=>'Fechamentos','action' => 'fecharmovimento',1), //le url
+										  array('escape' => false), //le escape
+										  __('Deseja fechar o movimento?')
+									);?></li>
+								<?php endif;?>
+<!--
+					            <li><?php //echo $this->Html->link(__('Mesas'), array('controller' => 'mesas', 'action' => 'add')); ?></li>
+-->
+					          </ul>
+					        </li>
 					        <li class="dropdown">
 
 					          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <?php echo $this->Html->image('lista-cadastros.png',array('class'=>'icon-menu')); ?>Cadastros<span class="caret"></span></a>
@@ -153,18 +174,20 @@ $cakeDescription = __d('entrega_app', 'EntragApp Delivery');
 												<li><?php echo $this->Html->link(__('Cupons de Desconto'), '/Cupons/add'); ?></li>
 											<?php endif;?>
 											<?php if($isCatalog==false): ?>
-												<li><?php echo $this->Html->link(__('Vendas'), '/Vendas'); ?></li>
+												
 												<li><?php echo $this->Html->link(__('Atendentes'), '/Atendentes/add'); ?></li>
 					            <li><?php echo $this->Html->link(__('Entregadores'), '/Entregadors/add'); ?></li>
 											<li><?php echo $this->Html->link(__('Mesas / Cadastrar'), '/mesas/add'); ?></li>
-												<li><?php echo $this->Html->link(__('Mesas / Salão'), '/mesas/salao'); ?></li>
+												
 											<li><?php echo $this->Html->link(__('Setores'), '/Setores/add'); ?></li>
-											<li><?php echo $this->Html->link(__('Solicitações Feitas'), '/Setores/monitorar'); ?></li>
-											<li><?php echo $this->Html->link(__('Solicitações Prontas'), '/Setores/prontos'); ?></li>
+											
 					            <li><?php echo $this->Html->link(__('Bairros para Entrega'), '/bairros/add'); ?></li>
 											<li><?php echo $this->Html->link(__('Cidades para Entrega'), '/cidads/add'); ?></li>
 											<li><?php echo $this->Html->link(__('UFs para Entrega'), '/estados/add'); ?></li>
 					            <li><?php echo $this->Html->link(__('Formas de Pagamento'),'/Pagamentos/add'); ?></li>
+
+					           
+
 											<?php endif;?>
 <!--
 					            <li><?php //echo $this->Html->link(__('Mesas'), array('controller' => 'mesas', 'action' => 'add')); ?></li>

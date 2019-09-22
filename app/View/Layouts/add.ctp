@@ -152,6 +152,9 @@
 $(document).ready(function() {
 	var itens=0;
 	var urlInicio      = window.location.host;
+    if(urlInicio=="localhost" ){
+        urlInicio= "localhost/entregapp_sistema";   
+    } 
 	
 	$('#trocoResposta').change(function(){
 		

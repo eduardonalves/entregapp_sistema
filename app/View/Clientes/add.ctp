@@ -214,12 +214,15 @@ $(document).ready(function() {
 		$('#myModal').modal('show');
 	});
 	var urlInicio      = window.location.host;
+	if(urlInicio=="localhost" ){
+		urlInicio= "localhost/entregapp_sistema";	
+	} 
 	 loja = $('#filterMinhaslojas').val();
 	 $('#ClienteFilialId').val(loja);
 
 	$('body').on('click','.editModal', function(event){
 		event.preventDefault();
-		 $(this).attr('src','/img/ajax-loader.gif');
+		 $(this).attr('src','http://'+urlInicio+'/img/ajax-loader.gif');
 		modalid = $(this).data('id');
 
 
@@ -227,7 +230,7 @@ $(document).ready(function() {
 		//	$('#divActions'+idpedido).hide();
 		$("#loadDivModal").load('http://'+urlInicio+'/clientes/edit/'+modalid+'', function(){
 			$('#modalLoaded').modal('show');
-			 $('.editModal').attr('src','/img/tb-edit.png');
+			 $('.editModal').attr('src','http://'+urlInicio+'/img/tb-edit.png');
 			/*$('#loaderGif'+idpedido).hide();
 			$('#divActions'+idpedido).show();
 			 $('#counter').countdown({

@@ -465,7 +465,7 @@ form div {
 </style>
 	<script type="text/javascript">
 $(document).ready(function() {
-	$('#ProdutoDescricaoEdit').summernote();
+	//$('#ProdutoDescricaoEdit').summernote();
 	$('body').on('click','#btn-salvar', function(event){
 		event.preventDefault();
 		$('#ProdutoEditForm').submit();
@@ -485,3 +485,10 @@ $(document).ready(function() {
 	});
 });
 	</script>
+<?php
+$urlInicio = ($_SERVER['HTTP_HOST'] == 'localhost' ? '/entregapp_sistema' : '' );
+	
+	
+?>
+<link href="<?php echo $urlInicio; ?>/summernote/summernote.css" rel="stylesheet">
+<script src="<?php echo $urlInicio; ?>/summernote/summernote.js"></script>

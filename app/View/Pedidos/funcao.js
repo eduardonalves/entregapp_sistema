@@ -2,7 +2,9 @@ $(document).ready(function() {
 	//carrega o modal de view pedido
 	var urlInicio      = window.location.host;
 	urlInicio= urlInicio;
-	
+	if(urlInicio=="localhost" ){
+        urlInicio= "localhost/entregapp_sistema";   
+    } 
 	$('.viewpedido').click(function(event){
 		event.preventDefault();
 		idpedido = $(this).data('idpedido');

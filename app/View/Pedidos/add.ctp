@@ -254,6 +254,9 @@
 $(document).ready(function() {
 	var itens=0;
 	var urlInicio      = window.location.host;
+	if(urlInicio=="localhost" ){
+		urlInicio= "localhost/entregapp_sistema";	
+	} 
 	$.mask.definitions['~'] = '([0-9] )?';
 	//$("#inp-qtde").mask("~~~");
 

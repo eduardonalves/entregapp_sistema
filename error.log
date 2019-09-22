@@ -1,0 +1,36 @@
+[16-Sep-2019 10:22:30] PHP Warning:  PHP Startup: Invalid library (maybe not a PHP library) 'php_pdo_oci8.dll'  in Unknown on line 0
+[16-Sep-2019 10:22:30] PHP Warning:  PHP Startup: Unable to load dynamic library 'C:\Program Files (x86)\PHP\ext\php_pgsql.dll' - The specified module could not be found.
+ in Unknown on line 0
+[16-Sep-2019 10:22:30] PHP Warning:  PHP Startup: Unable to load dynamic library 'C:\Program Files (x86)\PHP\ext\php_pdo_sqlite_external.dll' - The specified module could not be found.
+ in Unknown on line 0
+[16-Sep-2019 10:22:30] PHP Warning:  PHP Startup: Unable to load dynamic library 'C:\Program Files (x86)\PHP\ext\php_pdo_ibm.dll' - The specified module could not be found.
+ in Unknown on line 0
+[16-Sep-2019 10:22:30] PHP Warning:  PHP Startup: Unable to load dynamic library 'C:\Program Files (x86)\PHP\ext\php_pdo_informix.dll' - The specified module could not be found.
+ in Unknown on line 0
+[16-Sep-2019 10:22:30] PHP Warning:  PHP Startup: Unable to load dynamic library 'C:\Program Files (x86)\PHP\ext\php_oci8_11.g.dll' - The specified module could not be found.
+ in Unknown on line 0
+[16-Sep-2019 10:22:35] PHP Warning:  copy(): SSL: The operation completed successfully.
+ in Command line code on line 1
+[16-Sep-2019 10:22:35] PHP Warning:  copy(https://getcomposer.org/installer): failed to open stream: HTTP request failed!  in Command line code on line 1
+[16-Sep-2019 10:48:36] PHP Warning:  PHP Startup: Invalid library (maybe not a PHP library) 'php_pdo_oci8.dll'  in Unknown on line 0
+[16-Sep-2019 10:48:37] PHP Warning:  PHP Startup: Unable to load dynamic library 'C:\Program Files (x86)\PHP\ext\php_pgsql.dll' - The specified module could not be found.
+ in Unknown on line 0
+[16-Sep-2019 10:48:37] PHP Warning:  PHP Startup: Unable to load dynamic library 'C:\Program Files (x86)\PHP\ext\php_pdo_sqlite_external.dll' - The specified module could not be found.
+ in Unknown on line 0
+[16-Sep-2019 10:48:37] PHP Warning:  PHP Startup: Unable to load dynamic library 'C:\Program Files (x86)\PHP\ext\php_pdo_ibm.dll' - The specified module could not be found.
+ in Unknown on line 0
+[16-Sep-2019 10:48:37] PHP Warning:  PHP Startup: Unable to load dynamic library 'C:\Program Files (x86)\PHP\ext\php_pdo_informix.dll' - The specified module could not be found.
+ in Unknown on line 0
+[16-Sep-2019 10:48:37] PHP Warning:  PHP Startup: Unable to load dynamic library 'C:\Program Files (x86)\PHP\ext\php_oci8_11.g.dll' - The specified module could not be found.
+ in Unknown on line 0
+[16-Sep-2019 10:49:36] PHP Warning:  PHP Startup: Invalid library (maybe not a PHP library) 'php_pdo_oci8.dll'  in Unknown on line 0
+[16-Sep-2019 10:49:36] PHP Warning:  PHP Startup: Unable to load dynamic library 'C:\Program Files (x86)\PHP\ext\php_pgsql.dll' - The specified module could not be found.
+ in Unknown on line 0
+[16-Sep-2019 10:49:36] PHP Warning:  PHP Startup: Unable to load dynamic library 'C:\Program Files (x86)\PHP\ext\php_pdo_sqlite_external.dll' - The specified module could not be found.
+ in Unknown on line 0
+[16-Sep-2019 10:49:36] PHP Warning:  PHP Startup: Unable to load dynamic library 'C:\Program Files (x86)\PHP\ext\php_pdo_ibm.dll' - The specified module could not be found.
+ in Unknown on line 0
+[16-Sep-2019 10:49:36] PHP Warning:  PHP Startup: Unable to load dynamic library 'C:\Program Files (x86)\PHP\ext\php_pdo_informix.dll' - The specified module could not be found.
+ in Unknown on line 0
+[16-Sep-2019 10:49:36] PHP Warning:  PHP Startup: Unable to load dynamic library 'C:\Program Files (x86)\PHP\ext\php_oci8_11.g.dll' - The specified module could not be found.
+ in Unknown on line 0

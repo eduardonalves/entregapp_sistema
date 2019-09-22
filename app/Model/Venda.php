@@ -102,6 +102,13 @@ class Venda extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
+		),
+		'Fechamento' => array(
+			'className' => 'Fechamento',
+			'foreignKey' => 'fechamento_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
 		)
 	);
 

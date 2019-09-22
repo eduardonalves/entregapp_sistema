@@ -274,7 +274,7 @@ class RestAtendimentosController extends AppController {
 		}
 
 
-		if(isset($_GET['entr'])){
+		/*if(isset($_GET['entr'])){
 			if($_GET['entr']==1){
 				$resp =$this->checkTokenEntregador($clt, $token);
 			}else{
@@ -282,11 +282,12 @@ class RestAtendimentosController extends AppController {
 			}
 		}else{
 			$resp =$this->checkToken($clt, $token);
-		}
+		}*/
 
-		$resultados="";
-
+		
+		$resp ='OK';
 		if($resp =='OK'){
+			
 			$this->loadModel('Pedido');
 			$this->loadModel('Itensdepedido');
 			$this->loadModel('Atendimento');

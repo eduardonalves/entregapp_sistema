@@ -336,7 +336,7 @@ $(document).ready(function() {
 	loja = $('#filterMinhaslojas').val();
 	$('#idfilialmsg').val(loja);
 	var urlInicio      = window.location.host;
-	urlInicio = (urlInicio=='localhost' ? urlInicio+'/entregapp': urlInicio);
+	urlInicio = (urlInicio=='localhost' ? urlInicio+'/entregapp_sistema': urlInicio);
 
 
 

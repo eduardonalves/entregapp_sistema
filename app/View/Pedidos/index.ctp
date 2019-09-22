@@ -111,6 +111,9 @@
 <script>
 $(document).ready(function(){
 	var urlInicio  = window.location.host;
+	if(urlInicio=="localhost" ){
+		urlInicio= "localhost/entregapp_sistema";	
+	} 
 	$('body').on('click', '#titulo-mensagem', function(event){
 		loja = $('#filterMinhaslojas').val();
 		$("#loadAtivas").load('http://'+urlInicio+'/Pedidos/mensagensativas/?loja='+loja, function(){
@@ -414,7 +417,7 @@ $(document).ready(function() {
 	loja = $('#filterMinhaslojas').val();
 	$('#idfilialmsg').val(loja);
 	var urlInicio      = window.location.host;
-	urlInicio = (urlInicio=='localhost' ? urlInicio+'/entregapp': urlInicio);
+	urlInicio = (urlInicio=='localhost' ? urlInicio+'/entregapp_sistema': urlInicio);
 
 	$("#pedidosNovos-qtd").load('http://'+urlInicio+'/Pedidos/countpedidosnovos/?loja='+loja, function(){});
 	setTimeout(function(){

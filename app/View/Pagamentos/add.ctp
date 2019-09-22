@@ -144,16 +144,19 @@ $("#clickmodal").click(function(){
 $('#responsive').modal('show');
 });
 var urlInicio      = window.location.host;
+if(urlInicio=="localhost" ){
+	urlInicio= "localhost/entregapp_sistema";	
+} 
 $('body').on('click','.editModal', function(event){
 		event.preventDefault();
-		$(this).attr('src','/img/ajax-loader.gif');
+		$(this).attr('src','http://'+urlInicio+'/img/ajax-loader.gif');
 		modalid = $(this).data('id');
 
 
 	//	$('#loaderGif'+idpedido).show();
 	//	$('#divActions'+idpedido).hide();
 		$("#loadDivModal").load('http://'+urlInicio+'/pagamentos/edit/'+modalid+'', function(){
-			$('.editModal').attr('src','/img/tb-edit.png');
+			$('.editModal').attr('src','http://'+urlInicio+'/img/tb-edit.png');
 			$('#modalLoaded').modal('show');
 			/*$('#loaderGif'+idpedido).hide();
 			$('#divActions'+idpedido).show();

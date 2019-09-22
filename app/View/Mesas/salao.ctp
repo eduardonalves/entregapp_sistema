@@ -144,13 +144,13 @@ console.log(window.location.href );
 var app = angular.module('EntregApp', ['ui.bootstrap']);
 
 app.filter('startFrom', function() {
-    return function(input, start) {
-        if(input) {
-            start = +start; //parse to int
-            return input.slice(start);
-        }
-        return [];
-    }
+	return function(input, start) {
+		if(input) {
+			start = +start; //parse to int
+			return input.slice(start);
+		}
+		return [];
+	}
 });
 app.controller('monitorarCrtl', function ($scope, $http, $timeout) {
 		$http.get(window.location.href+'/?json=true').success(function(data){
@@ -178,12 +178,12 @@ app.controller('monitorarCrtl', function ($scope, $http, $timeout) {
 			$scope.countUp();
 		},30000);
 		var urlInicio      = window.location.host;
-		urlInicio = (urlInicio=='localhost' ? urlInicio+'/entregapp': urlInicio);
+		urlInicio = (urlInicio=='localhost' ? urlInicio+'/entregapp_sistema_sistema': urlInicio);
 
 		$scope.confirmar = function(id){
 			var txt;
-	    var r = confirm("Deseja mesmo executar esta ação ?");
-	    if (r == true) {
+		var r = confirm("Deseja mesmo executar esta ação ?");
+		if (r == true) {
 				var data = $.param({
 								 id:id
 
@@ -206,30 +206,30 @@ app.controller('monitorarCrtl', function ($scope, $http, $timeout) {
 						 console.log(response);
 					 }
 				);
-	    } else {
+		} else {
 
-	    }
+		}
 
 		};
 		$scope.strip = function (html)
 		{
 		   var tmp = document.createElement("DIV");
 		   tmp.innerHTML = html;
-			 console.log('aqio');
+			 
 		   return tmp.textContent || tmp.innerText || "";
 		}
-    $scope.setPage = function(pageNo) {
-        $scope.currentPage = pageNo;
-    };
-    $scope.filter = function() {
-        $timeout(function() {
-            $scope.filteredItems = $scope.filtered.length;
-        }, 10);
-    };
-    $scope.sort_by = function(predicate) {
-        $scope.predicate = predicate;
-        $scope.reverse = !$scope.reverse;
-    };
+	$scope.setPage = function(pageNo) {
+		$scope.currentPage = pageNo;
+	};
+	$scope.filter = function() {
+		$timeout(function() {
+			$scope.filteredItems = $scope.filtered.length;
+		}, 10);
+	};
+	$scope.sort_by = function(predicate) {
+		$scope.predicate = predicate;
+		$scope.reverse = !$scope.reverse;
+	};
 });
 
 
@@ -244,7 +244,7 @@ $("#clickmodal").click(function(){
 $('#responsive').modal('show');
 });
 var urlInicio      = window.location.host;
-urlInicio = (urlInicio=='localhost' ? urlInicio+'/entregapp': urlInicio);
+urlInicio = (urlInicio=='localhost' ? urlInicio+'/entregapp_sistema': urlInicio);
 //setInterval(function(){
 	//alert();
 //	location.reload();
@@ -264,11 +264,11 @@ $('body').on('click','.editModal', function(event){
 			/*$('#loaderGif'+idmesa).hide();
 			$('#divActions'+idmesa).show();
 			 $('#counter').countdown({
-	          image: 'http://'+urlInicio+'/img/digits2.png',
-	          startTime: '00:10:00',
+			  image: 'http://'+urlInicio+'/img/digits2.png',
+			  startTime: '00:10:00',
 			  digitWidth: 34,
-			    digitHeight: 45,
-			    format: 'hh:mm:ss',
+				digitHeight: 45,
+				format: 'hh:mm:ss',
 			});*/
 
 		});
@@ -286,11 +286,11 @@ $('body').on('click','.editModal', function(event){
 			/*$('#loaderGif'+idmesa).hide();
 			$('#divActions'+idmesa).show();
 			 $('#counter').countdown({
-	          image: 'http://'+urlInicio+'/img/digits2.png',
-	          startTime: '00:10:00',
+			  image: 'http://'+urlInicio+'/img/digits2.png',
+			  startTime: '00:10:00',
 			  digitWidth: 34,
-			    digitHeight: 45,
-			    format: 'hh:mm:ss',
+				digitHeight: 45,
+				format: 'hh:mm:ss',
 			});*/
 
 		});

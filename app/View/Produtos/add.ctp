@@ -502,16 +502,19 @@ $(document).ready(function() {
 		$('#responsive').modal('show');
 	});
 	var urlInicio      = window.location.host;
-  urlInicio = (urlInicio=='localhost' ? urlInicio+'/entregapp': urlInicio);
+  urlInicio = (urlInicio=='localhost' ? urlInicio+'/entregapp_sistema': urlInicio);
 	$('body').on('click','.editModal', function(event){
 		event.preventDefault();
-		$(this).attr('src','/img/ajax-loader.gif');
+		$(this).attr('src','http://'+urlInicio+'/img/ajax-loader.gif');
 		produtoId = $(this).data('id');
 
 	//	$('#loaderGif'+idpedido).show();
 	//	$('#divActions'+idpedido).hide();
-		$("#loadModalEdit").load('http://'+urlInicio+'/Produtos/edit/'+produtoId+'', function(){
-			$('.editModal').attr('src','/img/tb-edit.png');
+
+		$("#loadModalEdit").load('http://'+urlInicio+'/Produtos/edit/'+produtoId, function(){
+			$('.editModal').attr('src','http://'+urlInicio+'/img/tb-edit.png');
+
+			
 			$('#responsiveEdit').modal('show');
 
 			/*$('#loaderGif'+idpedido).hide();

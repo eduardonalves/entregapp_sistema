@@ -405,9 +405,9 @@ $(document).ready(function() {
 
 	var urlInicio      = window.location.host;
 	var urlInicio2      = window.location.host;
-	urlInicio = (urlInicio=='localhost' ? 'http://localhost/entregapp/Pgtopedidos/add': urlInicio);
+	urlInicio = (urlInicio=='localhost' ? 'http://localhost/entregapp_sistema/Pgtopedidos/add': urlInicio);
 
-	urlInicio2 = (urlInicio2=='localhost' ? 'http://localhost/entregapp/': urlInicio2);
+	urlInicio2 = (urlInicio2=='localhost' ? 'http://localhost/entregapp_sistema/': urlInicio2);
 
 	urlInicio = (urlInicio=='develop.entregapp.com.br' ? 'http://develop.entregapp.com.br/Pgtopedidos/add': urlInicio);
 	urlInicio2 = (urlInicio2=='develop.entregapp.com.br' ? 'http://develop.entregapp.com.br/': urlInicio2);
@@ -466,9 +466,9 @@ $(document).ready(function() {
 				var dataToSend = {'id':$( this ).data('id')};
 				var urlInicio      = window.location.host;
 				var urlInicio2      = window.location.host;
-				urlInicio = (urlInicio=='localhost' ? 'http://localhost/entregapp/Pgtopedidos/add': urlInicio);
+				urlInicio = (urlInicio=='localhost' ? 'http://localhost/entregapp_sistema/Pgtopedidos/add': urlInicio);
 
-				urlInicio2 = (urlInicio2=='localhost' ? 'http://localhost/entregapp/': urlInicio2);
+				urlInicio2 = (urlInicio2=='localhost' ? 'http://localhost/entregapp_sistema/': urlInicio2);
 
 				urlInicio = (urlInicio=='develop.entregapp.com.br' ? 'http://develop.entregapp.com.br/Pgtopedidos/add': urlInicio);
 				urlInicio2 = (urlInicio2=='develop.entregapp.com.br' ? 'http://develop.entregapp.com.br/': urlInicio2);
@@ -520,9 +520,9 @@ $(document).ready(function() {
 						data = {entreganova_id:$('.selectTroca').val(), entrega_id:$('input[name=entrega_id]').val()};
 						var urlInicio      = window.location.host;
 						var urlInicio2      = window.location.host;
-						urlInicio = (urlInicio=='localhost' ? 'http://localhost/entregapp/Pgtopedidos/add': urlInicio);
+						urlInicio = (urlInicio=='localhost' ? 'http://localhost/entregapp_sistema/Pgtopedidos/add': urlInicio);
 
-						urlInicio2 = (urlInicio2=='localhost' ? 'http://localhost/entregapp/': urlInicio2);
+						urlInicio2 = (urlInicio2=='localhost' ? 'http://localhost/entregapp_sistema/': urlInicio2);
 
 						urlInicio = (urlInicio=='develop.entregapp.com.br' ? 'http://develop.entregapp.com.br/Pgtopedidos/add': urlInicio);
 						urlInicio2 = (urlInicio2=='develop.entregapp.com.br' ? 'http://develop.entregapp.com.br/': urlInicio2);
@@ -620,9 +620,9 @@ $(document).ready(function() {
 		event.preventDefault();
 		var urlInicio      = window.location.host;
 		var urlInicio2      = window.location.host;
-		urlInicio = (urlInicio=='localhost' ? 'http://localhost/entregapp/Pgtopedidos/add': urlInicio);
+		urlInicio = (urlInicio=='localhost' ? 'http://localhost/entregapp_sistema/Pgtopedidos/add': urlInicio);
 
-		urlInicio2 = (urlInicio2=='localhost' ? 'http://localhost/entregapp/': urlInicio2);
+		urlInicio2 = (urlInicio2=='localhost' ? 'http://localhost/entregapp_sistema/': urlInicio2);
 
 		urlInicio = (urlInicio=='develop.entregapp.com.br' ? 'http://develop.entregapp.com.br/Pgtopedidos/add': urlInicio);
 		urlInicio2 = (urlInicio2=='develop.entregapp.com.br' ? 'http://develop.entregapp.com.br/': urlInicio2);
@@ -914,9 +914,9 @@ $(document).ready(function() {
 					var dataToSend = {'entrega_id':$('input[name=entrega_id]').val()};
 					var urlInicio      = window.location.host;
 					var urlInicio2      = window.location.host;
-					urlInicio = (urlInicio=='localhost' ? 'http://localhost/entregapp/Pgtopedidos/add': urlInicio);
+					urlInicio = (urlInicio=='localhost' ? 'http://localhost/entregapp_sistema/Pgtopedidos/add': urlInicio);
 
-					urlInicio2 = (urlInicio2=='localhost' ? 'http://localhost/entregapp/': urlInicio2);
+					urlInicio2 = (urlInicio2=='localhost' ? 'http://localhost/entregapp_sistema/': urlInicio2);
 
 					urlInicio = (urlInicio=='develop.entregapp.com.br' ? 'http://develop.entregapp.com.br/Pgtopedidos/add': urlInicio);
 					urlInicio2 = (urlInicio2=='develop.entregapp.com.br' ? 'http://develop.entregapp.com.br/': urlInicio2);

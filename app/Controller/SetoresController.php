@@ -178,6 +178,8 @@ class SetoresController extends AppController {
 			$minhasFiliais = $User->getFiliais($userid);
 			$lojas = $User->getSelectFiliais($userid);
 
+			
+
 			if(isset($this->request->data['filter']))
 			{
 
@@ -191,6 +193,7 @@ class SetoresController extends AppController {
 				}
 			}
 			$unicaFilial= $this->Filial->find('first', array('recursive'=> -1, 'conditions'=> array('Filial.id' => $minhasFiliais)));
+
 
 			$this->loadModel('Mesa');
 			$mesas = $this->Mesa->find('list', array('recursive' => -1, 'order' => 'Mesa.identificacao asc', 'conditions'=> array('Mesa.filial_id'=> $unicaFilial['Filial']['id'])));
@@ -250,6 +253,7 @@ class SetoresController extends AppController {
 				$this->Session->setFlash(__('Acesso Negado!'), 'default', array('class' => 'error-flash alert alert-danger'));
 				return $this->redirect( $this->referer() );
 			}
+
 
 
 
@@ -326,6 +330,7 @@ class SetoresController extends AppController {
 
 						$i++;
 					}
+				
 					$this->set('pedidos', $pedidos);
 			}
 		//}

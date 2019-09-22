@@ -105,6 +105,9 @@
 <script>
 $(document).ready(function() {
 	var urlInicio      = window.location.host;
+	if(urlInicio=="localhost" ){
+		urlInicio= "localhost/entregapp_sistema";	
+	} 
 	setTimeout(function(){
 		$('.limpa').val('');
 	}, 1000);

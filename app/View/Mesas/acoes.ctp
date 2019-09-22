@@ -341,11 +341,16 @@
 						<br>
 						<br>
 						<label for="labelPG">Valor à Pagar</label><input type="number" name="Pgtopedido[valor]" value="" id="pedidoValor" >
-						<label for="">Desconto %</label>
-						<input type="number" name="desconto" value="" id="percentualDesconto">
 
 
-						<label for="labelPG">Total</label><input type="text" name="Pgtopedido[valor_total_pago]" value="" class="pedidoValorTotalPago" id="pedidoValorTotalPago" >
+						<label for="">Serviço</label>
+						<input type="number" id="itenspgtaxa" name="Pgtopedido[taxa]" value="">
+
+						<label for="">Desconto</label>
+						<input type="number" name="Pgtopedido[desconto]" value="" id="percentualDesconto">
+
+
+						<label for="labelPG">Total</label><input type="text" name="Pgtopedido[valor_total_pago]" value="" readonly="readonly" class="pedidoValorTotalPago" id="pedidoValorTotalPago" >
 						<input type="hidden" name="Pgtopedido[valor_dez]" value="" id="pedidoValorDez" readonly="readonly">
 						<br>
 						<br>
@@ -353,7 +358,7 @@
 						<br>
 						<br>
 						<input type="hidden" id="itenspg" name="Pgtopedido[itenspg]" value="">
-						<input type="hidden" id="itenspgtaxa" name="Pgtopedido[taxa]" value="">
+						
 						<input type="hidden" id="pagPedido" name="Pgtopedido[pg_id]" value="">
 						<input type="hidden" name="Pgtopedido[mesa_id]" value="<?php echo $mesaid;?>">
 							<input type="hidden" name="Pgtopedido[pagamento_id]" value="<?php echo $pagamentoid;?>">
@@ -405,9 +410,9 @@ $(document).ready(function() {
 
 	var urlInicio      = window.location.host;
 	var urlInicio2      = window.location.host;
-	urlInicio = (urlInicio=='localhost' ? 'http://localhost/entregapp/Pgtopedidos/add': urlInicio);
+	urlInicio = (urlInicio=='localhost' ? 'http://localhost/entregapp_sistema/Pgtopedidos/add': urlInicio);
 
-	urlInicio2 = (urlInicio2=='localhost' ? 'http://localhost/entregapp/': urlInicio2);
+	urlInicio2 = (urlInicio2=='localhost' ? 'http://localhost/entregapp_sistema/': urlInicio2);
 
 	urlInicio = (urlInicio=='develop.entregapp.com.br' ? 'http://develop.entregapp.com.br/Pgtopedidos/add': urlInicio);
 	urlInicio2 = (urlInicio2=='develop.entregapp.com.br' ? 'http://develop.entregapp.com.br/': urlInicio2);
@@ -466,9 +471,9 @@ $(document).ready(function() {
 				var dataToSend = {'id':$( this ).data('id')};
 				var urlInicio      = window.location.host;
 				var urlInicio2      = window.location.host;
-				urlInicio = (urlInicio=='localhost' ? 'http://localhost/entregapp/Pgtopedidos/add': urlInicio);
+				urlInicio = (urlInicio=='localhost' ? 'http://localhost/entregapp_sistema/Pgtopedidos/add': urlInicio);
 
-				urlInicio2 = (urlInicio2=='localhost' ? 'http://localhost/entregapp/': urlInicio2);
+				urlInicio2 = (urlInicio2=='localhost' ? 'http://localhost/entregapp_sistema/': urlInicio2);
 
 				urlInicio = (urlInicio=='develop.entregapp.com.br' ? 'http://develop.entregapp.com.br/Pgtopedidos/add': urlInicio);
 				urlInicio2 = (urlInicio2=='develop.entregapp.com.br' ? 'http://develop.entregapp.com.br/': urlInicio2);
@@ -520,9 +525,9 @@ $(document).ready(function() {
 						data = {mesanova_id:$('.selectTroca').val(), mesa_id:$('input[name=mesa_id]').val()};
 						var urlInicio      = window.location.host;
 						var urlInicio2      = window.location.host;
-						urlInicio = (urlInicio=='localhost' ? 'http://localhost/entregapp/Pgtopedidos/add': urlInicio);
+						urlInicio = (urlInicio=='localhost' ? 'http://localhost/entregapp_sistema/Pgtopedidos/add': urlInicio);
 
-						urlInicio2 = (urlInicio2=='localhost' ? 'http://localhost/entregapp/': urlInicio2);
+						urlInicio2 = (urlInicio2=='localhost' ? 'http://localhost/entregapp_sistema/': urlInicio2);
 
 						urlInicio = (urlInicio=='develop.entregapp.com.br' ? 'http://develop.entregapp.com.br/Pgtopedidos/add': urlInicio);
 						urlInicio2 = (urlInicio2=='develop.entregapp.com.br' ? 'http://develop.entregapp.com.br/': urlInicio2);
@@ -620,9 +625,9 @@ $(document).ready(function() {
 		event.preventDefault();
 		var urlInicio      = window.location.host;
 		var urlInicio2      = window.location.host;
-		urlInicio = (urlInicio=='localhost' ? 'http://localhost/entregapp/Pgtopedidos/add': urlInicio);
+		urlInicio = (urlInicio=='localhost' ? 'http://localhost/entregapp_sistema/Pgtopedidos/add': urlInicio);
 
-		urlInicio2 = (urlInicio2=='localhost' ? 'http://localhost/entregapp/': urlInicio2);
+		urlInicio2 = (urlInicio2=='localhost' ? 'http://localhost/entregapp_sistema/': urlInicio2);
 
 		urlInicio = (urlInicio=='develop.entregapp.com.br' ? 'http://develop.entregapp.com.br/Pgtopedidos/add': urlInicio);
 		urlInicio2 = (urlInicio2=='develop.entregapp.com.br' ? 'http://develop.entregapp.com.br/': urlInicio2);
@@ -697,21 +702,40 @@ $(document).ready(function() {
 				totalDesconto='';
 
 		    $("#percentualDesconto").css("background-color", "yellow");
-				var subtot = parseFloat($('#subtotal').val().replace(",","."));
-				var vlgasto = parseFloat($('#pedidoValor').val().replace(",","."));
-				var vlTaxa = parseFloat($('#valortaxa').val().replace(",","."));
-				var vlPago = parseFloat($('#valpago').val().replace(",","."));
-				var percDesc = parseFloat($('#percentualDesconto').val().replace(",","."));
+		    	var subtot = ($('#subtotal').val() =='' ? 0 :$('#subtotal').val().replace(",","."));
+				subtot = parseFloat(subtot);
+
+				var vlgasto = ($('#pedidoValor').val() =='' ? 0 :$('#pedidoValor').val().replace(",","."));
+				vlgasto = parseFloat(vlgasto);
+
+				var vlTaxa = ($('#itenspgtaxa').val() =='' ? 0 : $('#itenspgtaxa').val().replace(",","."));
+				vlTaxa = parseFloat(vlTaxa);
+
+
+				var vlPago = ($('#valpago').val() =='' ? 0 :$('#valpago').val().replace(",","."));
+				var vlPago = parseFloat(vlPago);
+
+				var percDesc = ($('#percentualDesconto').val() =='' ? 0 :$('#percentualDesconto').val().replace(",","."));
+				var percDesc = parseFloat(percDesc);
+
+				
+
 				if(!isNaN(percDesc) && typeof percDesc !== 'undefined'){
-					var desc = (vlgasto * percDesc) / 100;
+					//var desc = (vlgasto * percDesc) / 100;
 
 					//var totalAux = ((vlgasto + vlTaxa) - desc) -  vlPago;
+					percDesc=percDesc.toFixed(2);
+					vlPago=vlPago.toFixed(2);
+					vlgasto=vlgasto.toFixed(2);
+					subtot=subtot.toFixed(2);
 
-					var totalAux = (vlgasto - desc);
+					var totalAux = (vlgasto - percDesc);
 
 					totalAux = totalAux.toFixed(2);
 					var totalAux2 = String(totalAux);
-					var descAux =  vlgasto - desc;
+					var descAux =  (vlgasto - percDesc) + vlTaxa;
+					descAux = descAux.toFixed(2);
+					
 					descAux  = String(descAux);
 					//$('#spantotalapagar').html(totalAux2.replace(".",","));
 					//totalDesconto = desc.toFixed(2);
@@ -826,7 +850,7 @@ $(document).ready(function() {
 					totalPagarComDez = ((totalPagar * 10) / 100 ) + totalPagar ;
 
 					$('#itenspgtaxa').val(totalPagarComDez - totalPagar);
-					$('#pedidoValor').val(totalPagarComDez.toFixed(2));
+					//$('#pedidoValor').val(totalPagarComDez.toFixed(2));
 					$('#pedidoValorTotalPago').val(totalPagarComDez.toFixed(2));
 					$('#pedidoValorDez').val(totalPagar.toFixed(2));
 					$('#percentualDesconto').val('0');
@@ -835,7 +859,7 @@ $(document).ready(function() {
 					//console.log(totalPagar);
 				}else if($(this).is(":not(:checked)")){
 					$('#itenspgtaxa').val();
-					$('#pedidoValor').val(totalPagar.toFixed(2));
+					//$('#pedidoValor').val(totalPagar.toFixed(2));
 					$('#pedidoValorTotalPago').val(totalPagar.toFixed(2));
 					$('#percentualDesconto').val('0');
 				}
@@ -914,9 +938,9 @@ $(document).ready(function() {
 					var dataToSend = {'mesa_id':$('input[name=mesa_id]').val()};
 					var urlInicio      = window.location.host;
 					var urlInicio2      = window.location.host;
-					urlInicio = (urlInicio=='localhost' ? 'http://localhost/entregapp/Pgtopedidos/add': urlInicio);
+					urlInicio = (urlInicio=='localhost' ? 'http://localhost/entregapp_sistema/Pgtopedidos/add': urlInicio);
 
-					urlInicio2 = (urlInicio2=='localhost' ? 'http://localhost/entregapp/': urlInicio2);
+					urlInicio2 = (urlInicio2=='localhost' ? 'http://localhost/entregapp_sistema/': urlInicio2);
 
 					urlInicio = (urlInicio=='develop.entregapp.com.br' ? 'http://develop.entregapp.com.br/Pgtopedidos/add': urlInicio);
 					urlInicio2 = (urlInicio2=='develop.entregapp.com.br' ? 'http://develop.entregapp.com.br/': urlInicio2);
@@ -943,7 +967,7 @@ $(document).ready(function() {
 
 								});
 							}else{
-								//alert(2);
+								alert("Houve um erro, a operação não foi realizada.");
 							}
 						},
 						beforeSend: function(){

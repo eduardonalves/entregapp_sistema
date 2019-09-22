@@ -167,8 +167,14 @@ class MesasController extends AppController {
 					$this->loadModel('Pedido');
  						$ultimopedido =$this->Mesa->find('all', array('recursive'=> -1,'conditions'=> $conditions,'order' => 'Mesa.identificacao asc'));
 
+ 						
+
 						foreach ($ultimopedido as $key => $value) {
+
+							
 							$ultimopedido[$key]['Pedidos'] = $this->Pedido->find('all',array('conditions'=> array('AND'=> array(array('Pedido.mesa_id'=> $value['Mesa']['id']),array('Pedido.status_finalizado' => false)))));
+							//debug($value['Mesa']['id']);
+ 							//die;
 							$ultimopedido[$key]['Mesa']['total_pedidos']=(count($ultimopedido[$key]['Pedidos']) > 0);
 							$countPedidosNaoPagos = $this->Pedido->find('count',array('recursive'=> -1,'conditions'=> array('AND'=> array(array('Pedido.mesa_id'=> $value['Mesa']['id']),array('Pedido.status_finalizado' => false), array('Pedido.status_pagamento' => 'PENDENTE')))));
 							$countPedidosPagos = $this->Pedido->find('count',array('recursive'=> -1,'conditions'=> array('AND'=> array(array('Pedido.mesa_id'=> $value['Mesa']['id']),array('Pedido.status_finalizado' => false), array('Pedido.status_pagamento' => 'OK')))));
@@ -421,11 +427,13 @@ class MesasController extends AppController {
 			} else {
 				$options = array('recursive' => -1, 'conditions' => array('Mesa.' . $this->Mesa->primaryKey => $id));
 				$pedidos = $this->Mesa->find('first', $options);
+
 				$this->loadModel('Pedido');
 				$this->loadModel('Produto');
 				$this->loadModel('Pgtopedido');
 				$this->loadModel('Pagamento');
 				$pedidos['Pedidos'] = $this->Pedido->find('all',array('conditions'=> array('AND'=> array(array('Pedido.mesa_id'=> $id),array('Pedido.status_finalizado' => false)))));
+				
 				foreach ($pedidos['Pedidos'] as $key => $value)
 				{
 						foreach ($value['Itensdepedido'] as $key2 => $value2)
@@ -718,6 +726,7 @@ class MesasController extends AppController {
 				$ultimopedido='';
 
 				//$this->request->data['mesa_id'] = 3;
+
 				if ($this->request->is(array('post', 'put')))
 				{
 
@@ -726,6 +735,8 @@ class MesasController extends AppController {
 					$mesa = $this->Mesa->find('first', array('recursive'=> -1, 'conditions'=> array('AND'=> array(array('Mesa.filial_id'=>$minhasFiliais), array('Mesa.id'=> $this->request->data['mesa_id'])))));
 
 					$pedidos = $this->Pedido->find('all', array('recursive'=> -1, 'conditions'=> array('AND'=> array(array('Pedido.filial_id'=>$minhasFiliais), array('Pedido.mesa_id'=> $this->request->data['mesa_id']), array('Pedido.status_finalizado'=> 0)))));
+
+
 					$this->loadModel('Itensdepedido');
 					$this->loadModel('Vendasiten');
 					$this->loadModel('Vendaspagamento');
@@ -788,6 +799,7 @@ class MesasController extends AppController {
 
 				//	$resultToCheck = (double) $valorToCheck - (double) $valorCheckPagamento;
 				$checkPagamento = false;
+				
 				if((float) $valorCheckPagamento >= $valorToCheck)
 				{
 					$checkPagamento = true;
@@ -795,7 +807,12 @@ class MesasController extends AppController {
 					$checkPagamento = false;
 				}
 
-					//Fim Validacao
+				if($valorCheckPagamento==0 && $valorToCheck==0){
+					$checkPagamento = false;
+				}
+				
+
+				//Fim Validacao
 
 					if($checkPagamento == true &&  $isValidItens==true)
 					{
@@ -851,10 +868,12 @@ class MesasController extends AppController {
 						$venda = $this->Venda->find('first', array('recursive'=> -1 , 'order' => array('Venda.id DESC'),'conditions'=> array('Venda.filial_id'=>$minhasFiliais)));
 						$itensVenda = array();
 						$totalItens =0;
+
 						foreach ($pedidos as $pedido)
 						{
 
-							$itens = $this->Itensdepedido->find('all', array('recursive'=> -1, 'conditions'=> array('Itensdepedido.pedido_id'=> $pedido['Pedido']['id'], 'Itensdepedido.status_cancelado'=> NULL )));
+							$itens = $this->Itensdepedido->find('all', array('recursive'=> -1, 'conditions'=> array('Itensdepedido.pedido_id'=> $pedido['Pedido']['id'], 'Itensdepedido.status_cancelado'=> false )));
+				
 							foreach ($itens as $iten)
 							 {
 								$itensToSave=array(
@@ -878,6 +897,7 @@ class MesasController extends AppController {
 									'pagamento_id' => $pgto['Pgtopedido']['pagamento_id'],
 									 'obs' => $pgto['Pgtopedido']['obs'],
 										'valor' => $pgto['Pgtopedido']['valor'],
+										'taxa'=>$pgto['Pgtopedido']['taxa'],
 										'status' => 'Ativo'
 								);
 								$this->Vendaspagamento->create();
@@ -908,6 +928,7 @@ class MesasController extends AppController {
 
 					}else{
 						$ultimopedido='Erro';
+						
 					}
 
 

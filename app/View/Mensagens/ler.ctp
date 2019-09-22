@@ -229,6 +229,9 @@ $(document).ready(function() {
 	var urlInicio = window.location.host;
 	urlInicio= urlInicio
 
+  if(urlInicio=="localhost" ){
+    urlInicio= "localhost/entregapp_sistema"; 
+  } 
 	function enviaMensagem(){
 
          loja = $('#filterMinhaslojas').val();

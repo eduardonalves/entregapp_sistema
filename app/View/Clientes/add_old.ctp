@@ -182,6 +182,9 @@ $("#clickmodal").click(function(){
 	$('#myModal').modal('show');
 });
 var urlInicio      = window.location.host;
+if(urlInicio=="localhost" ){
+	urlInicio= "localhost/entregapp_sistema";	
+} 
 $('body').on('click','.editModal', function(event){
 		event.preventDefault();
 

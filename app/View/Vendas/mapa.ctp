@@ -106,6 +106,9 @@ $(document).ready(function() {
 
 
 	var urlInicio      = window.location.host;
+	if(urlInicio=="localhost" ){
+		urlInicio= "localhost/entregapp_sistema";	
+	} 
 	var markers=[];
 	//urlInicio= urlInicio+'/checkyourbill';
 	var checaPosEntregador="";

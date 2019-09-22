@@ -298,13 +298,16 @@ $("#clickmodal").click(function(){
 $('#responsive').modal('show');
 });
 var urlInicio      = window.location.host;
+if(urlInicio=="localhost" ){
+	urlInicio= "localhost/entregapp_sistema";	
+} 
 $('body').on('click','.editModal', function(event){
 		event.preventDefault();
 		modalid = $(this).data('id');
-		$(this).attr('src','/img/ajax-loader.gif');
+		$(this).attr('src','http://'+urlInicio+'/img/ajax-loader.gif');
 		$("#loadDivModal").load('http://'+urlInicio+'/cupons/edit/'+modalid+'', function(){
 			$('#modalLoaded').modal('show');
-			 $('.editModal').attr('src','/img/tb-edit.png');
+			 $('.editModal').attr('src','http://'+urlInicio+'/img/tb-edit.png');
 		});
 	});
 	$('body').on('click','.viewModal', function(event){

@@ -189,6 +189,9 @@ $(document).ready(function() {
 
 	var urlInicio = window.location.host;
 	urlInicio= urlInicio;
+	if(urlInicio=="localhost" ){
+		urlInicio= "localhost/entregapp_sistema";	
+	} 
 	var scorePedido = $('#avalPedido').text();
 	var idpedido= $('#idpedido').val();
 	var showOrHide= false;

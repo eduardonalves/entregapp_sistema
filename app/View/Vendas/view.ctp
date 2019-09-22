@@ -32,7 +32,7 @@
 					<?php
 						if( $venda['User']['username']!=''){
 					?>
-							<div class="form-group  form-group-lg">
+							<div class="form-group  form-group-md col-md-3">
 								<label>Atendente:</label>
 								<p><?php echo $venda['User']['username'];?></p>
 							</div>
@@ -42,9 +42,10 @@
           <?php
 						if( $venda['Venda']['obs']!=''){
 					?>
-          <div class="form-group  form-group-lg">
+          <div class="form-group  form-group-md col-md-3">
             <label>Observações</label>
-            <p><span id="obsVenda"><?php echo h($venda['Venda']['obs']); ?></span></p>
+
+            <p><span id="obsVenda"><?php echo $venda['Venda']['obs']; ?></span></p>
           </div>
           <?php
 						}
@@ -52,17 +53,29 @@
           <?php
 						if( $venda['Venda']['desconto']!=''){
 					?>
-          <div class="form-group  form-group-lg">
-            <label>Observações</label>
-            <p><span id="obsVenda"><?php echo h($venda['Venda']['desconto']); ?></span></p>
+          <div class="form-group  form-group-md col-md-3">
+            <label>Desconto</label>
+            <p><span >R$ <?php echo number_format($venda['Venda']['desconto'],2,',','.'); ?></span></p>
           </div>
           <?php
 						}
 					?>
+          <?php
+            if( $venda['Venda']['taxa']!=''){
+          ?>
+          <div class="form-group  form-group-md col-md-3">
+            <label>Taxa</label>
+            <p><span >R$ <?php echo number_format($venda['Venda']['taxa'],2,',','.'); ?></span></p>
+          </div>
+          <?php
+            }
+          ?>
 			<?php echo $this->Form->end();?>
 			<section class="row-fluid">
 
-        	<?php if (!empty($venda['Vendasiten'])): ?>
+        	<?php 
+           $totProd =0;
+          if (!empty($venda['Vendasiten'])): ?>
 						<div class="area-tabela">
 							<table class="table-action col-md-12 table-bordered table-striped table-condensed cf" >
 								<tbody>
@@ -107,7 +120,49 @@
 
       <section class="row-fluid">
 
-          <?php if (!empty($venda['Vendaspagamento'])): ?>
+
+          <?php
+            if($venda['Venda']['taxa'] != '' ):
+           ?>
+              <div class="area-tabela">
+                <table class="table-action col-md-12 table-bordered table-striped table-condensed cf" >
+                  <tbody>
+                    <thead class="cf">
+                      <tr>
+                        <th class="textCenter"><?php echo __('Taxa de Serviço'); ?></th>
+                      </tr>
+                    </thead>
+                    <tr>
+                      <td data-title="Desconto" class="textCenter"> <?php echo number_format($venda['Venda']['taxa'], 2, ',', '.');  ?></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            <?php
+               endif;
+            ?>
+                      <?php
+            if($venda['Venda']['desconto'] != '' ):
+
+           ?>
+              <div class="area-tabela">
+                <table class="table-action col-md-12 table-bordered table-striped table-condensed cf" >
+                  <tbody>
+                    <thead class="cf">
+                      <tr>
+                        <th class="textCenter"><?php echo __('Desconto'); ?></th>
+                      </tr>
+                    </thead>
+                    <tr>
+                      <td data-title="Desconto" class="textCenter"> <?php echo number_format($venda['Venda']['desconto'], 2, ',', '.');  ?></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            <?php
+               endif;
+            ?>
+                      <?php if (!empty($venda['Vendaspagamento'])): ?>
             <div class="area-tabela">
               <table class="table-action col-md-12 table-bordered table-striped table-condensed cf" >
                 <tbody>
@@ -149,27 +204,6 @@
 
             </div>
           <?php endif; ?>
-          <?php
-            if($venda['Venda']['desconto'] != '' ):
-
-           ?>
-          <div class="area-tabela">
-            <table class="table-action col-md-12 table-bordered table-striped table-condensed cf" >
-              <tbody>
-                <thead class="cf">
-                  <tr>
-                    <th class="textCenter"><?php echo __('Desconto'); ?></th>
-                  </tr>
-                </thead>
-                <tr>
-                  <td data-title="Desconto" class="textCenter"> <?php echo number_format($venda['Venda']['desconto'], 2, ',', '.');  ?></td>
-                </tr>
-              </tbody>
-                </table>
-            </div>
-              <?php
-               endif;
-               ?>
                <div class="area-tabela">
                  <table class="table-action col-md-12 table-bordered table-striped table-condensed cf" >
                    <tbody>
@@ -180,8 +214,9 @@
                      </thead>
                      <tr>
                        <td data-title="Totais" class="textCenter textValorTotal"> <?php
-                       $vlTot = (($totProd + $venda['Venda']['taxa']) - $venda['Venda']['desconto']);
-                        echo "R$ ".number_format($vlTot, 2, ',', '.');  ?></td>
+
+                       
+                        echo "R$ ".number_format($venda['Venda']['valor'], 2, ',', '.');  ?></td>
                      </tr>
                    </tbody>
                      </table>
@@ -198,6 +233,7 @@
 				echo $this->Form->end();
 
 			?>
+
 		</div>
 
 			<div class="modal-footer">
@@ -227,6 +263,9 @@ $(document).ready(function() {
 
 	var urlInicio = window.location.host;
 	urlInicio= urlInicio;
+  if(urlInicio=="localhost" ){
+    urlInicio= "localhost/entregapp_sistema"; 
+  } 
 	var scoreVenda = $('#avalVenda').text();
 	var idvenda= $('#idView').text();
 

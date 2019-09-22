@@ -315,8 +315,10 @@ $(document).ready(function(){
 
 <script type="text/javascript">
 $(document).ready(function() {
-		//var urlInicio      = window.location.host;
-	var urlInicio      = 'localhost/appedido';
+		var urlInicio      = window.location.host;
+		if(urlInicio=="localhost" ){
+			urlInicio= "localhost/entregapp_sistema";	
+		} 
 
 });
 </script>

@@ -382,10 +382,15 @@ public function addmobile($codigo = null) {
 
 
 
+
+
 		if ($this->request->is('post')) {
 
 
 			$this->loadModel('Salt');
+			if(! is_numeric($this->request->data['Pedido']['cliente_id'])){
+				$this->request->data['Pedido']['cliente_id'] = 0;
+			}
 			$salt = $this->Salt->find('first', array('conditions' => array('Salt.id' => 1)));
 			$codigo="entrega";
 			if($this->request->data['Pedido']['salt'] == $salt['Salt']['salt']){
@@ -396,6 +401,21 @@ public function addmobile($codigo = null) {
 				$this->loadModel('Produto');
 				$this->loadModel('Atendimento');
 				$this->loadModel('Itensdepedido');
+				$this->loadModel('Fechamento');
+
+				$fechamentoObj =$this->Fechamento->find('first', array(
+					'order'=> array('Fechamento.id'=> 'desc'),
+						'conditions'=> array(
+							'Fechamento.filial_id'=> $this->request->data['Pedido']['filial_id'],
+							'status'=> 1
+						)
+					)
+				);
+
+				if(empty($fechamentoObj)){
+					$this->Session->setFlash(__('Houve um erro ao salvar o pedido. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
+							return $this->redirect( $this->referer() );
+				}
 
 
 				$clt = $this->request->data['Pedido']['cliente_id'];
@@ -420,7 +440,7 @@ public function addmobile($codigo = null) {
 				$clt = $this->request->data['Pedido']['cliente_id'];
 				if($this->request->data['Pedido']['trocovalor']==''){
 					unset($this->request->data['Pedido']['trocovalor']);
-					$this->request->data['Pedido']['trocoresposta']='N�o';
+					$this->request->data['Pedido']['trocoresposta']='Não';
 				}
 
 				if($respAux == 1){
@@ -681,9 +701,10 @@ public function addmobile($codigo = null) {
 							$this->Session->setFlash(__('Houve um erro ao salvar o pedido. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
 							return $this->redirect( $this->referer() );
 						}
+
 					}else{
 
-
+						
 						unset($this->request->data['Pedido']['user_id']);
 						if ($this->Pedido->saveAll($this->request->data)){
 

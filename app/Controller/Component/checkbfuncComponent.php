@@ -103,14 +103,46 @@ public function somaHora(&$hora1,&$hora2){
  	$h1 = explode(":",$hora1);
  	$h2 = explode(":",$hora2);
 
- 	$segundo1 = $h1[2] ;
- 	$minuto1  = $h1[1];
- 	$horas1   = $h1[0];
 
- 	$segundo2 = $h2[2] ;
- 	$minuto2  = $h2[1];
- 	$horas2   = $h2[0];
+ 	
+ 	if(! isset($h1[2])){
+ 		$segundo1='00';
+	}else{
+		$segundo1 = $h1[2] ;	
+	}
 
+ 	
+ 	if(! isset($h1[1])){
+ 		$minuto1='00';
+	}else{
+		$minuto1  = $h1[1];	
+	}
+
+ 	
+ 	if(! isset($h1[0])){
+ 		$horas1='00';
+	}else{
+		$horas1   = $h1[0];	
+	}
+
+ 	
+ 	if(!isset($h2[2])){
+ 		$segundo2='00';
+	}else{
+		$segundo2 = $h2[2] ;	
+	}
+ 	
+ 	if(! isset($h2[1])){
+ 		$minuto2='00';
+	}else{
+		$minuto2  = $h2[1];	
+	}
+ 	
+ 	if(! isset($h2[0])){
+ 		$horas2='00';
+	}else{
+		$horas2   = $h2[0];
+	}
 
 
 	$novo_horario = mktime($horas1 + $horas2, $minuto1 + $minuto2, $segundo1 + $segundo2);

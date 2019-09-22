@@ -40,6 +40,8 @@ table {margin-top: 10px; font-size:80%;}
 						echo $this->Form->input('cidade',array('type'=> 'text','class' => 'input-large','label' => array('text' => 'Cidade', 'class' => 'labellarge')));
 						echo $this->Form->input('valor',array('type'=> 'text','class' => 'input-large','label' => array('text' => 'Valor da Entrega', 'class' => 'labellarge')));
 						echo $this->Form->input('cidad_id',array('options'=> $cidads,'type'=> 'select','class' => 'input-large','label' => array('text' => 'Cidade', 'class' => 'labellarge')));
+						echo '<br>';
+						echo '<br>';
 						echo $this->Form->input('estado_id',array('options'=> $estados,'type'=> 'select','class' => 'input-large','label' => array('text' => 'Estados', 'class' => 'labellarge')));
 						echo $this->Form->input('ativo',array('class' => 'input-large','label' => array('text' => 'Ativo', 'class' => 'labellarge')));
 
@@ -149,6 +151,9 @@ $("#clickmodal").click(function(){
 $('#responsive').modal('show');
 });
 var urlInicio      = window.location.host;
+if(urlInicio=="localhost" ){
+	urlInicio= "localhost/entregapp_sistema";	
+} 
 $('body').on('click','.editModal', function(event){
 		event.preventDefault();
 

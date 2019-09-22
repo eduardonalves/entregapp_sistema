@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	//carrega o modal de view pedido
 	var urlInicio      = window.location.host;
-	urlInicio = (urlInicio=='localhost' ? urlInicio+'/entregapp': urlInicio);
+	urlInicio = (urlInicio=='localhost' ? urlInicio+'/entregapp_sistema': urlInicio);
 		$('.submit input').addClass('btn btn-success filtrar');
 	//$("html, body").niceScroll({cursorcolor:"#FF5C0A" });
 	$('#form-filter-results').addClass('form-inline');
@@ -63,6 +63,33 @@ $(document).ready(function() {
 		});
 	});
 
+
+    $('body').on('click', '.viewfechamento', function(event){
+        event.preventDefault();
+
+
+        $('#loadModalVenda').html(' ');
+        idpedido = $(this).data('id');
+
+
+
+        $('#loaderGif'+idpedido).show();
+        $('#divActions'+idpedido).hide();
+        $('#modalLoaded').html(' ');
+        loja = $('#filterMinhaslojas').val();
+        urlview= 'http://'+urlInicio+'/Fechamentos/view/'+idpedido+'/?loja='+loja+'&id='+idpedido;
+
+        $("#loadModalFechamento").load(urlview, function(){
+
+
+                $('.loaderFechamento').hide();
+                $('#divActions'+idpedido).show();
+
+                $('#modalLoaded').modal('show');
+                
+
+        });
+    });
 	$('body').on('click', '.addvenda', function(event){
 		event.preventDefault();
 												loja = $('#filterMinhaslojas').val();
@@ -76,6 +103,7 @@ $(document).ready(function() {
 	$('body').on('click', '.addpedido', function(event){
 		event.preventDefault();
                         loja = $('#filterMinhaslojas').val();
+                        
 
 		$('#modalLoaded').html(' ');
 		$("#loadModalPedido").load('http://'+urlInicio+'/Pedidos/add/?loja='+loja, function(){
@@ -85,7 +113,7 @@ $(document).ready(function() {
 	$('body').on('click', '.editpedido', function(event){
 
 		event.preventDefault();
-                        $(this).attr('src','/img/ajax-loader.gif');
+                        $(this).attr('src','http://'+urlInicio+'/img/ajax-loader.gif');
 		$('#loadModalPedido').html(' ');
 		idpedido = $(this).data('id');
 
@@ -94,7 +122,7 @@ $(document).ready(function() {
 		$('#modalLoaded').html(' ');
                       $('#linhaPdStatus'+idpedido+' img').hide();
 		$("#loadModalPedido").load('http://'+urlInicio+'/Pedidos/edit/'+idpedido+'', function(){
-                                            $('.editpedido').attr('src','/img/tb-edit.png');
+                                            $('.editpedido').attr('src','http://'+urlInicio+'/img/tb-edit.png');
 				start = $('.difhora').val();
 				$('.loaderPedido').hide();
 				$('#divActions'+idpedido).show();

@@ -68,43 +68,52 @@ class PgtopedidosController extends AppController {
 		$this->loadModel('Mesa');
 		$unicaFilial= $this->Filial->find('first', array('recursive'=> -1, 'conditions'=> array('Filial.id' => $minhasFiliais)));
 
-			$this->Pgtopedido->create();
-			$ultimopedido='Erro';
-			$this->request->data['Pgtopedido']['valor_total_pago'] = str_replace(',','.',$this->request->data['Pgtopedido']['valor_total_pago']);
+		$this->Pgtopedido->create();
+		$ultimopedido='Erro';
+		$this->request->data['Pgtopedido']['valor_total_pago'] = str_replace(',','.',$this->request->data['Pgtopedido']['valor_total_pago']);
+
+
 
 			if ($this->request->is(array('post', 'put'))) {
 
-
+				
 				$this->request->data['Pgtopedido']['status']='A';
 				$vlComDez = $this->request->data['Pgtopedido']['valor_dez'];
 				$vlPgto = $this->request->data['Pgtopedido']['valor'];
-				$desc =   $this->request->data['Pgtopedido']['valor_total_pago'] ;
+				$desc =   $this->request->data['Pgtopedido']['desconto'] ;
+				$taxa = $this->request->data['Pgtopedido']['taxa'] ;
 
-				if($vlComDez != '' && $vlPgto !='' && $desc != '')
+				//Faz o cast dos tipos
+				$this->request->data['Pgtopedido']['valor_dez']= (float) $vlComDez;
+				$this->request->data['Pgtopedido']['valor'] = (float) $vlPgto;
+				$this->request->data['Pgtopedido']['desconto']= (float) $desc ;
+				$this->request->data['Pgtopedido']['taxa'] =(float) $taxa ;
+
+
+
+
+				$this->request->data['Pgtopedido']['valor_total_pago'] = ($vlPgto-$desc) + $taxa;
+
+				if( $vlPgto !='')
 				{
-					$taxa = (double)  $vlPgto - (double) $vlComDez ;
+					$requestAux = $this->request->data;
+					$requestAux['Pgtopedido']['valor'] = ($vlPgto+ $taxa ) - $desc;
+					
 
-
-					$this->request->data['Pgtopedido']['taxa'] = $taxa;
-
-					$this->request->data['Pgtopedido']['desconto'] = (double) $vlPgto - (double) $desc;
-					$desc = $this->request->data['Pgtopedido']['desconto'];
-					$this->request->data['Pgtopedido']['valor'] = $this->request->data['Pgtopedido']['valor_total_pago'];
-
-					if ($this->Pgtopedido->save($this->request->data)) {
+					if ($this->Pgtopedido->save($requestAux)) {
 						$itenspgAux = $this->request->data['Pgtopedido']['itenspg'];
 						$itensPgArray = explode(',', $itenspgAux);
-						if($this->request->data['incluirdez']== 1)
+						$mesa = $this->Mesa->find('first', array('recursive'=> -1, 'conditions'=> array('AND'=> array(array('Mesa.filial_id'=>$minhasFiliais), array('Mesa.id'=> $this->request->data['Pgtopedido']['mesa_id'])))));
+						if(isset($this->request->data['incluirdez']))
 						{
+							if($this->request->data['incluirdez']== 1){
 								//$vlPgto  = ($this->request->data['Pgtopedido']['valor_total_pago'] != '' ? $this->request->data['Pgtopedido']['valor_total_pago']: $this->request->data['Pgtopedido']['valor']);
 
 
-								$mesa = $this->Mesa->find('first', array('recursive'=> -1, 'conditions'=> array('AND'=> array(array('Mesa.filial_id'=>$minhasFiliais), array('Mesa.id'=> $this->request->data['Pgtopedido']['mesa_id'])))));
-
-								$taxaAtual = (double) $mesa['Mesa']['taxa'] + (double) $taxa;
+								$taxaAtual = (float) $mesa['Mesa']['taxa'] + (float) $taxa;
 
 								$descAtual = $mesa['Mesa']['desconto'];
-								$desconto = (double) $descAtual + (double) $desc;
+								$desconto = (float) $descAtual + (float) $desc;
 								if($taxaAtual > 0)
 								{
 									if(!empty($mesa)){
@@ -116,6 +125,16 @@ class PgtopedidosController extends AppController {
 									}
 
 								}
+							}
+						}else{
+							$descAtual = $mesa['Mesa']['desconto'];
+							$desconto = (float) $descAtual + (float) $desc;
+							if(!empty($mesa)){
+								$this->Mesa->save(array(
+									'id' => $mesa['Mesa']['id'],
+									'desconto' => $desconto,
+								));
+							}
 						}
 						foreach ($itensPgArray as $key => $value)
 						{
