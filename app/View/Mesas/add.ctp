@@ -44,7 +44,7 @@ table{
 					<div class="form-group  form-group-lg">
 						<?php
 
-						echo $this->Form->input('atendente_id',array('class' => '','label' => array('text' => 'Atendente', 'class' => '')));
+						//echo $this->Form->input('atendente_id',array('class' => '','label' => array('text' => 'Atendente', 'class' => '')));
 						?>
 					</div>
 					<div class="form-group  form-group-lg">
@@ -94,7 +94,7 @@ table{
 						<tr>
 							<th><?php echo $this->Paginator->sort('id', 'Código');?></th>
 							<th><?php echo $this->Paginator->sort('identificacao', 'identificacao');?></th>
-							<th><?php echo $this->Paginator->sort('Atendente.nome', 'Atendente');?></th>
+							
 								<th><?php echo $this->Paginator->sort('ativo', 'ativo');?></th>
 							<th>Ações</th>
 						</tr>
@@ -104,7 +104,7 @@ table{
 						<tr>
 							<td data-title="Código"><?php echo h($mesa['Mesa']['id']); ?></td>
 							<td data-title="Identificacao"><?php echo h($mesa['Mesa']['identificacao']); ?></td>
-							<td data-title="Atendente"><?php echo h($mesa['Atendente']['nome']); ?></td>
+							
 							<td data-title="ativo"><?php echo ($mesa['Mesa']['ativo'] == true ? 'SIM': 'NÃO'); ?></td>
 							<td data-title="Actions">
 

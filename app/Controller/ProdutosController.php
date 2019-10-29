@@ -305,7 +305,9 @@ class ProdutosController extends AppController {
 						}
 						$dest = $dest.$requestData['Produto']['filial_id']. DS;
 						move_uploaded_file($source, $dest.$nomedoArquivo); // Move from source to destination (you need write permissions in that dir)
-						$requestData['Produto'][$value] ='http://'.$_SERVER['SERVER_NAME'].'/fotossistema/'.$requestData['Produto']['filial_id'].'/'.$nomedoArquivo; // Replace the array with a string in order to save it in the DB
+						
+						$caminhoFoto = ($_SERVER['SERVER_NAME'] == 'localhost' ?  $_SERVER['SERVER_NAME'].'/entregapp_sistema':  $_SERVER['SERVER_NAME'] );
+						$requestData['Produto'][$value] ='http://'.$caminhoFoto .'/fotossistema/'.$requestData['Produto']['filial_id'].'/'.$nomedoArquivo; // Replace the array with a string in order to save it in the DB
 					}
 				}
 			}else{

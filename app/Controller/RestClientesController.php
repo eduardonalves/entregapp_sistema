@@ -54,6 +54,7 @@ class RestClientesController extends AppController {
   }
 	public function loginmobile() {
     $this->loadModel('Cliente');
+		//header('Content-Type: application/json; Charset="UTF-8"');
 		$this->loadModel('Salt');
 		$this->layout ='ajaxaddpedido';
 		header("Access-Control-Allow-Origin: *");
@@ -201,14 +202,17 @@ class RestClientesController extends AppController {
 
 
 
-				$this->set(array(
+				/*$this->set(array(
 					'ultimopedido' => $ultimopedido,
 					'_serialize' => array('ultimopedido')
-				));
+				));*/
 			}else{
 
 			}
 		}
+		//print_r($ultimopedido);
+		
+		
             $this->set(array(
                     'ultimopedido' => $ultimopedido,
                     '_serialize' => array('ultimopedido')

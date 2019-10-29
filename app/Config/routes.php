@@ -41,9 +41,10 @@
  * Load the CakePHP default routes. Only remove this if you do not want to use
  * the built-in default routes.
  */
+	Router::parseExtensions('json');
 	require CAKE . 'Config' . DS . 'routes.php';
 
 	//Adicionamos rotas para xml e json
 
 	Router::mapResources(array('phones','atendimentos', 'pedidos','clientes','produtos','filials','categorias','cupons'));
-	Router::parseExtensions();
+	

@@ -163,7 +163,7 @@ class AtendentesController extends AppController {
 				$nomedoArquivo=str_ireplace(' ','', $nomedoArquivo);
 				move_uploaded_file($source, $dest.$nomedoArquivo); // Move from source to destination (you need write permissions in that dir)
 				$this->request->data['Atendente']['foto'] ='http://'.$_SERVER['SERVER_NAME'].'/fotossistema/'.$nomedoArquivo; // Replace the array with a string in order to save it in the DB
-				$this->Atendente->create(); // We have a new entry
+				//$this->Atendente->create(); // We have a new entry
 				$this->Atendente->save($this->request->data); // Save the request
 
 				$this->Session->setFlash(__('O atendente foi salvo com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
@@ -171,7 +171,7 @@ class AtendentesController extends AppController {
             } else {
 
 	               // Save the request
-	               $this->Atendente->create(); // We have a new entry
+	              // $this->Atendente->create(); // We have a new entry
 	               unset($this->request->data['Atendente']['foto']);
 	               if($this->Atendente->save($this->request->data)){
 
@@ -204,6 +204,19 @@ class AtendentesController extends AppController {
 		$autTipo = 'entregadores';
 		$userid = $this->Session->read('Auth.User.id');
 		$userfuncao = $this->Session->read('Auth.User.funcao_id');
+		$this->loadModel('Filial');
+		
+		
+		$User = new UsersController;
+		$minhasFiliais = $User->getFiliais($userid);
+		$lojas = $User->getSelectFiliais($userid);
+		
+		$unicaFilial= $this->Filial->find('first', array('recursive'=> -1, 'conditions'=> array('Filial.id' => $minhasFiliais)));
+		
+		$this->request->data['Atendente']['empresa_id']=$this->Session->read('Auth.User.empresa_id');
+		$this->request->data['Atendente']['filial_id']=$unicaFilial['Filial']['id'];
+		
+		
 		if(!$Autorizacao->setAutorizacao($autTipo,$userfuncao)){
 			$this->Session->setFlash(__('Acesso Negado!'), 'default', array('class' => 'error-flash alert alert-danger'));
 			return $this->redirect( $this->referer() );

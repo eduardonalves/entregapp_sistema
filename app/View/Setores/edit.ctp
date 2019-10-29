@@ -33,8 +33,9 @@
 		<script type="text/javascript">
 $(document).ready(function() {
 	$('body').on('click','#btn-salvar', function(event){
+	
 		event.preventDefault();
-		$('#SetorEditForm').submit();
+		$('#SetoreEditForm').submit();
 	});
 });
 	</script>
