@@ -62,16 +62,16 @@ class AppController extends Controller {
 			Configure::write('Config.language', 'por');
 				Configure::write('Config.language', $this->Session->read('Config.language'));
 		}
-		if(in_array($this->params['controller'],array('rest_images','rest_cupons','rest_produtos', 'rest_clientes', 'rest_pedidos', 'rest_atendimentos', 'rest_mensagens','rest_filials'))){
+		if(in_array($this->params['controller'],array('rest_images','rest_cupons','rest_produtos', 'rest_clientes', 'rest_pedidos', 'rest_atendimentos', 'rest_mensagens','rest_filials', 'rest_categorias', 'rest_pagamentos'))){
 			// For RESTful web service requests, we check the name of our contoller
 			$this->Auth->allow();
 			// this line should always be there to ensure that all rest calls are secure
 			$this->Security->requireSecure();
-			$this->Security->unlockedActions = array('cancelarpagseguro','redirecionarpagseguro','pagseguromobile','uploadimage','getnotifications','getSessionPag','formtrocasenha','recuperarsenha','getLocalidadePedidos','getPromoDia','calculafrete','statusloja','getsituacaocampainha','campainhamobile','posentregador','confirmaentregamobile','campaninhamobile','prodsmobile','loginmobile', 'addmobile','viewmobile','indexmobile', 'itensmobile','checaatendimento','pgtomoip', 'avalpedidomobile');
+			$this->Security->unlockedActions = array('cancelarpagseguro','redirecionarpagseguro','pagseguromobile','uploadimage','getnotifications','getSessionPag','formtrocasenha','recuperarsenha','getLocalidadePedidos','getPromoDia','calculafrete','statusloja','getsituacaocampainha','campainhamobile','posentregador','confirmaentregamobile','campaninhamobile','prodsmobile','loginmobile', 'addmobile','viewmobile','indexmobile', 'itensmobile','checaatendimento','pgtomoip', 'avalpedidomobile','catsmobile','prodsmobilebycat','pagamentosmobile');
 			date_default_timezone_set("Brazil/East");
 		}else{
 			// setup out Auth
-			$this->Auth->allow('cancelarpagseguro','redirecionarpagseguro','pagseguromobile','uploadimage','getnotifications','getSessionPag','formtrocasenha','recuperarsenha','getLocalidadePedidos','getPromoDia','calculafrete','statusloja','getsituacaocampainha','campainhamobile','posentregador','confirmaentregamobile','campaninhamobile','login','prodsmobile','loginmobile', 'addmobile','viewmobile','indexmobile', 'itensmobile','checaatendimento','pgtomoip', 'avalpedidomobile');
+			$this->Auth->allow('cancelarpagseguro','redirecionarpagseguro','pagseguromobile','uploadimage','getnotifications','getSessionPag','formtrocasenha','recuperarsenha','getLocalidadePedidos','getPromoDia','calculafrete','statusloja','getsituacaocampainha','campainhamobile','posentregador','confirmaentregamobile','campaninhamobile','login','prodsmobile','loginmobile', 'addmobile','viewmobile','indexmobile', 'itensmobile','checaatendimento','pgtomoip', 'avalpedidomobile','catsmobile','prodsmobilebycat','pagamentosmobile');
 			date_default_timezone_set("Brazil/East");
 		}
 	}

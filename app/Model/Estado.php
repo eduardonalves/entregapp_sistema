@@ -48,10 +48,10 @@ class Estado extends AppModel {
  *
  * @var array
  */
-	/*public $hasMany = array(
-		'Pedido' => array(
-			'className' => 'Pedido',
-			'foreignKey' => 'pagamento_id',
+	public $hasMany = array(
+		'Cidad' => array(
+			'className' => 'Cidad',
+			'foreignKey' => 'cidade_id',
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
@@ -62,6 +62,6 @@ class Estado extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		)
-	);*/
+	);
 
 }

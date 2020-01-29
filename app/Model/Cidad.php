@@ -36,6 +36,13 @@ class Cidad extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
+		'Estado' => array(
+			'className' => 'Estado',
+			'foreignKey' => 'estado_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
 	);
 
 }

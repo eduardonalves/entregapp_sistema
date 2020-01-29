@@ -243,22 +243,31 @@ $senha = geraSenha(15, true, true, true);
 		$this->loadModel('Bairro');
 		$this->loadModel('Cidad');
 		$this->loadModel('Filial');
+		$this->loadModel('Estado');
 
 		$resultados= array();
 		$param=$_GET['p'];
 		$filialPadrao =$_GET['fp'];
+		$estado='';
 		if(isset($_GET['c'])){
 			$cidade = $_GET['c'];
 		}
+
+		if(isset($_GET['e'])){
+			$estado = $_GET['e'];
+		}
+
 
 		switch ($param) {
 			case 'b': //bairro
 				$resultados = $this->Bairro->find('all', array('recursive'=> -1, 'conditions'  => array('AND' => array(array('Bairro.filial_id' => $filialPadrao),array('Bairro.cidad_id' => $cidade),array('Bairro.ativo' => true)))));
 				break;
 			case 'c': //bairro
-				$resultados = $this->Cidad->find('all', array('recursive'=> -1, 'conditions'  => array('AND'=> array(array('Cidad.filial_id' => $filialPadrao), array('Cidad.ativo' => true)))));
+				$resultados = $this->Cidad->find('all', array('recursive'=> -1, 'conditions'  => array('AND'=> array(array('Cidad.filial_id' => $filialPadrao), array('Cidad.ativo' => true), array('Cidad.estado_id' => $estado)))));
 				break;
-
+			case 'e': //bairro
+				$resultados = $this->Estado->find('all', array('recursive'=> -1, 'conditions'  => array('AND'=> array(array('Estado.filial_id' => $filialPadrao), array('Estado.ativo' => true)))));
+				break;
 			default:
 				# code...
 				break;
@@ -433,13 +442,17 @@ public function addmobile($codigo = null) {
 
 				$this->request->data['Pedido']['status_pagamento']="Pendente";
 				$this->request->data['Pedido']['entrega_valor']=$this->checkbfunc->converterMoedaToBD($this->request->data['Pedido']['entrega_valor']);
-				$userid = $this->Session->read('Auth.User.id');
-				$this->request->data['Pedido']['user_id']=$userid;
+				//$userid = $this->Session->read('Auth.User.id');
+				//$this->request->data['Pedido']['user_id']=$userid;
 
 				$this->request->data['Pedido']['origem']="Aplicativo";
 				$clt = $this->request->data['Pedido']['cliente_id'];
 				if($this->request->data['Pedido']['trocovalor']==''){
 					unset($this->request->data['Pedido']['trocovalor']);
+
+					
+				}
+				if($this->request->data['Pedido']['trocoresposta'] ==''){
 					$this->request->data['Pedido']['trocoresposta']='Não';
 				}
 
@@ -585,6 +598,7 @@ public function addmobile($codigo = null) {
 					//Busco a dura��o do trajeto do endere�o do cliente
           if(!isset($this->request->data['Pedido']['fromAtendentePedido']))
           {
+
               $this->loadModel('Cliente');
               $cliente = $this->Cliente->find('first', array('recursive'=> -1, 'conditions' => array('Cliente.id' => $this->request->data['Pedido']['cliente_id'])));
 
@@ -658,49 +672,66 @@ public function addmobile($codigo = null) {
               }
               $this->request->data['Pedido']['posicao_fila']=$posicaoFila;
 
+              //die('aqu2i');
+              //correção edu 14/01/2020
+              //if(empty($pedidoExistente)){
 
-              if(!empty($pedidoExistente)){
-
-                $j=0;
+                /*$j=0;
                 foreach($this->request->data['Itensdepedido'] as $itens ){
 
                   $this->request->data['Itensdepedido'][$j]['pedido_id'] = $pedidoExistente['Pedido']['id'];
                   $j=$j +1;
+                }*/
+
+
+
+                //$this->request->data['Pedido']['id']= $pedidoExistente['Pedido']['id'];
+                $this->Pedido->create();
+                
+                unset($this->request->data['Pedido']['a']);
+                unset($this->request->data['Pedido']['salt']);
+                unset($this->request->data['Pedido']['token']);
+                unset($this->request->data['Pedido']['origem']);
+                
+                
+                if($this->Pedido->save($this->request->data['Pedido'])){
+                	$ultimopedido = $this->Pedido->find('first', array('order' => array('Pedido.id' => 'desc'), 'recursive' => -1));
+                	foreach( $itens as $key => $iten ){
+                		$this->request->data['Itensdepedido'][$key]['pedido_id'] = $ultimopedido['Pedido']['id'];
+                	}
+                	if ($this->Itensdepedido->saveAll($this->request->data['Itensdepedido'])){
+
+	                	
+		                  //$ultimopedido = $pedidoExistente;
+
+		                  //Insiro o pedido na rota do  entregador
+		                  $Autorizacao = new AutorizacaosController;
+		                  $Roteiro = new RoteirosController;
+
+		                  $Roteiro->inserirRota($ultimopedido['Pedido']['id']);
+
+		                  $this->set(compact($ultimopedido));
+		                  if(! $this->request->is('ajax'))
+		                  {
+		                    //$this->Session->setFlash(__('O pedido foi salvo com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
+		                    //return $this->redirect( $this->referer() );
+		                  }
+			          }	
+                }else{
+                	$ultimopedido="erro";
                 }
+                
+                
 
-
-
-                $this->request->data['Pedido']['id']= $pedidoExistente['Pedido']['id'];
-                $this->Pedido->save($this->request->data['Pedido']);
-                if ($this->Itensdepedido->saveAll($this->request->data['Itensdepedido'])){
-
-
-                  $ultimopedido = $pedidoExistente;
-
-                  //Insiro o pedido na rota do  entregador
-                  $Autorizacao = new AutorizacaosController;
-                  $Roteiro = new RoteirosController;
-
-                  $Roteiro->inserirRota($ultimopedido['Pedido']['id']);
-
-                  $this->set(compact($ultimopedido));
-                  if(! $this->request->is('ajax'))
-                  {
-                    //$this->Session->setFlash(__('O pedido foi salvo com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
-                    //return $this->redirect( $this->referer() );
-                  }
-          }
-
-
-							if( $this->request->is('ajax'))
-							{
-								$this->layout ='ajaxaddpedido';
-							}
-						}else{
-							$ultimoPedido = $this->request->data;
-							$this->Session->setFlash(__('Houve um erro ao salvar o pedido. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
-							return $this->redirect( $this->referer() );
-						}
+					if( $this->request->is('ajax'))
+					{
+						$this->layout ='ajaxaddpedido';
+					}
+				/*}else{
+					$ultimoPedido = $this->request->data;
+					$this->Session->setFlash(__('Houve um erro ao salvar o pedido. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
+					return $this->redirect( $this->referer() );
+				}*/
 
 					}else{
 

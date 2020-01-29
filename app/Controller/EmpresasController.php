@@ -141,8 +141,8 @@ class EmpresasController extends AppController {
 		$this->loadModel('Bairro');
 
 		$filial = $this->Filial->find('first', array('order' => array('Filial.id' => 'asc'), 'recursive' => -1,'conditions'=> array('Filial.id'=> $filial_id)));
-		$minhasCidade = $this->Cidad->find('first',array('recursive'=>-1, 'conditions'=> array('and'=> array( array('Cidad.cidade_string LIKE'=>'%'.$cidade.'%' ), array('Cidad.filial_id'=> $filial_id), array('Cidad.ativo'=>true )))));
-		$uf = $this->Estado->find('first',array('recursive'=>-1, 'conditions'=> array('and'=> array( array('Estado.estado LIKE'=>'%'.strtoupper($uf).'%' ), array('Estado.ativo'=>true )))));
+		$minhasCidade = $this->Cidad->find('first',array('recursive'=>-1, 'conditions'=> array('and'=> array( array('Cidad.id'=> $cidade ), array('Cidad.filial_id'=> $filial_id), array('Cidad.ativo'=>true )))));
+		$uf = $this->Estado->find('first',array('recursive'=>-1, 'conditions'=> array('and'=> array( array('Estado.id'=> $uf ), array('Estado.ativo'=>true )))));
 
 		if(empty($uf)){
 			return false;
@@ -161,18 +161,21 @@ class EmpresasController extends AppController {
 			if(!empty($minhasCidade)){
 
 				if($minhasCidade['Cidad']['cobertura_total']==true) {
-					$frete=number_format($minhasCidade['Cidad']['valor'],2,',','.');
+					//$frete=number_format($minhasCidade['Cidad']['valor'],2,',','.');
+					$frete=$minhasCidade['Cidad']['valor'];
 					return $frete;
 				}else{
-					$meuBairro = $this->Bairro->find('first',array('recursive'=>-1, 'conditions'=> array('and'=> array( array('Bairro.bairro_string LIKE'=>'%'.$bairro.'%' ), array('Bairro.cidad_id'=> $minhasCidade['Cidad']['id']),array('Bairro.filial_id'=> $filial_id), array('Bairro.ativo'=>true )))));
+					$meuBairro = $this->Bairro->find('first',array('recursive'=>-1, 'conditions'=> array('and'=> array( array('Bairro.id'=> $bairro ), array('Bairro.cidad_id'=> $minhasCidade['Cidad']['id']),array('Bairro.filial_id'=> $filial_id), array('Bairro.ativo'=>true )))));
 
 					if(!empty($meuBairro)){
-						$frete=number_format($meuBairro['Bairro']['valor'],2,',','.');
+						//$frete=number_format($meuBairro['Bairro']['valor'],2,',','.');
+						$frete=$meuBairro['Bairro']['valor'];
 						return $frete;
 					}else{
 						if($filial['Filial']['locais_especificos'] !=true){
 							if($filial['Filial']['valor_padrao'] !='' ){
-								$frete=number_format($filial['Filial']['valor_padrao'],2,',','.');
+								//$frete=number_format($filial['Filial']['valor_padrao'],2,',','.');
+								$frete=$filial['Filial']['valor_padrao'];
 								return $frete;
 							}else{
 								return false;
@@ -186,7 +189,8 @@ class EmpresasController extends AppController {
 			}else{
 				if($filial['Filial']['locais_especificos'] !=true){
 					if($filial['Filial']['valor_padrao'] !='' ){
-						$frete=number_format($filial['Filial']['valor_padrao'],2,',','.');
+						//$frete=number_format($filial['Filial']['valor_padrao'],2,',','.');
+						$frete=$filial['Filial']['valor_padrao'];
 						return $frete;
 					}else{
 						return false;

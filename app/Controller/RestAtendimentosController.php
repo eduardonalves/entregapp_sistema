@@ -257,6 +257,7 @@ class RestAtendimentosController extends AppController {
 
 	public function viewmobile($id = null) {
 		$this->layout='liso';
+
 		$id = $_GET['a'];
 		date_default_timezone_set("Brazil/East");
 		header("Access-Control-Allow-Origin: *");
@@ -300,6 +301,8 @@ class RestAtendimentosController extends AppController {
 			$codigo = $atendimentoAux['Atendimento']['codigo'];
 
 			$pedido = $this->Pedido->find('first', array('conditions' => array('Pedido.atendimento_id' => $atendimentoAux['Atendimento']['id'])));
+
+
 			$this->loadModel('Pagamento');
 			$pagamento = $this->Pagamento->find('first', array('recursive' => -1, 'conditions' => array('Pagamento.id' => $pedido['Pedido']['pagamento_id'])));
 
@@ -388,8 +391,11 @@ class RestAtendimentosController extends AppController {
 			$dif= array('id' => $id, 'difhora' =>$pedido['Pedido']['difhora'] );
 			$this->Atendimento->create();
 			$this->Atendimento->save($dif);
+
 			if(!empty($pedido)){
+
 				$itensdepedidos = $this->Itensdepedido->find('all', array('conditions' => array('Itensdepedido.pedido_id' => $pedido['Pedido']['id'])));
+
 			}
 
 			if (!$this->Atendimento->exists($id)) {
@@ -401,6 +407,9 @@ class RestAtendimentosController extends AppController {
 			$resultados=$atendimentos;
 
 			$resultados['Atendimento']['difhora']=$difHora;
+			$resultados['Itensdepedido'] = $itensdepedidos ;
+			
+			
 			if(isset($pagamento['Pagamento']['tipo'])){
 				$resultados['Atendimento']['formadepagamento']=$pagamento['Pagamento']['tipo'];
 			}

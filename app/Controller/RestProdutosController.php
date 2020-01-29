@@ -31,6 +31,19 @@ class RestProdutosController extends AppController {
 
 	}
 
+  public function prodsmobilebycat() {
+    
+    
+    $produtos = $this->Produto->find('all',array('recursive'=> -1, 'conditions'=> array('categoria_id'=> $_GET['cat'], 'filial_id'=> $_GET['fp'] )));
+	foreach($produtos as $key => $value){
+		$produtos[$key]["Produto"]["preco_venda"] = number_format( $produtos[$key]["Produto"]["preco_venda"], 2,".", "");
+	}
+  
+    $this->set(array(
+        'produtos' => $produtos,
+        '_serialize' => array('produtos')
+    ));
+  }
 	public function prodsmobile() {
 
 		//$clt = $_GET['a'];
