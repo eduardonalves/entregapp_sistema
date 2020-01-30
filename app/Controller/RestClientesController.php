@@ -409,7 +409,7 @@ class RestClientesController extends AppController {
 	public function recuperarsenha()
 	{
 		header("Access-Control-Allow-Origin: *");
-		$cliente = $this->Cliente->find('first',array('recursive'=> -1,'conditions'=> array('Cliente.username'=>$_GET['clt'])));
+		$cliente = $this->Cliente->find('first',array('recursive'=> -1,'conditions'=> array('Cliente.username'=> $this->request->data['clt'])));
 		if(!empty($cliente))
 		{
 			if($this->Cliente->recoverpassword($cliente['Cliente']['id']))

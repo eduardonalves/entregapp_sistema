@@ -131,18 +131,30 @@ class Cliente extends AppModel {
 			{
 				$prefixoAux = explode('@', $cliente['Cliente']['email']);
 				$prefixo =(isset($prefixoAux[0]) ? $prefixoAux[0] : 'ENTR');
+
+
 				$meuToken=$prefixo.date('Ymdhisa').$this->geraSenha();
 				$url = $_SERVER['HTTP_HOST'];
-				$tokenToSave = array(
+				//if($url !='10.0.2.2'){
+					
+					$tokenToSave = array(
 					'token' => $meuToken,
 					'cliente_id'=> $cliente_id,
 					'ativo'=> true
 				);
 				// load the Model
+
 				$Token = new Token();
+				try {
+					$Token->create();
+					$Token->save($tokenToSave);
+				} catch (Exception $e) {
+					print_r($e);
+					die;
+					return false;
+				}
 				// use the Model
-				$Token->create();
-				$Token->save($tokenToSave);
+				
 				$mensagem =
 				"Segue abaixo o link para recuperar sua senha http://".$url."/RestClientes/formtrocasenha?t=".$meuToken."";
 
@@ -150,13 +162,24 @@ class Cliente extends AppModel {
 				$Email->from(array('contato@entregapp.com.br' => 'entregapp'));
 				$Email->to($cliente['Cliente']['email']);
 				$Email->subject('Recuperar Senha');
-				if($Email->send($mensagem))
-				{
-					return true;
-				}else
-				{
-					return false;
-				}
+
+				try {
+				 	if($Email->send($mensagem))
+					{
+						return true;
+					}else
+					{
+						return false;
+					}
+				 } catch (Exception $e) {
+				 	print_r($e);
+					die;
+				 } 
+				//}else{
+					//return true;
+				//}
+				
+				
 			}else
 			{
 				return false;

@@ -118,7 +118,13 @@ p{text-align: center;}
 
 <script type="text/javascript">
 $('document').ready(function(){
-	$('#formtrocasenha').attr('action','/RestClientes/formtrocasenha');
+	var urlInicio      = window.location.host;
+	if(urlInicio=="localhost" ){
+		urlAction= "/entregapp_sistema/RestClientes/formtrocasenha";	
+	}else{
+		urlAction= "/RestClientes/formtrocasenha";	
+	} 
+	$('#formtrocasenha').attr('action',urlAction);
 	//$('#ChangesenhaPassword').val(null);
 	//$('#ChangesenhaConfirmpassword').val(null);
 	/*$('#formtrocasenha').submit(function(event){
