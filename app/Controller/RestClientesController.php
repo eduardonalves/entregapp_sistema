@@ -442,9 +442,13 @@ class RestClientesController extends AppController {
 			if($this->request->data['Cliente']['salt'] == $salt['Salt']['salt']){
 
 				$this->Cliente->create();
-				if($this->request->data['Cliente']['password'] ==""){
-					unset($this->request->data['Cliente']['password']);
+				if(isset($this->request->data['Cliente']['password'])){
+					if($this->request->data['Cliente']['password'] ==""){
+						unset($this->request->data['Cliente']['password']);
+					}
 				}
+				
+				
 				$clienteExistente = $this->Cliente->find('first', array('conditions' => array('Cliente.username' => $this->request->data['Cliente']['username'])));
 				if(!empty($clienteExistente)){
 					if($this->request->data['Cliente']['id'] == $clienteExistente['Cliente']['id']){
