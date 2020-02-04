@@ -481,7 +481,7 @@ $(document).ready(function() {
 		cancelarpedido(idpedido);
 	});
 
-	myVar = setInterval(function(){verificaMensagem();}, 5000);
+	myVar = setInterval(function(){verificaMensagem();}, 30000);
 	setTimeout(function(){
 						var objDiv = document.getElementById("modalChatcontent");
 						objDiv.scrollTop = objDiv.scrollHeight;
@@ -595,7 +595,8 @@ $(document).ready(function() {
 		idpedido= $('#idView').val();
 		auxStatus = $('#statusView').val();
 
-		if(auxStatus=='Em Aberto'){
+
+		if(auxStatus.trim()=='Em Aberto'){
 
 			confirmaAtendimento(idpedido);
 		}else{
@@ -609,10 +610,14 @@ $(document).ready(function() {
 	$('#progPreparar').click(function(event){
 		event.preventDefault();
 		idpedido= $('#idView').val();
-		auxStatus = $('#statusView').val();
-		if(auxStatus=='Confirmado'){
+		auxStatus = $('#lkConfirmar').text();
+		console.log(auxStatus.trim());
+
+		if(auxStatus.trim()=='Confirmado'){
 			confirmarpreparo(idpedido);
+			//console.log('passou1');
 		}else{
+			//console.log('passou2');
 			alert('O pedido deve estar com o status Confirmado.');
 		}
 
@@ -637,7 +642,7 @@ $(document).ready(function() {
 		event.preventDefault();
 		idpedido= $('#idView').val();
 		auxStatus = $('#statusView').val();
-		if(auxStatus=='Separado'){
+		if(auxStatus.trim()=='Separado'){
 
 
 			confirmarenvio(idpedido);
@@ -665,7 +670,7 @@ $(document).ready(function() {
 		idpedido= $('#idView').val();
 		auxStatus = $('#statusView').val();
 		entradorNome = $('#entregadorView').val();
-		if(auxStatus=='Em Trânsito'){
+		if(auxStatus.trim()=='Em Trânsito'){
 
 			if(entradorNome == ' '){
 				alert('Selecione e salve um entregador antes de escolher o status Entregue.');
@@ -869,9 +874,12 @@ $(document).ready(function() {
 
 	function confirmaAtendimento(idpedido){
 
+		
+
 			var url='http://'+urlInicio+'/Pedidos/confirmarpedido/'+idpedido;
 			var dadosFormulario = $("#LoteIndexForm").serialize();
-			 $.ajax({
+			
+			$.ajax({
 					type: "POST",
 					url: url,
 					data:  dadosFormulario,
@@ -879,25 +887,25 @@ $(document).ready(function() {
 					type: "POST",
 					success: function(data){
 
-
+						console.log(data);
 						if(data !=''){
 
 							statusConfirmado();
-							$('.statusView').html(data.Pedido.status);
-							$('#statusView').val(data.Pedido.status);
-							$('#linhaPdStatus'+idpedido).html(data.Pedido.status);
+							$('.statusView').html(data.resultados.Pedido.status);
+							$('#statusView').val(data.resultados.Pedido.status);
+							$('#linhaPdStatus'+data.resultados.Pedido.id).html(data.resultados.Pedido.status);
 							$('.statusView').html('Confirmado');
 							$('#statusView').val('Confirmado');
 						}
 
-						console.log(data);
+						
 					},error: function(data){
 
 
 					}
 
 				});
-
+			 
 
 	}
 
@@ -915,9 +923,9 @@ $(document).ready(function() {
 
 						if(data !=''){
 
-							$('.statusView').html(data.Pedido.status);
-							$('#statusView').val(data.Pedido.status);
-							$('#linhaPdStatus'+idpedido).html(data.Pedido.status);
+							$('.statusView').html(data.resultados.Pedido.status);
+							$('#statusView').val(data.resultados.Pedido.status);
+							$('#linhaPdStatus'+data.resultados.Pedido.id).html(data.resultados.Pedido.status);
 							statusPronto();
 							$('.statusView').html('Pronto');
 							$('#statusView').val('Pronto');
@@ -946,9 +954,9 @@ $(document).ready(function() {
 					success: function(data){
 
 						if(data !=''){
-							$('.statusView').html(data.Pedido.status);
-							$('#statusView').val(data.Pedido.status);
-							$('#linhaPdStatus'+idpedido).html(data.Pedido.status);
+							$('.statusView').html(data.resultados.Pedido.status);
+							$('#statusView').val(data.resultados.Pedido.status);
+							$('#linhaPdStatus'+data.resultados.Pedido.id).html(data.resultados.Pedido.status);
 
 							$('.statusView').html('Separado');
 							$('#statusView').val('Separado');
@@ -978,9 +986,9 @@ $(document).ready(function() {
 					success: function(data){
 
 						if(data !=''){
-							$('.statusView').html(data.Pedido.status);
-							$('#statusView').val(data.Pedido.status);
-							$('#linhaPdStatus'+idpedido).html(data.Pedido.status);
+							$('.statusView').html(data.resultados.Pedido.status);
+							$('#statusView').val(data.resultados.Pedido.status);
+							$('#linhaPdStatus'+data.resultados.Pedido.id).html(data.resultados.Pedido.status);
 							statusTransito();
 
 							$('.statusView').html('Em Trânsito');
@@ -1011,9 +1019,9 @@ $(document).ready(function() {
 
 						if(data !=''){
 
-							$('.statusView').html(data.Pedido.status);
-							$('#statusView').val(data.Pedido.status);
-							$('#linhaPdStatus'+idpedido).html(data.Pedido.status);
+							$('.statusView').html(data.resultados.Pedido.status);
+							$('#statusView').val(data.resultados.Pedido.status);
+							$('#linhaPdStatus'+data.resultados.Pedido.id).html(data.resultados.Pedido.status);
 
 
 
@@ -1065,7 +1073,7 @@ $(document).ready(function() {
 	}*/
 
 	function cancelarpedido(idpedido){
-
+		
 			var url='http://'+urlInicio+'/Pedidos/cancelarpedido/'+idpedido;
 			var dadosFormulario = $("#formCancelar").serialize();
 			 $.ajax({
@@ -1077,9 +1085,9 @@ $(document).ready(function() {
 					success: function(data){
 
 						if(data !=''){
-							$('.statusView').html(data.Pedido.status);
-							$('#statusView').val(data.Pedido.status);
-							$('#linhaPdStatus'+idpedido).html(data.Pedido.status);
+							$('.statusView').html(data.resultados.Pedido.status);
+							$('#statusView').val(data.resultados.Pedido.status);
+							$('#linhaPdStatus'+data.resultados.Pedido.id).html(data.resultados.Pedido.status);
 
 							$( "#modalCancelar" ).modal('hide');
 							$( "#modalLoaded" ).modal('show');

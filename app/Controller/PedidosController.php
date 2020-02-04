@@ -670,35 +670,46 @@ class PedidosController extends AppController {
 			$userid = $this->Session->read('Auth.User.id');
 			$userfuncao = $this->Session->read('Auth.User.funcao_id');
 			$resultados = array();
-			if(!$Autorizacao->setAutorizacao($autTipo,$userfuncao)){
 
+			if(!$Autorizacao->setAutorizacao($autTipo,$userfuncao)){
+				//die('aqui1');
 			}else{
+				//die('aqui2');
 				if ($this->request->is(array('Ajax'))) {
+					//die('aqui3');
 					$pedido=$this->Pedido->find('first', array('recursive' => -1,'conditions' => array('Pedido.id' => $id)));
+
 
 					//if($pedido['Pedido']['status']=='Em Trânsito'){
 
-						if($pedido['Pedido']['entregador_id'] !='' && $pedido['Pedido']['entregador_id'] !=0){
+					
+
+						//if($pedido['Pedido']['entregador_id'] !='' && $pedido['Pedido']['entregador_id'] !=0){
+							
 							$this->Pedido->id= $id;
 							$this->Pedido->saveField('status', 'Entregue');
 							$this->Pedido->saveField('statuspreparo', 0);
 							$this->Pedido->saveField('posicao_fila', 0);
 							$this->reordenafila();
 							$resultados= $this->Pedido->find('first', array('recursive' => -1,'conditions' => array('Pedido.id' => $id)));
+							
 							$this->loadModel('Roteiro');
 							$pedidoRoteiro = $this->Roteiro->find('first', array('recursive' => -1,'conditions' => array('Roteiro.pedido_id' => $id)));
-							$this->Roteiro->create();
-							$updateRot= array('id' => $pedidoRoteiro['Roteiro']['pedido_id'], 'status' => 'Entregue');
-							$this->Roteiro->save($updateRot);
+							if(!empty($pedidoRoteiro)){
+								$this->Roteiro->create();
+								$updateRot= array('id' => $pedidoRoteiro['Roteiro']['pedido_id'], 'status' => 'Entregue');
+								$this->Roteiro->save($updateRot);	
+							}
+							
 							$this->loadModel('Atendimento');
 							$this->Atendimento->create();
 							$updateStatusAtendimento= array('id' => $pedido['Pedido']['atendimento_id'], 'status' => 'Entregue');
 							$this->Atendimento->save($updateStatusAtendimento);
 
 
-						}
+						//}
 					//}
-
+						//die('aqui2');
 					$this->set(array(
 							'resultados' => $resultados,
 							'_serialize' => array('resultados')
@@ -781,6 +792,7 @@ class PedidosController extends AppController {
 		$userid = $this->Session->read('Auth.User.id');
 		$lojas = $User->getSelectFiliais($userid);
 		$minhasFiliais = $User->getFiliais($userid);
+
 
 		$userfuncao = $this->Session->read('Auth.User.funcao_id');
 		$this->loadModel('Filial');
@@ -883,6 +895,7 @@ class PedidosController extends AppController {
 	    );
 
 		$conditiosAux= $this->Filter->getConditions();
+
 		$unicaFilial= $this->Filial->find('first', array('recursive'=> -1, 'conditions'=> array('Filial.id' => $minhasFiliais)));
 
 		if(empty($conditiosAux)){

@@ -363,14 +363,14 @@ form div.submit {margin-top: 27px;}
 						 	<label >Motivo:</label>
 							<textarea class="form-control" rows="5"  name="data[Pedido][motivocancela]"  id="motivoCancel"></textarea>
 						 </div>
-						<button type="button" class="btn" id="cancelarPedido">Enviar</button>
+						
 					</form>
 				</div>
 			</div>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-	        <button type="submit" class="btn btn-default">Salvar</button>
+	        <button type="submit" class="btn btn-default" id="cancelarPedido">Salvar</button>
 	      </div>
 	    </div>
 	  </div>

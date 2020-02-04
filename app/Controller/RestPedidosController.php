@@ -577,7 +577,7 @@ public function addmobile($codigo = null) {
 						$j++;
 					}
 
-					$this->request->data['Pedido']['valor']=$total + $this->request->data['Pedido']['entrega_valor'];
+					$this->request->data['Pedido']['valor']=$total +  $this->request->data['Pedido']['entrega_valor'];
 
 
 

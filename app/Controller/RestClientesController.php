@@ -450,12 +450,15 @@ class RestClientesController extends AppController {
 				
 				
 				$clienteExistente = $this->Cliente->find('first', array('conditions' => array('Cliente.username' => $this->request->data['Cliente']['username'])));
+				$Empresa = new EmpresasController;
 				if(!empty($clienteExistente)){
 					if($this->request->data['Cliente']['id'] == $clienteExistente['Cliente']['id']){
 
 						if ($this->Cliente->save($this->request->data)) {
 
 							$ultimocliente = $this->Cliente->find('first', array('conditions' => array('Cliente.id' => $this->request->data['Cliente']['id']), 'recursive' => -1));
+
+							$ultimocliente['Cliente']['frete_cadastro']=$Empresa->verificaValorFrete($this->request->data['Cliente']['filial_id'],$this->checkbfunc->removeDetritos($ultimocliente['Cliente']['bairro']), $this->checkbfunc->removeDetritos($ultimocliente['Cliente']['cidade']), $ultimocliente['Cliente']['uf']);
 
 						} else {
 							$ultimocliente="Erro";
@@ -469,12 +472,13 @@ class RestClientesController extends AppController {
 					if ($this->Cliente->save($this->request->data)) {
 
 						$ultimocliente = $this->Cliente->find('first', array('order' => array('Cliente.id' => 'desc'), 'recursive' => -1));
+						$ultimocliente['Cliente']['frete_cadastro']=$Empresa->verificaValorFrete($this->request->data['Cliente']['filial_id'],$this->checkbfunc->removeDetritos($ultimocliente['Cliente']['bairro']), $this->checkbfunc->removeDetritos($ultimocliente['Cliente']['cidade']), $ultimocliente['Cliente']['uf']);
 
 					} else {
 						$ultimocliente="Erro";
 					}
 				}
-
+				
 				$this->set(array(
 						'ultimocliente' => $ultimocliente,
 						'_serialize' => array('ultimocliente')
