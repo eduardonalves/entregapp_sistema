@@ -52,10 +52,14 @@ class RestClientesController extends AppController {
     '_serialize' => array('ultimopedido')
   ));
   }
-	public function loginmobile() {
-    $this->loadModel('Cliente');
+public function loginmobile() {
+		$this->loadModel('Cliente');
 		//header('Content-Type: application/json; Charset="UTF-8"');
 		$this->loadModel('Salt');
+		$this->loadModel('Pagamento');
+		$this->loadModel('Cidad');
+		$this->loadModel('Estado');
+		$this->loadModel('Bairro');
 		$this->layout ='ajaxaddpedido';
 		header("Access-Control-Allow-Origin: *");
 
@@ -64,6 +68,7 @@ class RestClientesController extends AppController {
 		$usuario =$this->request->data['username'];
 		$saltenviado = $this->request->data['salt'];
         $ultimopedido='';
+
 
 		if ($this->request->is('post')) {
 
@@ -154,12 +159,38 @@ class RestClientesController extends AppController {
               }else{
                 $ultimopedido['Cliente']['frete_cadastro'] =0;
               }
-              $this->loadModel('Pagamento');
-							$pagamentos = $this->Pagamento->find('all', array('recursive' => -1, 'conditions'=>array('Pagamento.filial_id'=> $this->request->data['filial'])));
+             
 
-							foreach ($pagamentos as $key => $value) {
-								$ultimopedido['Pagamento'][$key]= $value['Pagamento'];
-							}
+			$minhaCidade = $this->Cidad->find('first', array(
+				'conditions'=> array('Cidad.id' => $ultimopedido['Cliente']['cidade'] )
+			));
+              
+			if(!empty($minhaCidade)){
+				$ultimopedido['Cliente']['cidade_nome'] = $minhaCidade['Cidad']['cidade'];
+			}
+				
+			$meuEstado = $this->Estado->find('first', array(
+				'conditions'=> array('Estado.id' => $ultimopedido['Cliente']['uf'] )
+			));
+            if(!empty($meuEstado)){
+              	$ultimopedido['Cliente']['estado_nome'] = $meuEstado['Estado']['estado'];
+            }
+
+              
+
+			$meuBairro  = $this->Bairro->find('first', array(
+				'conditions'=> array('Bairro.id' => $ultimopedido['Cliente']['bairro'] )
+			));
+
+			if(!empty($meuBairro)){
+				$ultimopedido['Cliente']['bairro_nome'] = $meuBairro['Bairro']['bairro'];
+			}
+
+			$pagamentos = $this->Pagamento->find('all', array('recursive' => -1, 'conditions'=>array('Pagamento.filial_id'=> $this->request->data['filial'])));
+
+			foreach ($pagamentos as $key => $value) {
+				$ultimopedido['Pagamento'][$key]= $value['Pagamento'];
+			}
 
 
 
@@ -478,7 +509,36 @@ class RestClientesController extends AppController {
 						$ultimocliente="Erro";
 					}
 				}
-				
+				if(is_array($ultimocliente)){
+					$this->loadModel('Cidad');
+					$this->loadModel('Estado');
+					$this->loadModel('Bairro');
+					
+					$minhaCidade = $this->Cidad->find('first', array(
+						'conditions'=> array('Cidad.id' => $ultimocliente['Cliente']['cidade'] )
+					));
+		              
+					if(!empty($minhaCidade)){
+						$ultimocliente['Cliente']['cidade_nome'] = $minhaCidade['Cidad']['cidade'];
+					}
+						
+					$meuEstado = $this->Estado->find('first', array(
+						'conditions'=> array('Estado.id' => $ultimocliente['Cliente']['uf'] )
+					));
+		            if(!empty($meuEstado)){
+		              	$ultimocliente['Cliente']['estado_nome'] = $meuEstado['Estado']['estado'];
+		            }
+
+		              
+
+					$meuBairro  = $this->Bairro->find('first', array(
+						'conditions'=> array('Bairro.id' => $ultimocliente['Cliente']['bairro'] )
+					));
+
+					if(!empty($meuBairro)){
+						$ultimocliente['Cliente']['bairro_nome'] = $meuBairro['Bairro']['bairro'];
+					}
+				}
 				$this->set(array(
 						'ultimocliente' => $ultimocliente,
 						'_serialize' => array('ultimocliente')

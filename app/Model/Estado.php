@@ -51,7 +51,7 @@ class Estado extends AppModel {
 	public $hasMany = array(
 		'Cidad' => array(
 			'className' => 'Cidad',
-			'foreignKey' => 'cidade_id',
+			'foreignKey' => 'estado_id',
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',

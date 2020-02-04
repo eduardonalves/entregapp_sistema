@@ -413,8 +413,10 @@ class RestAtendimentosController extends AppController {
 			if(isset($pagamento['Pagamento']['tipo'])){
 				$resultados['Atendimento']['formadepagamento']=$pagamento['Pagamento']['tipo'];
 			}
-
-
+			if($resultados['Atendimento']['data'] != ''){
+				$resultados['Atendimento']['data']= $this->checkbfunc->formatDateToView($resultados['Atendimento']['data']);
+			}
+			
 
 		}
 		$this->set(array(
