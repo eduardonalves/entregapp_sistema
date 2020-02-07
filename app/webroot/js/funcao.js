@@ -110,10 +110,21 @@ $(document).ready(function() {
 			$('#modalNovoPedido').modal('show');
 		});
 	});
+	
+	
+	$('body').on('click', '.close', function(event){
+		$('#modalLoaded').modal('hide');
+		setTimeout(function() {
+			$('.modal-backdrop').css('display','none');	
+			$('#modalLoaded').modal('hide');
+			console.log('passou aqui cloese');
+		}, 500);
+	});
 	$('body').on('click', '.editpedido', function(event){
 
 		event.preventDefault();
-                        $(this).attr('src','http://'+urlInicio+'/img/ajax-loader.gif');
+		
+        $(this).attr('src','http://'+urlInicio+'/img/ajax-loader.gif');
 		$('#loadModalPedido').html(' ');
 		idpedido = $(this).data('id');
 

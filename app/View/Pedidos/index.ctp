@@ -62,25 +62,26 @@
 
 
 		</div>
-		<div class="col-md-2" >
+		<div class="col-md-1  pull-right" >
 			<?php
-				echo $this->Search->end(__('Filtrar', true));
+				echo $this->Search->end(__('Pesquisar', true));
 			?>
 		</div>
-	</section>
-	<div class="cb" style="clear:both">
-
-	</div>
-	<section class="row-fluid">
 		<?php
 			if($autorizacao['Autorizacao']['pedidos'] != 'n' && $autorizacao['Autorizacao']['pedidos'] != 'v'){
 		?>
-		<div class="form-group  form-group-lg">
+		<div class="col-md-1" style="margin-top: 25px;">
 			<button type="button" class="btn btn-success addpedido pull-right" id="addpedido">Novo</button>
 		</div>
 		<?php
 			}
 		?>
+	</section>
+	<div class="cb" style="clear:both">
+
+	</div>
+	<section class="row-fluid">
+		
 		<div>
 			<h4 id="titulo-mensagem2"><span class="titulo"><?php echo $this->Html->image('bell.png',array('style'=>'float:left;margin-top:-3px;')); ?><span id="pedidosNovos-qtd">0</span>&nbsp;Novos Pedidos</span></h4>
 

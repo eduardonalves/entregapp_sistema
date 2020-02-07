@@ -6,7 +6,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel"> Editar Pedidos</h4>
         <?php if($pedido['Pedido']['nomecadcliente'] =='' || $pedido['Pedido']['atendente_id'] != ''):  ?>
-        <h5 class="h3content"><span class="h3previsao">Previsão de Entrega</span><div id="counter"></div></h5>
+        <h5 class="h3content" style="display: none;"><span class="h3previsao">Previsão de Entrega</span><div id="counter"></div></h5>
       <?php endif; ?>
       </div>
       <div class="modal-body">
@@ -20,87 +20,8 @@
           </div>
         <?php else: ?>
 				<span class="modal-subtitulo"><h3><?php echo $pedido['Cliente']['nome'];?></h3></span>
-				<h5 class="h5informacoes"><?php echo 'Telefone: '.$pedido['Cliente']['telefone'].' / Celular:'.$pedido['Cliente']['celular'] ;?></h5>
-			<div style="margin: 0 auto; width: 93%;">
-					<?php
-						if($pedido['Cliente']['bairro'] !=''){
-					?>
-						<div class="form-group  form-group-lg">
-							<label>Bairro:</label>
-							<p><?php echo $pedido['Cliente']['bairro'];?></p>
-						</div>
-					<?php
-						}
-					?>
-
-
-
-
-
-				<div class="form-group  form-group-lg">
-					<label>Logradouro:</label>
-					<p><?php echo $pedido['Cliente']['logradouro'];?></p>
-				</div>
-
-				<?php
-					if($pedido['Cliente']['cidade'] !=''){
-				?>
-						<div class="form-group  form-group-lg">
-							<label>Cidade:</label>
-							<p><?php echo $pedido['Cliente']['cidade'];?></p>
-						</div>
-				<?php
-					}
-				?>
-
-
-
-					<?php
-						if($pedido['Cliente']['complemento'] !=''){
-					?>
-							<div class="form-group  form-group-lg">
-								<label>Complemento:</label>
-								<p><?php echo $pedido['Cliente']['complemento'];?></p>
-							</div>
-					<?php
-						}
-					?>
-
-					<?php
-						if($pedido['Cliente']['uf'] !=''){
-					?>
-						<div class="form-group  form-group-lg">
-							<label>UF:</label>
-							<p><?php echo $pedido['Cliente']['uf'];?></p>
-						</div>
-					<?php
-						}
-					?>
-
-
-
-					<?php
-						if($pedido['Cliente']['numero'] !=''){
-					?>
-							<div class="form-group  form-group-lg">
-								<label>Número:</label>
-								<p><?php echo $pedido['Cliente']['numero'];?></p>
-							</div>
-					<?php
-						}
-					?>
-
-                                                        <?php
-                                                            if($pedido['Cliente']['p_referencia'] !=''){
-                                                        ?>
-                                                                <div class="form-group  form-group-lg">
-                                                                    <label>Ponto de Referência:</label>
-                                                                    <p><?php echo $pedido['Cliente']['p_referencia'];?></p>
-                                                                </div>
-                                                        <?php
-                                                            }
-                                                        ?>
-			</div>
+				<span class="modal-subtitulo"><h3>(<?php echo $pedido['Cliente']['username'];?>)</h3></span>
+			
     <?php endif; ?>
 
 <!-- ########################################################################################## -->
@@ -115,7 +36,7 @@
 			?>
 
 				<span class="modal-subtitulo"><h3>Pedido: <?php echo $pedido['Pedido']['id'];?></h3></span>
-				<h5 class="h5informacoes"><?php echo 'Data: '. $pedido['Pedido']['data'] . ' / Hora:'.$pedido['Pedido']['hora_atendimento'].' / Status: <span class="statusView">'.$pedido['Pedido']['status'] .'</span>';?></h5>
+				<h5 class="h5informacoes"><?php echo 'Data: '. $pedido['Pedido']['data'] . ' / Hora:'.$pedido['Pedido']['hora_atendimento'].' / Status: <span class="statusView">'.$pedido['Pedido']['status'] .'</span>'.' / Total: <span > R$ '. number_format($pedido['Pedido']['valor'], 2, ',', '.').'</span>';?></h5>
       <?php if($pedido['Pedido']['nomecadcliente'] =='' || $pedido['Pedido']['atendente_id'] != ''):  ?>
 			<div style="margin: 0 auto; width: 93%;">
 
@@ -160,16 +81,7 @@
 						?>
 
 
-						<?php
-						if( $pedido['Pedido']['posicao_fila']!=''){
-					?>
-							<div class="form-group  form-group-lg">
-								<label>Pos.Fila:</label>
-								<p><?php echo $pedido['Pedido']['posicao_fila'];?></p>
-							</div>
-					<?php
-						}
-					?>
+					
 
 				<?php
 
@@ -185,7 +97,7 @@
 						if($pedido['Entregador']['id'] == '' || $autorizacao['Autorizacao']['pedidos']=='a'){
 
 					?>
-							<div class="form-group  form-group-lg">
+							<div class="form-group  form-group-lg" style="margin-left: 20px;">
 								<p><strong>Entregador:</strong></p>
 								<?php echo $this->Form->input('entregador_id',array('options'=> $entrega,'default'=> $pedido['Entregador']['nome'],'type'=>'select','class' => 'input-default entregadorView','id'=>'entregadorView','label' => false, 'div' => false));?>
 							</div>
@@ -217,57 +129,93 @@
 						}
 					?>
 
-				<div class="form-group  form-group-lg">
+				<!--<div class="form-group  form-group-lg">
 					<label>Avaliação</label>
-					<p><span id="avaliarPedido"><?php echo h($pedido['Pedido']['avaliacao']); ?></span></p>
-				</div>
+					<p><span id="avaliarPedido"><?php //echo h($pedido['Pedido']['avaliacao']); ?></span></p>
+				</div>-->
 
-				<div class="form-group  form-group-lg">
-					<label>Local de Entrega</label>
-					<p><span id="localEntrega"><?php echo h($pedido['Pedido']['outro_endereco_entrega']); ?></span></p>
-				</div>
-				<div class="form-group  form-group-lg">
+				
+				<div class="form-group  form-group-lg" style="margin-left: 20px;">
 					<label>Levar Troco?</label>
 					<p><span id="obsTroco">
 					<?php
-						if($pedido['Pedido']['trocoresposta'] == 'N'){
-							echo "Não";
-						}else{
-							echo "Sim";
-						}
+						echo $pedido['Pedido']['trocoresposta'];
 
 					 ?></span></p>
 				</div>
-				<?php
-					if($pedido['Pedido']['trocoresposta'] != 'N'){
-				?>
-				<div class="form-group  form-group-lg">
-					<label>Troco Para?</label>
-					<p><span id="obsTrocoValor"><?php
-					$TrocoPedido=0;
-					$TrocoPedido	= $pedido['Pedido']['trocovalor'];
-					echo 'R$ ' . number_format($TrocoPedido, 2, ',', '.');
-
-					?></span></p>
+				<div class="form-group  form-group-lg col-md-4">
+					<label style="width: 200px;">Local de Entrega</label>
+					<p>
+						<?php 
+						if($pedido['Pedido']['logradouro'] != '')
+						{
+							echo h($pedido['Pedido']['logradouro']);
+							
+						} ?>
+						<?php 
+						if($pedido['Pedido']['numero'] != '')
+						{
+							echo ', ' .$pedido['Pedido']['numero'];
+							
+						} ?>
+						<?php 
+						if($pedido['Pedido']['complemento'] != '')
+						{
+							echo ', ' .$pedido['Pedido']['complemento'];
+							
+						} ?>
+						<br>
+						<?php 
+						if($pedido['Pedido']['bairro_nome'] != '')
+						{
+							echo '' .$pedido['Pedido']['bairro_nome'];
+							
+						} ?>
+						<?php 
+						if($pedido['Pedido']['cidade_nome'] != '')
+						{
+							echo ' - ' .$pedido['Pedido']['cidade_nome'];
+							
+						} ?>
+						<?php 
+						if($pedido['Pedido']['estado_nome'] != '')
+						{
+							echo '- ' .$pedido['Pedido']['estado_nome'];
+							
+						} ?>
+						<br>
+						<?php 
+						if($pedido['Pedido']['telefone'] != '')
+						{
+							echo 'Telefone: '.$pedido['Pedido']['telefone'];
+							
+						} ?>
+						<br>
+						<?php 
+						if($pedido['Pedido']['ponto_referencia'] != '')
+						{
+							echo $pedido['Pedido']['ponto_referencia'];
+							
+						} ?>		
+					</p>
 				</div>
-
-				<div class="form-group  form-group-lg">
-					<label>Valor do  Troco:</label>
-					<p><span id="obsTrocoValor">
-					<?php
-					$vlTroco=0;
-					$vlTroco = $pedido['Pedido']['trocovalor'] - $pedido['Pedido']['valor'] ;
-					echo 'R$ ' . number_format($vlTroco, 2, ',', '.');
-					 ?></span></p>
-				</div>
-				<?php
-					}
-				?>
+				
       <?php endif;  ?>
+      			
+      			<?php
+
+      			if($pedido['Pedido']['obs'] !=''){
+
+      			
+      			?>
+      			<br>
 				<div class="form-group  form-group-lg">
 					<label>Observações</label>
 					<p><span id="obsPedido"><?php echo h($pedido['Pedido']['obs']); ?></span></p>
 				</div>
+				<?php
+					}
+				?>
 			</div>
 <!-- ########################################################################################## -->
 
