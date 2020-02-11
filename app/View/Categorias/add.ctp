@@ -31,7 +31,7 @@ table {margin-top: 10px; font-size:80%;}
 	      <div class="modal-body">
 	  		<div class="row-fluid">
 				<div >
-					<?php echo $this->Form->create('Categoria',array('class' => 'form-inline centralizadoForm'));
+					<?php echo $this->Form->create('Categoria',array('class' => 'form-inline centralizadoForm', 'type' => 'file'));
 						?>
 					<div class="form-group  form-group-lg">
 						<?php
@@ -39,6 +39,12 @@ table {margin-top: 10px; font-size:80%;}
 						echo $this->Form->input('destaque',array('type'=>'checkbox','label' => array('text' => 'Destaque')));
 						echo $this->Form->input('ativo',array('type'=>'checkbox','label' => array('text' => 'Ativo')));
 						echo $this->Form->input('filial_id',array('type' => 'hidden'));
+						?>
+					</div>
+					<div class="form-group  form-group-lg">
+						<label for="foto">Foto:</label>
+						<?php
+							echo $this->Form->file('foto',array('class' => 'input-foto limpa ','label' => 'Foto:'));
 						?>
 					</div>
 				</div>
@@ -81,6 +87,7 @@ table {margin-top: 10px; font-size:80%;}
 						<tr>
 							<th><?php echo $this->Paginator->sort('id', 'Código');?></th>
 							<th><?php echo $this->Paginator->sort('nome', 'nome');?></th>
+							<th>Foto</th>
 							<th>Ações</th>
 						</tr>
 					</thead>
@@ -89,6 +96,20 @@ table {margin-top: 10px; font-size:80%;}
 						<tr>
 							<td data-title="Código"><?php echo h($categoria['Categoria']['id']); ?></td>
 							<td data-title="Nome"><?php echo h($categoria['Categoria']['nome']); ?></td>
+							<td>
+								<div class="circulodivPequeno">
+									<?php
+										if(isset($categoria['Categoria']['foto']) && $categoria['Categoria']['foto'] != ''){
+									?>
+											<img src=<?php echo $categoria['Categoria']['foto'];?> alt=<?php echo $categoria['Categoria']['nome'];?> width="50px" height="50px" title=<?php echo $categoria['Categoria']['nome'];?> width="50px" height="50px"/>
+									<?php
+										}else{
+											echo $this->html->image('fotoico.png', array('alt'=> 'Foto', 'width'=>'50px','height'=>'50px'));
+
+										}
+									?>
+								</div>
+							</td>
 
 							<td data-title="Actions">
 

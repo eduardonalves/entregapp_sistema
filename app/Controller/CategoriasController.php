@@ -118,6 +118,27 @@ class CategoriasController extends AppController {
 		$this->Categoria->recursive = 0;
 		$this->set('categorias', $this->Paginator->paginate());
 		if ($this->request->is('post')) {
+			if($this->request->data['Categoria']['foto']['name']==''){
+				unset($this->request->data['Categoria']['foto']);
+			}else{
+				if(isset($this->request->data['Categoria']['foto']['error']) && $this->request->data['Categoria']['foto']['error'] === 0) {
+					$source = $this->request->data['Categoria']['foto']['tmp_name']; // Source
+	               	$host= ROOT . DS . 'app' . DS . 'webroot' ;
+
+					
+					$dest = ROOT . DS . 'app' . DS . 'webroot' . DS . 'fotossistema' . DS;   // Destination
+
+	                $nomedoArquivo = date('YmdHis').rand(1000,999999);
+	                $nomedoArquivo= $nomedoArquivo.$this->request->data['Categoria']['foto']['name'];
+	                move_uploaded_file($source, $dest.$nomedoArquivo); // Move from source to destination (you need write permissions in that dir)
+	                 if($_SERVER['SERVER_NAME']== 'localhost'){
+	                	$this->request->data['Categoria']['foto'] ='http://'.$_SERVER['SERVER_NAME'].'/entregapp_sistema/fotossistema/'.$nomedoArquivo; 
+	                }else{
+	                	$this->request->data['Categoria']['foto'] ='http://'.$_SERVER['SERVER_NAME'].'/fotossistema/'.$nomedoArquivo; 
+	                }
+				}
+			}
+
 			$this->request->data['Categoria']['empresa_id'] = $this->Session->read('Auth.User.empresa_id');
 			if(!$Autorizacao->setAutoIncuir($autTipo,$userfuncao)){
 				$this->Session->setFlash(__('Acesso Negado!'), 'default', array('class' => 'error-flash alert alert-danger'));
@@ -153,10 +174,32 @@ class CategoriasController extends AppController {
 			$this->Session->setFlash(__('Acesso Negado!'), 'default', array('class' => 'error-flash alert alert-danger'));
 			return $this->redirect( $this->referer() );
 		}
+		
 		if ($this->request->is(array('post', 'put'))) {
 			if(!$Autorizacao->setAutoIncuir($autTipo,$userfuncao)){
 				$this->Session->setFlash(__('Acesso Negado!'), 'default', array('class' => 'error-flash alert alert-danger'));
 				return $this->redirect( $this->referer() );
+			}
+			if($this->request->data['Categoria']['foto']['name']==''){
+				unset($this->request->data['Categoria']['foto']);
+			}else{
+				if(isset($this->request->data['Categoria']['foto']['error']) && $this->request->data['Categoria']['foto']['error'] === 0) {
+
+					$source = $this->request->data['Categoria']['foto']['tmp_name']; // Source
+					$host= ROOT . DS . 'app' . DS . 'webroot' ;
+					$dest = ROOT . DS . 'app' . DS . 'webroot' . DS . 'fotossistema' . DS;   // Destination
+	                
+
+	                $nomedoArquivo = date('YmdHis').rand(1000,999999);
+	                $nomedoArquivo= $nomedoArquivo.$this->request->data['Categoria']['foto']['name'];
+	                move_uploaded_file($source, $dest.$nomedoArquivo); // Move from source to destination (you need write permissions in that dir)
+	                if($_SERVER['SERVER_NAME']== 'localhost'){
+	                	$this->request->data['Categoria']['foto'] ='http://'.$_SERVER['SERVER_NAME'].'/entregapp_sistema/fotossistema/'.$nomedoArquivo; 
+	                }else{
+	                	$this->request->data['Categoria']['foto'] ='http://'.$_SERVER['SERVER_NAME'].'/fotossistema/'.$nomedoArquivo; 
+	                }
+	                
+				}
 			}
 			if ($this->Categoria->save($this->request->data)) {
 				$this->Session->setFlash(__('A  categoria foi salva com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));

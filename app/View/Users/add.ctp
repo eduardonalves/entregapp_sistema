@@ -92,7 +92,7 @@
 					</div>
 					<br />
 					<div class="form-group  form-group-lg">
-						<label for"foto">Foto:</label>
+						<label for="foto">Foto:</label>
 						<?php
 							echo $this->Form->file('foto',array('class' => 'input-foto limpa ','label' => 'Foto:'));
 						?>

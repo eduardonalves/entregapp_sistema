@@ -29,8 +29,12 @@ $cakeDescription = __d('entrega_app', 'EntragApp Delivery');
 	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC1Fq4149nqLAr86NBlDE0_01kgzOaV_Qg&amp;sensor=false"></script>
 
 	<?php
-
-		echo $this->Html->meta('icon', $this->Html->url('http://'.$_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'].'/img/favicon.png'));
+		if($_SERVER['SERVER_NAME'] == 'localhost'){
+			echo $this->Html->meta('icon', $this->Html->url('http://'.$_SERVER['SERVER_NAME'] . '/entregapp_sistema'.'/img/favicon.png'));
+		}else{
+			echo $this->Html->meta('icon', $this->Html->url('http://'.$_SERVER['SERVER_NAME'] .'/img/favicon.png'));
+		}
+		
 
 		echo $this->Html->css('styles');
 
