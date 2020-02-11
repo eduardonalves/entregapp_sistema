@@ -1,7 +1,7 @@
 @charset "utf-8";
 
-@const tema-preenchimento: #D91E19;
-@const tema-borda: #EF4836;
+@const tema-preenchimento: #000000;
+@const tema-borda: #191919;
 
 
 html, body{
@@ -10,7 +10,7 @@ html, body{
 
 /************************************************** NAVEGAÇÃO ****************************************************/
 .navbar-default {
-  background-color: #D91E19;
+  background-color: #000000;
   box-shadow: 0px 0px 5px black;
   border-bottom: none;
   padding: 0px 30px 0px 30px;
@@ -33,7 +33,7 @@ html, body{
 	  color: #FFF !important;
 	}
 	.navbar-default li:hover{
-		background: #EF4836;
+		background: #191919;
 	}
 	.navbar-default.navbar-right{
 
@@ -50,7 +50,7 @@ html, body{
 		font-weight: bold;
 	}
 	.navbar-default .navbar-nav > li > .dropdown-menu {
-	  background-color: #EF4836 !important;
+	  background-color: #191919 !important;
 	  border-bottom: 5px solid var(--vermelho-escuro);
 	  border-radius: 0px;
 	}
@@ -65,22 +65,22 @@ html, body{
 	.navbar-default .navbar-nav > li > .dropdown-menu > li > a:hover,
 	.navbar-default .navbar-nav > li > .dropdown-menu > li > a:focus {
 	  color: #ecf0f1 !important;
-	  background-color: #b30707 !important;
+	  background-color: #b2b2b2 !important;
 	}
 
 	.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
 	  color: #ecf0f1 !important;
-	  background-color: #b30707 !important;
+	  background-color: #b2b2b2 !important;
 	}
 	.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
 	  color: #ecf0f1 !important;
-	  background-color: #EF4836 !important;
+	  background-color: #191919 !important;
 	}
 	.navbar-default .navbar-toggle {
-	  border-color: #b30707 !important;
+	  border-color: #b2b2b2 !important;
 	}
 	.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
-	  background-color: #b30707 !important;
+	  background-color: #b2b2b2 !important;
 	}
 	.navbar-default .navbar-toggle .icon-bar {
 	  background-color: #ecf0f1 !important;
@@ -119,7 +119,7 @@ html, body{
 	  }
 	  .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
 		color: #ecf0f1 !important;
-		background-color: #b30707 !important;
+		background-color: #b2b2b2 !important;
 	  }
 	  .navbar-default .dropdown,
 	  .navbar-default .navbar-right .dropdown{
@@ -185,7 +185,7 @@ input#filterDataPedido-between{
 	cursor: pointer;
 }
 	#titulo-mensagem .titulo{
-		color: #e32;
+		color: #000000;
 		font-weight: bold;
 	}
 #mensagens{
@@ -228,7 +228,7 @@ input#filterDataPedido-between{
 	line-height: 10px;
   }
 #modalBodyCadastrarMesa{height: 130px; overflow: hidden; padding-top: 73px; }
-	.close{color:#fff;}
+	.close{color:#FFFFFF; }
 	th{
 		background-color:#E87C00;
 		color:#FFFFFF;
@@ -346,7 +346,7 @@ table {margin-top: 10px; font-size:80%;}
 #rodape{
 	 box-shadow: 0px 0px 5px black;
 	border-bottom: none !important;
-	background: #D91E19;
+	background: #000000;
 	width: 100%;
 	position: relative;
 	bottom: 0px;

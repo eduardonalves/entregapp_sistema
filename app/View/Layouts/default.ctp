@@ -23,7 +23,7 @@ $cakeDescription = __d('entrega_app', 'EntragApp Delivery');
 <head>
 	<?php echo $this->Html->charset('UTF-8'); ?>
 	<title>
-		Entregapp Delivery Apliction
+		Rudo Aplicativo de entregas.
 	</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC1Fq4149nqLAr86NBlDE0_01kgzOaV_Qg&amp;sensor=false"></script>
@@ -204,19 +204,7 @@ $cakeDescription = __d('entrega_app', 'EntragApp Delivery');
 									$foto = $this->Session->read('Auth.User.foto');
 								?>
 					          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-					          	<div class="circulodivUser">
-									<?php
-										if($foto != ''){
-									?>
-											<img src=<?php echo $foto;?> alt=<?php echo $foto;?> width="40px" height="40px" title=<?php echo $foto;?> class="icon-menu" width="50px" height="50px"/>
-									<?php
-										}else{
-											echo $this->html->image('usuario.png', array('alt'=> 'Foto', 'width'=>'40px','height'=>'40px', 'class'=>'icon-menu'));
-
-										}
-									?>
-								</div>
-
+					          	
 
 
 

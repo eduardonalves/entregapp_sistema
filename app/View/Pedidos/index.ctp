@@ -62,7 +62,7 @@
 
 
 		</div>
-		<div class="col-md-1  pull-right" >
+		<div class="col-md-2  pull-right" >
 			<?php
 				echo $this->Search->end(__('Pesquisar', true));
 			?>
@@ -70,7 +70,7 @@
 		<?php
 			if($autorizacao['Autorizacao']['pedidos'] != 'n' && $autorizacao['Autorizacao']['pedidos'] != 'v'){
 		?>
-		<div class="col-md-1" style="margin-top: 25px;">
+		<div class="col-md-2" style="margin-top: 25px;">
 			<button type="button" class="btn btn-success addpedido pull-right" id="addpedido">Novo</button>
 		</div>
 		<?php
@@ -135,7 +135,7 @@ table{
     border-bottom: 1px solid #ccc;
 }
 	#titulo-mensagem2 .titulo {
-    color: #e32;
+    color: #000000;
     font-weight: bold;
 }
 #titulo-mensagem2 span {
@@ -184,7 +184,7 @@ form div.submit {margin-top: 27px;}
 			text-align: center;
 		}
 		.th-red{
-			background-color:#E82F00 !important;
+			background-color:#7f7f7f !important;
 		}
 	</style>
 
@@ -377,6 +377,35 @@ form div.submit {margin-top: 27px;}
 	  </div>
 	</div>
 
+	<div class="modal fade modal-grande" id="modalHabilitaAudio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        
+	        <h4 class="modal-title" id="myModalLabel"> Habilitar Audio</h4>
+	      </div>
+	      <div class="modal-body">
+	  		<div class="row-fluid">
+				<div id="loadCancelamento">
+					<form  id="formCancelar" >
+						<input type="hidden" name="data[Pedido][id]" id="cancelId" />
+						 <div class="form-group">
+						 	<p >Por favor, clique no botão habilitar, para ligar o audio dos pedidos novos!</p>
+							
+						 </div>
+						
+					</form>
+				</div>
+			</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Habilitar</button>
+	       
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
 	<div class="modal fade modal-grande" id="modalChat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
@@ -409,24 +438,58 @@ form div.submit {margin-top: 27px;}
 
 <div id="loadModalPedido">
 </div>
-<audio controls class="audioPlayer">
-     <source src="/sons/cymbals Symphony.wav" type="audio/wav">
-</audio>
+<?php  if($_SERVER['HTTP_HOST'] == 'localhost') {?>
+	<audio controls class="audioPlayer" >
+	     <source src="/entregapp_sistema/sons/cymbalsSymphony.wav" type="audio/wav">
+	</audio>
+<?php } else { ?>
+	<audio controls class="audioPlayer" >
+    	 <source src="/sons/cymbalsSymphony.wav" type="audio/wav">
+	</audio>
+<?php }  ?>	
 <script type="text/javascript">
 $(document).ready(function() {
 		//var urlInicio      = window.location.host;
+	
 	loja = $('#filterMinhaslojas').val();
 	$('#idfilialmsg').val(loja);
 	var urlInicio      = window.location.host;
 	urlInicio = (urlInicio=='localhost' ? urlInicio+'/entregapp_sistema': urlInicio);
 
+	urlAudio = 'http://'+urlInicio+ '/sons/cymbalsSymphony.wav';
+
+	
+	
+	var audio = new Audio(urlAudio);
+	
+	
+
 	$("#pedidosNovos-qtd").load('http://'+urlInicio+'/Pedidos/countpedidosnovos/?loja='+loja, function(){});
 	setTimeout(function(){
 			nPedidos = $('#pedidosNovos-qtd').text();
-			nPedidos.replace(' ','');
+			nPedidos.replace(' ','').trim();
 
 			if( nPedidos !=0 ){
-				$('.audioPlayer').trigger('play');
+				//$('.audioPlayer').trigger('play');
+				console.log('tocou 1');
+				audio.play().then(function(){
+					setTimeout(function() {
+					audio.play();
+				}, 2000);
+				setTimeout(function() {
+					audio.play();
+				}, 4000);
+				setTimeout(function() {
+					audio.play();
+				}, 6000);
+				setTimeout(function() {
+					audio.play();
+				}, 8000);
+				}).catch(function(){
+					$('#modalHabilitaAudio').modal('show');
+
+				});
+				
 			}
 		},2000);
 	setInterval(function(){
@@ -436,17 +499,44 @@ $(document).ready(function() {
 	});
 		setTimeout(function(){
 			nPedidos = $('#pedidosNovos-qtd').text();
-			nPedidos.replace(' ','');
+			nPedidos.replace(' ','').trim();
 			nPedidos = parseInt(nPedidos);
 			if( nPedidos !=0 ){
-				$('.audioPlayer').trigger('play');
+				//$('.audioPlayer').trigger('play');
+				audio.play().then(function(){
+					setTimeout(function() {
+					audio.play();
+				}, 2000);
+				setTimeout(function() {
+					audio.play();
+				}, 4000);
+				setTimeout(function() {
+					audio.play();
+				}, 6000);
+				setTimeout(function() {
+					audio.play();
+				}, 8000);
+				}).catch(function(){
+					//alert('Por favor, clique aqui para habilitar o áudio do sistema de pedido');
+					console.log('deu ruim 2');
+				});
+
 			}
 		},2000);
+		console.log('tocou 2');
 	}, 20000);
 
 
 
-
+	$('#titulo-mensagem2').click(function(){
+		 //location.reload();
+		 var valor = $('#pedidosNovos-qtd').text();
+		 valor = valor.replace(" ","").trim();
+		 
+		 if(valor != '0'){
+		 	location.reload();
+		 }
+	});	
 
 });
 </script>

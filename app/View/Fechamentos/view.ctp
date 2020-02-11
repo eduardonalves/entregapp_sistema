@@ -93,7 +93,7 @@
 									<?php endforeach; ?>
                   <tr id="linhaTotalFechamento">
                     
-                    <th class="textCenter" style="background: #5CB85C;" colspan="3"><?php echo __('Resumo'); ?></th>
+                    <th class="textCenter" style="background: #000000;" colspan="3"><?php echo __('Resumo'); ?></th>
                   </tr>
 
 									<tr id="linhaTotalFechamento">

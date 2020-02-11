@@ -52,7 +52,7 @@ h1 {
 }
 h2 {
 	background:#fff;
-	color: #e32;
+	color: #000000;
 	font-family:'Gill Sans','lucida grande', helvetica, arial, sans-serif;
 	font-size: 190%;
 }
@@ -269,7 +269,7 @@ fieldset {
 	padding: 16px 10px;
 }
 fieldset legend {
-	color: #e32;
+	color: #000000;
 	font-size: 160%;
 	font-weight: bold;
 }
@@ -298,7 +298,7 @@ form .required {
 	font-weight: bold;
 }
 form .required label:after {
-	color: #e32;
+	color: #000000;
 	content: '*';
 	display:inline;
 }

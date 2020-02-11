@@ -868,14 +868,14 @@ $('.addProduto').click(function(event){
 
   	$('body').on('keypress', '.ui-autocomplete-input', function(){
   		setTimeout(function(){
-			$( ".ui-corner-all a:contains('Indisponível')" ).css( "background-color", "#E82F00;");
+			$( ".ui-corner-all a:contains('Indisponível')" ).css( "background-color", "#7f7f7f;");
 			$( ".ui-corner-all a:contains('Indisponível')" ).addClass( "Indisponivel");
 		},300);
   	});
 
   	$('body').on('keyup', '.ui-autocomplete-input', function(){
   		setTimeout(function(){
-			$( ".ui-corner-all a:contains('Indisponível')" ).css( "background-color", "#E82F00;");
+			$( ".ui-corner-all a:contains('Indisponível')" ).css( "background-color", "#7f7f7f;");
 		},300);
 
   	});

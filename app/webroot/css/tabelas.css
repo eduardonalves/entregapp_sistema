@@ -23,7 +23,7 @@
 	/** HEADER TABLE **/
 	.area-tabela table thead th{
 		text-align: center;
-		background: #5CB85C;
+		background: #000000;
 	}
 		.area-tabela table thead th a{
 			color: #FFF;

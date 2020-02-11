@@ -43,12 +43,12 @@ p{text-align: center;}
 			min-height: 40px;
 		}
 			.logo-appedido img{
-				top: -90px;
-				left: 0;
-				/*border-radius: 35%;*/
-				height: 120px;
-				width: 120px;
-				position: absolute;
+				top: -189px;
+	    		left: -38px;
+	    		/* border-radius: 35%; */
+	    		height: 220px;
+	    		width: 220px;
+	    		position: absolute;
 			}
 
 		.input-login{
@@ -59,7 +59,7 @@ p{text-align: center;}
 		.bt-login{
 			width: 100%;
 			margin: 10px auto;
-			background: none repeat scroll 0% 0% #D91E19;
+			background: none repeat scroll 0% 0% #000000;
 			border-radius: 5px;
 			height: 30px;
 			color: #FFF;
@@ -71,15 +71,15 @@ p{text-align: center;}
 		}
 
 		.bt-login:hover{
-			background: none repeat scroll 0% 0% #EF4836;
+			background: none repeat scroll 0% 0% #191919;
 		}
 		.bt-login:focus{
-			background: none repeat scroll 0% 0% #EF4836;
+			background: none repeat scroll 0% 0% #191919;
 			border:1px solid #E74C3C;
 		}
 #rodape{
-	background: #D91E19;
-	border-top: 5px solid #EF4836;
+	background: #000000;
+	border-top: 5px solid #191919;
 	width: 100%;
 	position: fixed;
 	bottom: 0px;
@@ -116,8 +116,8 @@ p{text-align: center;}
 		echo $this->Form->end(); ?>
 </div>
 <div id="rodape">
-	<p>Appedido - @2015 Todos os direitos reservados -
-		<a href="#" target="_blank" rel="nofollow">Agência Kanguru</a>
+	<p>Rudo - @2020 Todos os direitos reservados -
+		
 	</p>
 </div>
 

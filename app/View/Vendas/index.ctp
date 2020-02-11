@@ -107,7 +107,7 @@
 			text-align: center;
 		}
 		.th-red{
-			background-color:#E82F00 !important;
+			background-color:#7f7f7f !important;
 		}
 	</style>
 

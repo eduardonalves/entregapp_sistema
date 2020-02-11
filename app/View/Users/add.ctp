@@ -126,14 +126,17 @@
 		</div>
 		<div class="form-group  form-group-lg">
 			<?php
-			echo $this->Search->end(__('Filtrar', true));
+				echo $this->Search->end(__('Filtrar', true));
 			?>
-		</div>
-		<button type="button" class="btn btn-success" id="clickmodal">Novo</button>
 
-		<div class="area-tabela">
-				<table class="table-action" >
-					<thead>
+		</div>
+		<br />
+		<div class="form-group  form-group-lg">
+			<button type="button" class="btn btn-success" id="clickmodal">Novo</button>
+		</div>
+		<div class="area-tabela"  id="no-more-tables">
+				<table class="table-action col-md-12 table-bordered table-striped table-condensed cf">
+					<thead class="cf">
 						<tr>
 							<th>Código</th>
 							<th>Nome de Usuário</th>

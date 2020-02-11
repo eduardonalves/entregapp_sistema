@@ -47,7 +47,7 @@ p{text-align: center;}
 		.bt-login{
 			width: 100%;
 			margin: 10px auto;
-			background: none repeat scroll 0% 0% #D91E19;
+			background: none repeat scroll 0% 0% #000000;
 			border-radius: 5px;
 			height: 30px;
 			color: #FFF;
@@ -59,15 +59,15 @@ p{text-align: center;}
 		}
 
 		.bt-login:hover{
-			background: none repeat scroll 0% 0% #EF4836;
+			background: none repeat scroll 0% 0% #191919;
 		}
 		.bt-login:focus{
-			background: none repeat scroll 0% 0% #EF4836;
+			background: none repeat scroll 0% 0% #191919;
 			border:1px solid #E74C3C;
 		}
 #rodape{
-	background: #D91E19;
-	border-top: 5px solid #EF4836;
+	background: #000000;
+	border-top: 5px solid #191919;
 	width: 100%;
 	position: fixed;
 	bottom: 0px;

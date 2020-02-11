@@ -1945,7 +1945,7 @@ class PedidosController extends AppController {
 					'id'=>$pedido['Pedido']['id'],
 					'status_novo'=>0
 				);
-				$this->Pedido->create();
+				//$this->Pedido->create();
 				$this->Pedido->save($updateNovo);
 				$pedido['Pedido']['status_novo']=0;
 			}

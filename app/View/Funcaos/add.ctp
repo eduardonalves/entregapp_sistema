@@ -189,12 +189,14 @@ table {margin-top: 10px; font-size:80%;}
 			echo $this->Search->end(__('Filtrar', true));
 			?>
 		</div>
+		<br />
 		<div class="form-group  form-group-lg">
 			<button type="button" class="btn btn-success" id="clickmodal">Nova</button>
 		</div>
-		<div class="area-tabela">
-				<table class="table-action" >
-					<thead>
+		<div  class="area-tabela"  id="no-more-tables">
+				<table class="table-action col-md-12 table-bordered table-striped table-condensed cf">
+				
+					<thead class="cf">
 						<tr>
 							<th><?php echo $this->Paginator->sort('id', 'Código');?></th>
 							<th><?php echo $this->Paginator->sort('funcao', 'Funcao');?></th>

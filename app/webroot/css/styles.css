@@ -23,7 +23,7 @@
 
 /** General Style Info **/
 body {
-	/*background: #E82F00;*/
+	/*background: #7f7f7f;*/
 	background-image: url("../img/background.jpg");
 	color: #000000;
 	font-family:'lucida grande',verdana,helvetica,arial,sans-serif;
@@ -287,7 +287,7 @@ pre {
 /*******************************Outros Elementos**************************************/
 h2{
 	font-size: 27pt !important;
-	  color: #e32 !important;
+	  color: #000000 !important;
   	font-weight: bold !important;
 }
 /* todo os selects do cake*/
@@ -362,7 +362,7 @@ tr:nth-child(even) {
     background-color:#CCCCCC !important;
 }
 tr:hover{
-	background-color:#5CB85C !important;
+	background-color:#000000 !important;
 }
 /***************************************Modal****************************************/
 
@@ -429,10 +429,10 @@ tr:hover{
 
 
 .modal-header{
-	background: #D91E19;
+	background: #000000;
 }
 .modal-footer{
-	background: #D91E19 !important;
+	background: #000000 !important;
 }
 .modal-header h3{
 	color:#FFFFFF;
@@ -447,7 +447,7 @@ fieldset {
 	padding: 16px 10px;
 }
 fieldset legend {
-	color: #e32;
+	color: #000000;
 	font-size: 160%;
 	font-weight: bold;
 }
@@ -475,7 +475,7 @@ form .required {
 	font-weight: bold;
 }
 form .required label:after {
-	color: #e32;
+	color: #000000;
 	content: '*';
 	display:inline;
 }
@@ -530,13 +530,13 @@ input[type=radio] {
 	line-height: 26px;
 }
 .indisponivel{
-	background-color:#E82F00 !important;
+	background-color:#7f7f7f !important;
 }
 .indisponivel:hover{
-	background-color:#E82F00 !important;
+	background-color:#7f7f7f !important;
 }
 .mesaLExterna{
-		background: #5CB85C;
+		background: #000000;
 		box-shadow: inset 3px 3px 4px #3d8b3d;
 }
 .mesaLInterna{
@@ -673,7 +673,7 @@ font-weight: bold;
 
 
 .entregaLExterna{
-		background: #5CB85C;
+		background: #000000;
 		box-shadow: inset 3px 3px 4px #3d8b3d;
 }
 .entregaLInterna{
