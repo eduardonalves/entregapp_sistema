@@ -24,7 +24,7 @@ $cakeDescription = __d('entrega_app', 'EntragApp Delivery');
 	<?php echo $this->Html->charset('UTF-8'); ?>
 	<?php echo $this->Html->charset(); ?>
 	<title>
-		Entregapp Delivery Apliction
+		Rudo Aplicativo de entregas.
 	</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 	<?php
