@@ -117,8 +117,15 @@ $(document).ready(function() {
 		setTimeout(function() {
 			$('.modal-backdrop').css('display','none');	
 			$('#modalLoaded').modal('hide');
-			console.log('passou aqui cloese');
+			//console.log('passou aqui cloese');
 		}, 500);
+		setTimeout(function() {
+			$('.modal-backdrop').css('display','none');	
+			$('#modalLoaded').css('display','none');	
+			$('#modalLoaded').modal('hide');
+			
+			//console.log('passou aqui cloese');
+		}, 1500);
 	});
 	$('body').on('click', '.editpedido', function(event){
 

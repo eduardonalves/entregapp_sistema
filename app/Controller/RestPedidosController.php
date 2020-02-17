@@ -420,14 +420,12 @@ public function addmobile($codigo = null) {
 						)
 					)
 				);
-
+				$ultimopedido="errolojafechada";
+				
 				if(empty($fechamentoObj)){
-					$this->Session->setFlash(__('Houve um erro ao salvar o pedido. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
-							return $this->redirect( $this->referer() );
-				}
-
-
-				$clt = $this->request->data['Pedido']['cliente_id'];
+						$ultimopedido="errolojafechada";
+				}else{
+					$clt = $this->request->data['Pedido']['cliente_id'];
 				$token =$this->request->data['Pedido']['token'];
 				$resp =$this->checkToken($clt, $token);
 
@@ -779,6 +777,10 @@ public function addmobile($codigo = null) {
 					//$this->Session->setFlash(__('Pedido Inv�lido. Please, try again.'));
 
 				//}
+				}
+
+
+				
 			}
 		}
 
@@ -791,8 +793,166 @@ public function addmobile($codigo = null) {
 		            '_serialize' => array('resultados')
 		        ));
 	}
+	public function setabrirefecharlojaportempo()
+  	{
+  		$this->layout ='ajaxaddpedido';
+  		$dataHoraVerificação =  date("Y-m-d H:i:s");
+  		$qtdItensCancelados=0;
+  		$this->loadModel('Filial');
+
+  		// Abrindo lojas fechadas
+  		$filiais = $this->Filial->find('all', array('conditions'=> array('Filial.ativo'=> 1  ), 'recursive'=> -1));
+
+  		$diasemana = array('domingo', 'segunda', 'terca', 'quarta', 'quinta', 'sexta', 'sabado');
+
+  		$numeroDaSemanda = date('w');
+
+  		$qtdAberturaseFechamentos= 0;
+  		if(!empty($filiais)){
+  			foreach ($filiais as $key => $value) {
+  				$flagHoraAbrir=false;
+  				$flagHoraFechar= false;
+	  			$indexTexto = 'abre_'.$diasemana[$numeroDaSemanda];
+	  			//echo $indexTexto;
+
+	  			$horaParaAbertura =date("Y-m-d H:i:s", strtotime( $value['Filial']['hora_abertura'] ) );
+
+	  			$horaParaFechamento =date("Y-m-d H:i:s", strtotime( $value['Filial']['hora_fechamento'] ) );
+
+  				if($horaParaFechamento <= $horaParaAbertura){
+  					$horaParaFechamento =date("Y-m-d  H:i:s", strtotime( '+1 day'. $value['Filial']['hora_fechamento'] ) );
+  				}
+
+	  			if( $value['Filial'][$indexTexto] == true){
+	  					  				
+
+	  				if($horaParaAbertura <=  $dataHoraVerificação ){
+	  					
+	  					if($value['Filial']['status_abertura'] != 1){
+	  						$updateFilial = array('id'=> $value['Filial']['id'], 'status_abertura'=> 1);
+	  						$flagHoraAbrir=true;
+							
+	  					}
+	  				}else{
+	  					if($value['Filial']['status_abertura'] == 1){
+	  						$updateFilial = array('id'=> $value['Filial']['id'], 'status_abertura'=> 0);
+	  						$flagHoraFechar=true;
+							
+	  					}
+	  				}
+	  				
+	  				
+
+	  				if($horaParaFechamento <=  $dataHoraVerificação ){
+	  					
+	  					$updateFilial = array('id'=> $value['Filial']['id'], 'status_abertura'=> 0);
+	  					$flagHoraFechar= true;
+						//$this->Filial->save($updateFilial);
+	  				}
+	  				if($flagHoraFechar || $flagHoraAbrir ){
+	  					$this->Filial->save($updateFilial);
+	  					$qtdAberturaseFechamentos= $qtdAberturaseFechamentos+1;
+	  				}
+
+	  				
+	  				
+
+	  			}else{
+	  				
+	  				if($horaParaFechamento <=  $dataHoraVerificação ){
+	  					
+	  					$updateFilial = array('id'=> $value['Filial']['id'], 'status_abertura'=> 0);
+	  					$this->Filial->save($updateFilial);
+	  					$qtdAberturaseFechamentos= $qtdAberturaseFechamentos+1;
+						//$this->Filial->save($updateFilial);
+	  				}
+	  					
+
+	  			}
+	  		}
+	  		//die;
+  		}
+
+  		
+  		
+  		//print_r($diasemana[$numeroDaSemanda]);
+  		//die;
+		
+
+  		
+  		 $this->set(array(
+            'resultados' => array('resultados'=> $qtdAberturaseFechamentos),
+            '_serialize' => array('resultados')
+        ));
+  	}
+
+	public function setpedidoscanceladosportempo()
+  	{
+  		$this->layout ='ajaxaddpedido';
+  		$dataHoraVerificação =  date("Y-m-d H:i:s");
+  		$tempoLimite = '10';
+
+  		$prazoLimite =date("Y-m-d H:i:s", strtotime( '-'.$tempoLimite.' minute' ) );
+  			
 
 
+  		$pedidos = $this->Pedido->find('all', 
+  			array(
+  				'conditions' => array(
+  					'Pedido.status' => 'Em Aberto',
+  					'Pedido.created <=' => $prazoLimite
+  				)
+  			)
+  		);
+  		
+  		$qtdItensCancelados =0;
+
+  		foreach ($pedidos as $key => $value) {
+  			
+  			if($value ['Pedido']['status'] != 'Cancelado'){
+  				/**/
+				$this->Pedido->id= $value ['Pedido']['id'];
+				$this->Pedido->saveField('status', 'Cancelado');
+				$this->loadModel('Atendimento');
+
+				$updateStatusAtendimento= array('id' => $value['Pedido']['atendimento_id'], 'status' => 'Cancelado');
+				$this->Atendimento->create();
+				$this->Atendimento->save($updateStatusAtendimento);
+				//$this->Pedido->create();
+				$updatePedido = array('id'=> $value['Pedido']['atendimento_id'], 'motivocancela'=> 'Cancelado automaticamente por não confirmação', 'status'=>'Cancelado', 'status_novo'=> 0);
+				$this->Pedido->save($updatePedido);
+
+				$this->loadModel('Itensdepedido');
+				$this->Itensdepedido->updateAll(
+					array('Itensdepedido.statuspreparo' => 0),
+				    array('Itensdepedido.pedido_id' => $value ['Pedido']['id'])
+				);
+				
+				$Estoque = new ProdutosController;
+				$itensACancelar = $this->Itensdepedido->find('all', array('recursive'=>-1, 'conditions'=> array('Itensdepedido.pedido_id' => $value ['Pedido']['id'])));
+
+				foreach ($itensACancelar as $iten) {
+
+					$Estoque->aumentaEstoque($iten['Itensdepedido']['produto_id'], $iten['Itensdepedido']['qtde']);
+				}
+				$qtdItensCancelados= $qtdItensCancelados + 1;
+	  			//$limiteAprovacao =  $this->checkbfunc->somaHora($tempoLimite,$value['Produto']['created']);
+	  			//$dataHoraAtendimento = date("Y-m-d H:i:s", strtotime($value['Pedido']['created']));
+			}
+  			
+  		}
+  		
+  	
+
+  		
+
+
+  		//$resultados= array();
+  		 $this->set(array(
+            'resultados' => array('cancelamentos'=> $qtdItensCancelados),
+            '_serialize' => array('resultados')
+        ));
+  	}
 	public function calculaFilaProdutos(){
 		header("Access-Control-Allow-Origin: *");
 		$this->loadModel('Produto');
@@ -928,6 +1088,7 @@ public function addmobile($codigo = null) {
 
 		}
 	}
+
 	public function avalpedidomobile() {
 		header("Access-Control-Allow-Origin: *");
 		date_default_timezone_set("Brazil/East");

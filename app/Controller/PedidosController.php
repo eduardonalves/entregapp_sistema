@@ -921,7 +921,7 @@ class PedidosController extends AppController {
 				'Pedido' => array(
 					'limit' => 20,
 					'conditions' => $this->Filter->getConditions(),
-					'order' => 'Pedido.id asc'
+					'order' => 'Pedido.id desc'
 				)
 			);
 

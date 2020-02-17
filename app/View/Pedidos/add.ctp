@@ -161,29 +161,33 @@
 					<div class="clear" style="clear:both;">
 
 					</div>
-					<section class="span2">
-						<button class="btn btn-success addProduto bts-add" id="addProduto">Adicionar Produto</button>
 
+					<section class="span2">
+						<br>
+						<button class="btn btn-success addProduto bts-add" id="addProduto">Adicionar Produto</button>
+						<br>
 						<button class="btn btn-danger removeProduto bts-add" id="removeProduto">Remover Produto</button>
 					</section>
 					</section>
-
+					<br>
 					<div class="row">
-
-
+							<br>
+							
 							<section class="span2 spanOutroLocal">
 								<?php
 								echo $this->Form->input('Pedido.entrega_outro_local',array('class' => 'checkEndereco','label' => array('text' => 'Entrega em Outro Local? ', 'class' => 'control-label')));
 								?>
 							</section>
+							<br>
 							<section class="span4 spanOutroEnd none">
 								<?php
 									echo $this->Form->input('Pedido.outro_endereco_entrega',array('type' => 'textarea','rows' => '3', 'cols' => '10', 'class' => 'outroEndereco','label' => array('text' => 'Endereço: ')));
 								?>
 							</section>
 					</div>
+					
 
-					<section class="span4 spanobs">
+					<section class="span4 spanobs" style="margin-top: 10px;">
 						<?php
 							echo $this->Form->input('Pedido.obs',array('type' => 'textarea','rows' => '3', 'cols' => '10', 'class' => '','label' => array('text' => 'Observações: ')));
 						?>

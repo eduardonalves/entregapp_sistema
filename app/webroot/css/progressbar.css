@@ -126,7 +126,7 @@ ul.checkout-bar a {
     margin: 0 auto;
     padding: 0;
     position: absolute;
-    width: 100%;
+    width: 842px;
   }
   ul.checkout-bar:before {
     background-size: 35px 35px;

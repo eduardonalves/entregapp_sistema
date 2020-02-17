@@ -104,7 +104,7 @@ $("#clickmodal").click(function(){
 $('#responsive').modal('show');
 });
 var urlInicio      = window.location.host;
-urlInicio = (urlInicio=='localhost' ? urlInicio+'/entregapp': urlInicio);
+urlInicio = (urlInicio=='localhost' ? urlInicio+'/entregapp_sistema': urlInicio);
 $('body').on('click','.editModal', function(event){
 		event.preventDefault();
 		$(this).attr('src','http://'+urlInicio+'/img/ajax-loader.gif');

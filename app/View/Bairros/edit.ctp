@@ -12,14 +12,39 @@
 					<?php echo $this->Form->create('Bairro',array('class' => 'form-inline centralizadoForm'));
 						?>
 					<div class="form-group  form-group-lg">
-						<?php
-						echo $this->Form->input('id');
-						echo $this->Form->input('bairro',array('type'=> 'text','class' => 'input-large','label' => array('text' => 'Bairro', 'class' => 'labellarge')));
-						echo $this->Form->input('valor',array('type'=> 'text','class' => 'input-large','label' => array('text' => 'Valor da Entrega', 'class' => 'labellarge')));
-						echo $this->Form->input('cidad_id',array('options'=> $cidads,'type'=> 'select','class' => 'input-large','label' => array('text' => 'Cidade', 'class' => 'labellarge')));
-						echo $this->Form->input('estado_id',array('options'=> $estados,'type'=> 'select','class' => 'input-large','label' => array('text' => 'Estados', 'class' => 'labellarge')));
-						echo $this->Form->input('ativo',array('class' => 'input-large','label' => array('text' => 'Ativo', 'class' => 'labellarge')));
+					<?php
+					echo $this->Form->input('id');
+					echo $this->Form->input('bairro',array('type'=> 'text','class' => 'input-large','label' => array('text' => 'Bairro', 'class' => 'labellarge')));
+					?>
+					</div>
+					<div class="form-group  form-group-lg">
+					<?php 
+					echo $this->Form->input('valor',array('type'=> 'text','class' => 'input-large','label' => array('text' => 'Valor da Entrega', 'class' => 'labellarge')));
+					?>
+					</div>
+					<br>
+					<div class="form-group  form-group-lg">
+					<?php 
+					echo $this->Form->input('cidad_id',array('options'=> $cidads,'type'=> 'select','class' => 'input-large','label' => array('text' => 'Cidade', 'class' => 'labellarge')));
+					?>
+					</div>
+					<br>
+					<div class="form-group  form-group-lg">
+					<?php 
+					echo $this->Form->input('estado_id',array('options'=> $estados,'type'=> 'select','class' => 'input-large','label' => array('text' => 'Estados', 'class' => 'labellarge')));
+					
+					?>
+					</div>
+					<br>
+					<div class="form-group  form-group-lg">
+					<?php
 
+						echo $this->Form->input('ativo',array('class' => 'input-large','label' => array('text' => 'Ativo', 'class' => 'labellarge')));
+					?>
+					</div>
+					<br>
+					<div class="form-group  form-group-lg">
+					<?php
 						echo $this->Form->input('filial_id',array('type' => 'hidden'));
 						?>
 					</div>
@@ -34,7 +59,13 @@
 	    </div>
 	  </div>
 	</div>
-		<script type="text/javascript">
+
+<style type="text/css">
+	.form-group{
+		margin-bottom: 20px !important;
+	}
+</style>
+<script type="text/javascript">
 $(document).ready(function() {
 	$('body').on('click','#btn-salvar', function(event){
 		event.preventDefault();

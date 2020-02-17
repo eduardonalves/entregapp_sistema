@@ -34,13 +34,39 @@ table {margin-top: 10px; font-size:80%;}
 					<?php echo $this->Form->create('Bairro',array('class' => 'form-inline centralizadoForm'));
 						?>
 					<div class="form-group  form-group-lg">
-						<?php
-						echo $this->Form->input('bairro',array('type'=> 'text','class' => 'input-large','label' => array('text' => 'Bairro', 'class' => 'labellarge')));
-						echo $this->Form->input('valor',array('type'=> 'text','class' => 'input-large','label' => array('text' => 'Valor da Entrega', 'class' => 'labellarge')));
-						echo $this->Form->input('cidad_id',array('options'=> $cidads,'type'=> 'select','class' => 'input-large','label' => array('text' => 'Cidade', 'class' => 'labellarge')));
-						echo $this->Form->input('estado_id',array('options'=> $estados,'type'=> 'select','class' => 'input-large','label' => array('text' => 'Estados', 'class' => 'labellarge')));
-						echo $this->Form->input('ativo',array('class' => 'input-large','label' => array('text' => 'Ativo', 'class' => 'labellarge')));
+					<?php
+					echo $this->Form->input('id');
+					echo $this->Form->input('bairro',array('type'=> 'text','class' => 'input-large','label' => array('text' => 'Bairro', 'class' => 'labellarge')));
+					?>
+					</div>
+					<div class="form-group  form-group-lg">
+					<?php 
+					echo $this->Form->input('valor',array('type'=> 'text','class' => 'input-large','label' => array('text' => 'Valor da Entrega', 'class' => 'labellarge')));
+					?>
+					</div>
+					<br>
+					<div class="form-group  form-group-lg">
+					<?php 
+					echo $this->Form->input('cidad_id',array('options'=> $cidads,'type'=> 'select','class' => 'input-large','label' => array('text' => 'Cidade', 'class' => 'labellarge')));
+					?>
+					</div>
+					<br>
+					<div class="form-group  form-group-lg">
+					<?php 
+					echo $this->Form->input('estado_id',array('options'=> $estados,'type'=> 'select','class' => 'input-large','label' => array('text' => 'Estados', 'class' => 'labellarge')));
+					
+					?>
+					</div>
+					<br>
+					<div class="form-group  form-group-lg">
+					<?php
 
+						echo $this->Form->input('ativo',array('class' => 'input-large','label' => array('text' => 'Ativo', 'class' => 'labellarge')));
+					?>
+					</div>
+					<br>
+					<div class="form-group  form-group-lg">
+					<?php
 						echo $this->Form->input('filial_id',array('type' => 'hidden'));
 						?>
 					</div>
@@ -86,16 +112,20 @@ table {margin-top: 10px; font-size:80%;}
 						<tr>
 							<th><?php echo $this->Paginator->sort('id', 'Código');?></th>
 							<th><?php echo $this->Paginator->sort('bairro', 'Bairro');?></th>
+							<th><?php echo $this->Paginator->sort('Cidad.cidade', 'Cidade');?></th>
 							<th><?php echo $this->Paginator->sort('valor', 'Valor de Entrega');?></th>
 							<th><?php echo $this->Paginator->sort('ativo', 'Status');?></th>
 							<th>Ações</th>
 						</tr>
 					</thead>
 					<tbody>
-						<?php foreach ($bairros as $bairro): ?>
+						<?php 
+						
+						foreach ($bairros as $bairro): ?>
 						<tr>
 							<td data-title="Código"><?php echo h($bairro['Bairro']['id']); ?></td>
 							<td data-title="Bairro"><?php echo h($bairro['Bairro']['bairro']); ?></td>
+							<td data-title="Bairro"><?php echo h($bairro['Cidad']['cidade']); ?></td>
 							<td data-title="Valor"><?php echo h(number_format($bairro['Bairro']['valor'],2,',','.')); ?></td>
 							<td data-title="Status">
 								<?php
@@ -151,6 +181,11 @@ table {margin-top: 10px; font-size:80%;}
 	</div>
 
 	<div id="loadDivModal"></div>
+<style type="text/css">
+	.form-group{
+		margin-bottom: 20px !important;
+	}
+</style>
 <script>
 $(document).ready(function() {
 loja = $('#filterMinhaslojas').val();

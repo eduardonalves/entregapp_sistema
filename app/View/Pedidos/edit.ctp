@@ -196,6 +196,13 @@
 						{
 							echo $pedido['Pedido']['ponto_referencia'];
 							
+						} ?>
+						<br>
+						<?php 
+						if($pedido['Pedido']['entrega_valor'] != '')
+						{
+							echo "<b> Tx. de Entrega: R$ ". number_format($pedido['Pedido']['entrega_valor'], 2, ',', '.')."</b>";
+							
 						} ?>		
 					</p>
 				</div>
@@ -321,7 +328,9 @@
 					echo $this->Form->input('statusView',array('type' => 'hidden', 'value' => $pedido['Pedido']['status'],'id' => 'statusView'));
 					echo $this->Form->end();
 				?>
-
+				<div style="display: none;" id="salvouEntregador">
+					<?php echo $pedido['Pedido']['entregador_id'];?>;
+				</div>
 
 		    </div>
      	 <div class="modal-footer">
@@ -459,33 +468,35 @@ $(document).ready(function() {
 				$.each(data, function(i, resultados){
 		     		console.log(data);
 					$.each(data, function(z, mensagen){
+						if(typeof mensagen.User != 'undefined'){
+							senderuser = mensagen.User.id;
+							sendercliente = mensagen.Cliente.id;
+							sender = mensagen.Mensagen.sender;
+							nomeMsg ="";
+							classemsg="";
+							if(sender == 0){
+								nomeMsg = mensagen.User.username;
+								classemsg ="triangle-isosceles";
+								classUser="spanAtendente";
+							}else{
+								nomeMsg = mensagen.Cliente.username;
+								classemsg ="triangle-isosceles top";
+								classUser="spanUsuario";
+							}
 
-						senderuser = mensagen.User.id;
-						sendercliente = mensagen.Cliente.id;
-						sender = mensagen.Mensagen.sender;
-						nomeMsg ="";
-						classemsg="";
-						if(sender == 0){
-							nomeMsg = mensagen.User.username;
-							classemsg ="triangle-isosceles";
-							classUser="spanAtendente";
-						}else{
-							nomeMsg = mensagen.Cliente.username;
-							classemsg ="triangle-isosceles top";
-							classUser="spanUsuario";
+							acumuladorTexto= acumuladorTexto+'<p class="'+classemsg+'" data-msgid="'+mensagen.Mensagen.id+'" ><span class="'+classUser+'">'+nomeMsg+'</span> '+mensagen.Mensagen.msg+'</p>';
+
+
+							//$("#chatZone").scrollTop($("#chatZone").prop("scrollHeight"));
+
+							//$("html, body").animate({ scrollTop: $(document).height() }, "slow");
+							//$("html, body").animate({ scrollTop: $(document).height() }, "slow");
+							//$("#chatZone").getNiceScroll().resize();
+							//$("#chatZone").niceScroll({cursorcolor:"#FF5C0A" });
+
+							$('#ultMsg').val(mensagen.Mensagen.id);
 						}
-
-						acumuladorTexto= acumuladorTexto+'<p class="'+classemsg+'" data-msgid="'+mensagen.Mensagen.id+'" ><span class="'+classUser+'">'+nomeMsg+'</span> '+mensagen.Mensagen.msg+'</p>';
-
-
-						//$("#chatZone").scrollTop($("#chatZone").prop("scrollHeight"));
-
-						//$("html, body").animate({ scrollTop: $(document).height() }, "slow");
-						//$("html, body").animate({ scrollTop: $(document).height() }, "slow");
-						//$("#chatZone").getNiceScroll().resize();
-						//$("#chatZone").niceScroll({cursorcolor:"#FF5C0A" });
-
-						$('#ultMsg').val(mensagen.Mensagen.id);
+						
 
 					});
 				});
@@ -618,13 +629,18 @@ $(document).ready(function() {
 		idpedido= $('#idView').val();
 		auxStatus = $('#statusView').val();
 		entradorNome = $('#entregadorView').val();
+
 		if(auxStatus.trim()=='Em Trânsito'){
 
 			if(entradorNome == ' '){
 				alert('Selecione e salve um entregador antes de escolher o status Entregue.');
 			}else{
-
-				confirmarentrega(idpedido);
+				console.log(entradorNome);
+				if($('#salvouEntregador').text() != ''){
+					
+					confirmarentrega(idpedido);
+				}
+				
 			}
 
 		}else{
@@ -902,13 +918,16 @@ $(document).ready(function() {
 					success: function(data){
 
 						if(data !=''){
-							$('.statusView').html(data.resultados.Pedido.status);
-							$('#statusView').val(data.resultados.Pedido.status);
-							$('#linhaPdStatus'+data.resultados.Pedido.id).html(data.resultados.Pedido.status);
+							if(typeof data.resultados != 'undefined'){
+								$('.statusView').html(data.resultados.Pedido.status);
+								$('#statusView').val(data.resultados.Pedido.status);
+								$('#linhaPdStatus'+data.resultados.Pedido.id).html(data.resultados.Pedido.status);
 
-							$('.statusView').html('Separado');
-							$('#statusView').val('Separado');
-							statusSeparado();
+								$('.statusView').html('Separado');
+								$('#statusView').val('Separado');
+								statusSeparado();
+							}
+							
 						}
 					},error: function(data){
 
