@@ -914,13 +914,14 @@ public function addmobile($codigo = null) {
 				$this->Pedido->id= $value ['Pedido']['id'];
 				$this->Pedido->saveField('status', 'Cancelado');
 				$this->Pedido->saveField('status_novo', 0);
+				$this->Pedido->saveField('motivocancela','Cancelado automaticamente após exceder prazo de confirmação.');
 				$this->loadModel('Atendimento');
 
 				$updateStatusAtendimento= array('id' => $value['Pedido']['atendimento_id'], 'status' => 'Cancelado');
 				$this->Atendimento->create();
 				$this->Atendimento->save($updateStatusAtendimento);
 				//$this->Pedido->create();
-				$updatePedido = array('id'=> $value['Pedido']['atendimento_id'], 'motivocancela'=> 'Cancelado automaticamente por não confirmação', 'status'=>'Cancelado');
+				$updatePedido = array('id'=> $value['Pedido']['atendimento_id'], 'motivocancela'=> 'Cancelado automaticamente após exceder prazo de confirmação', 'status'=>'Cancelado');
 				$this->Pedido->save($updatePedido);
 
 				$this->loadModel('Itensdepedido');

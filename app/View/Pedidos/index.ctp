@@ -395,7 +395,7 @@ $(document).ready(function() {
 
 			if( nPedidos !=0 ){
 				//$('.audioPlayer').trigger('play');
-				console.log('tocou 1');
+				//console.log('tocou 1');
 				audio.play().then(function(){
 					setTimeout(function() {
 					audio.play();

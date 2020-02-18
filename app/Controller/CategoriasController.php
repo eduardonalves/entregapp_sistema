@@ -121,6 +121,10 @@ class CategoriasController extends AppController {
 			if($this->request->data['Categoria']['foto']['name']==''){
 				unset($this->request->data['Categoria']['foto']);
 			}else{
+				if(! $this->validaFotos($this->request->data)){
+					$this->Session->setFlash(__('Formato de foto inválida! Formatos aceitos (jpeg, gif, png e jpg ).'), 'default', array('class' => 'error-flash alert alert-danger'));
+					return $this->redirect( $this->referer() );
+				}
 				if(isset($this->request->data['Categoria']['foto']['error']) && $this->request->data['Categoria']['foto']['error'] === 0) {
 					$source = $this->request->data['Categoria']['foto']['tmp_name']; // Source
 	               	$host= ROOT . DS . 'app' . DS . 'webroot' ;
@@ -153,7 +157,26 @@ class CategoriasController extends AppController {
 			}
 		}
 	}
+public function validaFotos(&$requestData = array())
+{
 
+	$arrayFotos = array('foto');
+	foreach ($arrayFotos as $key => $value)
+	{
+
+
+		if(isset($requestData['Categoria'][$value]['error']) && $requestData['Categoria'][$value]['error'] == 0)
+		{
+			$tipo = $requestData['Categoria'][$value]['type'];
+			if($tipo == 'image/jpeg' || $tipo == 'image/gif' || $tipo == 'image/png'  || $tipo == 'image/jpg' || $tipo == 'image/jpeg')
+			{
+				return true;
+			}else{
+				return false;
+			}
+		}
+	}
+}
 /**
  * edit method
  *
@@ -183,6 +206,10 @@ class CategoriasController extends AppController {
 			if($this->request->data['Categoria']['foto']['name']==''){
 				unset($this->request->data['Categoria']['foto']);
 			}else{
+				if(! $this->validaFotos($this->request->data)){
+					$this->Session->setFlash(__('Formato de foto inválida! Formatos aceitos (jpeg, gif, png e jpg ).'), 'default', array('class' => 'error-flash alert alert-danger'));
+					return $this->redirect( $this->referer() );
+				}
 				if(isset($this->request->data['Categoria']['foto']['error']) && $this->request->data['Categoria']['foto']['error'] === 0) {
 
 					$source = $this->request->data['Categoria']['foto']['tmp_name']; // Source

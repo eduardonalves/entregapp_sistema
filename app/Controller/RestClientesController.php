@@ -282,6 +282,7 @@ public function loginmobile() {
 				));
     	   }
 	    public function confirmaPromoDia($filial_id,$promocao_id){
+	    	return false;
 	    	$dia = date('w');
 	    	$this->loadModel('Diasdepromocao');
 		$diasdepromocao = $this->Diasdepromocao->find('first',array('recursive'=>-1, 'conditions' => array('AND' => array(array('Diasdepromocao.filial_id'=> $filial_id), 'Diasdepromocao.promocao_id'=> $promocao_id))));
