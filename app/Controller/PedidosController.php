@@ -776,8 +776,201 @@ class PedidosController extends AppController {
 			}
 	}
 
-	public function index() {
+public function index() {
 
+	$Empresa = new EmpresasController;
+	if(!$Empresa->empresaAtiva()){
+		$this->Session->setFlash(__('O sistema está temporáriamente indisponível, entre em contato com o suporte técnico.'), 'default', array('class' => 'error-flash alert alert-danger'));
+		return $this->redirect(array('controller' =>'users','action' => 'logout'));
+	}
+
+	$Autorizacao = new AutorizacaosController;
+	$User = new UsersController;
+
+
+	$autTipo = 'pedidos';
+	$userid = $this->Session->read('Auth.User.id');
+	$lojas = $User->getSelectFiliais($userid);
+	$minhasFiliais = $User->getFiliais($userid);
+
+
+	$userfuncao = $this->Session->read('Auth.User.funcao_id');
+	$this->loadModel('Filial');
+	if(!$Autorizacao->setAutorizacao($autTipo,$userfuncao)){
+		$this->Session->setFlash(__('Acesso Negado!'), 'default', array('class' => 'error-flash alert alert-danger'));
+		return $this->redirect( $this->referer() );
+	}else{
+		$this->loadModel('Autorizacao');
+		$autorizacao= $this->Autorizacao->find('first', array('recursive'=> -1, 'conditions'=> array('Autorizacao.funcao_id' => $userfuncao)));
+		$this->set(compact('autorizacao'));
+
+	}
+	//converte a data
+		if(isset($this->request->data['filter']))
+		{
+
+			foreach($this->request->data['filter'] as $key=>$value)
+			{
+
+				$this->request->data['filter']['empresa']=$this->Session->read('Auth.User.empresa_id');
+				$data = implode("-",array_reverse(explode("/",$this->request->data['filter']['dataPedido'])));
+				$data= str_replace(" ","",$data);
+				$this->request->data['filter']['dataPedido'] = $data;
+
+				$data2 = implode("-",array_reverse(explode("/",$this->request->data['filter']['dataPedido-between'])));
+				$data2= str_replace(" ","",$data2);
+				$this->request->data['filter']['dataPedido-between'] = $data2;
+
+
+			}
+		}
+	$this->Filter->addFilters(
+        array(
+            'codigo' => array(
+                'Pedido.id' => array(
+                    'operator' => 'LIKE',
+                    'value' => array(
+                        'before' => '%', // optional
+                        'after'  => '%'  // optional
+                    )
+                )
+            ),
+           'minhaslojas' => array(
+                'Pedido.filial_id' => array(
+                    'operator' => '=',
+                    'select'=> $lojas
+                )
+            ),
+            'empresa' => array(
+                'Pedido.empresa_id' => array(
+                    'operator' => '=',
+
+                )
+            ),
+	'nome' => array(
+                'Cliente.nome' => array(
+                    'operator' => 'LIKE',
+                    'value' => array(
+                        'before' => '%', // optional
+                        'after'  => '%'  // optional
+                    )
+                )
+            ),
+			'status' => array(
+                'Pedido.status' => array(
+                    'operator' => 'LIKE',
+                    'value' => array(
+                        'before' => '%', // optional
+                        'after'  => '%'  // optional
+                    ),
+					 'select' => array(''=>'', 'Cancelado'=> 'Cancelado', 'Confirmado'=> 'Confirmado', 'Em Aberto'=> 'Em Aberto', 'Em Trânsito'=> 'Em Trânsito','Entregue'=> 'Entregue','Pronto'=> 'Pronto', 'Separado p/ Entrega'=>'Separado p/ Entrega'),
+                )
+            ),
+            'statusnot' => array(
+                'Pedido.status' => array(
+                    'operator' => 'NOT LIKE',
+                    'value' => array(
+                        'before' => '%', // optional
+                        'after'  => '%'  // optional
+                    ),
+                     'select' => array(''=>'', 'Cancelado'=> 'Cancelado', 'Confirmado'=> 'Confirmado', 'Em Aberto'=> 'Em Aberto', 'Em Trânsito'=> 'Em Trânsito','Entregue'=> 'Entregue','Pronto'=> 'Pronto', 'Separado p/ Entrega'=>'Separado p/ Entrega'),
+                )
+            ),
+	'novospedidos' => array(
+                'Pedido.status_novo' => array(
+                    'operator' => '=',
+
+                     'select' => array(''=>'Novos e Antigos', '1'=> 'Apenas Novos', '0'=> 'Apenas Antigos'),
+                )
+            ),
+			'dataPedido' => array(
+	            'Pedido.data' => array(
+	                'operator' => 'BETWEEN',
+	                'between' => array(
+	                    'text' => __(' e ', true)
+	                )
+	            )
+	        ),
+        )
+    );
+
+	$conditiosAux= $this->Filter->getConditions();
+
+	$unicaFilial= $this->Filial->find('first', array('recursive'=> -1, 'conditions'=> array('Filial.id' => $minhasFiliais)));
+
+	if(empty($conditiosAux)){
+
+
+
+		$dataIncio = date('Y-m-d');
+		$dataTermino= date('Y-m-d');
+		$this->request->data['filter']['minhaslojas']=(string) $unicaFilial['Filial']['id']  ;
+		$this->request->data['filter']['dataPedido']=$dataIncio;
+		$this->request->data['filter']['dataPedido-between']=$dataTermino;
+		$this->request->data['filter']['empresa']=$this->Session->read('Auth.User.empresa_id');
+
+
+
+	}else{
+
+		$dataIncio  =  $this->request->data['filter']['dataPedido'] ;
+		$dataTermino=$this->request->data['filter']['dataPedido-between'];
+	}
+
+	$this->Paginator->settings = array(
+			'Pedido' => array(
+				'limit' => 20,
+				'conditions' => $this->Filter->getConditions(),
+				'order' => 'Pedido.id desc'
+			)
+		);
+
+	$this->request->data['filter']['dataPedido'] = date("d/m/Y", strtotime($dataIncio));
+	$this->request->data['filter']['dataPedido-between'] = date("d/m/Y", strtotime($dataTermino));
+
+
+
+    // Define conditions
+    //$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
+
+  $this->Pedido->find('all', array('conditions'=> array($this->Filter->getConditions()), 'recursive' => 0));
+	$pedidos = $this->Paginator->paginate('Pedido');
+
+	$contAberto=0;
+	$contEntregue=0;
+	$totalPedidosEntregue = 0;
+	$totalPedidos = 0;
+	$totalEntrega = 0;
+	foreach($pedidos as $pedido){
+
+		if($pedido['Pedido']['status'] != 'Cancelado'){
+			if($pedido['Pedido']['status'] != 'Entregue'){
+				$contAberto= $contAberto +1;
+			}
+			$totalPedidos +=$pedido['Pedido']['valor'];
+		}
+
+		if($pedido['Pedido']['status'] == 'Entregue'){
+			$totalPedidosEntregue +=$pedido['Pedido']['valor'];
+			$totalEntrega +=$pedido['Pedido']['entrega_valor'];
+			$contEntregue= $contEntregue +1;
+
+		}
+	}
+
+
+	$this->mensagensativas();
+
+	//echo $contAberto;
+	//echo "<br/>";
+	//echo $contEntregue;
+   $this->set(compact('pedidos','contAberto', 'contEntregue','lojas','totalPedidos','totalPedidosEntregue','totalEntrega'));
+}
+
+
+
+public function listarpedidos() {
+		$this->layout='liso';
 		$Empresa = new EmpresasController;
 		if(!$Empresa->empresaAtiva()){
 			$this->Session->setFlash(__('O sistema está temporáriamente indisponível, entre em contato com o suporte técnico.'), 'default', array('class' => 'error-flash alert alert-danger'));

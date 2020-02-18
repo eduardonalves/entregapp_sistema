@@ -890,7 +890,7 @@ public function addmobile($codigo = null) {
   	{
   		$this->layout ='ajaxaddpedido';
   		$dataHoraVerificação =  date("Y-m-d H:i:s");
-  		$tempoLimite = '10';
+  		$tempoLimite = '5';
 
   		$prazoLimite =date("Y-m-d H:i:s", strtotime( '-'.$tempoLimite.' minute' ) );
   			
@@ -913,13 +913,14 @@ public function addmobile($codigo = null) {
   				/**/
 				$this->Pedido->id= $value ['Pedido']['id'];
 				$this->Pedido->saveField('status', 'Cancelado');
+				$this->Pedido->saveField('status_novo', 0);
 				$this->loadModel('Atendimento');
 
 				$updateStatusAtendimento= array('id' => $value['Pedido']['atendimento_id'], 'status' => 'Cancelado');
 				$this->Atendimento->create();
 				$this->Atendimento->save($updateStatusAtendimento);
 				//$this->Pedido->create();
-				$updatePedido = array('id'=> $value['Pedido']['atendimento_id'], 'motivocancela'=> 'Cancelado automaticamente por não confirmação', 'status'=>'Cancelado', 'status_novo'=> 0);
+				$updatePedido = array('id'=> $value['Pedido']['atendimento_id'], 'motivocancela'=> 'Cancelado automaticamente por não confirmação', 'status'=>'Cancelado');
 				$this->Pedido->save($updatePedido);
 
 				$this->loadModel('Itensdepedido');
@@ -949,7 +950,7 @@ public function addmobile($codigo = null) {
 
   		//$resultados= array();
   		 $this->set(array(
-            'resultados' => array('cancelamentos'=> $qtdItensCancelados),
+            'resultados' => array('resultados'=> $qtdItensCancelados),
             '_serialize' => array('resultados')
         ));
   	}
