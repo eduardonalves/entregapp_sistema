@@ -876,6 +876,7 @@ $(document).ready(function() {
 	function confirmarpreparo(idpedido){
 
 			var url='http://'+urlInicio+'/Pedidos/confirmarpreparo/'+idpedido;
+			console.log(url);
 			var dadosFormulario = $("#LoteIndexForm").serialize();
 			 $.ajax({
 					type: "POST",

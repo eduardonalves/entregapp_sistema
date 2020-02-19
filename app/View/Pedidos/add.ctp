@@ -158,14 +158,12 @@
 						<label for="inp-preco">Preco: </label>
 						<input type="text" id="inp-preco" class="input-default">
 					</section>
-					<div class="clear" style="clear:both;">
-
-					</div>
+					
 
 					<section class="span2">
-						<br>
+						
 						<button class="btn btn-success addProduto bts-add" id="addProduto">Adicionar Produto</button>
-						<br>
+						
 						<button class="btn btn-danger removeProduto bts-add" id="removeProduto">Remover Produto</button>
 					</section>
 					</section>

@@ -26,7 +26,7 @@ table{
 }
 	</style>
 
-	<h2><?php echo __('Solicitações Feitas'); ?></h2>
+	<h2><?php echo __('Solicitações Para Fazer'); ?></h2>
 		<!-- Modal -->
 		<div class="modal fade modal-grande" id="responsive" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
@@ -115,8 +115,8 @@ table{
 						<thead class="cf">
 							<tr>
 								<th>Setor</th>
-								<th>Mesa</th>
-								<th>Código</th>
+								<th>Destino</th>
+								<th>Pedido</th>
 								<th>Produto</th>
 								<th>Qtde</th>
 								<th>Obs</th>
@@ -130,7 +130,7 @@ table{
 							<tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
 								<td data-title="Coluna">{{data.Produto.setor}}</td>
 								<td data-title="Coluna">{{data.Pedido.mesa}}</td>
-								<td data-title="Coluna">{{data.Produto.id}}</td>
+								<td data-title="Coluna">{{data.Pedido.id}}</td>
 								<td data-title="Coluna">{{data.Produto.nome}}</td>
 								<td data-title="Coluna">{{data.Itensdepedido.qtde}}</td>
 								<td data-title="Coluna">{{data.Itensdepedido.composto_nomeum}} {{data.Itensdepedido.composto_nomedois}} {{strip(data.Itensdepedido.obs_sis)}} {{data.Pedido.obs}} </td>
@@ -201,7 +201,7 @@ app.controller('monitorarCrtl', function ($scope, $http, $timeout) {
 			$scope.countUp();
 		},30000);
 		var urlInicio      = window.location.host;
-		urlInicio = (urlInicio=='localhost' ? urlInicio+'/entregapp': urlInicio);
+		urlInicio = (urlInicio=='localhost' ? urlInicio+'/entregapp_sistema': urlInicio);
 
 		$scope.confirmar = function(id){
 			var txt;
@@ -267,7 +267,7 @@ $("#clickmodal").click(function(){
 $('#responsive').modal('show');
 });
 var urlInicio      = window.location.host;
-urlInicio = (urlInicio=='localhost' ? urlInicio+'/entregapp': urlInicio);
+urlInicio = (urlInicio=='localhost' ? urlInicio+'/entregapp_sistema': urlInicio);
 //setInterval(function(){
 	//alert();
 //	location.reload();

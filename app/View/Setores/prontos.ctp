@@ -116,8 +116,8 @@
 						<thead class="cf">
 							<tr>
 								<th>Setor</th>
-								<th>Mesa</th>
-								<th>Código</th>
+								<th>Destino</th>
+								<th>Pedido</th>
 								<th>Produto</th>
 								<th>Qtde</th>
 								<th>Obs</th>
@@ -131,7 +131,7 @@
 							<tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
 								<td data-title="Coluna">{{data.Produto.setor}}</td>
 								<td data-title="Coluna">{{data.Pedido.mesa}}</td>
-								<td data-title="Coluna">{{data.Produto.id}}</td>
+								<td data-title="Coluna">{{data.Pedido.id}}</td>
 								<td data-title="Coluna">{{data.Produto.nome}}</td>
 								<td data-title="Coluna">{{data.Itensdepedido.qtde}}</td>
 								<td data-title="Coluna">{{data.Itensdepedido.composto_nomeum}} {{data.Itensdepedido.composto_nomedois}} {{strip(data.Itensdepedido.obs_sis)}} {{data.Pedido.obs}} </td>

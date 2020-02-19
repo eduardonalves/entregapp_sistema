@@ -282,6 +282,8 @@ public function loginmobile() {
 				));
     	   }
 	    public function confirmaPromoDia($filial_id,$promocao_id){
+	    	//@TODO
+    		//rever funcionalidade de dias de promoçao
 	    	return false;
 	    	$dia = date('w');
 	    	$this->loadModel('Diasdepromocao');

@@ -169,6 +169,7 @@ class SetoresController extends AppController {
 			$this->loadModel('Itensdepedido');
 			$this->loadModel('Produto');
 			$this->loadModel('Mesa');
+			$this->loadModel('Cliente');
 			$Autorizacao = new AutorizacaosController;
 			$autTipo = 'produtos';
 			$userid = $this->Session->read('Auth.User.id');
@@ -188,6 +189,7 @@ class SetoresController extends AppController {
 
 					$this->request->data['filter']['empresa']=$this->Session->read('Auth.User.empresa_id');
 					$this->request->data['filter']['preparo']=true;
+					$this->request->data['filter']['status']='Confirmado';
 
 
 				}
@@ -212,6 +214,12 @@ class SetoresController extends AppController {
 										'Itensdepedido.filial_id' => array(
 												'operator' => '=',
 												'select'=> $lojas
+										)
+								),
+								'status' => array(
+										'Pedido.status' => array(
+												'operator' => '=',
+
 										)
 								),
 								'empresa' => array(
@@ -242,11 +250,13 @@ class SetoresController extends AppController {
 
 				$conditiosAux= $this->Filter->getConditions();
 		$this->request->data['filter']['preparo']=true;
+		$this->request->data['filter']['status']='Confirmado';
 		if(empty($conditiosAux)){
 
 			$this->request->data['filter']['minhaslojas']=(string) $unicaFilial['Filial']['id']  ;
 
 			$this->request->data['filter']['empresa']=$this->Session->read('Auth.User.empresa_id');
+			$this->request->data['filter']['status']='Confirmado';
 		}
 
 			if(!$Autorizacao->setAutorizacao($autTipo,$userfuncao)){
@@ -263,6 +273,7 @@ class SetoresController extends AppController {
 					{
 							$this->layout ='ajaxaddpedido';
 							$this->request->data['filter']['preparo']=true  ;
+							$this->request->data['filter']['status']='Confirmado'  ;
 							//debug($unicaFilial['Filial']['id']);
 						//	die();
 						$conditions = $this->Filter->getConditions();
@@ -276,9 +287,19 @@ class SetoresController extends AppController {
 								'conditions' => array(
 									'id' => $ultimopedido[$key]['Pedido']['mesa_id'])));
 								if(!empty($minhaMesa)){
-										$ultimopedido[$key]['Pedido']['mesa'] = $minhaMesa['Mesa']['identificacao'];
+										if($ultimopedido[$key]['Pedido']['nomecadcliente'] != ''){
+											$ultimopedido[$key]['Pedido']['mesa'] = $minhaMesa['Mesa']['identificacao'].' / cliente: '. $ultimopedido[$key]['Pedido']['nomecadcliente'];
+										}else{
+											$ultimopedido[$key]['Pedido']['mesa'] = $minhaMesa['Mesa']['identificacao'];
+										}
 								}else{
 									$ultimopedido[$key]['Pedido']['mesa'] = 'Sem Mesa';
+									$cliente = $this->Cliente->find('first', array('recursive'=> -1, 'conditions'=> array(
+										'Cliente.id'=> $ultimopedido[$key]['Pedido']['cliente_id']
+									)));
+									if(!empty($cliente)){
+										$ultimopedido[$key]['Pedido']['mesa'] = $cliente['Cliente']['nome'].' / '. $cliente['Cliente']['username'];
+									}
 								}
 								$meuSetor = $this->Setore->find('first', array(
 									'recursive' => -1,
@@ -359,6 +380,7 @@ class SetoresController extends AppController {
 			$this->loadModel('Itensdepedido');
 			$this->loadModel('Produto');
 			$this->loadModel('Mesa');
+			$this->loadModel('Cliente');
 			$Autorizacao = new AutorizacaosController;
 			$autTipo = 'produtos';
 			$userid = $this->Session->read('Auth.User.id');
@@ -473,9 +495,22 @@ class SetoresController extends AppController {
 									'conditions' => array(
 										'id' => $ultimopedido[$key]['Pedido']['mesa_id'])));
 									if(!empty($minhaMesa)){
-											$ultimopedido[$key]['Pedido']['mesa'] = $minhaMesa['Mesa']['identificacao'];
+											if($ultimopedido[$key]['Pedido']['nomecadcliente'] != ''){
+												$ultimopedido[$key]['Pedido']['mesa'] = $minhaMesa['Mesa']['identificacao'].' / cliente: '. $ultimopedido[$key]['Pedido']['nomecadcliente'];
+											}else{
+												$ultimopedido[$key]['Pedido']['mesa'] = $minhaMesa['Mesa']['identificacao'];
+											}
+											
 									}else{
 										$ultimopedido[$key]['Pedido']['mesa'] = 'Sem Mesa';
+
+										$ultimopedido[$key]['Pedido']['mesa'] = 'Sem Mesa';
+										$cliente = $this->Cliente->find('first', array('recursive'=> -1, 'conditions'=> array(
+											'Cliente.id'=> $ultimopedido[$key]['Pedido']['cliente_id']
+										)));
+										if(!empty($cliente)){
+											$ultimopedido[$key]['Pedido']['mesa'] = $cliente['Cliente']['nome'].' / '. $cliente['Cliente']['username'];
+										}
 									}
 									$meuSetor = $this->Setore->find('first', array(
 										'recursive' => -1,
