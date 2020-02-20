@@ -454,6 +454,12 @@ public function addmobile($codigo = null) {
 					$this->request->data['Pedido']['trocoresposta']='Não';
 				}
 
+				//Verifico se o cliente está ativo
+				$this->loadModel('Cliente');
+              	$clienteAtivo = $this->Cliente->find('first', array('recursive'=> -1, 'conditions' => array('Cliente.id' => $this->request->data['Pedido']['cliente_id'], 'Cliente.ativo' => 1)));
+
+              	
+
 				if($respAux == 1){
 					$resp='OK';
 				}else{
@@ -464,6 +470,10 @@ public function addmobile($codigo = null) {
 				}else{
 					$resp='NOK';
 				}
+				if(empty($clienteAtivo)){
+              		$resp='NOK';
+              		$ultimopedido="erroUsuarioInativo";
+              	}
 
 				if($resp =='OK'){
 					$ultimopedido="";

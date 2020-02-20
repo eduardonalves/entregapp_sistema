@@ -68,6 +68,10 @@
 					<div class="form-group  form-group-lg">
 						<?php echo $this->Form->input('email',array('class' => 'input-default emailEdit','id'=>'emailEdit','label' => array('text' => 'Email: ')));?>
 					</div>
+					
+					<div class="form-group  form-group-lg">
+						<?php echo $this->Form->input('ativo',array('label' => array('text' => 'Ativo: ')));?>
+					</div>
 
 
 
@@ -85,7 +89,8 @@
 					<?php echo $this->Form->input('lngOrigem',array('default' => $empresa['Empresa']['lng'],'class' => 'input-default lngOrigemEdit','id'=>'lngOrigemEdit','type' => 'hidden'));?>
 					<?php echo $this->Form->input('distancia',array('class' => 'input-default distanciaEdit','id'=>'distanciaEdit','type' => 'hidden'));?>
 					<?php echo $this->Form->input('duracao',array('class' => 'input-default duracaoEdit','id'=>'duracaoEdit','type' => 'hidden'));?>
-			<div id="mapaEdit"></div>
+					
+			
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>

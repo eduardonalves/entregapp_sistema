@@ -89,7 +89,9 @@
 					</div>
 
 
-
+					<div class="form-group  form-group-lg">
+						<?php echo $this->Form->input('ativo',array('label' => array('text' => 'Ativo: ')));?>
+					</div>
 				<div class="control-group">
 
 				<?php
@@ -107,7 +109,7 @@
 					<?php echo $this->Form->input('filial_id',array('class' => 'input-large filial','type' => 'hidden'));?>
 
 
-			<div id="mapa"></div>
+			
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
@@ -130,6 +132,7 @@
 						<tr>
 							<th><?php echo $this->Paginator->sort('id', 'Código');?></th>
 							<th class="th-header-normal"><?php echo $this->Paginator->sort('nome', 'Nome');?></th>
+							<th class="th-header-normal"><?php echo $this->Paginator->sort('username', 'Nome de usuario');?></th>
 							<th class="th-header-normal"><?php echo $this->Paginator->sort('telefone', 'Telefone');?></th>
 
 							<th class="th-header-normal"><?php echo $this->Paginator->sort('email', 'Email');?></th>
@@ -144,6 +147,7 @@
 						<tr>
 							<td data-title="Código"><?php echo h($cliente['Cliente']['id']); ?></td>
 							<td data-title="Nome"><?php echo h($cliente['Cliente']['nome']); ?></td>
+							<td data-title="Nome"><?php echo h($cliente['Cliente']['username']); ?></td>
 							<td data-title="Telefone"><?php echo h($cliente['Cliente']['telefone']); ?></td>
 							<td data-title="Email"><?php echo h($cliente['Cliente']['email']); ?></td>
 							<!--<td>
@@ -170,7 +174,7 @@
 										  $this->Html->image('tb-excluir.png', array('class'=>'bt-tabela','alt' => __('Excluir'))), //le image
 										  array('controller'=>'Clientes','action' => 'delete', $cliente['Cliente']['id']), //le url
 										  array('escape' => false), //le escape
-										  __('Deseja Excluir o  %s?', $cliente['Cliente']['nome'])
+										  __('Deseja desativar o registro  %s?', $cliente['Cliente']['nome'])
 									);
 
 								?>

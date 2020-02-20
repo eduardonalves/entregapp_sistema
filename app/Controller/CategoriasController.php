@@ -253,10 +253,10 @@ public function validaFotos(&$requestData = array())
 			throw new NotFoundException(__('Invalid categoria'));
 		}
 		$this->request->onlyAllow('post', 'delete');
-		if ($this->Categoria->delete()) {
-			$this->Session->setFlash(__('A categoria foi removida com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
+		if ($this->Categoria->saveField('ativo', 0)) {
+			$this->Session->setFlash(__('A categoria foi desativada com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
 		} else {
-			$this->Session->setFlash(__('Houve um erro ao remover a categoria. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
+			$this->Session->setFlash(__('Houve um erro ao desativar a categoria. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
 		}
 		return $this->redirect( $this->referer() );
 	}}

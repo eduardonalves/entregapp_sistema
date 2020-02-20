@@ -132,6 +132,8 @@ class ClientesController extends AppController {
 
 				$this->request->data['filter']['empresa']=$this->Session->read('Auth.User.empresa_id');
 			}
+			//debug($this->Filter->getConditions());
+			//die;
 			$this->Paginator->settings = array(
 					'Cliente' => array(
 						'limit' => 20,
@@ -142,6 +144,8 @@ class ClientesController extends AppController {
 
 			$this->Cliente->find('all', array('conditions'=> $this->Filter->getConditions(), 'recursive' => 0));
 			$clientes = $this->Paginator->paginate('Cliente');
+			//debug($clientes);
+			//die;
 			$this->set('clientes', $this->Paginator->paginate());
 
 			$this->loadModel('Empresa');
@@ -245,8 +249,9 @@ class ClientesController extends AppController {
 		                $dataNasc =$this->request->data['Cliente']['nasc'];
 		                $dataNasc = implode("-",array_reverse(explode("/",$dataNasc)));
 		                $this->request->data['Cliente']['nasc']= $dataNasc;
-
-		                $this->Cliente->create(); // We have a new entry
+		                unset($this->request->data['Cliente']['filial_id']);
+		                unset($this->request->data['Cliente']['empresa_id']);
+		                //$this->Cliente->create(); // We have a new entry
 		               if($this->Cliente->save($this->request->data)){
 		               		$this->Session->setFlash(__('O cliente foi salvo com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
 		               		return $this->redirect(array('action' => 'add'));
@@ -274,8 +279,11 @@ class ClientesController extends AppController {
 			$this->request->data = $this->Cliente->find('first', $options);
 			$datanasc = $this->request->data['Cliente']['nasc'];
 			$nasc=explode('-', $datanasc) ;
-			$datanasc = $nasc['2'].'/'.$nasc['1'].'/'.$nasc['0'];
-			$this->request->data['Cliente']['nasc']=$datanasc;
+			if(!empty($nas)){
+				$datanasc = $nasc['2'].'/'.$nasc['1'].'/'.$nasc['0'];
+				$this->request->data['Cliente']['nasc']=$datanasc;
+			}
+			
 			$this->loadModel('Empresa');
 			$empresa = $this->Empresa->find('first', array('recursive' => -1,'conditions' => array('Empresa.id' => 1)));
 			$this->set(compact('empresa','datanasc'));
@@ -297,10 +305,10 @@ class ClientesController extends AppController {
 			throw new NotFoundException(__('Invalid cliente'));
 		}
 		$this->request->onlyAllow('post', 'delete');
-		if ($this->Cliente->delete()) {
-			$this->Session->setFlash(__('O cliente foi removido com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
+		if ($this->Cliente->saveField('ativo', 0)) {
+			$this->Session->setFlash(__('O cliente foi desavivado com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
 		} else {
-			$this->Session->setFlash(__('Erro ao remover o cliente. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
+			$this->Session->setFlash(__('Erro ao desativar o cliente. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
 		}
 		return $this->redirect( $this->referer() );
 	}

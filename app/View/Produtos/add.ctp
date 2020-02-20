@@ -179,7 +179,7 @@ echo $this->Search->create('Produtos', array('class' => 'form-inline', 'type' =>
                                 $this->Html->image('tb-excluir.png', array('class' => 'bt-tabela', 'alt' => __('Excluir'))), //le image
                                 array('controller' => 'Produtos', 'action' => 'delete', $produto['Produto']['id']), //le url
                                 array('escape' => false), //le escape
-                                __('Deseja Excluir o  %s?', $produto['Produto']['nome'])
+                                __('Deseja desativar o produto  %s?', $produto['Produto']['nome'])
                             );
 
                             ?>

@@ -122,7 +122,7 @@ table {margin-top: 10px; font-size:80%;}
 										  $this->Html->image('tb-excluir.png', array('class'=>'bt-tabela','alt' => __('Excluir'))), //le image
 										  array('controller'=>'categorias','action' => 'delete', $categoria['Categoria']['id']), //le url
 										  array('escape' => false), //le escape
-										  __('Deseja Excluir a categoria  %s?', $categoria['Categoria']['nome'])
+										  __('Deseja desativar a categoria  %s?', $categoria['Categoria']['nome'])
 									);
 
 								?>

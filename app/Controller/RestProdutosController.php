@@ -34,7 +34,7 @@ class RestProdutosController extends AppController {
   public function prodsmobilebycat() {
     
     
-    $produtos = $this->Produto->find('all',array('recursive'=> -1, 'conditions'=> array('categoria_id'=> $_GET['cat'], 'filial_id'=> $_GET['fp'] )));
+    $produtos = $this->Produto->find('all',array('recursive'=> -1, 'conditions'=> array('categoria_id'=> $_GET['cat'], 'filial_id'=> $_GET['fp'], 'ativo'=> 1, 'disponivel' => 1 )));
 	foreach($produtos as $key => $value){
 		$produtos[$key]["Produto"]["preco_venda"] = number_format( $produtos[$key]["Produto"]["preco_venda"], 2,".", "");
 	}
@@ -96,7 +96,7 @@ class RestProdutosController extends AppController {
                             $j=0;
                             if(isset($resultados[0]['Produto'])){
                               foreach($categoria['Produto'] as $j=> $produto){
-                                          if($produto['filial_id']==$_GET['fp']){
+                                          if($produto['filial_id']==$_GET['fp'] ){
 
                                               $this->checkbfunc->converteMoedaToView($resultados[$i]['Produto'][$j]['preco_venda']);
                                               $tamanhosProdutos = $this->Tamanho->find('all', array('recursive'=> -1, 'order'=> 'Tamanho.nome ASC','conditions'=> array('Tamanho.produto_id'=> $produto['id'])));

@@ -483,7 +483,10 @@ public function loginmobile() {
 				}
 				
 				
-				$clienteExistente = $this->Cliente->find('first', array('conditions' => array('Cliente.username' => $this->request->data['Cliente']['username'])));
+				$clienteExistente = $this->Cliente->find('first', array('conditions' => array('Cliente.username' => $this->request->data['Cliente']['username'],
+					'Cliente.filial_id' => $this->request->data['Cliente']['filial_id'],
+					'Cliente.empresa_id' => $this->request->data['Cliente']['empresa_id'],
+				)));
 				$Empresa = new EmpresasController;
 				if(!empty($clienteExistente)){
 					if($this->request->data['Cliente']['id'] == $clienteExistente['Cliente']['id']){
@@ -502,7 +505,8 @@ public function loginmobile() {
 					}
 				}else{
 
-					$this->request->data['Cliente']['ativo']= 1;
+					//$this->request->data['Cliente']['ativo']= 1;
+					$this->Cliente->create();
 					if ($this->Cliente->save($this->request->data)) {
 
 						$ultimocliente = $this->Cliente->find('first', array('order' => array('Cliente.id' => 'desc'), 'recursive' => -1));
