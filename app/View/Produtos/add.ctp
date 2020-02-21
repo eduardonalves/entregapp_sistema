@@ -134,6 +134,7 @@ echo $this->Search->create('Produtos', array('class' => 'form-inline', 'type' =>
 
 
 <div class="row-fluid">
+    <br />
     <div class="form-group  form-group-lg">
         <button type="button" class="btn btn-success" id="clickmodal">Novo Prduto</button>
     </div>

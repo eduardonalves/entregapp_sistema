@@ -159,7 +159,7 @@ class Cliente extends AppModel {
 				"Segue abaixo o link para recuperar sua senha http://".$url."/RestClientes/formtrocasenha?t=".$meuToken."";
 
 				$Email = new CakeEmail();
-				$Email->from(array('contato@entregapp.com.br' => 'entregapp'));
+				$Email->from(array('sistema@rudo.com.br' => 'Rudo Aplicativo de Entrega'));
 				$Email->to($cliente['Cliente']['email']);
 				$Email->subject('Recuperar Senha');
 
