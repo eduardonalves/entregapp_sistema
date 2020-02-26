@@ -118,8 +118,20 @@ class CategoriasController extends AppController {
 		$this->Categoria->recursive = 0;
 		$this->set('categorias', $this->Paginator->paginate());
 		if ($this->request->is('post')) {
+
 			if($this->request->data['Categoria']['foto']['name']==''){
-				unset($this->request->data['Categoria']['foto']);
+				if(isset($this->request->data['Categoria']['id'])){
+					unset($this->request->data['Categoria']['foto']);
+				}else{
+					unset($this->request->data['Categoria']['foto']);
+					if($_SERVER['SERVER_NAME']== 'localhost'){
+	                	$this->request->data['Categoria']['foto'] ='http://'.$_SERVER['SERVER_NAME'].'/entregapp_sistema/'.'img/bg-app.jpg';; 
+	                }else{
+	                	$this->request->data['Categoria']['foto'] ='http://'.$_SERVER['SERVER_NAME'].'/img/bg-app.jpg';
+	                }
+					
+				}
+				
 			}else{
 				if(! $this->validaFotos($this->request->data)){
 					$this->Session->setFlash(__('Formato de foto inválida! Formatos aceitos (jpeg, gif, png e jpg ).'), 'default', array('class' => 'error-flash alert alert-danger'));

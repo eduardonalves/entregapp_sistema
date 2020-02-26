@@ -335,7 +335,18 @@ class ProdutosController extends AppController {
 					}
 				}else
 				{
+					if(isset($requestData['Produto']['id'])){
 						unset($requestData['Produto'][$value]);
+					}else{
+						unset($requestData['Produto'][$value]);
+						if($_SERVER['SERVER_NAME']== 'localhost'){
+		                	$this->request->data['Produto'][$value] ='http://'.$_SERVER['SERVER_NAME'].'/entregapp_sistema/'.'img/bg-app.jpg';; 
+		                }else{
+		                	$requestData['Produto'][$value] ='http://'.$_SERVER['SERVER_NAME'].'/img/bg-app.jpg';
+		                }
+						
+					}
+						
 				}
 
 			}
