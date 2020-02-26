@@ -114,6 +114,9 @@ $(document).ready(function() {
 	
 	$('body').on('click', '.close', function(event){
 		$('#modalLoaded').modal('hide');
+		$(".modal").each(function() {
+		   console.log('fechar modal');
+		});
 		setTimeout(function() {
 			$('.modal-backdrop').css('display','none');	
 			$('#modalLoaded').modal('hide');
