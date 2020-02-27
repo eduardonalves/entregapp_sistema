@@ -635,4 +635,26 @@ class SetoresController extends AppController {
 			$this->Session->setFlash(__('Houve um erro ao remover a setor. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
 		}
 		return $this->redirect( $this->referer() );
-	}}
+	}
+
+	/**
+ * delete method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function disable($id = null) {
+		$this->Setore->id = $id;
+		if (!$this->Setore->exists()) {
+			throw new NotFoundException(__('Invalid setor'));
+		}
+		$this->request->onlyAllow('post', 'delete');
+		if ($this->Setore->saveField('ativo', 0)) {
+			$this->Session->setFlash(__('O setor foi desativada com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
+		} else {
+			$this->Session->setFlash(__('Houve um erro ao desativar o setor. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
+		}
+		return $this->redirect( $this->referer() );
+	}
+}

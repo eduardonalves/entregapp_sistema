@@ -2,8 +2,11 @@
 .bt-tabela{
 
   width: 16pt !important;
- display: block;
- margin: 0 auto;
+ /*display: block;*/
+ margin-left: 5px;
+ margin-right: 5px;
+ width: 16pt !important;
+ display: inline-block;
  /* width: 16pt !important;
      margin-left: 10%;
  display: inline-block;*/

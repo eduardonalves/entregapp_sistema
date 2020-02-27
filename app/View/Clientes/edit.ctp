@@ -36,6 +36,9 @@
 					<div class="form-group  form-group-lg">
 						<?php echo $this->Form->input('celular',array('class' => 'input-default celularEdit','id'=> 'celularEdit','label' => array('text' => 'Celular: ')));?>
 					</div>
+					<div class="form-group  form-group-lg">
+						<?php echo $this->Form->input('email',array('class' => 'input-default emailEdit','id'=>'emailEdit','label' => array('text' => 'Email: ')));?>
+					</div>
 
 					<div class="form-group  form-group-lg">
 						<?php echo $this->Form->input('nasc',array('type' => 'text','default'=> $datanasc,'class' => 'input-default nascEdit','id'=> 'nascEdit','label' => array('text' => 'Dt. Nasc: ')));?>
@@ -63,12 +66,11 @@
 						<?php echo $this->Form->input('uf',array('class' => 'input-default ufEdit','id'=>'ufEdit','label' => array('text' => 'UF: ')));?>
 					</div>
 					<div class="form-group  form-group-lg">
-						<?php echo $this->Form->input('p_referencia',array('class' => 'input-default p_referencia','label' => array('text' => 'Ponto de Referência: ')));?>
-					</div>
-					<div class="form-group  form-group-lg">
-						<?php echo $this->Form->input('email',array('class' => 'input-default emailEdit','id'=>'emailEdit','label' => array('text' => 'Email: ')));?>
+						<?php echo $this->Form->input('p_referencia',array('class' => 'input-default p_referencia','label' => array('text' => 'Ponto de Referência: ','class'=> 'label-large')));?>
 					</div>
 					
+					<br />
+					<br />
 					<div class="form-group  form-group-lg">
 						<?php echo $this->Form->input('ativo',array('label' => array('text' => 'Ativo: ')));?>
 					</div>
@@ -99,6 +101,17 @@
 	    </div>
 	  </div>
 	</div>
+<style type="text/css">
+	.modal-dialog{
+		width: 95%;
+	}
+	.label-large{
+		width: 164px !important;
+	}
+	.p_referencia{
+
+	}
+</style>
 <script type="text/javascript">
 $(document).ready(function() {
 	$('body').on('click','#btn-salvarEdit', function(event){

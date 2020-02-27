@@ -55,9 +55,7 @@ table {margin-top: 10px; font-size:80%;}
 
 
 	<div class="row-fluid">
-		<div class="form-group  form-group-lg">
-			<button type="button" class="btn btn-success" id="clickmodal">Nova Forma de Pgto</button>
-		</div>
+		
 		<?php
 			echo $this->Search->create('Pagamento', array('class'=> 'form-inline'));
 		?>
@@ -75,27 +73,51 @@ table {margin-top: 10px; font-size:80%;}
 			echo $this->Search->end(__('Filtrar', true));
 			?>
 		</div>
+		<br/>
+		<div class="form-group  form-group-lg">
+			<button type="button" class="btn btn-success" id="clickmodal">Nova Forma de Pgto</button>
+		</div>
 		<div class="area-tabela"  id="no-more-tables">
 				<table class="table-action col-md-12 table-bordered table-striped table-condensed cf" >
 					<thead class="cf">
 						<tr>
 							<th><?php echo $this->Paginator->sort('id', 'Código');?></th>
 							<th><?php echo $this->Paginator->sort('tipo', 'Tipo');?></th>
+							<th><?php echo $this->Paginator->sort('ativo', 'Status');?></th>
 							<th>Ações</th>
 						</tr>
 					</thead>
 					<tbody>
 						<?php foreach ($pagamentos as $pagamento): ?>
-						<tr>
+						<?php
+                        	$disabledline = ($pagamento['Pagamento']['ativo']== 0 ? 'disabledline': '');
+	                    ?>
+	                    <tr class="<?php echo $disabledline; ?>">
 							<td data-title="Código"><?php echo h($pagamento['Pagamento']['id']); ?></td>
 							<td data-title="Tipo"><?php echo h($pagamento['Pagamento']['tipo']); ?></td>
-
+							<td data-title="Status">
+	                            <?php
+	                                if($pagamento['Pagamento']['ativo']==1){
+	                                    echo 'Ativo';
+	                                }else{
+	                                    echo 'Desabilitado';
+	                                }
+	                             ?>
+	                        </td>
 							<td data-title="Actions">
 
 								<?php
 									//echo $this->html->image('tb-ver.png',array('data-id'=>$pagamento['Pagamento']['id'],'class'=>'bt-tabela ver viewModal','data-id'=>$pagamento['Pagamento']['id']));
 
 									echo $this->html->image('tb-edit.png',array('data-id'=>$pagamento['Pagamento']['id'],'class'=>'bt-tabela editModal','data-id'=>$pagamento['Pagamento']['id']));
+
+									echo $this->Form->postLink(
+										  $this->Html->image('tb-desabilitar.png', array('class'=>'bt-tabela','alt' => __('Desabilitar'))), //le image
+										  array('controller'=>'pagamentos','action' => 'disable', $pagamento['Pagamento']['id']), //le url
+										  array('escape' => false), //le escape
+										  __('Deseja desativar a forma de pagamento  %s?', $pagamento['Pagamento']['tipo'])
+									);
+
 
 									echo $this->Form->postLink(
 										  $this->Html->image('tb-excluir.png', array('class'=>'bt-tabela','alt' => __('Excluir'))), //le image

@@ -63,9 +63,7 @@ table {margin-top: 10px; font-size:80%;}
 
 
 	<div class="row-fluid">
-		<div class="form-group  form-group-lg">
-			<button type="button" class="btn btn-success" id="clickmodal">Nova Cidade</button>
-		</div>
+		
 		<?php
 			echo $this->Search->create('Cidad', array('class'=> 'form-inline'));
 		?>
@@ -75,13 +73,21 @@ table {margin-top: 10px; font-size:80%;}
 			<?php
 		echo $this->Search->input('empresa', array('label' => false,'class'=>'none', 'required' =>'false'));
 
+		
+		echo $this->Search->input('estado', array('label' => 'Estado','class'=>'filtroPedido input-default ', 'required' =>'false'));
+
 		echo $this->Search->input('minhaslojas', array('label' => 'Loja','class'=>'filtroPedido input-default ', 'required' =>'false'));
 		?>
 		</div>
+		<br>
 		<div class="form-group  form-group-lg">
 			<?php
 			echo $this->Search->end(__('Filtrar', true));
 			?>
+		</div>
+		<br>
+		<div class="form-group  form-group-lg">
+			<button type="button" class="btn btn-success" id="clickmodal">Nova Cidade</button>
 		</div>
 		<div class="area-tabela"  id="no-more-tables">
 
@@ -99,7 +105,10 @@ table {margin-top: 10px; font-size:80%;}
 
 					<tbody>
 						<?php foreach ($cidads as $cidad): ?>
-						<tr>
+						<?php
+	                        $disabledline = ($cidad['Cidad']['ativo']== 0 ? 'disabledline': '');
+	                    ?>
+						<tr class="<?php echo $disabledline; ?>">
 							<td data-title="Código"><?php echo h($cidad['Cidad']['id']); ?></td>
 							<td data-title="Cidade"><?php echo h($cidad['Cidad']['cidade']); ?></td>
 							<td data-title="Valor"><?php echo h(number_format($cidad['Cidad']['valor'],2,',','.')); ?></td>
@@ -126,12 +135,19 @@ table {margin-top: 10px; font-size:80%;}
 									//echo $this->html->image('tb-ver.png',array('data-id'=>$cidad['Cidad']['id'],'class'=>'bt-tabela ver viewModal','data-id'=>$cidad['Cidad']['id']));
 
 									echo $this->html->image('tb-edit.png',array('data-id'=>$cidad['Cidad']['id'],'class'=>'bt-tabela editModal','data-id'=>$cidad['Cidad']['id']));
+									
+									echo $this->Form->postLink(
+										  $this->Html->image('tb-desabilitar.png', array('class'=>'bt-tabela','alt' => __('Desabilitar'))), //le image
+										  array('controller'=>'cidads','action' => 'disable', $cidad['Cidad']['id']), //le url
+										  array('escape' => false), //le escape
+										  __('Deseja desabilitar a cidade  %s?', $cidad['Cidad']['cidade'])
+									);
 
 									echo $this->Form->postLink(
 										  $this->Html->image('tb-excluir.png', array('class'=>'bt-tabela','alt' => __('Excluir'))), //le image
 										  array('controller'=>'cidads','action' => 'delete', $cidad['Cidad']['id']), //le url
 										  array('escape' => false), //le escape
-										  __('Deseja Excluir o cidad  %s?', $cidad['Cidad']['cidade'])
+										  __('Deseja Excluir a cidade  %s?', $cidad['Cidad']['cidade'])
 									);
 
 								?>

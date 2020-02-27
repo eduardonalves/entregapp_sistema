@@ -84,9 +84,7 @@ table {margin-top: 10px; font-size:80%;}
 
 
 	<div class="row-fluid">
-		<div class="form-group  form-group-lg">
-			<button type="button" class="btn btn-success" id="clickmodal">Novo Bairro</button>
-		</div>
+		
 		<?php
 			echo $this->Search->create('Bairro', array('class'=> 'form-inline'));
 		?>
@@ -101,10 +99,15 @@ table {margin-top: 10px; font-size:80%;}
 		echo $this->Search->input('nome', array('label' => 'Bairro','class'=>'filtroPedido input-default ', 'required' =>'false'));
 		?>
 		</div>
+		<br />
 		<div class="form-group  form-group-lg">
 			<?php
 			echo $this->Search->end(__('Filtrar', true));
 			?>
+		</div>
+		
+		<div class="form-group  form-group-lg">
+			<button type="button" class="btn btn-success" id="clickmodal">Novo Bairro</button>
 		</div>
 		<div class="area-tabela" id="no-more-tables">
 				<table class="table-action col-md-12 table-bordered table-striped table-condensed cf" >
@@ -122,7 +125,10 @@ table {margin-top: 10px; font-size:80%;}
 						<?php 
 						
 						foreach ($bairros as $bairro): ?>
-						<tr>
+						<?php
+	                        $disabledline = ($bairro['Bairro']['ativo']== 0 ? 'disabledline': '');
+	                    ?>
+						<tr class="<?php echo $disabledline; ?>">
 							<td data-title="Código"><?php echo h($bairro['Bairro']['id']); ?></td>
 							<td data-title="Bairro"><?php echo h($bairro['Bairro']['bairro']); ?></td>
 							<td data-title="Bairro"><?php echo h($bairro['Cidad']['cidade']); ?></td>
@@ -132,7 +138,7 @@ table {margin-top: 10px; font-size:80%;}
 									if($bairro['Bairro']['ativo']==1){
 										echo 'Ativo';
 									}else{
-										echo 'Desabilidado';
+										echo 'Desabilitado';
 									}
 								 ?></td>
 							<td data-title="Actions">
@@ -141,6 +147,13 @@ table {margin-top: 10px; font-size:80%;}
 									//echo $this->html->image('tb-ver.png',array('data-id'=>$bairro['Bairro']['id'],'class'=>'bt-tabela ver viewModal','data-id'=>$bairro['Bairro']['id']));
 
 									echo $this->html->image('tb-edit.png',array('data-id'=>$bairro['Bairro']['id'],'class'=>'bt-tabela editModal','data-id'=>$bairro['Bairro']['id']));
+
+									echo $this->Form->postLink(
+										  $this->Html->image('tb-desabilitar.png', array('class'=>'bt-tabela','alt' => __('Desabilitar'))), //le image
+										  array('controller'=>'bairros','action' => 'disable', $bairro['Bairro']['id']), //le url
+										  array('escape' => false), //le escape
+										  __('Deseja desabilitar o bairro  %s?', $bairro['Bairro']['bairro'])
+									);
 
 									echo $this->Form->postLink(
 										  $this->Html->image('tb-excluir.png', array('class'=>'bt-tabela','alt' => __('Excluir'))), //le image

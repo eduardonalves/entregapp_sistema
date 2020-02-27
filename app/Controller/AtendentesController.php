@@ -294,4 +294,20 @@ class AtendentesController extends AppController {
 			$this->Session->setFlash(__('Houve um erro ao remover o atendente. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
 		}
 		return $this->redirect( $this->referer() );
-	}}
+	}
+
+	public function disable($id = null) {
+		$this->Atendente->id = $id;
+		if (!$this->Atendente->exists()) {
+			throw new NotFoundException(__('Invalid Atendente'));
+		}
+		$this->request->onlyAllow('post', 'delete');
+		if ($this->Atendente->saveField('ativo', 0)) {
+			$this->Session->setFlash(__('O Atendente foi desativado com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
+		} else {
+			$this->Session->setFlash(__('Houve um erro ao desativar o atendente. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
+		}
+		return $this->redirect( $this->referer() );
+	}
+
+}

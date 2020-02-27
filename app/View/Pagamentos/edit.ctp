@@ -15,6 +15,9 @@
 						<?php
 						echo $this->Form->input('id');
 						echo $this->Form->input('tipo',array('class' => 'input-default','label' => array('text' => 'Forma de Pagamento:')));
+						
+						echo $this->Form->input('ativo', array('label'=> array('text'=> 'Ativo')));
+						
 						?>
 					</div>
 				</div>

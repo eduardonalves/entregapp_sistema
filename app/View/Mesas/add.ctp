@@ -68,9 +68,7 @@ table{
 
 
 	<div class="row-fluid">
-		<div class="form-group  form-group-lg">
-			<button type="button" class="btn btn-success" id="clickmodal">Nova Mesa</button>
-		</div>
+		
 		<?php
 			echo $this->Search->create('Mesa', array('class'=> 'form-inline'));
 		?>
@@ -88,37 +86,60 @@ table{
 			echo $this->Search->end(__('Filtrar', true));
 			?>
 		</div>
+		<br />
+		<div class="form-group  form-group-lg">
+			<button type="button" class="btn btn-success" id="clickmodal">Nova Mesa</button>
+		</div>
 		<div class="area-tabela"  id="no-more-tables">
 				<table class="table-action col-md-12 table-bordered table-striped table-condensed cf" >
 					<thead class="cf">
+						
 						<tr>
 							<th><?php echo $this->Paginator->sort('id', 'Código');?></th>
 							<th><?php echo $this->Paginator->sort('identificacao', 'identificacao');?></th>
 							
-								<th><?php echo $this->Paginator->sort('ativo', 'ativo');?></th>
+								
+								<th><?php echo $this->Paginator->sort('ativo', 'Status');?></th>
 							<th>Ações</th>
 						</tr>
 					</thead>
 					<tbody>
 						<?php foreach ($mesas as $mesa): ?>
-						<tr>
+						<?php
+	                        $disabledline = ($mesa['Mesa']['ativo']== 0 ? 'disabledline': '');
+	                    ?>
+						<tr class="<?php echo $disabledline; ?>">
 							<td data-title="Código"><?php echo h($mesa['Mesa']['id']); ?></td>
 							<td data-title="Identificacao"><?php echo h($mesa['Mesa']['identificacao']); ?></td>
 							
-							<td data-title="ativo"><?php echo ($mesa['Mesa']['ativo'] == true ? 'SIM': 'NÃO'); ?></td>
+							<td data-title="Status">
+							<?php
+								if($mesa['Mesa']['ativo']==1){
+									echo 'Ativo';
+								}else{
+									echo 'Desabilidado';
+								}
+							 ?></td>
 							<td data-title="Actions">
 
 								<?php
 									//echo $this->html->image('tb-ver.png',array('data-id'=>$mesa['Mesa']['id'],'class'=>'bt-tabela ver viewModal','data-id'=>$mesa['Mesa']['id']));
 
 									echo $this->html->image('tb-edit.png',array('data-id'=>$mesa['Mesa']['id'],'class'=>'bt-tabela editModal','data-id'=>$mesa['Mesa']['id']));
-
+									echo $this->Form->postLink(
+										  $this->Html->image('tb-desabilitar.png', array('class'=>'bt-tabela','alt' => __('Desativar'))), //le image
+										  array('controller'=>'mesas','action' => 'disable', $mesa['Mesa']['id']), //le url
+										  array('escape' => false), //le escape
+										  __('Deseja desativar a mesa  %s?', $mesa['Mesa']['identificacao'])
+									);
 									echo $this->Form->postLink(
 										  $this->Html->image('tb-excluir.png', array('class'=>'bt-tabela','alt' => __('Excluir'))), //le image
 										  array('controller'=>'mesas','action' => 'delete', $mesa['Mesa']['id']), //le url
 										  array('escape' => false), //le escape
 										  __('Deseja Excluir a mesa  %s?', $mesa['Mesa']['identificacao'])
 									);
+
+									
 
 								?>
 							</td>

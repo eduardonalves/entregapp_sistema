@@ -144,17 +144,23 @@ echo $this->Search->create('Produtos', array('class' => 'form-inline', 'type' =>
                 <tr>
                     <th><?php echo $this->Paginator->sort('id', 'Código'); ?></th>
                     <th><?php echo $this->Paginator->sort('nome', 'Nome'); ?></th>
+                    <th><?php echo $this->Paginator->sort('Categoria.nome', 'Categoria'); ?></th>
                     <th><?php echo $this->Paginator->sort('preco_venda', 'Preço'); ?></th>
 
                     <th>Foto</th>
+                    <th><?php echo $this->Paginator->sort('ativo', 'Status');?></th>
                     <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($produtos as $produto) : ?>
-                    <tr>
+                    <?php
+                        $disabledline = ($produto['Produto']['ativo']== 0 ? 'disabledline': '');
+                    ?>
+                    <tr class="<?php echo $disabledline; ?>">
                         <td data-title="Código"><?php echo h($produto['Produto']['id']); ?></td>
                         <td data-title="Nome"><?php echo h($produto['Produto']['nome']); ?></td>
+                        <td data-title="Nome"><?php echo h($produto['Categoria']['nome']); ?></td>
                         <td data-title="Preço"><?php echo 'R$ ' . number_format($produto['Produto']['preco_venda'], 2, ',', '2'); ?></td>
 
                         <td data-title="Foto">
@@ -170,17 +176,35 @@ echo $this->Search->create('Produtos', array('class' => 'form-inline', 'type' =>
                                 ?>
                             </div>
                         </td>
+                        <td data-title="Status">
+                            <?php
+                                if($produto['Produto']['ativo']==1){
+                                    echo 'Ativo';
+                                }else{
+                                    echo 'Desabilitado';
+                                }
+                             ?>
+                        </td>
                         <td data-title="Actions">
                             <?php
                             //echo $this->html->image('tb-ver.png',array('data-id'=>$produto['Produto']['id'],'class'=>'bt-tabela ver viewModal','data-id'=>$produto['Produto']['id']));
 
+
+
                             echo $this->html->image('tb-edit.png', array('data-id' => $produto['Produto']['id'], 'class' => 'bt-tabela editModal', 'data-id' => $produto['Produto']['id']));
+
+                            echo $this->Form->postLink(
+                                $this->Html->image('tb-desabilitar.png', array('class' => 'bt-desativa', 'alt' => __('Desabilitar'))), //le image
+                                array('controller' => 'Produtos', 'action' => 'disable', $produto['Produto']['id']), //le url
+                                array('escape' => false), //le escape
+                                __('Deseja desativar o produto  %s?', $produto['Produto']['nome'])
+                            );
 
                             echo $this->Form->postLink(
                                 $this->Html->image('tb-excluir.png', array('class' => 'bt-tabela', 'alt' => __('Excluir'))), //le image
                                 array('controller' => 'Produtos', 'action' => 'delete', $produto['Produto']['id']), //le url
                                 array('escape' => false), //le escape
-                                __('Deseja desativar o produto  %s?', $produto['Produto']['nome'])
+                                __('Deseja remover o produto  %s?', $produto['Produto']['nome'])
                             );
 
                             ?>

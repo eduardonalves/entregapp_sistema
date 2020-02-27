@@ -137,6 +137,7 @@
 	  </div>
 	</div>
 	<div class="row-fluid">
+		<br/>
 		<div class="form-group  form-group-lg">
 			<button type="button" class="btn btn-success" id="clickmodal">Novo Atendente</button>
 		</div>
@@ -149,26 +150,23 @@
 							<th><?php echo $this->Paginator->sort('telefone', 'Telefone');?></th>
 							<th><?php echo $this->Paginator->sort('celular', 'Celular');?></th>
 
-							<th><?php echo $this->Paginator->sort('ativo', 'Status');?></th>
+							
 							<th><?php echo $this->Paginator->sort('foto', 'Foto');?></th>
+							<th><?php echo $this->Paginator->sort('ativo', 'Status');?></th>
 							<th>Ações</th>
 						</tr>
 					</thead>
 					<tbody>
 						<?php foreach ($atendentes as $atendente): ?>
-						<tr>
+							<?php
+		                        $disabledline = ($atendente['Atendente']['ativo']== 0 ? 'disabledline': '');
+		                    ?>
+						<tr class="<?php echo $disabledline; ?>">
 							<td data-title="Código"><?php echo h($atendente['Atendente']['id']); ?></td>
 							<td data-title="Nome"><?php echo h($atendente['Atendente']['nome']); ?></td>
 							<td data-title="Telefone"><?php echo h($atendente['Atendente']['telefone']); ?></td>
 							<td data-title="Celular"><?php echo h($atendente['Atendente']['celular']); ?></td>
-							<td data-title="Status">
-								<?php
-									if($atendente['Atendente']['ativo']==1){
-										echo 'Ativo';
-									}else{
-										echo 'Desabilidado';
-									}
-								 ?></td>
+							
 							<td data-title="Foto">
 								<div class="circulodivPequeno">
 									<?php
@@ -183,11 +181,26 @@
 									?>
 								</div>
 							</td>
+							<td data-title="Status">
+								<?php
+									if($atendente['Atendente']['ativo']==1){
+										echo 'Ativo';
+									}else{
+										echo 'Desabilitado';
+									}
+								 ?></td>
 							<td data-title="Actions">
 								<?php
 									//echo $this->html->image('tb-ver.png',array('data-id'=>$atendente['Atendente']['id'],'class'=>'bt-tabela ver viewModal','data-id'=>$atendente['Atendente']['id']));
 
 									echo $this->html->image('tb-edit.png',array('data-id'=>$atendente['Atendente']['id'],'class'=>'bt-tabela editModal','data-id'=>$atendente['Atendente']['id']));
+
+									echo $this->Form->postLink(
+										  $this->Html->image('tb-desabilitar.png', array('class'=>'bt-tabela','alt' => __('Desabilitar'))), //le image
+										  array('controller'=>'atendentes','action' => 'disable', $atendente['Atendente']['id']), //le url
+										  array('escape' => false), //le escape
+										  __('Deseja desabilitar o  %s?', $atendente['Atendente']['nome'])
+									);
 
 									echo $this->Form->postLink(
 										  $this->Html->image('tb-excluir.png', array('class'=>'bt-tabela','alt' => __('Excluir'))), //le image
@@ -227,7 +240,17 @@
 		</nav>
 	</div>
 	<div id="loadDivModal"></div>
+<style type="text/css">
+	.modal-dialog{
+		width: 95%;
+	}
+	.label-large{
+		width: 164px !important;
+	}
+	.p_referencia{
 
+	}
+</style>
 <script>
 $(document).ready(function() {
 loja = $('#filterMinhaslojas').val();

@@ -56,6 +56,7 @@ class CidadsController extends AppController {
  */
 	public function add() {
 		$this->loadModel('Filial');
+		$this->loadModel('Estado');
 		$Autorizacao = new AutorizacaosController;
 		$autTipo = 'formas_de_pagamento';
 		$userid = $this->Session->read('Auth.User.id');
@@ -64,6 +65,10 @@ class CidadsController extends AppController {
 		$User = new UsersController;
 		$minhasFiliais = $User->getFiliais($userid);
 		$lojas = $User->getSelectFiliais($userid);
+
+		
+		$unicaFilial= $this->Filial->find('first', array('recursive'=> -1, 'conditions'=> array('Filial.id' => $minhasFiliais)));
+		$estados = $this->Estado->find('list', array('recursive'=> -1,'fields'=> array('Estado.id','Estado.estado') ,'conditions'=> array('Estado.filial_id'=> $unicaFilial['Filial']['id'])));
 
 		if(isset($this->request->data['filter']))
 		{
@@ -86,27 +91,27 @@ class CidadsController extends AppController {
 	                    'select'=> $lojas
 	                )
 	            ),
+	            'estado' => array(
+	                'Cidad.estado_id' => array(
+	                    'operator' => '=',
+	                    'select'=> $estados
+	                )
+	            ),
 	            'empresa' => array(
 	                'Cidad.empresa_id' => array(
 	                    'operator' => '=',
 
 	                )
 	            ),
-	            'nome' => array(
-	                'Cidad.ciade' => array(
-	                    'operator' => '=',
-
-	                )
-	            ),
+	            
 	        )
 	    );
 
-	    $conditiosAux= $this->Filter->getConditions();
-	$unicaFilial= $this->Filial->find('first', array('recursive'=> -1, 'conditions'=> array('Filial.id' => $minhasFiliais)));
-	$this->loadModel('Estado');
+	    
+		$conditiosAux= $this->Filter->getConditions();
 			$this->loadModel('Cidad');
 			$cidads = $this->Cidad->find('list', array('recursive'=> -1,'fields'=> array('Cidad.id','Cidad.cidade') ,'conditions'=> array('Cidad.filial_id'=> $unicaFilial['Filial']['id'])));
-			$estados = $this->Estado->find('list', array('recursive'=> -1,'fields'=> array('Estado.id','Estado.estado') ,'conditions'=> array('Estado.filial_id'=> $unicaFilial['Filial']['id'])));
+			
 			$this->set(compact('estados','cidads'));
 	if(empty($conditiosAux)){
 
@@ -215,6 +220,25 @@ class CidadsController extends AppController {
 		}
 		return $this->redirect( $this->referer() );
 	}
-
+/**
+ * delete method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function disable($id = null) {
+		$this->Cidad->id = $id;
+		if (!$this->Cidad->exists()) {
+			throw new NotFoundException(__('Invalid cidade'));
+		}
+		$this->request->onlyAllow('post', 'delete');
+		if ($this->Cidad->saveField('ativo', 0)) {
+			$this->Session->setFlash(__('A cidade foi desativado com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
+		} else {
+			$this->Session->setFlash(__('Houve um erro ao desativar a cidade. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
+		}
+		return $this->redirect( $this->referer() );
+	}
 
 }

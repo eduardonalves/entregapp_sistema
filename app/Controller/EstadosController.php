@@ -196,4 +196,25 @@ class EstadosController extends AppController {
 			$this->Session->setFlash(__('Houve um erro ao remover a forma de estado. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
 		}
 		return $this->redirect( $this->referer() );
-	}}
+	}
+/**
+ * delete method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function disable($id = null) {
+		$this->Estado->id = $id;
+		if (!$this->Estado->exists()) {
+			throw new NotFoundException(__('Invalid Estado'));
+		}
+		$this->request->onlyAllow('post', 'delete');
+		if ($this->Estado->saveField('ativo', 0)) {
+			$this->Session->setFlash(__('O Estado foi desativado com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
+		} else {
+			$this->Session->setFlash(__('Houve um erro ao desativar o Estado. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
+		}
+		return $this->redirect( $this->referer() );
+	}
+}

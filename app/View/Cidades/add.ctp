@@ -93,22 +93,33 @@ table {margin-top: 10px; font-size:80%;}
 					</thead>
 					<tbody>
 						<?php foreach ($cidades as $cidade): ?>
-						<tr>
+							<?php
+		                        $disabledline = ($cidade['Cidade']['ativo']== 0 ? 'disabledline': '');
+		                    ?>
+						<tr class="<?php echo $disabledline; ?>">
+
 							<td><?php echo h($cidade['Cidade']['id']); ?></td>
 							<td><?php echo h($cidade['Cidade']['cidade']); ?></td>
 
 							<td>
 
 								<?php
-									echo $this->html->image('tb-ver.png',array('data-id'=>$cidade['Cidade']['id'],'class'=>'bt-tabela ver viewModal','data-id'=>$cidade['Cidade']['id']));
+									//echo $this->html->image('tb-ver.png',array('data-id'=>$cidade['Cidade']['id'],'class'=>'bt-tabela ver viewModal','data-id'=>$cidade['Cidade']['id']));
 
 									echo $this->html->image('tb-edit.png',array('data-id'=>$cidade['Cidade']['id'],'class'=>'bt-tabela editModal','data-id'=>$cidade['Cidade']['id']));
+
+									echo $this->Form->postLink(
+										  $this->Html->image('tb-desabilitar.png', array('class'=>'bt-tabela','alt' => __('Desabilitar'))), //le image
+										  array('controller'=>'cidades','action' => 'disable', $cidade['Cidade']['id']), //le url
+										  array('escape' => false), //le escape
+										  __('Deseja desabilitar a cidade  %s?', $cidade['Cidade']['cidade'])
+									);
 
 									echo $this->Form->postLink(
 										  $this->Html->image('tb-excluir.png', array('class'=>'bt-tabela','alt' => __('Excluir'))), //le image
 										  array('controller'=>'cidades','action' => 'delete', $cidade['Cidade']['id']), //le url
 										  array('escape' => false), //le escape
-										  __('Deseja Excluir o cidade  %s?', $cidade['Cidade']['cidade'])
+										  __('Deseja remover a cidade  %s?', $cidade['Cidade']['cidade'])
 									);
 
 								?>

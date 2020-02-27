@@ -34,7 +34,7 @@ class RestProdutosController extends AppController {
   public function prodsmobilebycat() {
     
     
-    $produtos = $this->Produto->find('all',array('recursive'=> -1, 'conditions'=> array('categoria_id'=> $_GET['cat'], 'filial_id'=> $_GET['fp'], 'ativo'=> 1, 'disponivel' => 1 )));
+    $produtos = $this->Produto->find('all',array('recursive'=> -1,'order' => 'Produto.nome ASC' ,'conditions'=> array('categoria_id'=> $_GET['cat'], 'filial_id'=> $_GET['fp'], 'ativo'=> 1, 'disponivel' => 1 )));
 	foreach($produtos as $key => $value){
 		$produtos[$key]["Produto"]["preco_venda"] = number_format( $produtos[$key]["Produto"]["preco_venda"], 2,".", "");
 	}

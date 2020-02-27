@@ -98,7 +98,8 @@
 						echo $this->Form->input('email',array('class' => 'input-large','label' => array('text' => 'Email :')));
 						?>
 					</div>
-
+					<br />
+					<br />
 					<div class="form-group  form-group-lg">
 						<?php
 						echo $this->Form->input('ativo',array('class' => 'input-large','label' => array('text' => 'Ativo :')));
@@ -125,6 +126,7 @@
 	  </div>
 	</div>
 	<div class="row-fluid">
+	<br />
 		<div class="form-group  form-group-lg">
 			<button type="button" class="btn btn-success" id="clickmodal">Novo Entregador</button>
 		</div>
@@ -137,26 +139,23 @@
 							<th><?php echo $this->Paginator->sort('telefone', 'Telefone');?></th>
 							<th><?php echo $this->Paginator->sort('celular', 'Celular');?></th>
 
-							<th><?php echo $this->Paginator->sort('ativo', 'Status');?></th>
+							
 							<th><?php echo $this->Paginator->sort('foto', 'Foto');?></th>
+							<th><?php echo $this->Paginator->sort('ativo', 'Status');?></th>
 							<th>Ações</th>
 						</tr>
 					</thead>
 					<tbody>
 						<?php foreach ($entregadors as $entregador): ?>
-						<tr>
+						<?php
+	                        $disabledline = ($entregador['Entregador']['ativo']== 0 ? 'disabledline': '');
+	                    ?>
+						<tr class="<?php echo $disabledline; ?>">
 							<td data-title="Código"><?php echo h($entregador['Entregador']['id']); ?></td>
 							<td data-title="Nome"><?php echo h($entregador['Entregador']['nome']); ?></td>
 							<td data-title="Telefone"><?php echo h($entregador['Entregador']['telefone']); ?></td>
 							<td data-title="Celular"><?php echo h($entregador['Entregador']['celular']); ?></td>
-							<td data-title="Status">
-								<?php
-									if($entregador['Entregador']['ativo']==1){
-										echo 'Ativo';
-									}else{
-										echo 'Desabilidado';
-									}
-								 ?></td>
+							
 							<td data-title="Foto">
 								<div class="circulodivPequeno">
 									<?php
@@ -171,11 +170,26 @@
 									?>
 								</div>
 							</td>
+							<td data-title="Status">
+							<?php
+								if($entregador['Entregador']['ativo']==1){
+									echo 'Ativo';
+								}else{
+									echo 'Desabilidado';
+								}
+							 ?></td>
 							<td data-title="Actions">
 								<?php
 									//echo $this->html->image('tb-ver.png',array('data-id'=>$entregador['Entregador']['id'],'class'=>'bt-tabela ver viewModal','data-id'=>$entregador['Entregador']['id']));
 
 									echo $this->html->image('tb-edit.png',array('data-id'=>$entregador['Entregador']['id'],'class'=>'bt-tabela editModal','data-id'=>$entregador['Entregador']['id']));
+
+									echo $this->Form->postLink(
+										  $this->Html->image('tb-desabilitar.png', array('class'=>'bt-tabela','alt' => __('Excluir'))), //le image
+										  array('controller'=>'entregadors','action' => 'disable', $entregador['Entregador']['id']), //le url
+										  array('escape' => false), //le escape
+										  __('Deseja desabilitar  %s?', $entregador['Entregador']['nome'])
+									);
 
 									echo $this->Form->postLink(
 										  $this->Html->image('tb-excluir.png', array('class'=>'bt-tabela','alt' => __('Excluir'))), //le image
@@ -215,7 +229,20 @@
 		</nav>
 	</div>
 	<div id="loadDivModal"></div>
+<style type="text/css">
+	.modal-dialog{
+		width: 95%;
+	}
+	.label-large{
+		width: 164px !important;
+	}
+	.p_referencia{
 
+	}
+	.form-group{
+		margin-right: 5px;
+	}
+</style>
 <script>
 $(document).ready(function() {
 loja = $('#filterMinhaslojas').val();

@@ -61,9 +61,7 @@ table {margin-top: 10px; font-size:80%;}
 
 
 	<div class="row-fluid">
-		<div class="form-group  form-group-lg">
-			<button type="button" class="btn btn-success" id="clickmodal">Nova Categoria</button>
-		</div>
+		
 		<?php
 			echo $this->Search->create('Categoria', array('class'=> 'form-inline'));
 		?>
@@ -81,6 +79,10 @@ table {margin-top: 10px; font-size:80%;}
 			echo $this->Search->end(__('Filtrar', true));
 			?>
 		</div>
+		<br/>
+		<div class="form-group  form-group-lg">
+			<button type="button" class="btn btn-success" id="clickmodal">Nova Categoria</button>
+		</div>
 		<div class="area-tabela"  id="no-more-tables">
 				<table class="table-action col-md-12 table-bordered table-striped table-condensed cf" >
 					<thead class="cf">
@@ -88,12 +90,16 @@ table {margin-top: 10px; font-size:80%;}
 							<th><?php echo $this->Paginator->sort('id', 'Código');?></th>
 							<th><?php echo $this->Paginator->sort('nome', 'nome');?></th>
 							<th>Foto</th>
+							<th><?php echo $this->Paginator->sort('ativo', 'Status');?></th>
 							<th>Ações</th>
 						</tr>
 					</thead>
 					<tbody>
 						<?php foreach ($categorias as $categoria): ?>
-						<tr>
+							<?php
+		                        $disabledline = ($categoria['Categoria']['ativo']== 0 ? 'disabledline': '');
+		                    ?>
+						<tr class="<?php echo $disabledline; ?>">
 							<td data-title="Código"><?php echo h($categoria['Categoria']['id']); ?></td>
 							<td data-title="Nome"><?php echo h($categoria['Categoria']['nome']); ?></td>
 							<td>
@@ -110,19 +116,33 @@ table {margin-top: 10px; font-size:80%;}
 									?>
 								</div>
 							</td>
-
+							<td data-title="Status">
+								<?php
+									if($categoria['Categoria']['ativo']==1){
+										echo 'Ativo';
+									}else{
+										echo 'Desabilitado';
+									}
+								 ?>
+								 	
+							</td>
 							<td data-title="Actions">
 
 								<?php
 									//echo $this->html->image('tb-ver.png',array('data-id'=>$categoria['Categoria']['id'],'class'=>'bt-tabela ver viewModal','data-id'=>$categoria['Categoria']['id']));
 
 									echo $this->html->image('tb-edit.png',array('data-id'=>$categoria['Categoria']['id'],'class'=>'bt-tabela editModal','data-id'=>$categoria['Categoria']['id']));
-
+									echo $this->Form->postLink(
+										  $this->Html->image('tb-desabilitar.png', array('class'=>'bt-tabela','alt' => __('Desabilitar'))), //le image
+										  array('controller'=>'categorias','action' => 'disable', $categoria['Categoria']['id']), //le url
+										  array('escape' => false), //le escape
+										  __('Deseja desabilitar a categoria  %s?', $categoria['Categoria']['nome'])
+									);
 									echo $this->Form->postLink(
 										  $this->Html->image('tb-excluir.png', array('class'=>'bt-tabela','alt' => __('Excluir'))), //le image
 										  array('controller'=>'categorias','action' => 'delete', $categoria['Categoria']['id']), //le url
 										  array('escape' => false), //le escape
-										  __('Deseja desativar a categoria  %s?', $categoria['Categoria']['nome'])
+										  __('Deseja remover a categoria  %s?', $categoria['Categoria']['nome'])
 									);
 
 								?>

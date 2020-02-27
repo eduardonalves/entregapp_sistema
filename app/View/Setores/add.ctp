@@ -55,9 +55,7 @@ table {margin-top: 10px; font-size:80%;}
 
 
 	<div class="row-fluid">
-		<div class="form-group  form-group-lg">
-			<button type="button" class="btn btn-success" id="clickmodal">Novo Setor</button>
-		</div>
+		
 		<?php
 			echo $this->Search->create('Setore', array('class'=> 'form-inline'));
 		?>
@@ -75,22 +73,36 @@ table {margin-top: 10px; font-size:80%;}
 			echo $this->Search->end(__('Filtrar', true));
 			?>
 		</div>
+		<br/>
+		<div class="form-group  form-group-lg">
+			<button type="button" class="btn btn-success" id="clickmodal">Novo Setor</button>
+		</div>
 		<div class="area-tabela"  id="no-more-tables">
 				<table class="table-action col-md-12 table-bordered table-striped table-condensed cf" >
 					<thead class="cf">
 						<tr>
 							<th><?php echo $this->Paginator->sort('id', 'Código');?></th>
 							<th><?php echo $this->Paginator->sort('setor', 'setor');?></th>
-								<th><?php echo $this->Paginator->sort('setor', 'ativo');?></th>
+								<th><?php echo $this->Paginator->sort('ativo', 'Status');?></th>
 							<th>Ações</th>
 						</tr>
 					</thead>
 					<tbody>
 						<?php foreach ($setores as $setore): ?>
-						<tr>
+						<?php
+	                        $disabledline = ($setore['Setore']['ativo']== 0 ? 'disabledline': '');
+	                    ?>
+						<tr class="<?php echo $disabledline; ?>">
 							<td data-title="Código"><?php echo h($setore['Setore']['id']); ?></td>
 							<td data-title="Setore"><?php echo h($setore['Setore']['setor']); ?></td>
-							<td data-title="ativo"><?php echo ($setore['Setore']['ativo'] == true ? 'SIM': 'NÃO'); ?></td>
+							<td data-title="Status">
+								<?php
+									if($setore['Setore']['ativo']==1){
+										echo 'Ativo';
+									}else{
+										echo 'Desabilitado';
+									}
+								 ?></td>
 							<td data-title="Actions">
 
 								<?php
@@ -99,10 +111,17 @@ table {margin-top: 10px; font-size:80%;}
 									echo $this->html->image('tb-edit.png',array('data-id'=>$setore['Setore']['id'],'class'=>'bt-tabela editModal','data-id'=>$setore['Setore']['id']));
 
 									echo $this->Form->postLink(
+										  $this->Html->image('tb-desabilitar.png', array('class'=>'bt-tabela','alt' => __('Desabilitar'))), //le image
+										  array('controller'=>'setores','action' => 'disable', $setore['Setore']['id']), //le url
+										  array('escape' => false), //le escape
+										  __('Deseja Desabilitar o setor  %s?', $setore['Setore']['setor'])
+									);
+
+									echo $this->Form->postLink(
 										  $this->Html->image('tb-excluir.png', array('class'=>'bt-tabela','alt' => __('Excluir'))), //le image
 										  array('controller'=>'setores','action' => 'delete', $setore['Setore']['id']), //le url
 										  array('escape' => false), //le escape
-										  __('Deseja Excluir a setore  %s?', $setore['Setore']['setor'])
+										  __('Deseja Excluir a setor  %s?', $setore['Setore']['setor'])
 									);
 
 								?>

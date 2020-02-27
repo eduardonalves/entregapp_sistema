@@ -240,11 +240,20 @@ table {margin-top: 10px; font-size:80%;}
 
 .table-striped tbody tr:nth-child(odd) td {
    background-color: #E8E8E8;
+   text-align: center;
 }
 
 .table-striped tbody tr:nth-child(even) td {
    background-color: #F9F9F9;
+   text-align: center;
 }
+
+.table-striped .disabledline td {
+   background-color: #A1ACA5 !important;
+   
+}
+
+
 .btn-comprar{margin-top: 15px;}
 .layerslide{
 	background-color: rgba(0, 0, 0, 0.8);

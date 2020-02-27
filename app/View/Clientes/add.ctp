@@ -58,6 +58,9 @@
 						<?php echo $this->Form->input('celular',array('class' => 'input-default celular','label' => array('text' => 'Celular: ')));?>
 					</div>
 					<div class="form-group  form-group-lg">
+						<?php echo $this->Form->input('email',array('class' => 'input-default email','label' => array('text' => 'Email: ')));?>
+					</div>
+					<div class="form-group  form-group-lg">
 						<?php echo $this->Form->input('nasc',array('type' => 'text','class' => 'input-default nasc','label' => array('text' => 'Dt. Nasc: ')));?>
 					</div>
 					<div class="form-group  form-group-lg">
@@ -82,13 +85,12 @@
 						<?php echo $this->Form->input('uf',array('class' => 'input-default uf','label' => array('text' => 'UF: ')));?>
 					</div>
 					<div class="form-group  form-group-lg">
-						<?php echo $this->Form->input('p_referencia',array('class' => 'input-default p_referencia','label' => array('text' => 'Ponto de Referência: ')));?>
+						<?php echo $this->Form->input('p_referencia',array('class' => 'input-default p_referencia','label' => array('text' => 'Ponto de Referência: ','class'=> 'label-large')));?>
 					</div>
-					<div class="form-group  form-group-lg">
-						<?php echo $this->Form->input('email',array('class' => 'input-default email','label' => array('text' => 'Email: ')));?>
-					</div>
-
-
+					
+					
+					<br/>
+					<br/>
 					<div class="form-group  form-group-lg">
 						<?php echo $this->Form->input('ativo',array('label' => array('text' => 'Ativo: ')));?>
 					</div>
@@ -120,7 +122,7 @@
 	</div>
 
 	<div class="row-fluid">
-
+		<br/>
 
 		<div class="form-group  form-group-lg">
 			<button type="button" class="btn btn-success" id="clickmodal">Novo Cliente</button>
@@ -136,7 +138,7 @@
 							<th class="th-header-normal"><?php echo $this->Paginator->sort('telefone', 'Telefone');?></th>
 
 							<th class="th-header-normal"><?php echo $this->Paginator->sort('email', 'Email');?></th>
-
+							<th><?php echo $this->Paginator->sort('ativo', 'Status');?></th>
 							<th class="th-header-normal">Ações</th>
 
 						</tr>
@@ -144,12 +146,23 @@
 
 					<tbody>
 						<?php foreach ($clientes as $cliente): ?>
-						<tr>
+							<?php
+		                        $disabledline = ($cliente['Cliente']['ativo']== 0 ? 'disabledline': '');
+		                    ?>
+						<tr class="<?php echo $disabledline; ?>">
 							<td data-title="Código"><?php echo h($cliente['Cliente']['id']); ?></td>
 							<td data-title="Nome"><?php echo h($cliente['Cliente']['nome']); ?></td>
 							<td data-title="Nome"><?php echo h($cliente['Cliente']['username']); ?></td>
 							<td data-title="Telefone"><?php echo h($cliente['Cliente']['telefone']); ?></td>
 							<td data-title="Email"><?php echo h($cliente['Cliente']['email']); ?></td>
+							<td data-title="Status">
+								<?php
+									if($cliente['Cliente']['ativo']==1){
+										echo 'Ativo';
+									}else{
+										echo 'Desabilitado';
+									}
+								 ?></td>
 							<!--<td>
 								<div class="circulodivPequeno">
 									<?php
@@ -171,10 +184,17 @@
 									echo $this->html->image('tb-edit.png',array('data-id'=>$cliente['Cliente']['id'],'class'=>'bt-tabela editModal','data-id'=>$cliente['Cliente']['id']));
 
 									echo $this->Form->postLink(
+										  $this->Html->image('tb-desabilitar.png', array('class'=>'bt-tabela','alt' => __('Excluir'))), //le image
+										  array('controller'=>'Clientes','action' => 'disable', $cliente['Cliente']['id']), //le url
+										  array('escape' => false), //le escape
+										  __('Deseja desativar o registro  %s?', $cliente['Cliente']['nome'])
+									);
+
+									echo $this->Form->postLink(
 										  $this->Html->image('tb-excluir.png', array('class'=>'bt-tabela','alt' => __('Excluir'))), //le image
 										  array('controller'=>'Clientes','action' => 'delete', $cliente['Cliente']['id']), //le url
 										  array('escape' => false), //le escape
-										  __('Deseja desativar o registro  %s?', $cliente['Cliente']['nome'])
+										  __('Deseja remover o registro  %s?', $cliente['Cliente']['nome'])
 									);
 
 								?>
@@ -210,7 +230,17 @@
 
 
 	<div id="loadDivModal"></div>
+<style type="text/css">
+	.modal-dialog{
+		width: 95%;
+	}
+	.label-large{
+		width: 164px !important;
+	}
+	.p_referencia{
 
+	}
+</style>
 <script>
 $(document).ready(function() {
 

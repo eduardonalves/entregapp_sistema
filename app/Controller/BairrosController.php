@@ -178,10 +178,10 @@ class BairrosController extends AppController {
 			}
 			$this->request->data['Bairro']['bairro_string'] =$this->checkbfunc->removeDetritos($this->request->data['Bairro']['bairro'] );
 			if ($this->Bairro->save($this->request->data)) {
-				$this->Session->setFlash(__('A forma de bairro foi salva com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
+				$this->Session->setFlash(__('A forma de bairro foi salvo com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
 				return $this->redirect( $this->referer() );
 			} else {
-				$this->Session->setFlash(__('Houve um erro ao salvar a forma de bairro. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
+				$this->Session->setFlash(__('Houve um erro ao salvar o bairro. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
 			}
 		} else {
 
@@ -211,9 +211,30 @@ class BairrosController extends AppController {
 		}
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Bairro->delete()) {
-			$this->Session->setFlash(__('A forma de bairro foi removida com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
+			$this->Session->setFlash(__('A forma de bairro foi removido com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
 		} else {
 			$this->Session->setFlash(__('Houve um erro ao remover a forma de bairro. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
 		}
 		return $this->redirect( $this->referer() );
-	}}
+	}
+/**
+ * delete method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function disable($id = null) {
+		$this->Bairro->id = $id;
+		if (!$this->Bairro->exists()) {
+			throw new NotFoundException(__('Invalid bairro'));
+		}
+		$this->request->onlyAllow('post', 'delete');
+		if ($this->Bairro->saveField('ativo', 0)) {
+			$this->Session->setFlash(__('O bairro foi desativado com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
+		} else {
+			$this->Session->setFlash(__('Houve um erro ao desativar o bairro. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
+		}
+		return $this->redirect( $this->referer() );
+	}
+}

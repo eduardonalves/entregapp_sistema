@@ -58,9 +58,7 @@ table {margin-top: 10px; font-size:80%;}
 
 
 	<div class="row-fluid">
-		<div class="form-group  form-group-lg">
-			<button type="button" class="btn btn-success" id="clickmodal">Novo Estado</button>
-		</div>
+		
 		<?php
 			echo $this->Search->create('Estado', array('class'=> 'form-inline'));
 		?>
@@ -78,6 +76,10 @@ table {margin-top: 10px; font-size:80%;}
 			echo $this->Search->end(__('Filtrar', true));
 			?>
 		</div>
+		<br/>
+		<div class="form-group  form-group-lg">
+			<button type="button" class="btn btn-success" id="clickmodal">Novo Estado</button>
+		</div>
 		<div class="area-tabela"  id="no-more-tables">
 				<table class="table-action  col-md-12 table-bordered table-striped table-condensed cf" >
 					<thead class="cf">
@@ -90,7 +92,10 @@ table {margin-top: 10px; font-size:80%;}
 					</thead>
 					<tbody>
 						<?php foreach ($estados as $estado): ?>
-						<tr>
+						<?php
+	                        $disabledline = ($estado['Estado']['ativo']== 0 ? 'disabledline': '');
+	                    ?>
+						<tr class="<?php echo $disabledline; ?>">
 							<td data-title="Código"><?php echo h($estado['Estado']['id']); ?></td>
 							<td data-title="Estado"><?php echo h($estado['Estado']['estado']); ?></td>
 							<td data-title="Status">
@@ -98,7 +103,7 @@ table {margin-top: 10px; font-size:80%;}
 									if($estado['Estado']['ativo']==1){
 										echo 'Ativo';
 									}else{
-										echo 'Desabilidado';
+										echo 'Desabilitado';
 									}
 								 ?>
 							</td>
@@ -108,7 +113,12 @@ table {margin-top: 10px; font-size:80%;}
 									//echo $this->html->image('tb-ver.png',array('data-id'=>$estado['Estado']['id'],'class'=>'bt-tabela ver viewModal','data-id'=>$estado['Estado']['id']));
 
 									echo $this->html->image('tb-edit.png',array('data-id'=>$estado['Estado']['id'],'class'=>'bt-tabela editModal','data-id'=>$estado['Estado']['id']));
-
+									echo $this->Form->postLink(
+										  $this->Html->image('tb-desabilitar.png', array('class'=>'bt-tabela','alt' => __('Desabilitar'))), //le image
+										  array('controller'=>'estados','action' => 'disable', $estado['Estado']['id']), //le url
+										  array('escape' => false), //le escape
+										  __('Deseja desabilitar o estado  %s?', $estado['Estado']['estado'])
+									);
 									echo $this->Form->postLink(
 										  $this->Html->image('tb-excluir.png', array('class'=>'bt-tabela','alt' => __('Excluir'))), //le image
 										  array('controller'=>'estados','action' => 'delete', $estado['Estado']['id']), //le url

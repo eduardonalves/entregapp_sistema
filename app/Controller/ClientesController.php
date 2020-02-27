@@ -305,10 +305,31 @@ class ClientesController extends AppController {
 			throw new NotFoundException(__('Invalid cliente'));
 		}
 		$this->request->onlyAllow('post', 'delete');
-		if ($this->Cliente->saveField('ativo', 0)) {
+		if ($this->Cliente->delete()) {
 			$this->Session->setFlash(__('O cliente foi desavivado com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
 		} else {
 			$this->Session->setFlash(__('Erro ao desativar o cliente. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
+		}
+		return $this->redirect( $this->referer() );
+	}
+
+	/**
+ * delete method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function disable($id = null) {
+		$this->Cliente->id = $id;
+		if (!$this->Cliente->exists()) {
+			throw new NotFoundException(__('Invalid cliente'));
+		}
+		$this->request->onlyAllow('post', 'delete');
+		if ($this->Cliente->saveField('ativo', 0)) {
+			$this->Session->setFlash(__('O cliente foi desativado com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
+		} else {
+			$this->Session->setFlash(__('Houve um erro ao desativar o cliente. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
 		}
 		return $this->redirect( $this->referer() );
 	}

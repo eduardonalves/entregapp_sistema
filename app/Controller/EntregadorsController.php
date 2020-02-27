@@ -196,6 +196,18 @@ class EntregadorsController extends AppController {
 		if (!$this->Entregador->exists($id)) {
 			throw new NotFoundException(__('Invalid entregador'));
 		}
+		$this->loadModel('Filial');
+		
+		$userid = $this->Session->read('Auth.User.id');
+		$userfuncao = $this->Session->read('Auth.User.funcao_id');
+		$User = new UsersController;
+		$minhasFiliais = $User->getFiliais($userid);
+		$lojas = $User->getSelectFiliais($userid);
+
+		$unicaFilial= $this->Filial->find('first', array('recursive'=> -1, 'conditions'=> array('Filial.id' => $minhasFiliais)));
+		$this->request->data['Entregador']['filial_id']=(string) $unicaFilial['Filial']['id']  ;
+
+		$this->request->data['Entregador']['empresa_id']=$this->Session->read('Auth.User.empresa_id');
 
 		$Autorizacao = new AutorizacaosController;
 		$autTipo = 'produtos';
@@ -207,6 +219,7 @@ class EntregadorsController extends AppController {
 		}
 
 		$this->layout ='liso';
+
 		if ($this->request->is(array('post', 'put'))) {
 
 			if(!$Autorizacao->setAutoIncuir($autTipo,$userfuncao)){
@@ -216,6 +229,7 @@ class EntregadorsController extends AppController {
 			if($this->request->data['Entregador']['foto']['name']==''){
 				unset($this->request->data['Entregador']['foto']);
 			}
+			
 			if(isset($this->request->data['Entregador']['foto']['error']) && $this->request->data['Entregador']['foto']['error'] === 0) {
 
 	                		$tipo = $this->request->data['Entregador']['foto']['type'];
@@ -278,4 +292,26 @@ class EntregadorsController extends AppController {
 			$this->Session->setFlash(__('Houve um erro ao remover o entregador. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
 		}
 		return $this->redirect( $this->referer() );
-	}}
+	}
+
+/**
+ * delete method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function disable($id = null) {
+		$this->Entregador->id = $id;
+		if (!$this->Entregador->exists()) {
+			throw new NotFoundException(__('Invalid entregador'));
+		}
+		$this->request->onlyAllow('post', 'delete');
+		if ($this->Entregador->saveField('ativo', 0)) {
+			$this->Session->setFlash(__('O entregador foi desativado com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
+		} else {
+			$this->Session->setFlash(__('Houve um erro ao desativar o entregador. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
+		}
+		return $this->redirect( $this->referer() );
+	}	
+}
