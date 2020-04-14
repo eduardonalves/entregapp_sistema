@@ -31,7 +31,175 @@ class RestCategoriasController extends AppController {
 		}
 
 	}
+  public function validajogos()
+  {
+    header("Access-Control-Allow-Origin: *");
+    header('Content-Type: application/json');
 
+    $this->layout='liso';
+    $cliente= $_GET['clt'];
+    $token =  $_GET['token'];
+
+    $resultado="";
+
+    $resp =$this->checkToken($cliente, $token);
+
+    if($resp=='OK'){
+      $this->loadModel('Ponto');
+      $this->loadModel('Produto');
+      $this->loadModel('Partida');
+      $valorFicha = 10;
+      $pontos = $this->Ponto->find(
+        'first',
+        array(
+          'recursive'=> -1,
+          'conditions'=> array(
+            'Ponto.cliente_id'=> $cliente 
+          )
+        )
+      );
+      $saldo = (int) $pontos['Ponto']['pontos_ganhos'] - (int) $pontos['Ponto']['pontos_gastos'];
+
+      
+
+      $temPartidaAberta = $this->Partida->find('all', array(
+        'recursive'=> -1,
+        'conditions'=> array(
+          'Partida.cliente_id'=> $cliente,
+          'Partida.ativo'=> 1
+        )
+      ));
+      if(empty($temPartidaAberta)){
+      
+        $produtosConsolacao = $this->Produto->find('all',
+          array(
+            'recursive'=> -1,
+            'conditions'=> array(
+              'Produto.recompensa'=> 1,
+              'Produto.recompensa_tipo'=> 2,
+            )
+          )
+        ); 
+
+        $p_consolacao = array();
+
+        foreach ($produtosConsolacao as $key => $value) {
+          array_push($p_consolacao, $value['Produto']['id']);
+        }
+        $tamanho = count($p_consolacao);
+        $numeroAleatorio = rand(1,$tamanho);
+        $numeroAleatorio = $numeroAleatorio -1;
+        $premioConsolacao= '';
+
+        if(isset($p_consolacao[$numeroAleatorio])){
+          $premioConsolacao= $p_consolacao[$numeroAleatorio];
+        }
+
+        $produtosComuns = $this->Produto->find('all',
+          array(
+            'recursive'=> -1,
+            'conditions'=> array(
+              'Produto.recompensa'=> 1,
+              'Produto.recompensa_tipo'=> 1,
+            )
+          )
+        ); 
+
+        $premios = array();
+
+        $countPremioComum = count($produtosComuns);
+        $vezesParaContar = $countPremioComum  * 10; 
+        foreach ($produtosComuns as $key2 => $value2) {
+          for ($i=0; $i < $vezesParaContar; $i++) { 
+            array_push($premios, $value2['Produto']['id']);
+          }
+          
+        }
+
+        
+
+        $produtosRaros = $this->Produto->find('all',
+          array(
+            'recursive'=> -1,
+            'conditions'=> array(
+              'Produto.recompensa'=> 1,
+              'Produto.recompensa_tipo'=> 3,
+            )
+          )
+        ); 
+
+        $premiosRaros = array();
+
+        $countPremiosRaros= count($produtosRaros);
+        $vezesParaContar = $countPremiosRaros  * 3; 
+        foreach ($produtosRaros as $key3 => $value3) {
+          for ($i=0; $i < $vezesParaContar; $i++) { 
+            array_push($premios, $value3['Produto']['id']);
+          }
+          
+        }
+
+        $tamanho = count($premios);
+        
+
+        $numeroAleatorio = rand(1,$tamanho);
+        $numeroAleatorio = $numeroAleatorio -1;
+        $premio= '';
+        
+        if(isset($premios[$numeroAleatorio])){
+          $premio= $premios[$numeroAleatorio];
+        }
+
+
+
+        if($saldo >= $valorFicha){
+          $moedas = $saldo - $valorFicha;
+          $resultado=array(
+            'resultado'=> 'OK',
+            'premio_consolacao'=> $premioConsolacao,
+            'premio'=> $premio,
+            'moedas'=> $moedas 
+          );
+          $pontos_gastos = $pontos['Ponto']['pontos_gastos'] + $valorFicha;
+          $pontoParaSalvar = array(
+            'id'=>  $pontos['Ponto']['id'],
+            'pontos_gastos'=>  $pontos_gastos
+          );
+          $this->Ponto->save($pontoParaSalvar);
+
+          $this->Partida->create();
+          $this->Partida->save(
+            array(
+              'cliente_id'=> $cliente,
+              'recompensa_um_id'=> $premioConsolacao,
+              'recompensa_dois_id'=> $premio,
+              'ativo'=> 1
+            )
+            
+          );
+           
+        }else{
+          $resultado='NOKSS';
+          $resultado=array(
+            'resultado'=> 'NOKSS',
+            
+          );
+        }
+      }else{
+        $resultado=array(
+            'resultado'=> 'NOKPA',
+            
+        );
+      }
+    }
+
+    
+
+    $this->set(array(
+            'users' => $resultado ,
+            '_serialize' => array('users')
+          ));
+  }
 	public function prodsmobile() {
 
 		//$clt = $_GET['a'];

@@ -107,6 +107,21 @@ echo $this->Search->create('Produtos', array('class' => 'form-inline', 'type' =>
                         echo $this->Form->input('disponivel', array('class' => '', 'label' => array('text' => 'Disponível: ', 'class' => 'control-label')));
                         ?>
                     </div>
+                     <div class="form-group  form-group-lg <?php echo $tam; ?>"  style="width: 230px;">
+                        <?php
+                        echo $this->Form->input('recompensa', array('class' => '', 'label' => array('text' => 'recompensa: ', 'class' => 'labellarge')));
+                        ?>
+                    </div>
+                    <div class="form-group  form-group-lg col-md-2" style="width: 230px !important;">
+                        <?php
+                        echo $this->Form->input('recompensa_tipo', array('options'=> array(
+                                ''=> 'Selecione',
+                                '1'=> 'Comum',
+                                '2'=> 'Consolação',
+                                '3'=> 'Rara',
+                        ), 'label' => array('text' => 'Recompensa: ')));
+                        ?>
+                    </div>
 
                 </div>
                 <div class="row">

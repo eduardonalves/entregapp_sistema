@@ -53,6 +53,7 @@ class PgtopedidosController extends AppController {
 		$this->request->data['Pgtopedido']['pagamento_id'] =$this->request->data['Pgtopedido']['pg_id'];
 
 		$this->loadModel('Filial');
+		$this->loadModel('Pedido');
 		$this->layout ='ajaxaddpedido';
 		$Autorizacao = new AutorizacaosController;
 		$autTipo = 'formas_de_pagamento';
@@ -93,7 +94,7 @@ class PgtopedidosController extends AppController {
 
 
 				$this->request->data['Pgtopedido']['valor_total_pago'] = ($vlPgto-$desc) + $taxa;
-
+				
 				if( $vlPgto !='')
 				{
 					$requestAux = $this->request->data;
@@ -136,12 +137,39 @@ class PgtopedidosController extends AppController {
 								));
 							}
 						}
+						$idPedido= '';
+						
 						foreach ($itensPgArray as $key => $value)
 						{
 							if($value !='')
 							{
 								$itemPedidoUpdate = array('id' => $value, 'status_pago' => 1, 'desconto' => $desc,'taxa' => $taxa);
+
+								
 								$this->Itensdepedido->save($itemPedidoUpdate);
+
+
+								if($this->request->data['Pgtopedido']['cliente_id'] != '' ){
+									$meuItem = $this->Itensdepedido->find('first', array(
+										'recursive' => -1,
+										'conditions'=> array(
+											'Itensdepedido.id'=> $value
+										)
+									));
+									
+									if(!empty($meuItem)){
+										if($meuItem['Itensdepedido']['pedido_id'] != ''){
+											$this->Pedido->save(
+												array(
+													'id'=> $meuItem['Itensdepedido']['pedido_id'],
+													'cliente_id'=> $this->request->data['Pgtopedido']['cliente_id']
+												 )
+											);
+										}
+										
+									}
+								}
+								
 							}
 						}
 						//$this->Session->setFlash(__('O pgtopedido foi salvo com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));

@@ -1066,7 +1066,10 @@ class VendasController extends AppController {
     $this->loadModel('Pagamento');
 		foreach($venda['Vendaspagamento'] as $itens ){
 			$produto = $this->Pagamento->find('first', array('conditions' => array('Pagamento.id' => $itens['pagamento_id'])));
-			$venda['Vendaspagamento'][$j]['pagNome']= $produto['Pagamento']['tipo'];
+			if(!empty($produto)){
+				$venda['Vendaspagamento'][$j]['pagNome']= $produto['Pagamento']['tipo'];	
+			}
+			
 			$j++;
 		}
 		$estaFilial= $this->Filial->find('first', array('recursive'=>-1, 'conditions'=> array('Filial.id'=> $loja)));

@@ -118,7 +118,7 @@
 											if($itens['status_cancelado'] != true)
 											{
 											?>
-											<button type="button" name="button" class="btn btn-danger btn-cancelar-item" data-id="<?php echo $itens['id']?>" id="btn-cancelar-item<?php echo $itens['id']?>" >Cancelar</button>
+											<button type="button" name="button" class="btn btn-default btn-cancelar-item" data-id="<?php echo $itens['id']?>" id="btn-cancelar-item<?php echo $itens['id']?>" >Cancelar</button>
 											<?php
 											}else{
 											echo '-';
@@ -207,7 +207,7 @@
 
 								<td>
 									<?php if($pgtos['Pgtopedido']['status']=='A'){ ?>
-									<button type="button" class="btn btn-danger btn-cancelar-pg"  data-id="<?php echo $pgtos['Pgtopedido']['id'];?>" id="cancelarPagamento<?php echo $pgtos['Pgtopedido']['id'];?>" name="cancelarPagamento">Cancelar</button>
+									<button type="button" class="btn btn-default btn-cancelar-pg"  data-id="<?php echo $pgtos['Pgtopedido']['id'];?>" id="cancelarPagamento<?php echo $pgtos['Pgtopedido']['id'];?>" name="cancelarPagamento">Cancelar</button>
 									<?php } ?>
 								</td>
 							</tr>
@@ -362,7 +362,21 @@
 						<input type="hidden" id="pagPedido" name="Pgtopedido[pg_id]" value="">
 						<input type="hidden" name="Pgtopedido[mesa_id]" value="<?php echo $mesaid;?>">
 							<input type="hidden" name="Pgtopedido[pagamento_id]" value="<?php echo $pagamentoid;?>">
-						<button type="submit" name="button" class="btn btn-success pagarSubmit">Inserir Pagamento</button>
+
+						
+						<label>Cliente: </label>
+						  <br>
+						  <select class="selectCliente" id="combobox2" name="Pgtopedido[cliente_id]">
+							<option value="">Selecione um...</option>
+								<?php
+									foreach ($clientes as $cliente) {
+										echo '<option value="'.$cliente['Cliente']['id'].'" >'.$cliente['Cliente']['nome'].' - '.$cliente['Cliente']['telefone'].'</option>';
+									}
+								?>
+							  </select>
+							<br>
+							<br>
+							<button type="submit" name="button" class="btn btn-default pagarSubmit">Inserir Pagamento</button>
 					</form>
 
 				</div>
@@ -383,25 +397,184 @@
 						<input type="hidden" name="TrocaMesa[mesa_id]" class="mesa_antiga" value="<?php echo $mesaid;?>">
 						<br>
 						<br>
-						<button type="submit" name="button" class="btn btn-success btn-salvar-troca">Salvar Troca</button>
+						<button type="submit" name="button" class="btn btn-defaults btn-salvar-troca">Salvar Troca</button>
 					</form>
 				</div>
 			</div>
 	      </div>
 	      <div class="modal-footer">
 
-					<button type="button" name="button" class="btn btn-primary trocarMesa">Trocar de  Mesa</button>
+					<button type="button" name="button" class="btn btn-default trocarMesa">Trocar de  Mesa</button>
 
 			<!--		<button type="button" name="button" class="btn btn-warning inserirdesconto">Inserir Desconto</button>-->
-					<button type="button" name="button" class="btn btn-warning primary btn-voltar none">Voltar</button>
-						<button type="button" name="button" class="btn btn-success pagar btn-pagarmento">Pagamento</button>
-					<button type="button" name="button" class="btn btn-danger fecharMesa">Fechar de  Mesa</button>
+					<button type="button" name="button" class="btn btn-default primary btn-voltar none">Voltar</button>
+						<button type="button" name="button" class="btn btn-default pagar btn-pagarmento">Pagamento</button>
+					<button type="button" name="button" class="btn btn-default fecharMesa">Fechar de  Mesa</button>
 	      </div>
 	    </div>
 	  </div>
 	</div>
 		<script type="text/javascript">
 $(document).ready(function() {
+
+  	$('#combobox').trigger("chosen:updated");
+
+(function( $ ) {
+    $.widget( "custom.combobox", {
+      _create: function() {
+        this.wrapper = $( "<span>" )
+          .addClass( "custom-combobox" )
+          .insertAfter( this.element );
+
+        this.element.hide();
+        this._createAutocomplete();
+        this._createShowAllButton();
+      },
+
+      _createAutocomplete: function() {
+        var selected = this.element.children( ":selected" ),
+          value = selected.val() ? selected.text() : "";
+
+        this.input = $( "<input>" )
+          .appendTo( this.wrapper )
+          .val( value )
+          .attr( "title", "" )
+          .addClass( "custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left" )
+          .autocomplete({
+            delay: 0,
+            minLength: 0,
+            source: $.proxy( this, "_source" )
+          })
+          .tooltip({
+            tooltipClass: "ui-state-highlight"
+          });
+
+        this._on( this.input, {
+          autocompleteselect: function( event, ui ) {
+            ui.item.option.selected = true;
+            this._trigger( "select", event, {
+              item: ui.item.option
+            });
+          },
+
+          autocompletechange: "_removeIfInvalid"
+        });
+      },
+
+      _createShowAllButton: function() {
+        var input = this.input,
+          wasOpen = false;
+
+        $( "<a>" )
+          .attr( "tabIndex", -1 )
+          .attr( "title", "Show All Items" )
+          .tooltip()
+          .appendTo( this.wrapper )
+          .button({
+            icons: {
+              primary: "ui-icon-triangle-1-s"
+            },
+            text: false
+          })
+          .removeClass( "ui-corner-all" )
+          .addClass( "custom-combobox-toggle ui-corner-right" )
+          .mousedown(function() {
+            wasOpen = input.autocomplete( "widget" ).is( ":visible" );
+          })
+          .click(function() {
+            input.focus();
+
+            // Close if already visible
+            if ( wasOpen ) {
+              return;
+            }
+
+            // Pass empty string as value to search for, displaying all results
+            input.autocomplete( "search", "" );
+          });
+      },
+
+      _source: function( request, response ) {
+        var matcher = new RegExp( $.ui.autocomplete.escapeRegex(request.term), "i" );
+        response( this.element.children( "option" ).map(function() {
+          var text = $( this ).text();
+          if ( this.value && ( !request.term || matcher.test(text) ) )
+            return {
+              label: text,
+              value: text,
+              option: this
+            };
+        }) );
+      },
+
+      _removeIfInvalid: function( event, ui ) {
+
+        // Selected an item, nothing to do
+        if ( ui.item ) {
+          return;
+        }
+
+        // Search for a match (case-insensitive)
+        var value = this.input.val(),
+          valueLowerCase = value.toLowerCase(),
+          valid = false;
+        this.element.children( "option" ).each(function() {
+          if ( $( this ).text().toLowerCase() === valueLowerCase ) {
+            this.selected = valid = true;
+            return false;
+          }
+        });
+
+        // Found a match, nothing to do
+        if ( valid ) {
+          return;
+        }
+
+        // Remove invalid value
+        this.input
+          .val( "" )
+          .attr( "title", value + " didn't match any item" )
+          .tooltip( "open" );
+        this.element.val( "" );
+        this._delay(function() {
+          this.input.tooltip( "close" ).attr( "title", "" );
+        }, 2500 );
+        this.input.autocomplete( "instance" ).term = "";
+      },
+
+      _destroy: function() {
+        this.wrapper.remove();
+        this.element.show();
+      }
+    });
+  })( jQuery );
+
+  $(function() {
+    $( "#toggle" ).click(function() {
+      $( "#combobox" ).toggle();
+    });
+    setTimeout(function(){
+	     $("#combocliente").combobox({
+	        select: function (event, ui) {
+
+	            $('.errotroco').hide();
+	        },
+	         open: function(event,ui){
+
+	         }
+	    });
+	 },500);
+    $("#combobox2").combobox({
+        select: function (event, ui) {
+
+           $('.errotroco').hide();
+        },
+         open: function(event,ui){
+
+         }
+    });
+  });
+
 	$('body').on('click','#btn-salvar', function(event){
 		event.preventDefault();
 		$('#MesaEditForm').submit();
@@ -576,6 +749,7 @@ $(document).ready(function() {
 	$('.pagarSubmit').on('click', function(event){
 
 		event.preventDefault();
+		$(this).prop("disabled", true);
 		if($('#pedidoValor').val() != '' && $('.formadepagamento').val() )
 		{
 			$("#itenspg").val('');
@@ -617,7 +791,7 @@ $(document).ready(function() {
 			alert('Insira um valor e a forma de pagamento !');
 		}
 
-
+		$(this).prop("disabled", false);
 	});
 
 	$('.btn-salvar-desconto').on('click', function(event){

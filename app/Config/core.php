@@ -217,7 +217,7 @@
  */
 	Configure::write('Session', array(
 		'defaults' => 'php',
-		'timeout' => 2160, // 36 hours
+		'timeout' => 129600, // 36 hours
     'ini' => array(
         'session.gc_maxlifetime' => 129600 // 36 hours
     )

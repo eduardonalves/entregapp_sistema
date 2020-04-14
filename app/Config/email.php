@@ -41,14 +41,14 @@ class EmailConfig {
 
 	public $default = array(
 		'transport' => 'Mail',
-		'from' => '',
+		'from' => 'aplicativo@rudo.com.br',
 		'charset' => 'utf-8',
 		'headerCharset' => 'utf-8',
 	);
 
 	public $smtp = array(
 		'transport' => 'Smtp',
-		'from' => array('' => 'EntregApp'),
+		'from' => array('mailo@email.com.br' => 'Rudo'),
 		'host' => '',
 		'port' => 587,
 		'timeout' => 30,
@@ -61,7 +61,7 @@ class EmailConfig {
 	);
 
 	public $fast = array(
-		'from' => '',
+		'from' => 'email@email.com.br',
 		'sender' => null,
 		'to' => null,
 		'cc' => null,
@@ -80,10 +80,10 @@ class EmailConfig {
 		'attachments' => null,
 		'emailFormat' => null,
 		'transport' => 'Smtp',
-		'host' => '',
+		'host' => 'mail.host.com.br',
 		'port' => 587,
 		'timeout' => 30,
-		'username' => '',
+		'username' => 'email@email.com.br',
 		'password' => '',
 		'client' => null,
 		'log' => true,

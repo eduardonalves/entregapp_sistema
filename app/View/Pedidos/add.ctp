@@ -40,7 +40,7 @@
 						  </select>
 						  <button class="btn btn-success addCliente bts-add" id="addCliente">Selecionar</button>
 					</section>
-					<section class="span4 spanclientemesa none" style="margin-top: -10px;">
+					<section class="span4 spanclientemesa none" style="margin-top: 5px;">
 						<?php
 							echo $this->Form->input('Pedido.nomecadcliente',array('type' => 'text', 'class' => 'nomecadcliente','label' => array('text' => 'Cliente: ')));
 						?>

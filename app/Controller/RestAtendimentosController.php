@@ -642,8 +642,16 @@ class RestAtendimentosController extends AppController {
 			}
 		}else{
 			$resp =$this->checkToken($cliente, $token);
+			//$resp ='OK';
 		}
-		$resultados= "";
+		if($resp=='NOK'){
+			//$resultados= "falha:19";
+			//@TODO - implementar um tratamento de erro quando o token for invalido
+			$resultados= "";
+		}else{
+			$resultados= "";
+		}
+		
 
 		if($resp =='OK'){
 
@@ -665,7 +673,12 @@ class RestAtendimentosController extends AppController {
 
 			}else{
 
-				$resultados = $this->Atendimento->find('all', array('recursive' => 1,'limit' => $limite, 'order' => 'Atendimento.id DESC','conditions' => array('AND'=>array(array('Atendimento.cliente_id' => $cliente), array('Atendimento.empresa_id' => $_GET['lj'])))));
+				$resultados = $this->Atendimento->find('all', array('recursive' => 1,'limit' => $limite, 'order' => 'Atendimento.id DESC',
+					'conditions' => array(
+						'Atendimento.filial_id' => $_GET['fp'],
+						'Atendimento.cliente_id' => $cliente,
+						'tipo'=>'EXTERNO'
+						)));
 
 			}
 

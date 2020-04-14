@@ -24,20 +24,92 @@ class RestProdutosController extends AppController {
 		}else{
 			$resposta = "NOK";
 			return $resposta;
-			$clienteUp= array('id'=> $clienteId, 'ativo' => 0);
-			$this->Cliente->create();
-			$this->Cliente->save($clienteUp);
+		//	$clienteUp= array('id'=> $clienteId, 'ativo' => 0);
+			//$this->Cliente->create();
+			//$this->Cliente->save($clienteUp);
 		}
 
 	}
 
   public function prodsmobilebycat() {
+    header("Access-Control-Allow-Origin: *");
     
-    
-    $produtos = $this->Produto->find('all',array('recursive'=> -1,'order' => 'Produto.nome ASC' ,'conditions'=> array('categoria_id'=> $_GET['cat'], 'filial_id'=> $_GET['fp'], 'ativo'=> 1, 'disponivel' => 1 )));
+    $produtos = $this->Produto->find('all',array('recursive'=> -1,'order' => 'Produto.nome ASC' ,'conditions'=> array('categoria_id'=> $_GET['cat'], 'filial_id'=> $_GET['fp'], 'ativo'=> 1 )));
 	foreach($produtos as $key => $value){
 		$produtos[$key]["Produto"]["preco_venda"] = number_format( $produtos[$key]["Produto"]["preco_venda"], 2,".", "");
+    $produtos[$key]["Produto"]["id_sec"]=$key;
 	}
+  
+    $this->set(array(
+        'produtos' => $produtos,
+        '_serialize' => array('produtos')
+    ));
+  }
+
+
+  public function prodsmobilebyrec() {
+    header("Access-Control-Allow-Origin: *");
+    $this->loadModel('Partida');
+    $produtos = array();
+    if(empty($this->request->data)){
+      
+      $this->request->data= $_GET;
+    }
+    $this->loadModel('Partida');
+    if ($this->request->is('post','put','get')) {
+
+      $cliente= $this->request->data['clt'];
+      $token =  $this->request->data['token'];
+
+      $resp =$this->checkToken($cliente, $token);
+      $hoje= date("Y-m-d");
+     
+      if($resp=='OK'){
+      
+        $recompensa = $this->Partida->find('all',
+          array(
+            'recursive'=> -1,
+            'conditions'=> array(
+              array('Partida.cliente_id'=> $cliente),
+              array('Partida.ativo'=> 0),
+              array('Partida.recompensa_escolhida_id is not null'),
+              array('Partida.data_validade >= '=> $hoje),
+              array('AND'=> array(
+                'OR'=> array(
+                  array('Partida.resgate is null'),
+                  array('Partida.resgate'=> 0),
+                )
+              )),
+            )
+          )
+        );
+        
+        foreach ($recompensa as $key2 => $value2) {
+          $meuProduto = $this->Produto->find('first', array(
+            'recursive'=> -1,
+            'conditions'=> array(
+              'Produto.id'=> $value2['Partida']['recompensa_escolhida_id']
+            )
+          ));
+
+          if(!empty($meuProduto)){
+            $meuProduto['Produto']['recompensa_escolhida_id']=$value2['Partida']['recompensa_escolhida_id'];
+            $meuProduto['Produto']['id_sec']=$key2;
+            $meuProduto['Produto']['partida_id']=$value2['Partida']['id'];
+            $meuProduto['Produto']['data_validade']=date("d/m/Y", strtotime($value2['Partida']['data_validade'] ) );
+             array_push($produtos, $meuProduto);   
+          }
+         
+        }
+        if(!empty($produtos)){
+          foreach($produtos as $key => $value){
+            $produtos[$key]["Produto"]["preco_venda"] = 0;
+          }  
+        }
+      }
+
+    }  
+    
   
     $this->set(array(
         'produtos' => $produtos,

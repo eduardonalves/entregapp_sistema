@@ -432,6 +432,8 @@ class MesasController extends AppController {
 				$this->loadModel('Produto');
 				$this->loadModel('Pgtopedido');
 				$this->loadModel('Pagamento');
+				$this->loadModel('Cliente');
+
 				$pedidos['Pedidos'] = $this->Pedido->find('all',array('conditions'=> array('AND'=> array(array('Pedido.mesa_id'=> $id),array('Pedido.status_finalizado' => false)))));
 				
 				foreach ($pedidos['Pedidos'] as $key => $value)
@@ -476,12 +478,14 @@ class MesasController extends AppController {
 					}
 
 				}
+				$clientes = $this->Cliente->find('all', array('recursive' => -1, 'order' => 'Cliente.nome asc', 'conditions'=> array('AND'=> array(array('Cliente.ativo' => true), array('Cliente.filial_id' => $minhasFiliais)))));
+
 				$minhasMesas = $this->Mesa->find('all', array('recursive' => -1, 'conditions'=> array('AND'=> array(array('Mesa.filial_id' => $minhasFiliais), array('Mesa.ativo' => 1)))));
 				$this->loadModel('Pagamento');
 				$meusPagamentos  = $this->Pagamento->find('all', array('recursive' => -1, 'conditions'=> array('Pagamento.filial_id' => $minhasFiliais)));
 				//debug($meusPagamentos);
 				//die();
-				$this->set(compact('pedidos','minhasMesas','meusPagamentos'));
+				$this->set(compact('pedidos','minhasMesas','meusPagamentos', 'clientes'));
 			}
 		}
 		public function cancelaritem()
@@ -747,10 +751,13 @@ class MesasController extends AppController {
 					$countCancelado = 0;
 					$contTotalItens=0;
 					$valorTotalItens=0;
+					$meuCliente= '';
 					foreach ($pedidos as $pedido_validacao)
 					{
 
-						$itens_validacao = $this->Itensdepedido->find('all', array('recursive'=> -1, 'conditions'=> array('Itensdepedido.pedido_id'=> $pedido_validacao['Pedido']['id'], 'Itensdepedido.status_cancelado'=> NULL )));
+						$itens_validacao = $this->Itensdepedido->find('all', array('recursive'=> -1, 'conditions'=> array('Itensdepedido.pedido_id'=> $pedido_validacao['Pedido']['id'], 'Itensdepedido.status_cancelado is null' )));
+
+						
 
 						foreach ($itens_validacao as $iten_validacao)
 						{
@@ -768,7 +775,7 @@ class MesasController extends AppController {
 						}
 
 					}
-
+					
 					$testCount = $countPago + $countCancelado;
 
 					if($testCount == $contTotalItens)
@@ -782,7 +789,7 @@ class MesasController extends AppController {
 					$pagamentosValid = $this->Pgtopedido->find('all', array('recursive'=> -1, 'conditions'=> array('Pgtopedido.mesa_id'=> $mesa['Mesa']['id'], 'Pgtopedido.status'=> 'A' )));
 
 					$valorCheckPagamento =0;
-
+					
 					foreach ($pagamentosValid as $pgtoValid)
 					{
 
@@ -799,21 +806,64 @@ class MesasController extends AppController {
 
 				//	$resultToCheck = (double) $valorToCheck - (double) $valorCheckPagamento;
 				$checkPagamento = false;
-				
-				if((float) $valorCheckPagamento >= $valorToCheck)
+				$valorCheckPagamento = number_format($valorCheckPagamento,2, ".",",") ;
+				$valorToCheck = number_format($valorToCheck,2 ,".",",");
+				if((float) $valorCheckPagamento >= (float) $valorToCheck)
 				{
 					$checkPagamento = true;
+					
 				}else{
+					
 					$checkPagamento = false;
 				}
 
-				if($valorCheckPagamento==0 && $valorToCheck==0){
+				if( (float) $valorCheckPagamento==0 && (float) $valorToCheck==0){
 					$checkPagamento = false;
+				}
+
+
+				if($checkPagamento == true && $isValidItens==false ){
+					foreach ($pedidos as $pedido_validacao)
+					{
+
+						$itens_validacao = $this->Itensdepedido->find('all', array('recursive'=> -1, 'conditions'=> array('Itensdepedido.pedido_id'=> $pedido_validacao['Pedido']['id'], 'Itensdepedido.status_cancelado is null' )));
+						foreach ($itens_validacao as $iten_validacao)
+						{
+							$itemPedidoUpdate = array('id' => $iten_validacao['Itensdepedido']['id'], 'status_pago' => 1, );	
+							$this->Itensdepedido->save($itemPedidoUpdate);
+						}
+						
+					}
+
+					$pagamentosValid = $this->Pgtopedido->find('all', array('recursive'=> -1, 'conditions'=> array('Pgtopedido.mesa_id'=> $mesa['Mesa']['id'], 'Pgtopedido.status'=> 'A' )));
+
+					$valorCheckPagamento =0;
+					
+					foreach ($pagamentosValid as $pgtoValid)
+					{
+
+						if($pgtoValid['Pgtopedido']['status'] =='A' && $pgtoValid['Pgtopedido']['status_finalizado']== false)
+						{
+							
+							if($pgtoValid['Pgtopedido']['cliente_id'] != ''){
+								$meuCliente=  $pgtoValid['Pgtopedido']['cliente_id'];
+							}
+							$this->Pgtopedido->save(
+								array(
+									'id'=> $pgtoValid['Pgtopedido']['id'],
+									'status'=> 'C',
+								)
+							);
+
+						}
+
+					}
+					$isValidItens=true;
 				}
 				
-
 				//Fim Validacao
-
+				
+				
 					if($checkPagamento == true &&  $isValidItens==true)
 					{
 						$this->loadModel('Movimento');
@@ -863,7 +913,13 @@ class MesasController extends AppController {
 							'movimento_id'=> $movimento['Movimento']['id']
 						);
 						$this->Venda->create();
-						$this->Venda->save($vendaToSave);
+						try {
+							$this->Venda->save($vendaToSave);	
+						} catch (Exception $e) {
+							print_r($e);
+							die;
+						}
+						
 
 						$venda = $this->Venda->find('first', array('recursive'=> -1 , 'order' => array('Venda.id DESC'),'conditions'=> array('Venda.filial_id'=>$minhasFiliais)));
 						$itensVenda = array();
@@ -872,7 +928,8 @@ class MesasController extends AppController {
 						foreach ($pedidos as $pedido)
 						{
 
-							$itens = $this->Itensdepedido->find('all', array('recursive'=> -1, 'conditions'=> array('Itensdepedido.pedido_id'=> $pedido['Pedido']['id'], 'Itensdepedido.status_cancelado'=> false )));
+							$itens = $this->Itensdepedido->find('all', array('recursive'=> -1, 'conditions'=> array('Itensdepedido.pedido_id'=> $pedido['Pedido']['id'], 'Itensdepedido.status_cancelado is null' )));
+							
 				
 							foreach ($itens as $iten)
 							 {
@@ -889,7 +946,7 @@ class MesasController extends AppController {
 								$this->Vendasiten->save($itensToSave);
 							}
 							$pagamentos = $this->Pgtopedido->find('all', array('recursive'=> -1, 'conditions'=> array('Pgtopedido.mesa_id'=> $mesa['Mesa']['id'], 'Pgtopedido.status'=> 'A' )));
-
+							
 							foreach ($pagamentos as $pgto)
 							{
 								$pgtoToSave=array(
@@ -900,25 +957,45 @@ class MesasController extends AppController {
 										'taxa'=>$pgto['Pgtopedido']['taxa'],
 										'status' => 'Ativo'
 								);
+								
 								$this->Vendaspagamento->create();
 								$this->Vendaspagamento->save($pgtoToSave);
 							}
 							$pagamentosToUpdate = $this->Pgtopedido->find('all', array('recursive'=> -1, 'conditions'=>array(
-								'Pgtopedido.mesa_id' => $mesa['Mesa']['id'], 'Pgtopedido.status_finalizado' => 0
+								'Pgtopedido.mesa_id' => $mesa['Mesa']['id'], 'Pgtopedido.status_finalizado is null' 
 							)));
-
+							
 							foreach ($pagamentosToUpdate as $pgtosToUp)
 							{
-								$this->Pgtopedido->save(array('id' => $pgtosToUp['Pgtopedido']['id'],
-								'status_finalizado' => 1,
-								'status' => 'F'
-								));
+								try {
+									$this->Pgtopedido->create();
+									$this->Pgtopedido->save(array('id' => (int) $pgtosToUp['Pgtopedido']['id'],
+									'status_finalizado' => 1,
+									'status' => 'F'
+									));	
+
+									
+								} catch (Exception $e) {
+									print_r($e);
+									die;
+								}
+								
 							}
 							$pedidoOldToUpdate = array(
 								'id' => $pedido['Pedido']['id'],
 								'status_finalizado' => 1,
-								'status' => 'Finalizado'
+								'status' => 'Finalizado',
+								'status_pagamento'=>'OK'
 							);
+
+							if($pedido['Pedido']['cliente_id']==0){
+								
+								if($meuCliente != ''){
+									$pedidoOldToUpdate['cliente_id']= $meuCliente ;
+								}
+								
+							}
+							
 							$this->Pedido->save($pedidoOldToUpdate);
 							$this->Mesa->save(
 								array('id'=> $mesa['Mesa']['id'], 'taxa'=> NULL, 'desconto'=> NULL, )

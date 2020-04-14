@@ -93,7 +93,21 @@
                         echo $this->Form->input('disponivel', array('class' => '', 'label' => array('text' => 'Disponível: ', 'class' => 'control-label')));
                         ?>
                     </div>
-
+                    <div class="form-group  form-group-lg col-md-2" style="width: 230px !important;">
+                        <?php
+                        echo $this->Form->input('recompensa', array('class' => '', 'label' => array('text' => 'Recompensa: ', 'class' => 'labellarge')));
+                        ?>
+                    </div>
+                    <div class="form-group  form-group-lg col-md-2" style="width: 230px !important;">
+                        <?php
+                        echo $this->Form->input('recompensa_tipo', array('options'=> array(
+                                ''=> 'Selecione',
+                                '1'=> 'Comum',
+                                '2'=> 'Consolação',
+                                '3'=> 'Rara',
+                        ), 'label' => array('text' => 'Recompensa: ')));
+                        ?>
+                    </div>
                 </div>
 
                 <div class="row">
@@ -104,6 +118,7 @@
                     </div>
 
                 </div>
+
 
                 <?php
                 echo $this->Form->input('filial_id', array('type' => 'hidden'));

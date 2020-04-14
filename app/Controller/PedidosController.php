@@ -534,6 +534,12 @@ class PedidosController extends AppController {
 					$this->Atendimento->create();
 					$updateStatusAtendimento= array('id' => $pedido['Pedido']['atendimento_id'], 'status' => 'Confirmado');
 					$this->Atendimento->save($updateStatusAtendimento);
+					if($pedido['Pedido']['ptk'] !='' && $pedido['Pedido']['ptk'] !=null){
+						$title='Pedido Confirmado.';
+						$notification='Seu pedido foi recebido pela nossa equipe, vamos trabalhar para entregar o mais breve possível.';
+						$this->sendnotification($pedido['Pedido']['ptk'], $title, $notification, $pedido['Pedido']['atendimento_id']);	
+					}
+					
 
 					$resultados= $this->Pedido->find('first', array('recursive' => -1,'conditions' => array('Pedido.id' => $id)));
 				}
@@ -645,6 +651,11 @@ class PedidosController extends AppController {
 						$this->loadModel('Atendimento');
 						$this->Atendimento->create();
 						$updateStatusAtendimento= array('id' => $pedido['Pedido']['atendimento_id'], 'status' => 'Em Trânsito');
+						if($pedido['Pedido']['ptk'] !='' && $pedido['Pedido']['ptk'] !=null){
+							$notification= 'Seu pedido está a caminho, agradecemos a preferência. Tenha um bom apetite!';
+							$title='Pedido em trânsito';
+							$this->sendnotification($pedido['Pedido']['ptk'], $title,$notification, $pedido['Pedido']['atendimento_id']);	
+						}
 						$this->Atendimento->save($updateStatusAtendimento);
 						$resultados= $this->Pedido->find('first', array('recursive' => -1,'conditions' => array('Pedido.id' => $id)));
 					}
@@ -719,7 +730,59 @@ class PedidosController extends AppController {
 			}
 	}
 
+public function sendnotification($token='',$title='', $notification='', $atendimento_id='') {
+	
 
+	/*$payload = array(
+	    'to' => $token,
+	    'sound' => 'default',
+	    'title'=>$title,
+	    'body' => $notification, 
+	    //'data'=> array('data'=> 'my date to send'),                          
+	               
+    );*/
+	
+	$payload = array(
+	    'to' => $token,
+	    'title'=>$title,
+	    'body' => $notification, 
+	    'data'=> array('atendimento_id'=> $atendimento_id),                          
+	    'sound'=>'default',              
+    );
+	
+	$curl = curl_init();
+
+	curl_setopt_array($curl, array(
+	CURLOPT_URL => "https://exp.host/--/api/v2/push/send",
+	CURLOPT_RETURNTRANSFER => true,
+	CURLOPT_ENCODING => "",
+	CURLOPT_MAXREDIRS => 10,
+	CURLOPT_TIMEOUT => 30,
+	CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+	CURLOPT_CUSTOMREQUEST => "POST",
+	CURLOPT_POSTFIELDS => json_encode($payload),
+	CURLOPT_HTTPHEADER => array(
+		"Accept: application/json",
+		"Accept-Encoding: gzip, deflate",
+		"Content-Type: application/json",
+		"cache-control: no-cache",
+		
+		),
+	));/**/
+
+	$response = curl_exec($curl);
+	$err = curl_error($curl);
+
+	curl_close($curl);
+
+	if ($err) {
+	 return $err;
+	 
+	} else {
+	  return $response;
+	}
+
+}
 
 	public function cancelarpedido($id = null) {
 		date_default_timezone_set("Brazil/East");
@@ -739,7 +802,7 @@ class PedidosController extends AppController {
 				if ($this->request->is(array('Ajax'))) {
 
 					if(!empty($resultados)){
-						if($resultados ['Pedido']['status'] != 'Cancelado'){
+						if($resultados['Pedido']['status'] != 'Cancelado'){
 							$this->Pedido->id= $id;
 							$this->Pedido->saveField('status', 'Cancelado');
 							$this->loadModel('Atendimento');
@@ -764,6 +827,11 @@ class PedidosController extends AppController {
 
 								$Estoque->aumentaEstoque($iten['Itensdepedido']['produto_id'], $iten['Itensdepedido']['qtde']);
 							}
+						}
+						if($resultados['Pedido']['ptk'] !='' && $resultados['Pedido']['ptk'] !=null){
+							$title='Pedido Cancelado.';
+							$notification='Informamos o cancelamento do seu pedido.'. $this->request->data['Pedido']['motivocancela'];
+							$this->sendnotification($resultados['Pedido']['ptk'], $title, $notification, $resultados['Pedido']['atendimento_id']);	
 						}
 						$resultados = $this->Pedido->find('first', array('recursive'=> -1, 'conditions'=> array('Pedido.id'=>$id)));
 					}
@@ -1435,7 +1503,7 @@ public function listarpedidos() {
 
 			$this->loadModel('Itensdepedido');
 
-        $this->request->data['Pedido']['cliente_id'] =($this->request->data['Pedido']['cliente_id'] =='' ? 1 : $this->request->data['Pedido']['cliente_id']);
+        $this->request->data['Pedido']['cliente_id'] =($this->request->data['Pedido']['cliente_id'] =='' ? 0 : $this->request->data['Pedido']['cliente_id']);
 				$this->request->data['Pedido']['data']=date('Y-m-d');
 				$this->request->data['Pedido']['user_id']=$this->Session->read('Auth.User.id');
 				$this->request->data['Pedido']['empresa_id']=$this->Session->read('Auth.User.empresa_id');
@@ -1488,7 +1556,7 @@ public function listarpedidos() {
 						//fazer uma função para pegar a lat e lng do estabelecimento
 						$lat = $empresa['Filial']['lat'];
 						$lng = $empresa['Filial']['lng'];
-						$dadosatendimento = array('ativo' => 1, 'usado' => 0, 'codigo' => $codigo, 'tipo' => 'EXTERNO', 'cliente_id' => (int)  $clt, 'lat' => $lat, 'lng' => $lng, 'entregador_id' => (int)  $entregadorID, 'filial_id'=> (int) $this->request->data['Pedido']['filial_id'], 'empresa_id'=>$this->Session->read('Auth.User.empresa_id'));
+						$dadosatendimento = array('ativo' => 1, 'usado' => 0, 'codigo' => $codigo, 'tipo' => 'EXTERNO-SISTEMA', 'cliente_id' => (int)  $clt, 'lat' => $lat, 'lng' => $lng, 'entregador_id' => (int)  $entregadorID, 'filial_id'=> (int) $this->request->data['Pedido']['filial_id'], 'empresa_id'=>$this->Session->read('Auth.User.empresa_id'));
 
 						if ($this->Atendimento->save($dadosatendimento)) {
 
@@ -1573,7 +1641,8 @@ public function listarpedidos() {
 				$this->loadModel('Cliente');
 				$cliente = $this->Cliente->find('first', array('recursive'=> -1, 'conditions' => array('Cliente.id' => $this->request->data['Pedido']['cliente_id'])));
 
-				$duracao = $cliente['Cliente']['duracao'];
+				if(!empty($cliente)){
+					$duracao = $cliente['Cliente']['duracao'];
 
 				//Trato a string recebida para o formato de horas e minutos
 				$horasAux = explode('horas', $cliente['Cliente']['duracao']);
@@ -1642,6 +1711,9 @@ public function listarpedidos() {
 					$posicaoFila=0;
 				}
 				$this->request->data['Pedido']['posicao_fila']=$posicaoFila;
+				}
+
+				
           $this->loadModel('Entrega');
         if($this->request->data['Pedido']['mesa_id'] == 0){
           $entregasToSave = array(
@@ -1796,7 +1868,7 @@ public function listarpedidos() {
       unset($produtosTratados);
       unset($tamanhos);
       $this->loadModel('Mesa');
-      $mesas = $this->Mesa->find('all', array('recursive' => -1, 'order' => 'Mesa.identificacao asc', 'conditions'=> array('Mesa.filial_id'=> $loja)));
+      $mesas = $this->Mesa->find('all', array('recursive' => -1, 'order' => 'Mesa.identificacao asc', 'conditions'=> array('Mesa.filial_id'=> $loja, 'Mesa.ativo'=> 1)));
       //$mesas[''] ='Selecione';
       $clientes = $this->Cliente->find('all', array('recursive' => -1, 'order' => 'Cliente.nome asc', 'conditions'=> array('AND'=> array(array('Cliente.ativo' => true), array('Cliente.filial_id' => $filiasArray)))));
 			$pagamentos = $this->Pagamento->find('all', array('recursive' => -1, 'order' => 'Pagamento.tipo asc', 'conditions'=> array('Pagamento.filial_id'=> $loja)));

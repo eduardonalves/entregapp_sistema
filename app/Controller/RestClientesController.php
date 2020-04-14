@@ -17,8 +17,8 @@ class RestClientesController extends AppController {
 			$resposta = "NOK";
 			return $resposta;
 			$clienteUp= array('id'=> $clienteId, 'ativo' => 0);
-			$this->Cliente->create();
-			$this->Cliente->save($clienteUp);
+			//$this->Cliente->create();
+			//$this->Cliente->save($clienteUp);
 		}
 
 	}
@@ -52,6 +52,59 @@ class RestClientesController extends AppController {
     '_serialize' => array('ultimopedido')
   ));
   }
+
+public function notificationsmobile() {
+	header("Access-Control-Allow-Origin: *");
+
+	$payload = array(
+	    'to' => 'ExponentPushToken[bX7Y4IFGvKDXu-IIjN53dx]',
+	    'sound' => 'default',
+	    'title'=>'New Notification',
+	    'body' => 'hello', 
+	    //'data'=> array('data'=> 'my date to send'),                          
+	    'sound'=>'default',              
+    );
+	
+	$curl = curl_init();
+
+	curl_setopt_array($curl, array(
+	CURLOPT_URL => "https://exp.host/--/api/v2/push/send",
+	CURLOPT_RETURNTRANSFER => true,
+	CURLOPT_ENCODING => "",
+	CURLOPT_MAXREDIRS => 10,
+	CURLOPT_TIMEOUT => 30,
+	CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+	CURLOPT_CUSTOMREQUEST => "POST",
+	CURLOPT_POSTFIELDS => json_encode($payload),
+	CURLOPT_HTTPHEADER => array(
+		"Accept: application/json",
+		"Accept-Encoding: gzip, deflate",
+		"Content-Type: application/json",
+		"cache-control: no-cache",
+		
+		),
+	));/**/
+
+	$response = curl_exec($curl);
+	$err = curl_error($curl);
+
+	curl_close($curl);
+
+	if ($err) {
+	 
+	  $this->set(array(
+					'ultimopedido' => $err,
+					'_serialize' => array('ultimopedido')
+				));
+	} else {
+	  $this->set(array(
+					'ultimopedido' => $response,
+					'_serialize' => array('ultimopedido')
+				));
+	}
+
+}
+
 public function loginmobile() {
 		$this->loadModel('Cliente');
 		//header('Content-Type: application/json; Charset="UTF-8"');
@@ -281,7 +334,107 @@ public function loginmobile() {
 					'_serialize' => array('ultimopedido')
 				));
     	   }
-	    public function confirmaPromoDia($filial_id,$promocao_id){
+	public function processapontos($value='')
+	{
+		$ultimopedido=array();	
+		$this->loadModel('Pedido');
+		$this->loadModel('Ponto');
+		$this->loadModel('Cliente');
+		$pedidos = $this->Pedido->find('all', array('recursive'=> -1, 'conditions'=> array(
+			
+			'OR' => array(
+				array(
+					'Pedido.status' => 'Entregue',
+				),
+				array(
+					'Pedido.status' => 'Finalizado',
+				)
+			)
+			,
+			'Pedido.status_pagamento'=> 'OK',
+			'Pedido.status_pontos is null',
+			'Pedido.cliente_id is not null',
+		)));
+		//atualiza calcula pontos e atualiza saldo
+		$qtdClientes= 0;
+		foreach ($pedidos as $key => $value) {
+			$meusPontos = $this->Ponto->find('first', array('recursive'=> -1, 'conditions'=> array(
+				'Ponto.cliente_id'=> $value['Pedido']['cliente_id']
+			)));
+
+			$pontosRestantes=0;
+			$pontosGanhos=0;
+			if(empty($meusPontos)){	
+				$resto =  $value['Pedido']['valor'] % 16;
+				$pontos = ($value['Pedido']['valor'] - $resto) / 16;
+				$pontos = (int) $pontos;
+				$pontosRestantes =$pontos;
+				$pontosGanhos = $pontos;
+				if($pontos <= 0){
+					$resto = $value['Pedido']['valor'];	
+				}
+				$dados = array(
+					'cliente_id'=> $value['Pedido']['cliente_id'],
+					'ativo' => 1,
+					'saldo_credito'=> $resto,
+					'pontos_ganhos'=> $pontos,
+					'pontos_gastos'=> 0,
+				);
+				 
+
+				$this->Ponto->create();
+				$this->Ponto->save($dados);/**/
+			}else{
+				$saldoTotal =(float) $value['Pedido']['valor'] + (float) $meusPontos['Ponto']['saldo_credito'];
+				$resto =  $saldoTotal  % 16;
+				$pontos = ($saldoTotal - $resto) / 16;
+				$pontosGanhos = (int) $pontos;
+				$pontos = (int) $pontos + (int) $meusPontos['Ponto']['pontos_ganhos'] ;
+
+				if($pontos <= 0){
+					$resto = $saldoTotal;	
+				}
+				$resto = (float) $resto;
+				
+				$dados = array(
+					'id' =>  $meusPontos['Ponto']['id'],
+					'saldo_credito'=> $resto,
+					'pontos_ganhos'=> $pontos
+				);
+				//$this->create();
+				$this->Ponto->save($dados);
+				
+				$pontosRestantes = $meusPontos['Ponto']['pontos_ganhos'] - $meusPontos['Ponto']['pontos_gastos']; 
+			}/**/
+			$this->Pedido->save(
+				array(
+					'id'=> $value['Pedido']['id'],
+					 'status_pontos'=> 1
+				)
+			);
+			$meuCliente = $this->Cliente->find('first', array('recursive'=> -1,'conditions'=> array(
+				'Cliente.id'=> $value['Pedido']['cliente_id']
+			)));
+			if(!empty($meuCliente)){
+				if($meuCliente['Cliente']['id'] !=''){
+					if($pontosGanhos > 0){
+						$this->Cliente->sendEmailPoints($value['Pedido']['cliente_id'], $pontosGanhos, $pontosRestantes );
+					}
+					
+					
+				}
+			}
+			$qtdClientes = $qtdClientes+1;
+		}
+		
+
+		$this->layout ='ajaxaddpedido';
+		$this->set(array(
+						'ultimopedido' => $qtdClientes,
+						'_serialize' => array('ultimopedido')
+					));
+	}
+	public function confirmaPromoDia($filial_id,$promocao_id){
 	    	//@TODO
     		//rever funcionalidade de dias de promoçao
 	    	return false;
@@ -440,7 +593,7 @@ public function loginmobile() {
 
 		 }
 	}
-	public function recuperarsenha()
+	public function recuperarsenha($value='')
 	{
 		header("Access-Control-Allow-Origin: *");
 		$cliente = $this->Cliente->find('first',array('recursive'=> -1,'conditions'=> array('Cliente.username'=> $this->request->data['clt'])));
@@ -464,7 +617,12 @@ public function loginmobile() {
 						'_serialize' => array('ultimocliente')
 					));
 	}
-	public function addmobile() {
+
+	
+
+
+
+	public function addmobile($value='') {
 
 		header("Access-Control-Allow-Origin: *");
 
@@ -555,6 +713,433 @@ public function loginmobile() {
 
 	}
 
+	public function validatoken($value='')
+	{
+		
+		header("Access-Control-Allow-Origin: *");
+		header('Content-Type: application/json');
+		$this->layout='liso';
+		$cliente= $_GET['clt'];
+		
+		$token =  $_GET['token'];
+		
+
+		$resp='NOK';
+
+		
+
+		$resp =$this->checkToken($cliente, $token);
+		$this->set(array(
+		'users' => $resp,
+		'_serialize' => array('users')
+		));
+		
+		
+	}
+	public function verificasaldo($value='')
+	{
+		header("Access-Control-Allow-Origin: *");
+		
+		$saldo=0;
+		if(empty($this->request->data)){
+			
+			$this->request->data= $_GET;
+
+		}
+		if ($this->request->is('post','put','get')) {
+
+
+			$this->layout='liso';
+			$cliente= $this->request->data['clt'];
+			$token =  $this->request->data['token'];
+
+
+			$resp =$this->checkToken($cliente, $token);
+				
+			if($resp=='OK'){
+				$this->loadModel('Ponto');
+				$this->loadModel('Produto');
+				$this->loadModel('Partida');
+
+				$valorFicha = 10;
+				$pontos = $this->Ponto->find(
+					'first',
+					array(
+						'recursive'=> -1,
+						'conditions'=> array(
+							'Ponto.cliente_id'=> $cliente 
+						)
+					)
+				);
+				if(!empty($pontos)){
+					$saldo = (int) $pontos['Ponto']['pontos_ganhos'] - (int) $pontos['Ponto']['pontos_gastos'];
+
+				}
+
+					
+				
+			}
+
+		}
+		
+		$this->set(array(
+						'users' => $saldo ,
+						'_serialize' => array('users')
+					));
+	}
+	public function validajogos($value='')
+	{
+		header("Access-Control-Allow-Origin: *");
+		
+
+		if ($this->request->is('post','put','get')) {
+
+
+			$this->layout='liso';
+			$cliente= $this->request->data['clt'];
+			$token =  $this->request->data['token'];
+			$empresa_id=$this->request->data['lj'];
+			$filial_id = $this->request->data['fp'];
+			
+			$resultado=array(
+				'resultado'=> 'NOKSS',			
+			);
+
+			$resp =$this->checkToken($cliente, $token);
+
+			if($resp=='OK'){
+				$this->loadModel('Ponto');
+				$this->loadModel('Produto');
+				$this->loadModel('Partida');
+
+				$valorFicha = 10;
+				$pontos = $this->Ponto->find(
+					'first',
+					array(
+						'recursive'=> -1,
+						'conditions'=> array(
+							'Ponto.cliente_id'=> $cliente 
+						)
+					)
+				);
+				if(!empty($pontos)){
+					$saldo = (int) $pontos['Ponto']['pontos_ganhos'] - (int) $pontos['Ponto']['pontos_gastos'];
+
+				
+
+					$temPartidaAberta = $this->Partida->find('first', array(
+						'recursive'=> -1,
+						'conditions'=> array(
+							'Partida.cliente_id'=> $cliente,
+							'Partida.ativo'=> 1
+						)
+					));
+					if(empty($temPartidaAberta)){
+					
+						$produtosConsolacao = $this->Produto->find('all',
+							array(
+								'recursive'=> -1,
+								'conditions'=> array(
+									'Produto.recompensa'=> 1,
+									'Produto.recompensa_tipo'=> 2,
+								)
+							)
+						); 
+
+						$p_consolacao = array();
+
+						foreach ($produtosConsolacao as $key => $value) {
+							array_push($p_consolacao, $value['Produto']['id']);
+						}
+						$tamanho = count($p_consolacao);
+						$numeroAleatorio = rand(1,$tamanho);
+						$numeroAleatorio = $numeroAleatorio -1;
+						$premioConsolacao= '';
+
+						if(isset($p_consolacao[$numeroAleatorio])){
+							$premioConsolacao= $p_consolacao[$numeroAleatorio];
+						}
+
+						$produtosComuns = $this->Produto->find('all',
+							array(
+								'recursive'=> -1,
+								'conditions'=> array(
+									'Produto.recompensa'=> 1,
+									'Produto.recompensa_tipo'=> 1,
+								)
+							)
+						); 
+
+						$premios = array();
+
+						$countPremioComum = count($produtosComuns);
+						$vezesParaContar = $countPremioComum  * 10; 
+						foreach ($produtosComuns as $key2 => $value2) {
+							for ($i=0; $i < $vezesParaContar; $i++) { 
+								array_push($premios, $value2['Produto']['id']);
+							}
+							
+						}
+
+						
+
+						$produtosRaros = $this->Produto->find('all',
+							array(
+								'recursive'=> -1,
+								'conditions'=> array(
+									'Produto.recompensa'=> 1,
+									'Produto.recompensa_tipo'=> 3,
+								)
+							)
+						); 
+
+						$premiosRaros = array();
+
+						$countPremiosRaros= count($produtosRaros);
+						$vezesParaContar = $countPremiosRaros  * 3; 
+						foreach ($produtosRaros as $key3 => $value3) {
+							for ($i=0; $i < $vezesParaContar; $i++) { 
+								array_push($premios, $value3['Produto']['id']);
+							}
+							
+						}
+
+						$tamanho = count($premios);
+						
+
+						$numeroAleatorio = rand(1,$tamanho);
+						$numeroAleatorio = $numeroAleatorio -1;
+						$premio= '';
+						
+						if(isset($premios[$numeroAleatorio])){
+							$premio= $premios[$numeroAleatorio];
+						}
+
+
+
+						if($saldo >= $valorFicha){
+							$moedas = $saldo - $valorFicha;
+							$resultado=array(
+								'resultado'=> 'OK',
+								'premio_consolacao'=> $premioConsolacao,
+								'premio'=> $premio,
+								'moedas'=> $moedas,
+								'Partida'=> '', 
+							);
+							$pontos_gastos = $pontos['Ponto']['pontos_gastos'] + $valorFicha;
+							$pontoParaSalvar = array(
+								'id'=>  $pontos['Ponto']['id'],
+								'pontos_gastos'=>  $pontos_gastos
+							);
+							$this->Ponto->save($pontoParaSalvar);
+
+							$this->Partida->create();
+							$this->Partida->save(
+								array(
+									'cliente_id'=> $cliente,
+									'recompensa_um_id'=> $premioConsolacao,
+									'recompensa_dois_id'=> $premio,
+									'ativo'=> 1,
+									'filial_id'=> $filial_id,
+									'empresa_id'=> $empresa_id
+								)
+								
+							);
+							 
+						}else{
+							//Não OK porque não tem saldo suficiente NOKSS
+							$resultado='NOKSS';
+							$resultado=array(
+								'resultado'=> 'NOKSS',
+								
+							);
+						}
+					}else{
+						//OK porque tem partida em aberto
+						$resultado=array(
+								'resultado'=> 'OK',
+								'premio_consolacao'=> $temPartidaAberta['Partida']['recompensa_um_id'],
+								'premio'=>  $temPartidaAberta['Partida']['recompensa_dois_id'],
+								'moedas'=> $saldo,
+								'Partida'=> $temPartidaAberta['Partida']
+								
+						);
+
+					}
+				}else{
+					//Não OK porque não tem saldo suficiente NOKSS
+					$resultado=array(
+							'resultado'=> 'NOKSS',
+							
+					);
+				}
+				
+			}
+
+		}
+		if(!isset($resultado)){
+			$resultado=array(
+							'resultado'=> 'NOKSS',
+							
+					);
+		}
+		$this->set(array(
+						'users' => $resultado ,
+						'_serialize' => array('users')
+					));
+	}
+	public function jogarjokenpo($value='')
+	{
+		header("Access-Control-Allow-Origin: *");
+		$this->layout='liso';
+		$hoje= date("Y-m-d");
+		$dataValidade =date("Y-m-d", strtotime( '+2 month'. $hoje ) );
+
+		if(empty($this->request->data)){
+			
+			$this->request->data= $_GET;
+		}
+		$this->loadModel('Partida');
+		//if ($this->request->is('post','put','get')) {
+
+	    	$cliente= $this->request->data['clt'];
+			$token =  $this->request->data['token'];
+			
+			$resp =$this->checkToken($cliente, $token);
+
+			//if($resp=='OK'){
+				$temPartidaAberta = $this->Partida->find('first', array(
+					'recursive'=> -1,
+					'conditions'=> array(
+						'Partida.cliente_id'=> $cliente,
+						'Partida.ativo'=> 1
+					)
+				));
+
+		    	
+		    	if(!empty($temPartidaAberta)){
+		    		$escolhaUsuario = $this->request->data['escolhaUsuario'];
+					$numeroAleatorio = rand(1,3);
+					$numeroAleatorio = $numeroAleatorio -1;
+					$respostaComputador = '';
+			        $resultado = '';
+			        $imagemComputador = '';
+			        $imagemUsuario = '';
+
+			        
+			        switch ($numeroAleatorio) {
+			        	  case 0:
+
+			                $respostaComputador = 'Pedra';
+			                
+
+			                if ($escolhaUsuario == 'Pedra') {
+			                    $resultado = 'Você Empatou';
+			                } else if ($escolhaUsuario == 'Papel') {
+			                    $resultado = 'Você Ganhou';
+			                } else {
+			                    $resultado = 'Você Perdeu';
+			                }
+			                break;
+			            case 1:
+
+
+			                $respostaComputador = 'Papel';
+
+
+			                if ($escolhaUsuario == 'Papel') {
+			                    $resultado = 'Você Empatou';
+			                } else if ($escolhaUsuario == 'Tesoura') {
+			                    $resultado = 'Você Ganhou';
+			                } else {
+			                    $resultado = 'Você Perdeu';
+			                }
+
+
+			                break;
+			            case 2:
+
+			                $respostaComputador = 'Tesoura';
+
+			                
+
+			                if ($escolhaUsuario == 'Tesoura') {
+			                    $resultado = 'Você Empatou';
+			                } else if ($escolhaUsuario == 'Papel') {
+			                    $resultado = 'Você Perdeu';
+			                } else {
+			                    $resultado = 'Você Ganhou';
+			                }
+			                break;
+			        }	
+			        $this->Partida->create();
+			        if($resultado=='Você Ganhou'){
+			        	$countpartidas = (int) $temPartidaAberta['Partida']['n_vitorias'] + 1;
+			        	$venceu='';
+			        	if($countpartidas >= 3){
+			        		$venceu='Vitória';
+			        	}
+			        	$this->Partida->save(array(
+			        		'id'=> $temPartidaAberta['Partida']['id'],
+			        		'n_vitorias'=> $countpartidas,
+			        		'ultima_parcial'=> $resultado,
+			        		'restultado'=> $venceu,
+			        		'ativo'=> ($venceu=='' ? true: false),
+			        		'recompensa_escolhida_id'=> ($venceu=='Vitória' ? $temPartidaAberta['Partida']['recompensa_dois_id']:'' ),
+			        		'escolha_usuario'=> $escolhaUsuario,
+			        		'escolha_computador'=> $respostaComputador,
+			        		'data_validade'=> $dataValidade
+			        	));
+					}
+			        if($resultado=='Você Perdeu'){
+						$countpartidas = (int) $temPartidaAberta['Partida']['n_derrotas'] + 1;
+						$perdeu='';
+			        	if($countpartidas >= 3){
+			        		$perdeu='Derrota';
+			        	}
+			        	$this->Partida->save(array(
+			        		'id'=> $temPartidaAberta['Partida']['id'],
+			        		'n_derrotas'=> $countpartidas,
+			        		'ultima_parcial'=> $resultado,
+			        		'restultado'=> $perdeu,
+			        		'ativo'=> ($perdeu=='' ? true: false),
+			        		'recompensa_escolhida_id'=> ($perdeu=='Derrota' ? $temPartidaAberta['Partida']['recompensa_um_id']:'' ),
+			        		'escolha_usuario'=> $escolhaUsuario,
+			        		'escolha_computador'=> $respostaComputador,
+			        		'data_validade'=> $dataValidade
+			        	));
+					}
+					if($resultado == 'Você Empatou'){
+						$this->Partida->save(array(
+			        		'id'=> $temPartidaAberta['Partida']['id'],
+			        		'ultima_parcial'=> $resultado,
+			        		'escolha_usuario'=> $escolhaUsuario,
+			        		'escolha_computador'=> $respostaComputador,
+			        	));
+					}
+
+					$temPartidaAbertaAtualizada= $this->Partida->find('first', array(
+						'recursive'=> -1,
+						'conditions'=> array(
+							'Partida.id'=> $temPartidaAberta['Partida']['id']
+						)
+					));
+					$temPartidaAberta =  $temPartidaAbertaAtualizada;
+		    	}
+
+			//}else{
+				//$temPartidaAberta='Erro: 510';
+			//}
+	    		
+	    	
+				
+		//}
+		
+		$this->set(array(
+						'users' => $temPartidaAberta,
+						'_serialize' => array('users')
+					));
+	}
 	function image_fix_orientation($path){
 		//read EXIF header from uploaded file
 		$exif = exif_read_data($path);

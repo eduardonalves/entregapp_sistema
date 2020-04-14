@@ -45,7 +45,7 @@
 								<?php echo $this->Form->input('cidade',array('class' => false,'label' => array('text' => 'Cidade:'))); ?>
 								<?php echo $this->Form->input('estado',array('class' => false,'label' => array('text' => 'UF:'))); ?>
 
-								<?php echo $this->Form->input('telefone1',array('class' => false,'label' => array('text' => 'Telefone:'))); ?>
+								<?php echo $this->Form->input('telefone1',array('class' => false,'label' => array('text' => 'WhatsApp:'))); ?>
 								<?php echo $this->Form->input('telefone2',array('class' => false,'label' => array('text' => 'Telefone:'))); ?>
 								<?php echo $this->Form->input('telefone3',array('class' => false,'label' => array('text' => 'Telefone:'))); ?>
 								<?php echo $this->Form->input('telefone4',array('class' => false,'label' => array('text' => 'Telefone:'))); ?>

@@ -158,7 +158,7 @@ class FilialsController extends AppController {
 			$i=0;
 
 			$this->request->data = $this->Filial->find('first', $options);
-			foreach ($diasdepromocao as $promocao) {
+			/*foreach ($diasdepromocao as $promocao) {
 				$this->request->data['Diasdepromocao'][$i]['id']=$promocao['Diasdepromocao']['id'];
 				$this->request->data['Diasdepromocao'][$i]['promocao_id']=$promocao['Diasdepromocao']['promocao_id'];
 				$this->request->data['Diasdepromocao'][$i]['filial_id']=$promocao['Diasdepromocao']['filial_id'];
@@ -170,7 +170,7 @@ class FilialsController extends AppController {
 				$this->request->data['Diasdepromocao'][$i]['sabado']=$promocao['Diasdepromocao']['sabado'];
 				$this->request->data['Diasdepromocao'][$i]['domingo']=$promocao['Diasdepromocao']['domingo'];
 				$i++;
-			}
+			}*/
 
 		}
 		$filial = $this->request->data;

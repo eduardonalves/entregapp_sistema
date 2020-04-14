@@ -101,10 +101,12 @@ class FechamentosController extends AppController {
 			$dataTermino=$this->request->data['filter']['dataFechamento-between'];
 		}
 
-		
+
 
 		$this->Fechamento->find('all', array('conditions'=> array($this->Filter->getConditions()), 'recursive' => 0));
 		$fechamentos = $this->Paginator->paginate('Fechamento');
+
+		
 		$this->request->data['filter']['dataFechamento'] = date("d/m/Y", strtotime($dataIncio));
 		$this->request->data['filter']['dataFechamento-between'] = date("d/m/Y", strtotime($dataTermino));
 

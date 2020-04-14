@@ -398,6 +398,34 @@ class ProdutosController extends AppController {
 		}
 		return $this->redirect( $this->referer() );
 	}
+	/**
+ * duplicar method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function duplicar($id = null) {
+		
+		$this->request->onlyAllow('post', 'delete','put');
+		$newProduto = $this->Produto->find('first', array(
+			'recursive'=> -1,
+			'conditions'=> array(
+				'Produto.id'=> $id
+			)
+		));
+		if(!empty($newProduto)){
+			if ($this->Produto->save($newProduto)) {
+				
+				$this->Session->setFlash(__('O produto foi duplicado com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
+			} else {
+				$this->Session->setFlash(__('Houve um erro ao duplicar o produto. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
+			}
+		}
+		
+		return $this->redirect( $this->referer() );
+	}
+
 
 	public function listarProdutos() {
 

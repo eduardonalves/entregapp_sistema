@@ -390,7 +390,7 @@ public function addmobile($codigo = null) {
 		date_default_timezone_set("Brazil/East");
 
 
-
+		
 
 
 		if ($this->request->is('post')) {
@@ -539,8 +539,19 @@ public function addmobile($codigo = null) {
 					$i=0;
 					$j=0;
 					$k=0;
+					$this->loadModel('Partida');
 					foreach( $itens as $key => $iten ){
-
+						if(isset($this->request->data['Itensdepedido'][$key]['partida_id'])){
+							if($this->request->data['Itensdepedido'][$key]['partida_id'] != ''){
+								$this->Partida->create();
+								$this->Partida->save(
+									array(
+										'id'=> $this->request->data['Itensdepedido'][$key]['partida_id'],
+										'resgate'=> 1
+									)
+								);
+							}
+						}
 						$produto =$this->Produto->find('first', array('rescusive'=> -1, 'conditions' => array('Produto.id' => $iten['produto_id'])));
 						if(!empty($produto)){
 							if($produto['Produto']['composto']==1){
@@ -895,7 +906,59 @@ public function addmobile($codigo = null) {
             '_serialize' => array('resultados')
         ));
   	}
+  public function sendnotification($token='',$title='', $notification='', $atendimento_id='') {
+	
 
+	/*$payload = array(
+	    'to' => $token,
+	    'sound' => 'default',
+	    'title'=>$title,
+	    'body' => $notification, 
+	    //'data'=> array('data'=> 'my date to send'),                          
+	               
+    );*/
+	
+	$payload = array(
+	    'to' => $token,
+	    'title'=>$title,
+	    'body' => $notification, 
+	    'data'=> array('atendimento_id'=> $atendimento_id),                          
+	    'sound'=>'default',              
+    );
+	
+	$curl = curl_init();
+
+	curl_setopt_array($curl, array(
+	CURLOPT_URL => "https://exp.host/--/api/v2/push/send",
+	CURLOPT_RETURNTRANSFER => true,
+	CURLOPT_ENCODING => "",
+	CURLOPT_MAXREDIRS => 10,
+	CURLOPT_TIMEOUT => 30,
+	CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+	CURLOPT_CUSTOMREQUEST => "POST",
+	CURLOPT_POSTFIELDS => json_encode($payload),
+	CURLOPT_HTTPHEADER => array(
+		"Accept: application/json",
+		"Accept-Encoding: gzip, deflate",
+		"Content-Type: application/json",
+		"cache-control: no-cache",
+		
+		),
+	));/**/
+
+	$response = curl_exec($curl);
+	$err = curl_error($curl);
+
+	curl_close($curl);
+
+	if ($err) {
+	 return $err;
+	 
+	} else {
+	  return $response;
+	}
+
+}
 	public function setpedidoscanceladosportempo()
   	{
   		$this->layout ='ajaxaddpedido';
@@ -942,10 +1005,27 @@ public function addmobile($codigo = null) {
 				
 				$Estoque = new ProdutosController;
 				$itensACancelar = $this->Itensdepedido->find('all', array('recursive'=>-1, 'conditions'=> array('Itensdepedido.pedido_id' => $value ['Pedido']['id'])));
+				$this->loadModel('Partida');
 
 				foreach ($itensACancelar as $iten) {
-
+					
+					if(isset($iten['Itensdepedido']['partida_id'])){
+						if($iten['Itensdepedido']['partida_id'] != ''){
+							$this->Partida->create();
+							$this->Partida->save(
+								array(
+									'id'=> $iten['Itensdepedido']['partida_id'],
+									'resgate'=> 0
+								)
+							);		
+						}
+					}
 					$Estoque->aumentaEstoque($iten['Itensdepedido']['produto_id'], $iten['Itensdepedido']['qtde']);
+				}
+				if($value['Pedido']['ptk'] !='' && $value['Pedido']['ptk'] !=null){
+					$title='Pedido Cancelado.';
+					$notification='Seu pedido foi cancelado automaticamente após exceder prazo de confirmação.';
+					$this->sendnotification($value['Pedido']['ptk'], $title, $notification, $value['Pedido']['atendimento_id']);	
 				}
 				$qtdItensCancelados= $qtdItensCancelados + 1;
 	  			//$limiteAprovacao =  $this->checkbfunc->somaHora($tempoLimite,$value['Produto']['created']);
