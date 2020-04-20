@@ -216,6 +216,14 @@ echo $this->Search->create('Produtos', array('class' => 'form-inline', 'type' =>
                             );
 
                             echo $this->Form->postLink(
+                                $this->Html->image('tb-duplicar.png', array('class' => 'bt-duplica', 'alt' => __('Duplicar'))), //le image
+                                array('controller' => 'Produtos', 'action' => 'duplicar', $produto['Produto']['id']), //le url
+                                array('escape' => false), //le escape
+                                __('Deseja duplicar o produto  %s?', $produto['Produto']['nome'])
+                            );
+
+                            
+                            echo $this->Form->postLink(
                                 $this->Html->image('tb-excluir.png', array('class' => 'bt-tabela', 'alt' => __('Excluir'))), //le image
                                 array('controller' => 'Produtos', 'action' => 'delete', $produto['Produto']['id']), //le url
                                 array('escape' => false), //le escape
