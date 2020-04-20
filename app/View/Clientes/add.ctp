@@ -1,6 +1,109 @@
+<div  class="col-sm-12">
+	<table id="example1" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
+		<thead>
+		<tr role="row">
+			<th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Código: activate to sort column descending" class="sorting th_link"><?php echo $this->Paginator->sort('id', 'Código');?></th>
+			<th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Código: activate to sort column descending" class="sorting th_link"><?php echo $this->Paginator->sort('nome', 'Nome');?></th>
+			<th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Código: activate to sort column descending" class="sorting th_link"><?php echo $this->Paginator->sort('username', 'Nome de usuario');?></th>
+			<th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Código: activate to sort column descending" class="sorting th_link"><?php echo $this->Paginator->sort('telefone', 'Telefone');?></th>
 
-	<h2><?php echo __('Cadastro de Clientes'); ?></h2>
-	<?php
+			<th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Código: activate to sort column descending" class="sorting th_link"><?php echo $this->Paginator->sort('email', 'Email');?></th>
+			<th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Código: activate to sort column descending"  class="sorting th_link"><?php echo $this->Paginator->sort('ativo', 'Status');?></th>
+			<th class="sorting th_link" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Código: activate to sort column descending">Ações</th>
+
+		</tr>
+			
+		</thead>
+		<tbody>
+		<?php $cliente_idAux = ''; $contLines=0;?>
+		<?php foreach ($clientes as $cliente) : ?>
+			
+			<?php
+				$contLines++;
+		                        $disabledline = ($cliente['Cliente']['ativo']== 0 ? 'disabledline': '');
+		                    ?>
+						<tr role="row" class="<?php echo ($contLines % 2 == 0 ? 'even':'odd') ;  ?> <?php echo $disabledline; ?>">
+							<td data-title="Código"><?php echo h($cliente['Cliente']['id']); ?></td>
+							<td data-title="Nome"><?php echo h($cliente['Cliente']['nome']); ?></td>
+							<td data-title="Nome"><?php echo h($cliente['Cliente']['username']); ?></td>
+							<td data-title="Telefone"><?php echo h($cliente['Cliente']['telefone']); ?></td>
+							<td data-title="Email"><?php echo h($cliente['Cliente']['email']); ?></td>
+							<td data-title="Status">
+								<?php
+									if($cliente['Cliente']['ativo']==1){
+										echo 'Ativo';
+									}else{
+										echo 'Desabilitado';
+									}
+								 ?></td>
+							<!--<td>
+								<div class="circulodivPequeno">
+									<?php
+										if(isset($cliente['Cliente']['foto']) && $cliente['Cliente']['foto'] != ''){
+									?>
+											<img src=<?php echo $cliente['Cliente']['foto'];?> alt=<?php echo $cliente['Cliente']['nome'];?> width="50px" height="50px" title=<?php echo $cliente['Cliente']['nome'];?> width="50px" height="50px"/>
+									<?php
+										}else{
+											echo $this->html->image('fotoico.png', array('alt'=> 'Foto', 'width'=>'50px','height'=>'50px'));
+
+										}
+									?>
+								</div>
+							</td>-->
+							<td data-title="Actions" class="td-actions">
+							<a title="Editar" href="#" class="skin-midnight-aux-text editModal" 
+								data-id="<?php echo $cliente['Cliente']['id'];?>"  
+								data-id="<?php echo $cliente['Cliente']['id'];?>">
+								<i class="fas fa-edit" ></i>
+							</a>
+							
+								<?php
+									//echo $this->html->image('tb-ver.png',array('data-id'=>$cliente['Cliente']['id'],'class'=>'bt-tabela ver viewModal','data-id'=>$cliente['Cliente']['id']));
+
+									//echo $this->html->image('tb-edit.png',array('data-id'=>$cliente['Cliente']['id'],'class'=>'bt-tabela editModal','data-id'=>$cliente['Cliente']['id']));
+									
+									
+
+									
+									echo $this->Form->postLink(
+										$this->Html->tag('i', '', 
+										array('class' => 'fa fa-eye-slash skin-midnight-aux-text')).'&nbsp;',
+										 array('controller' => 'Clientes', 'action' => 'disable', $cliente['Cliente']['id']),
+										 array('escape' => false),
+										  __('Deseja desativar o registro  %s?', $cliente['Cliente']['nome'])
+										
+									);
+									echo $this->Form->postLink(
+										$this->Html->tag('i', '', 
+										array('class' => 'fa fa-trash-alt skin-midnight-aux-text')).'&nbsp;',
+										 array('controller' => 'Clientes', 'action' => 'delete', $cliente['Cliente']['id']),
+										 array('escape' => false),
+										  __('Deseja remover o registro  %s?', $cliente['Cliente']['nome'])
+									
+								  );
+													
+
+								?>
+							</td>
+						</tr>
+		<?php endforeach; ?>
+			
+		</tbody>
+		<tfoot>
+			<tr>
+				<th rowspan="1" colspan="1">Código</th>
+				<th rowspan="1" colspan="1">Nome</th>
+				<th rowspan="1" colspan="1">Nome de usuario</th>
+				<th rowspan="1" colspan="1">Telefone</th>
+				<th rowspan="1" colspan="1">Email</th>
+				<th rowspan="1" colspan="1">Status</th>
+				<th rowspan="1" colspan="1">Ações</th>
+				
+			</tr>
+		</tfoot>
+	</table>
+</div>
+<?php
 			echo $this->Search->create('Clientes', array('class'=> 'form-inline'));
 		?>
 
@@ -133,73 +236,20 @@
 					<thead  class="cf">
 						<tr>
 							<th><?php echo $this->Paginator->sort('id', 'Código');?></th>
-							<th class="th-header-normal"><?php echo $this->Paginator->sort('nome', 'Nome');?></th>
-							<th class="th-header-normal"><?php echo $this->Paginator->sort('username', 'Nome de usuario');?></th>
-							<th class="th-header-normal"><?php echo $this->Paginator->sort('telefone', 'Telefone');?></th>
+							<th class="sorting th_link"><?php echo $this->Paginator->sort('nome', 'Nome');?></th>
+							<th class="sorting th_link"><?php echo $this->Paginator->sort('username', 'Nome de usuario');?></th>
+							<th class="sorting th_link"><?php echo $this->Paginator->sort('telefone', 'Telefone');?></th>
 
-							<th class="th-header-normal"><?php echo $this->Paginator->sort('email', 'Email');?></th>
+							<th class="sorting th_link"><?php echo $this->Paginator->sort('email', 'Email');?></th>
 							<th><?php echo $this->Paginator->sort('ativo', 'Status');?></th>
-							<th class="th-header-normal">Ações</th>
+							<th class="sorting th_link">Ações</th>
 
 						</tr>
 					</thead>
 
 					<tbody>
 						<?php foreach ($clientes as $cliente): ?>
-							<?php
-		                        $disabledline = ($cliente['Cliente']['ativo']== 0 ? 'disabledline': '');
-		                    ?>
-						<tr class="<?php echo $disabledline; ?>">
-							<td data-title="Código"><?php echo h($cliente['Cliente']['id']); ?></td>
-							<td data-title="Nome"><?php echo h($cliente['Cliente']['nome']); ?></td>
-							<td data-title="Nome"><?php echo h($cliente['Cliente']['username']); ?></td>
-							<td data-title="Telefone"><?php echo h($cliente['Cliente']['telefone']); ?></td>
-							<td data-title="Email"><?php echo h($cliente['Cliente']['email']); ?></td>
-							<td data-title="Status">
-								<?php
-									if($cliente['Cliente']['ativo']==1){
-										echo 'Ativo';
-									}else{
-										echo 'Desabilitado';
-									}
-								 ?></td>
-							<!--<td>
-								<div class="circulodivPequeno">
-									<?php
-										if(isset($cliente['Cliente']['foto']) && $cliente['Cliente']['foto'] != ''){
-									?>
-											<img src=<?php echo $cliente['Cliente']['foto'];?> alt=<?php echo $cliente['Cliente']['nome'];?> width="50px" height="50px" title=<?php echo $cliente['Cliente']['nome'];?> width="50px" height="50px"/>
-									<?php
-										}else{
-											echo $this->html->image('fotoico.png', array('alt'=> 'Foto', 'width'=>'50px','height'=>'50px'));
-
-										}
-									?>
-								</div>
-							</td>-->
-							<td data-title="Actions">
-								<?php
-									//echo $this->html->image('tb-ver.png',array('data-id'=>$cliente['Cliente']['id'],'class'=>'bt-tabela ver viewModal','data-id'=>$cliente['Cliente']['id']));
-
-									echo $this->html->image('tb-edit.png',array('data-id'=>$cliente['Cliente']['id'],'class'=>'bt-tabela editModal','data-id'=>$cliente['Cliente']['id']));
-
-									echo $this->Form->postLink(
-										  $this->Html->image('tb-desabilitar.png', array('class'=>'bt-tabela','alt' => __('Excluir'))), //le image
-										  array('controller'=>'Clientes','action' => 'disable', $cliente['Cliente']['id']), //le url
-										  array('escape' => false), //le escape
-										  __('Deseja desativar o registro  %s?', $cliente['Cliente']['nome'])
-									);
-
-									echo $this->Form->postLink(
-										  $this->Html->image('tb-excluir.png', array('class'=>'bt-tabela','alt' => __('Excluir'))), //le image
-										  array('controller'=>'Clientes','action' => 'delete', $cliente['Cliente']['id']), //le url
-										  array('escape' => false), //le escape
-										  __('Deseja remover o registro  %s?', $cliente['Cliente']['nome'])
-									);
-
-								?>
-							</td>
-						</tr>
+			
 						<?php endforeach; ?>
 					</tbody>
 				</table>
