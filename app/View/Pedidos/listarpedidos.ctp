@@ -33,7 +33,7 @@
 
 						<th><?php echo $this->Paginator->sort('data'); ?></th>
 						<th><?php echo $this->Paginator->sort('hora_atendimento', 'Hora'); ?></th>
-						<th><?php echo $this->Paginator->sort('posicao_fila', 'Pos. na Fila'); ?></th>
+						
 						<th><?php echo $this->Paginator->sort('valor'); ?></th>
 						<th><?php echo $this->Paginator->sort('status_pagamento'); ?></th>
 						<th><?php echo $this->Paginator->sort('Entregador.nome'); ?></th>
@@ -58,7 +58,7 @@
 
 				<td   data-title="Data" ><?php echo  $novaData; ?>&nbsp;</td>
 				<td data-title="Hora" ><?php echo h($pedido['Pedido']['hora_atendimento']); ?>&nbsp;</td>
-				<td  data-title="Posicao na Fila"><?php echo h($pedido['Pedido']['posicao_fila']); ?>&nbsp;</td>
+				
 				<td data-title="Valor" ><?php echo 'R$ ' . number_format($pedido['Pedido']['valor'], 2, ',', '.'); ?>&nbsp;</td>
 				<td data-title="Status Pagamento"><?php echo h($pedido['Pedido']['status_pagamento']); ?>&nbsp;</td>
 				<td data-title="Entregador" <?php echo 'id="linhaEntregadorNome'.$pedido['Pedido']['id'].'"';?>><?php echo h($pedido['Entregador']['nome']); ?>&nbsp;</td>
