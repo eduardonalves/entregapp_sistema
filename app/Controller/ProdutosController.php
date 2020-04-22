@@ -414,6 +414,7 @@ class ProdutosController extends AppController {
 				'Produto.id'=> $id
 			)
 		));
+		unset($newProduto['Produto']['id']);
 		if(!empty($newProduto)){
 			if ($this->Produto->save($newProduto)) {
 				
