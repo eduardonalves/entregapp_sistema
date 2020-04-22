@@ -60,7 +60,7 @@ $cakeDescription = __d('entrega_app', 'EntragApp Delivery');
 	echo $this->Html->css('jquery-ui-1.10.1.custom');
 	echo $this->Html->css('jquery.ui.combogrid');
 
-
+	echo $this->Html->css('estilo_lovo');
 	/*echo $this->Html->css('bootstrap.min');
 		echo $this->Html->css('bootstrap-responsive');
 		echo $this->Html->css('owl.carousel');

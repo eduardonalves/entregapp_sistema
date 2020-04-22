@@ -2,27 +2,23 @@
 	<div class="modal-dialog" style="max-width: 90% !important;">
 		<div class="modal-content bg-dark">
 			<div class="modal-header">
-				<h4 class="modal-title skin-midnight-aux-text">Cadastrar Pedidos</h4>
+				<h4 class="modal-title skin-midnight-aux-text">Editar Pedidos</h4>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">×</span></button>
 			</div>
 			<div class="modal-body">
 				<?php echo $this->Form->create('Pedido', array('role' => 'form'));	?>
-
+						
 				<?php echo $this->Form->input('id', array('readonly' => 'readonly', 'default' => $pedido['Pedido']['id'], 'type' => 'hidden', 'class' => 'input-large idView', 'id' => 'idView', 'label' => false));					?>
+				
 				<?php if ($pedido['Pedido']['nomecadcliente'] != '') :  ?>
 					<?php echo $this->Form->input('nomecadcliente', array('default' => $pedido['Pedido']['id'], 'type' => 'text', 'class' => 'input-large nomecadcliente', 'id' => 'nomecadcliente', 'label' => 'Cliente:'));					?>
 					<div class="form-group  form-group-lg">
 						<?php echo $this->Form->input('mesa_id', array('options' => $mesas, 'default' => $pedido['Pedido']['mesa_id'], 'type' => 'select', 'class' => 'input-large mesaView', 'id' => 'mesaView', 'label' => 'Mesa', 'div' => false)); ?>
 					</div>
 				<?php else : ?>
-					<span class="modal-subtitulo">
-						<h3><?php echo $pedido['Cliente']['nome']; ?></h3>
-					</span>
-					<span class="modal-subtitulo">
-						<h3>(<?php echo $pedido['Cliente']['username']; ?>)</h3>
-					</span>
-
+					<h3 class="text-center"><?php echo $pedido['Cliente']['nome']; ?></h3>
+					<h3 class="text-center">(<?php echo $pedido['Cliente']['username']; ?>)</h3>
 				<?php endif; ?>
 
 				<!-- ########################################################################################## -->
