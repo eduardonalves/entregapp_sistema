@@ -645,7 +645,7 @@ class PedidosController extends AppController {
 			}else{
 				if ($this->request->is(array('Ajax'))) {
 					$pedido=$this->Pedido->find('first', array('recursive' => -1,'conditions' => array('Pedido.id' => $id)));
-					if($pedido['Pedido']['status']=='Separado'){
+					if($pedido['Pedido']['status']=='Confirmado'){
 						$this->Pedido->id= $id;
 						$this->Pedido->saveField('status', 'Em Trânsito');
 						$this->loadModel('Atendimento');
@@ -666,6 +666,53 @@ class PedidosController extends AppController {
 					'_serialize' => array('resultados')
 				));
 			}
+	}
+
+	public function confirmarenviolista($id = null) {
+		date_default_timezone_set("Brazil/East");
+		$this->layout ='ajaxresultadostatus';
+			if (!$this->Pedido->exists($id)) {
+				throw new NotFoundException(__('Invalid pedido'));
+			}
+			$resultados = array();
+			$Autorizacao = new AutorizacaosController;
+			$autTipo = 'enviar';
+			$userid = $this->Session->read('Auth.User.id');
+			$userfuncao = $this->Session->read('Auth.User.funcao_id');
+			
+			if(!$Autorizacao->setAutorizacao($autTipo,$userfuncao)){	
+				
+			}else{
+				if ($this->request->is(array('Post')) ) {
+					$pedido=$this->Pedido->find('first', array('recursive' => -1,'conditions' => array('Pedido.id' => $id)));
+					if($pedido['Pedido']['status']=='Confirmado'){
+						$this->Pedido->id= $id;
+						$this->Pedido->saveField('status', 'Em Trânsito');
+						$this->loadModel('Atendimento');
+						$this->Atendimento->create();
+						$updateStatusAtendimento= array('id' => $pedido['Pedido']['atendimento_id'], 'status' => 'Em Trânsito');
+						if($pedido['Pedido']['ptk'] !='' && $pedido['Pedido']['ptk'] !=null){
+							$notification= 'Seu pedido está a caminho, agradecemos a preferência. Tenha um bom apetite!';
+							$title='Pedido em trânsito';
+							$this->sendnotification($pedido['Pedido']['ptk'], $title,$notification, $pedido['Pedido']['atendimento_id']);	
+						}
+
+						if($this->Atendimento->save($updateStatusAtendimento)){
+							
+							$this->Session->setFlash(__('A situação do pedido foi mudada para em trânsito com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
+							
+						} else {
+							$this->Session->setFlash(__('Houve um erro ao salvar o pedido. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
+						}
+						
+					}else{
+						$this->Session->setFlash(__('Houve um erro ao salvar o pedido. O pedido deve estar com a situação de confirmado.'), 'default', array('class' => 'error-flash alert alert-danger'));
+					}
+				}else{
+					$this->Session->setFlash(__('Houve um erro ao salvar o pedido. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
+				}
+			}
+			return $this->redirect( $this->referer() );
 	}
 
 	public function confirmarentrega($id = null) {
@@ -728,7 +775,73 @@ class PedidosController extends AppController {
 
 				}
 			}
-	}
+}
+
+public function confirmarentregalista($id = null) {
+	date_default_timezone_set("Brazil/East");
+	header('Content-Type: text/html; charset=utf-8');
+	$this->layout ='ajaxresultadostatus';
+		if (!$this->Pedido->exists($id)) {
+			throw new NotFoundException(__('Invalid pedido'));
+		}
+
+		$Autorizacao = new AutorizacaosController;
+		$autTipo = 'entregar';
+		$userid = $this->Session->read('Auth.User.id');
+		$userfuncao = $this->Session->read('Auth.User.funcao_id');
+		$resultados = array();
+
+		if(!$Autorizacao->setAutorizacao($autTipo,$userfuncao)){
+			//die('aqui1');
+		}else{
+			//die('aqui2');
+			if ($this->request->is(array('Post'))) {
+				//die('aqui3');
+				$pedido=$this->Pedido->find('first', array('recursive' => -1,'conditions' => array('Pedido.id' => $id)));
+
+
+				//if($pedido['Pedido']['status']=='Em Trânsito'){
+
+				
+
+					//if($pedido['Pedido']['entregador_id'] !='' && $pedido['Pedido']['entregador_id'] !=0){
+						
+						$this->Pedido->id= $id;
+						$this->Pedido->saveField('status', 'Entregue');
+						$this->Pedido->saveField('statuspreparo', 0);
+						$this->Pedido->saveField('posicao_fila', 0);
+						$this->reordenafila();
+						$resultados= $this->Pedido->find('first', array('recursive' => -1,'conditions' => array('Pedido.id' => $id)));
+						
+						$this->loadModel('Roteiro');
+						$pedidoRoteiro = $this->Roteiro->find('first', array('recursive' => -1,'conditions' => array('Roteiro.pedido_id' => $id)));
+						if(!empty($pedidoRoteiro)){
+							$this->Roteiro->create();
+							$updateRot= array('id' => $pedidoRoteiro['Roteiro']['pedido_id'], 'status' => 'Entregue');
+							$this->Roteiro->save($updateRot);	
+						}
+						
+						$this->loadModel('Atendimento');
+						$this->Atendimento->create();
+						$updateStatusAtendimento= array('id' => $pedido['Pedido']['atendimento_id'], 'status' => 'Entregue');
+						
+
+						if($this->Atendimento->save($updateStatusAtendimento)){
+							
+							$this->Session->setFlash(__('A situação do pedido foi mudada para entregue com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
+							
+						} else {
+							$this->Session->setFlash(__('Houve um erro ao salvar o pedido. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
+						}
+
+					//}
+				//}
+				
+
+			}
+		}
+		return $this->redirect( $this->referer() );
+}
 
 public function sendnotification($token='',$title='', $notification='', $atendimento_id='') {
 	

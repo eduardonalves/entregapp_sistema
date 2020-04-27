@@ -282,9 +282,9 @@
                   <a href="#" id="lkConfirmar">Confirmar</a>
                 </li>
 
-                <li class="progresso" id="progPreparar"><a href="#" id="lkPreparar">Preparar</a></li>
+                <!--<li class="progresso" id="progPreparar"><a href="#" id="lkPreparar">Preparar</a></li>
 
-                <li class="progresso" id="progAguardando"><a href="#" id="lkAguardando">Separar p/ Entrega</a></li>
+                <li class="progresso" id="progAguardando"><a href="#" id="lkAguardando">Separar p/ Entrega</a></li>-->
 
                 <li class="progresso" id="progTransito"><a href="#" id="lkTransito">Enviar</a></li>
 
@@ -393,12 +393,12 @@ $(document).ready(function() {
 });
 
 
-	$('#avaliarPedido').raty({
+	/*$('#avaliarPedido').raty({
 	 starHalf   :'http://'+urlInicio+'/img/star-half.png',
 	  starOff    : 'http://'+urlInicio+'/img/star-off.png',
 	  starOn     : 'http://'+urlInicio+'/img/star-on.png',
 		score: scorePedido,
-	});
+	});*/
 
 	$('#fecharChat').click(function(event){
 		$( "#modalLoaded" ).modal('show');
@@ -601,12 +601,12 @@ $(document).ready(function() {
 		event.preventDefault();
 		idpedido= $('#idView').val();
 		auxStatus = $('#statusView').val();
-		if(auxStatus.trim()=='Separado'){
+		if(auxStatus.trim()=='Confirmado'){
 
 
 			confirmarenvio(idpedido);
 		}else{
-			alert('O pedido deve estar com o status Separado.');
+			alert('O pedido deve estar com o status Confirmado.');
 		}
 
 	});
@@ -632,16 +632,7 @@ $(document).ready(function() {
 
 		if(auxStatus.trim()=='Em Trânsito'){
 
-			if(entradorNome == ' '){
-				alert('Selecione e salve um entregador antes de escolher o status Entregue.');
-			}else{
-				console.log(entradorNome);
-				if($('#salvouEntregador').text() != ''){
-					
-					confirmarentrega(idpedido);
-				}
-				
-			}
+			confirmarentrega(idpedido);
 
 		}else{
 			alert('O pedido deve estar com o status Em Trânsito.');
@@ -952,15 +943,17 @@ $(document).ready(function() {
 					dataType: 'json',
 					type: "POST",
 					success: function(data){
-
+						console.log(data);
 						if(data !=''){
-							$('.statusView').html(data.resultados.Pedido.status);
-							$('#statusView').val(data.resultados.Pedido.status);
-							$('#linhaPdStatus'+data.resultados.Pedido.id).html(data.resultados.Pedido.status);
-							statusTransito();
-
-							$('.statusView').html('Em Trânsito');
-							$('#statusView').val('Em Trânsito');
+							if(typeof data.resultados != "undefined"){
+								$('.statusView').html(data.resultados.Pedido.status);
+								$('#statusView').val(data.resultados.Pedido.status);
+								$('#linhaPdStatus'+data.resultados.Pedido.id).html(data.resultados.Pedido.status);
+								statusTransito();
+								$('.statusView').html('Em Trânsito');
+								$('#statusView').val('Em Trânsito');
+							}
+							
 						}
 						console.log(data);
 					},error: function(data){

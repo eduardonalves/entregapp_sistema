@@ -90,6 +90,7 @@ ul.checkout-bar a {
   font-size: 16px;
   font-weight: 600;
   text-decoration: none;
+  margin-left: -15px;
 }
 
 @media all and (min-width: 800px) {
@@ -125,8 +126,8 @@ ul.checkout-bar a {
     height: 15px;
     margin: 0 auto;
     padding: 0;
-    position: absolute;
-    width: 842px;
+    /*position: absolute;
+    width: 842px;*/
   }
   ul.checkout-bar:before {
     background-size: 35px 35px;
@@ -140,14 +141,14 @@ ul.checkout-bar a {
     height: 15px;
     left: 0;
     position: absolute;
-    width: 10%;
+    width: 14%;
   }
   ul.checkout-bar li {
     display: inline-block;
     margin: 50px 0 0;
     padding: 0;
     text-align: center;
-    width: 19%;
+    width: 33%;
   }
   ul.checkout-bar li:before {
     height: 45px;
@@ -170,7 +171,7 @@ ul.checkout-bar a {
     box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
     content: "";
     height: 15px;
-    left: 50%;
+    left: 42%;
     position: absolute;
     top: -50px;
     width: 100%;

@@ -72,6 +72,25 @@
 						if($autorizacao['Autorizacao']['pedidos'] != 'n' && $autorizacao['Autorizacao']['pedidos'] != 'v'){
 							echo $this->html->image('tb-edit.png',array('data-idpedido-id'=>$pedido['Pedido']['id'],'class'=>'bt-tabela editpedido ','data-id'=>$pedido['Pedido']['id']));
 						}
+						if($autorizacao['Autorizacao']['pedidos'] != 'n' && $autorizacao['Autorizacao']['pedidos'] != 'v'){
+							echo $this->Form->postLink(
+								$this->Html->image('tb-em-transito.png', array('class'=>'bt-tabela bt-entrega','alt' => __('Enviar'))), //le image
+								array('controller'=>'Pedidos','action' => 'confirmarenviolista', $pedido['Pedido']['id']), //le url
+								array('escape' => false), //le escape
+								__('Mudar o status do pedido %s para em trânsito?', $pedido['Pedido']['id'])
+						  );
+						}
+
+						if($autorizacao['Autorizacao']['pedidos'] != 'n' && $autorizacao['Autorizacao']['pedidos'] != 'v'){
+							echo $this->Form->postLink(
+								$this->Html->image('tb-entregue.png', array('class'=>'bt-tabela','alt' => __('Enviar'))), //le image
+								array('controller'=>'Pedidos','action' => 'confirmarentregalista', $pedido['Pedido']['id']), //le url
+								array('escape' => false), //le escape
+								__('Mudar o status do pedido %s para entregue?', $pedido['Pedido']['id'])
+						  );
+						}
+
+
 						if($autorizacao['Autorizacao']['pedidos'] == 'a'){
 							/*echo $this->Form->postLink(
 								  $this->Html->image('tb-excluir.png', array('class'=>'bt-tabela','alt' => __('Excluir'))), //le image
@@ -87,3 +106,8 @@
 		</table>
 	</div>
 		
+<style>
+.bt-entrega{
+	width: 30px !important;
+}
+</style>
