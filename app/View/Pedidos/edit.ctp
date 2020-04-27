@@ -37,14 +37,16 @@
 				</span>
 				<h5 class="h5informacoes"><?php echo 'Data: ' . $pedido['Pedido']['data'] . ' / Hora:' . $pedido['Pedido']['hora_atendimento'] . ' / Status: <span class="statusView">' . $pedido['Pedido']['status'] . '</span>' . ' / Total: <span > R$ ' . number_format($pedido['Pedido']['valor'], 2, ',', '.') . '</span>'; ?></h5>
 				<?php if ($pedido['Pedido']['nomecadcliente'] == '' || $pedido['Pedido']['atendente_id'] != '') :  ?>
-					<div style="margin: 0 auto; width: 93%;">
+					<div class="row">
 
 						<?php
 						if ($pedido['Pagamento']['tipo'] != '') {
 						?>
-							<div class="form-group  form-group-lg">
-								<label>Pagamento:</label>
-								<p><?php echo $pedido['Pagamento']['tipo']; ?></p>
+							<div class="col-sm-2">
+								<div class="form-group">
+									<label>Pagamento:</label>
+									<p><?php echo $pedido['Pagamento']['tipo']; ?></p>
+								</div>
 							</div>
 						<?php
 						}
@@ -54,25 +56,31 @@
 						if ($pedido['Pedido']['status_pagamento'] == 'Pendente') {
 
 						?>
-							<div class="form-group  form-group-lg">
-								<?php
-								$sitpag = array(
-									'OK' => 'OK',
-									'Pendente' => 'Pendente'
-								);
-								?>
-								<label>Sit.Pagamento:</label>
-								<?php echo $this->Form->input('status_pagamento', array('options' => $sitpag, 'default' => $pedido['Pagamento']['status'], 'type' => 'select', 'class' => 'input-default sitpagamentoView', 'id' => 'sitpagamentoView', 'label' => false, 'div' => false)); ?>
-							</div>
+							<div class="col-sm-2">
+								<div class="form-group">
+									<?php
+										$sitpag = array(
+											'OK' => 'OK',
+											'Pendente' => 'Pendente'
+										);
+									?>
+									<label>Sit.Pagamento:</label>
+									<?php echo $this->Form->input('status_pagamento', array('options' => $sitpag, 'default' => $pedido['Pagamento']['status'], 'type' => 'select', 'class' => 'form-control skin-midnight-aux-input-select sitpagamentoView', 'id' => 'sitpagamentoView', 'label' => false, 'div' => false)); ?>
+									
+								</div>
+							</div>	
 						<?php
 						} else {
 						?>
+						
 							<?php
 							if ($pedido['Pedido']['status_pagamento'] != '') {
 							?>
-								<div class="form-group  form-group-lg">
-									<p><strong>Sit.Pagamento:</strong></p>
-									<p><?php echo $pedido['Pedido']['status_pagamento']; ?></p>
+								<div class="col-sm-2">
+									<div class="form-group">
+										<p><strong>Sit.Pagamento:</strong></p>
+										<p><?php echo $pedido['Pedido']['status_pagamento']; ?></p>
+									</div>
 								</div>
 						<?php
 							}
@@ -95,9 +103,11 @@
 						if ($pedido['Entregador']['id'] == '' || $autorizacao['Autorizacao']['pedidos'] == 'a') {
 
 						?>
-							<div class="form-group  form-group-lg" style="margin-left: 20px;">
-								<p><strong>Entregador:</strong></p>
-								<?php echo $this->Form->input('entregador_id', array('options' => $entrega, 'default' => $pedido['Entregador']['nome'], 'type' => 'select', 'class' => 'input-default entregadorView', 'id' => 'entregadorView', 'label' => false, 'div' => false)); ?>
+							<div class="col-sm-2">
+								<div class="form-group">
+									<label>Entregador:</label>
+									<?php echo $this->Form->input('entregador_id', array('options' => $entrega, 'default' => $pedido['Entregador']['nome'], 'type' => 'select', 'class' => 'form-control skin-midnight-aux-input-select entregadorView', 'id' => 'entregadorView', 'label' => false, 'div' => false)); ?>
+								</div>
 							</div>
 						<?php
 						} else {
@@ -105,10 +115,12 @@
 							<?php
 							if ($pedido['Entregador']['nome'] != '') {
 							?>
-								<div class="form-group  form-group-lg">
-									<p><strong>Entregador:</strong></p>
-									<p><?php echo $pedido['Entregador']['nome']; ?></p>
-								</div>
+								<div class="col-sm-2">
+									<div class="form-group">
+										<label>Entregador:</label>
+										<p><?php echo $pedido['Entregador']['nome']; ?></p>
+									</div>
+								</div>	
 							<?php
 							}
 							?>
@@ -119,9 +131,11 @@
 						<?php
 						if ($pedido['User']['username'] != '') {
 						?>
-							<div class="form-group  form-group-lg">
-								<label>Atendente:</label>
-								<p><?php echo $pedido['User']['username']; ?></p>
+							<div class="col-sm-2">
+								<div class="form-group">
+									<label>Atendente:</label>
+									<p><?php echo $pedido['User']['username']; ?></p>
+								</div>	
 							</div>
 						<?php
 						}
@@ -134,15 +148,14 @@
 				</div>-->
 
 
-						<div class="form-group  form-group-lg" style="margin-left: 20px;">
-							<label>Levar Troco?</label>
-							<p><span id="obsTroco">
-									<?php
-									echo $pedido['Pedido']['trocoresposta'];
-
-									?></span></p>
-						</div>
-						<div class="form-group  form-group-lg col-md-4">
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label>Levar Troco?</label>
+						<p><span id="obsTroco"> <?php echo $pedido['Pedido']['trocoresposta'];?></span></p>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
 							<label style="width: 200px;">Local de Entrega</label>
 							<p>
 								<?php
@@ -187,7 +200,7 @@
 								} ?>
 							</p>
 						</div>
-
+					</div>
 					<?php endif;  ?>
 
 					<?php
@@ -210,23 +223,26 @@
 					<?php echo $this->Form->input('difhora', array('readonly' => 'readonly', 'default' => $pedido['Pedido']['difhora'], 'type' => 'hidden', 'class' => 'input-large difhoraView difhora', 'id' => 'difhoraView', 'label' => false)); ?>
 					<?php if (!empty($pedido['Itensdepedido'])) : ?>
 						<div class="area-tabela" id="no-more-tables">
-							<table class="table-action col-md-12 table-bordered table-striped table-condensed cf">
-								<tbody class="cf">
+							<table id="example1" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
+							
+								<tbody class="cf" role="row">
 									<thead>
 										<tr>
-											<th><?php echo __('Código'); ?></th>
-											<th><?php echo __('Produto'); ?></th>
-											<th><?php echo __('Vl. Unit'); ?></th>
-											<th><?php echo __('Qtd'); ?></th>
-											<th><?php echo __('Vl. Total'); ?></th>
+											<th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Código: activate to sort column descending" ><?php echo __('Código'); ?></th>
+											<th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Produto: activate to sort column descending" ><?php echo __('Produto'); ?></th>
+											<th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Vl. Unit: activate to sort column descending"><?php echo __('Vl. Unit'); ?></th>
+											<th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Qtde: activate to sort column descending"><?php echo __('Qtd'); ?></th>
+											<th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Valor Total: activate to sort column descending"><?php echo __('Vl. Total'); ?></th>
 										</tr>
 									</thead>
 									<?php
 									$k = 0;
 									$printItens = '';
+									$countLine = 0;
 									foreach ($pedido['Itensdepedido'] as $itensdepedido) :
+										$countLine++;
 									?>
-										<tr>
+										<tr role="row" class="<?php echo ($countLine % 2 == 0 ? 'even':'odd'); ?>">
 
 											<td data-title="Código"><?php echo $itensdepedido['produto_id']; ?></td>
 											<td data-title="Produto"><?php echo $itensdepedido['prodNome']; ?></td>
@@ -256,7 +272,7 @@
 					<div style="clear:both;"></div>
 					<?php if ($pedido['Pedido']['nomecadcliente'] == '' || $pedido['Pedido']['atendente_id'] != '') :  ?>
 						<div class="wrap-holder">
-							<div class="checkout-wrap">
+							<div class="checkout-wrap checkout-wrap-edit">
 								<ul class="checkout-bar">
 
 									<li class="previous first progresso" id="progConfirmar">
@@ -377,12 +393,12 @@
 		});
 
 
-		$('#avaliarPedido').raty({
+		/*$('#avaliarPedido').raty({
 			starHalf: 'http://' + urlInicio + '/img/star-half.png',
 			starOff: 'http://' + urlInicio + '/img/star-off.png',
 			starOn: 'http://' + urlInicio + '/img/star-on.png',
 			score: scorePedido,
-		});
+		});*/
 
 		$('#fecharChat').click(function(event) {
 			$("#modalLoaded").modal('show');

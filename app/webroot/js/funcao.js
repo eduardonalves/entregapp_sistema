@@ -149,13 +149,13 @@ $(document).ready(function() {
 				$('#divActions'+idpedido).show();
 
 				$('#modalLoaded').modal('show');
-				 $('#counter').countdown({
+				/*$('#counter').countdown({
 		          image: 'http://'+urlInicio+'/img/digits2.png',
 		          startTime: start,
 				  digitWidth: 34,
 				    digitHeight: 45,
 				    format: 'hh:mm:ss',
-				});
+				});*/
 
 
 

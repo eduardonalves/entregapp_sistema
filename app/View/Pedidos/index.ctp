@@ -400,6 +400,12 @@
 		//alert("The URL of this page is: " + window.location.href);
 		//alert("The URL of this page is: " + window.location.host);
 		loja = $('#filterMinhaslojas').val();
+		setTimeout(function(){
+			$('#flashMessage').fadeOut(1000);
+			
+		},10000);
+		
+
 		$('#idfilialmsg').val(loja);
 		var urlInicio = window.location.host;
 		urlInicio = (urlInicio == 'localhost' ? urlInicio + '/entregapp_sistema' : urlInicio);

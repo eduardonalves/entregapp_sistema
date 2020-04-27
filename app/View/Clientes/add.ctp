@@ -1,3 +1,78 @@
+
+<div class="col-md-12">
+	<!-- general form elements -->
+	<div class="card card-dark skin-midnight-aux-header">
+		<div class="card-header skin-midnight-aux-header ">
+			<h3 class="card-title">Pesquisa de Clientes</h3>
+		</div>
+		<!-- /.card-header -->
+		<!-- form start -->
+		<?php
+		
+		echo $this->Search->create('Clientes', array('role' => 'form', 'class' => 'formulario'));
+		?>
+		<div class="card-body skin-midnight-aux">
+			<div class="row">
+				<div class="col-sm-2">
+					<div class="form-group">
+						<?php
+							echo $this->Search->input('codigo', array('label' => 'Código: ','class'=>'filtroCliente form-control skin-midnight-aux-input-select', 'required' =>'false'));
+						?>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<?php
+						echo $this->Search->input('nome', array('label' => 'Nome: ','class'=>'filtroCliente form-control skin-midnight-aux-input-select',  'required' =>'false'));
+						?>
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-group">
+						
+						<?php
+
+							echo $this->Search->input('telefone', array('label' => 'Telefone: ','class'=>'filtroCliente form-control skin-midnight-aux-input-select', 'required' =>'false'));
+
+						?>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<?php
+
+						echo $this->Search->input('minhaslojas', array('label' => 'Loja:', 'class' => 'filtroPedido custom-select skin-midnight-aux-input-select', 'required' => 'false'));
+						?>
+					</div>		
+				</div>
+				
+			</div>
+			
+			<?php
+			echo $this->Search->input('empresa', array('label' => false, 'style' => 'display:none;', 'required' => 'false'));
+			?>
+
+		</div>
+		<!-- /.card-body -->
+
+		<div class="card-footer">
+			<div class="row">
+				<div class="col-sm-12">
+					
+					<input type="button" value="Novo Cliente" class="btn btn btn-success orange-st" id="clickmodal">
+					<input type="submit" value="Filtrar" class="btn btn btn-success orange-st  float-right">
+					
+				</div>
+			</div>	
+		</div>
+		</form>		
+	</div>
+	
+</div>
+
+
+
+
 <div  class="col-sm-12">
 	<table id="example1" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
 		<thead>
@@ -103,40 +178,6 @@
 		</tfoot>
 	</table>
 </div>
-<?php
-			echo $this->Search->create('Clientes', array('class'=> 'form-inline'));
-		?>
-
-		<div class="form-group  form-group-lg">
-			<?php
-			echo $this->Search->input('codigo', array('label' => 'Código: ','class'=>'filtroCliente input-default', 'required' =>'false'));
-			?>
-		</div>
-
-		<div class="form-group  form-group-lg">
-			<?php
-			echo $this->Search->input('nome', array('label' => 'Nome: ','class'=>'filtroCliente input-default',  'required' =>'false'));
-			?>
-		</div>
-
-		<div class="form-group  form-group-lg">
-			<?php
-			echo $this->Search->input('telefone', array('label' => 'Telefone: ','class'=>'filtroCliente input-default', 'required' =>'false'));
-		?>
-		</div>
-		<div class="form-group  form-group-lg">
-			<?php
-		echo $this->Search->input('empresa', array('label' => false,'class'=>'none', 'required' =>'false'));
-
-		echo $this->Search->input('minhaslojas', array('label' => 'Loja','class'=>'filtroPedido input-default ', 'required' =>'false'));
-		?>
-		</div>
-		<div class="form-group  form-group-lg">
-			<?php
-			echo $this->Search->end(__('Filtrar', true));
-			?>
-		</div>
-
 	<!-- Modal -->
 	<div class="modal fade modal-grande modal-addCliente" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">
@@ -151,44 +192,44 @@
 				<?php echo $this->Form->create('Cliente',array('class' => 'form-inline centralizadoForm','enctype'=>'multipart/form-data'));	?>
 
 					<div class="form-group  form-group-lg">
-						<?php echo $this->Form->input('nome',array('class' => 'input-default nome ','label' => array('text' => 'Nome*: ')));?>
+						<?php echo $this->Form->input('nome',array('class' => 'form-control skin-midnight-aux-input-select nome ','label' => array('text' => 'Nome*: ')));?>
 					</div>
 
 					<div class="form-group  form-group-lg">
-						<?php echo $this->Form->input('telefone',array('class' => 'input-default telefone','label' => array('text' => 'Telefone*: ')));?>
+						<?php echo $this->Form->input('telefone',array('class' => 'form-control skin-midnight-aux-input-select telefone','label' => array('text' => 'Telefone*: ')));?>
 					</div>
 					<div class="form-group  form-group-lg">
-						<?php echo $this->Form->input('celular',array('class' => 'input-default celular','label' => array('text' => 'Celular: ')));?>
+						<?php echo $this->Form->input('celular',array('class' => 'form-control skin-midnight-aux-input-select celular','label' => array('text' => 'Celular: ')));?>
 					</div>
 					<div class="form-group  form-group-lg">
-						<?php echo $this->Form->input('email',array('class' => 'input-default email','label' => array('text' => 'Email: ')));?>
+						<?php echo $this->Form->input('email',array('class' => 'form-control skin-midnight-aux-input-select email','label' => array('text' => 'Email: ')));?>
 					</div>
 					<div class="form-group  form-group-lg">
-						<?php echo $this->Form->input('nasc',array('type' => 'text','class' => 'input-default nasc','label' => array('text' => 'Dt. Nasc: ')));?>
+						<?php echo $this->Form->input('nasc',array('type' => 'text','class' => 'form-control skin-midnight-aux-input-select nasc','label' => array('text' => 'Dt. Nasc: ')));?>
 					</div>
 					<div class="form-group  form-group-lg">
-						<?php echo $this->Form->input('cep',array('class' => 'input-default cep','label' => array('text' => 'CEP: ')));?>
+						<?php echo $this->Form->input('cep',array('class' => 'form-control skin-midnight-aux-input-select cep','label' => array('text' => 'CEP: ')));?>
 					</div>
 					<div class="form-group  form-group-lg">
-						<?php echo $this->Form->input('logradouro',array('class' => 'input-default logradouro','label' => array('text' => 'Logradouro*: ')));?>
+						<?php echo $this->Form->input('logradouro',array('class' => 'form-control skin-midnight-aux-input-select logradouro','label' => array('text' => 'Logradouro*: ')));?>
 					</div>
 					<div class="form-group  form-group-lg">
-						<?php echo $this->Form->input('numero',array('class' => 'input-default numero','label' => array('text' => 'Numero*: ')));?>
+						<?php echo $this->Form->input('numero',array('class' => 'form-control skin-midnight-aux-input-select numero','label' => array('text' => 'Numero*: ')));?>
 					</div>
 					<div class="form-group  form-group-lg">
-						<?php echo $this->Form->input('complemento',array('class' => 'input-default numero','label' => array('text' => 'Complemento: ')));?>
+						<?php echo $this->Form->input('complemento',array('class' => 'form-control skin-midnight-aux-input-select numero','label' => array('text' => 'Complemento: ')));?>
 					</div>
 					<div class="form-group  form-group-lg">
-						<?php echo $this->Form->input('bairro',array('class' => 'input-default bairro','label' => array('text' => 'Bairro* : ')));?>
+						<?php echo $this->Form->input('bairro',array('class' => 'form-control skin-midnight-aux-input-select bairro','label' => array('text' => 'Bairro* : ')));?>
 					</div>
 					<div class="form-group  form-group-lg">
-						<?php echo $this->Form->input('cidade',array('class' => 'input-default cidade','label' => array('text' => 'Cidade*: ')));?>
+						<?php echo $this->Form->input('cidade',array('class' => 'form-control skin-midnight-aux-input-select cidade','label' => array('text' => 'Cidade*: ')));?>
 					</div>
 					<div class="form-group  form-group-lg">
-						<?php echo $this->Form->input('uf',array('class' => 'input-default uf','label' => array('text' => 'UF: ')));?>
+						<?php echo $this->Form->input('uf',array('class' => 'form-control skin-midnight-aux-input-select uf','label' => array('text' => 'UF: ')));?>
 					</div>
 					<div class="form-group  form-group-lg">
-						<?php echo $this->Form->input('p_referencia',array('class' => 'input-default p_referencia','label' => array('text' => 'Ponto de Referência: ','class'=> 'label-large')));?>
+						<?php echo $this->Form->input('p_referencia',array('class' => 'form-control skin-midnight-aux-input-select p_referencia','label' => array('text' => 'Ponto de Referência: ','class'=> 'label-large')));?>
 					</div>
 					
 					
@@ -200,7 +241,7 @@
 				<div class="control-group">
 
 				<?php
-					/*echo $this->Form->input('foto',array('type' => 'file','class' => 'input-default','label' => array('text' => 'Foto: ')));*/
+					/*echo $this->Form->input('foto',array('type' => 'file','class' => 'form-control skin-midnight-aux-input-select','label' => array('text' => 'Foto: ')));*/
 				?>
 				</div>
 				<?php echo $this->Form->input('lat',array('class' => 'input-large lat','type' => 'hidden'));?>
@@ -227,9 +268,7 @@
 	<div class="row-fluid">
 		<br/>
 
-		<div class="form-group  form-group-lg">
-			<button type="button" class="btn btn-success" id="clickmodal">Novo Cliente</button>
-		</div>
+		
 
 		<div class="area-tabela" id="no-more-tables">
 				<table class="table-action col-md-12 table-bordered table-striped table-condensed cf" >
@@ -293,7 +332,7 @@
 </style>
 <script>
 $(document).ready(function() {
-
+	$('#form-filter-results').removeClass('form-inline');
 	$("#clickmodal").click(function(){
 		$('#myModal').modal('show');
 	});

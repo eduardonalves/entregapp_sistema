@@ -66,9 +66,11 @@
 			</tr>
 		</thead>
 		<tbody>
-		<?php $cliente_idAux = ''; ?>
-		<?php foreach ($pedidos as $pedido) : ?>
-			<tr role="row" class="odd">
+		<?php $cliente_idAux = ''; $countLine=0;?>
+		<?php foreach ($pedidos as $pedido) : 
+			 $countLine++;
+		?>
+			<tr role="row" class="<?php echo ($countLine % 2 == 0 ? 'even':'odd'); ?>">
 
 				<td data-title="Código" tabindex="0" class="sorting_1" ><?php echo h($pedido['Pedido']['id']); ?>&nbsp;</td>
 
