@@ -372,7 +372,7 @@ class ProdutosController extends AppController {
 			//$this->Produto->saveField('disponivel', 0);
 			$this->Session->setFlash(__('O produto foi removido com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
 		} else {
-			$this->Session->setFlash(__('Houve um erro ao desativado o produto. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
+			$this->Session->setFlash(__('Houve um erro ao remover o produto. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
 		}
 		return $this->redirect( $this->referer() );
 	}
@@ -390,8 +390,16 @@ class ProdutosController extends AppController {
 			throw new NotFoundException(__('Invalid produto'));
 		}
 		$this->request->onlyAllow('post', 'delete');
-		if ($this->Produto->saveField('ativo', 0)) {
-			$this->Produto->saveField('disponivel', 0);
+		$row = $this->Produto->find('first', array(
+			'recursive'=> -1,
+			'conditions'=> array(
+				'id' => $id
+			)
+		));
+		$ativo = ($row['Produto']['ativo'] == 1 ? 0: 1);  
+		
+		if ($this->Produto->saveField('ativo', $ativo)) {
+			$this->Produto->saveField('disponivel', $ativo);
 			$this->Session->setFlash(__('O produto foi desativado com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
 		} else {
 			$this->Session->setFlash(__('Houve um erro ao desativado o produto. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));

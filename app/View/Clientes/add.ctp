@@ -184,15 +184,16 @@
 									echo $this->html->image('tb-edit.png',array('data-id'=>$cliente['Cliente']['id'],'class'=>'bt-tabela editModal','data-id'=>$cliente['Cliente']['id']));
 
 									echo $this->Form->postLink(
-										  $this->Html->image('tb-desabilitar.png', array('class'=>'bt-tabela','alt' => __('Excluir'))), //le image
-										  array('controller'=>'Clientes','action' => 'disable', $cliente['Cliente']['id']), //le url
-										  array('escape' => false), //le escape
-										  __('Deseja desativar o registro  %s?', $cliente['Cliente']['nome'])
+										$this->Html->image('tb-desabilitar.png', array('class' => 'bt-desativa', 'alt' => __('Desabilitar'))), //le image
+										array('controller' => 'clientes', 'action' => 'disable', $cliente['Cliente']['id']), //le url
+										array('escape' => false), //le escape
+										__('Deseja ativar/desativar o registro  %s?', $cliente['Cliente']['nome'])
 									);
+
 
 									echo $this->Form->postLink(
 										  $this->Html->image('tb-excluir.png', array('class'=>'bt-tabela','alt' => __('Excluir'))), //le image
-										  array('controller'=>'Clientes','action' => 'delete', $cliente['Cliente']['id']), //le url
+										  array('controller'=>'clientes','action' => 'delete', $cliente['Cliente']['id']), //le url
 										  array('escape' => false), //le escape
 										  __('Deseja remover o registro  %s?', $cliente['Cliente']['nome'])
 									);

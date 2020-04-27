@@ -130,7 +130,7 @@ table{
 										  $this->Html->image('tb-desabilitar.png', array('class'=>'bt-tabela','alt' => __('Desativar'))), //le image
 										  array('controller'=>'mesas','action' => 'disable', $mesa['Mesa']['id']), //le url
 										  array('escape' => false), //le escape
-										  __('Deseja desativar a mesa  %s?', $mesa['Mesa']['identificacao'])
+										  __('Deseja ativar/desativar a mesa %s?', $mesa['Mesa']['identificacao'])
 									);
 									echo $this->Form->postLink(
 										  $this->Html->image('tb-excluir.png', array('class'=>'bt-tabela','alt' => __('Excluir'))), //le image

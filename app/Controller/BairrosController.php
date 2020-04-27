@@ -229,9 +229,17 @@ class BairrosController extends AppController {
 		if (!$this->Bairro->exists()) {
 			throw new NotFoundException(__('Invalid bairro'));
 		}
+		$row = $this->Bairro->find('first', array(
+			'recursive'=> -1,
+			'conditions'=> array(
+				'id' => $id
+			)
+		));
+		$ativo = ($row['Bairro']['ativo'] == 1 ? 0: 1);
+
 		$this->request->onlyAllow('post', 'delete');
-		if ($this->Bairro->saveField('ativo', 0)) {
-			$this->Session->setFlash(__('O bairro foi desativado com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
+		if ($this->Bairro->saveField('ativo', $ativo)) {
+			$this->Session->setFlash(__('O bairro foi habilitado/desabilidado com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
 		} else {
 			$this->Session->setFlash(__('Houve um erro ao desativar o bairro. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
 		}

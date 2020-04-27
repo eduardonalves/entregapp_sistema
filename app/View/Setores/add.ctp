@@ -114,7 +114,7 @@ table {margin-top: 10px; font-size:80%;}
 										  $this->Html->image('tb-desabilitar.png', array('class'=>'bt-tabela','alt' => __('Desabilitar'))), //le image
 										  array('controller'=>'setores','action' => 'disable', $setore['Setore']['id']), //le url
 										  array('escape' => false), //le escape
-										  __('Deseja Desabilitar o setor  %s?', $setore['Setore']['setor'])
+										  __('Deseja habilitar/desabilitar o setor  %s?', $setore['Setore']['setor'])
 									);
 
 									echo $this->Form->postLink(

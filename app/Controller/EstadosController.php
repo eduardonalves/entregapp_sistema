@@ -210,10 +210,18 @@ class EstadosController extends AppController {
 			throw new NotFoundException(__('Invalid Estado'));
 		}
 		$this->request->onlyAllow('post', 'delete');
-		if ($this->Estado->saveField('ativo', 0)) {
-			$this->Session->setFlash(__('O Estado foi desativado com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
+		$row = $this->Estado->find('first', array(
+			'recursive'=> -1,
+			'conditions'=> array(
+				'id' => $id
+			)
+		));
+		$ativo = ($row['Estado']['ativo'] == 1 ? 0: 1);
+
+		if ($this->Estado->saveField('ativo', $ativo)) {
+			$this->Session->setFlash(__('O Estado foi habilitado/desabilitado com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
 		} else {
-			$this->Session->setFlash(__('Houve um erro ao desativar o Estado. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
+			$this->Session->setFlash(__('Houve um erro ao habilitar/desabilitar o Estado. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
 		}
 		return $this->redirect( $this->referer() );
 	}

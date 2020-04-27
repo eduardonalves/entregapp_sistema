@@ -117,7 +117,7 @@ table {margin-top: 10px; font-size:80%;}
 										  $this->Html->image('tb-desabilitar.png', array('class'=>'bt-tabela','alt' => __('Desabilitar'))), //le image
 										  array('controller'=>'estados','action' => 'disable', $estado['Estado']['id']), //le url
 										  array('escape' => false), //le escape
-										  __('Deseja desabilitar o estado  %s?', $estado['Estado']['estado'])
+										  __('Deseja habilitar/desabilitar o estado  %s?', $estado['Estado']['estado'])
 									);
 									echo $this->Form->postLink(
 										  $this->Html->image('tb-excluir.png', array('class'=>'bt-tabela','alt' => __('Excluir'))), //le image

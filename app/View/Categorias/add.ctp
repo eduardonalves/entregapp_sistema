@@ -136,7 +136,7 @@ table {margin-top: 10px; font-size:80%;}
 										  $this->Html->image('tb-desabilitar.png', array('class'=>'bt-tabela','alt' => __('Desabilitar'))), //le image
 										  array('controller'=>'categorias','action' => 'disable', $categoria['Categoria']['id']), //le url
 										  array('escape' => false), //le escape
-										  __('Deseja desabilitar a categoria  %s?', $categoria['Categoria']['nome'])
+										  __('Deseja ativar/desativar a categoria  %s?', $categoria['Categoria']['nome'])
 									);
 									echo $this->Form->postLink(
 										  $this->Html->image('tb-excluir.png', array('class'=>'bt-tabela','alt' => __('Excluir'))), //le image

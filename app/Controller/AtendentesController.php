@@ -298,14 +298,22 @@ class AtendentesController extends AppController {
 
 	public function disable($id = null) {
 		$this->Atendente->id = $id;
+		$row = $this->Atendente->find('first', array(
+			'recursive'=> -1,
+			'conditions'=> array(
+				'id' => $id
+			)
+		));
+		$ativo = ($row['Atendente']['ativo'] == 1 ? 0: 1); 
+
 		if (!$this->Atendente->exists()) {
 			throw new NotFoundException(__('Invalid Atendente'));
 		}
 		$this->request->onlyAllow('post', 'delete');
-		if ($this->Atendente->saveField('ativo', 0)) {
-			$this->Session->setFlash(__('O Atendente foi desativado com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
+		if ($this->Atendente->saveField('ativo', $ativo)) {
+			$this->Session->setFlash(__('O Atendente foi ativado/desativado com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
 		} else {
-			$this->Session->setFlash(__('Houve um erro ao desativar o atendente. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
+			$this->Session->setFlash(__('Houve um erro ao ativar/desativar o atendente. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
 		}
 		return $this->redirect( $this->referer() );
 	}

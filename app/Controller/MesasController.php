@@ -1059,11 +1059,19 @@ class MesasController extends AppController {
 		if (!$this->Mesa->exists()) {
 			throw new NotFoundException(__('Invalid mesa'));
 		}
+		$row = $this->Mesa->find('first', array(
+			'recursive'=> -1,
+			'conditions'=> array(
+				'id' => $id
+			)
+		));
+		$ativo = ($row['Mesa']['ativo'] == 1 ? 0: 1);  
+
 		$this->request->onlyAllow('post', 'delete');
-		if ($this->Mesa->saveField('ativo', 0)) {
-			$this->Session->setFlash(__('A mesa foi desativada com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
+		if ($this->Mesa->saveField('ativo', $ativo)) {
+			$this->Session->setFlash(__('A mesa foi ativado/desativado com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
 		} else {
-			$this->Session->setFlash(__('Houve um erro ao desativar a Mesa. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
+			$this->Session->setFlash(__('Houve um erro ao ativar/desativar a Mesa. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
 		}
 		return $this->redirect( $this->referer() );
 	}	

@@ -233,10 +233,18 @@ class CidadsController extends AppController {
 			throw new NotFoundException(__('Invalid cidade'));
 		}
 		$this->request->onlyAllow('post', 'delete');
-		if ($this->Cidad->saveField('ativo', 0)) {
-			$this->Session->setFlash(__('A cidade foi desativado com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
+		$row = $this->Cidad->find('first', array(
+			'recursive'=> -1,
+			'conditions'=> array(
+				'id' => $id
+			)
+		));
+		$ativo = ($row['Cidad']['ativo'] == 1 ? 0: 1);
+		
+		if ($this->Cidad->saveField('ativo', $ativo)) {
+			$this->Session->setFlash(__('A cidade foi habilitada/desabilitada com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
 		} else {
-			$this->Session->setFlash(__('Houve um erro ao desativar a cidade. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
+			$this->Session->setFlash(__('Houve um erro ao habilitar/desabilitar a cidade. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
 		}
 		return $this->redirect( $this->referer() );
 	}

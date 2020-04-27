@@ -199,7 +199,7 @@
 										  $this->Html->image('tb-desabilitar.png', array('class'=>'bt-tabela','alt' => __('Desabilitar'))), //le image
 										  array('controller'=>'atendentes','action' => 'disable', $atendente['Atendente']['id']), //le url
 										  array('escape' => false), //le escape
-										  __('Deseja desabilitar o  %s?', $atendente['Atendente']['nome'])
+										  __('Deseja ativar/desativar o %s?', $atendente['Atendente']['nome'])
 									);
 
 									echo $this->Form->postLink(

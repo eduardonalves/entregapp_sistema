@@ -212,7 +212,7 @@ echo $this->Search->create('Produtos', array('class' => 'form-inline', 'type' =>
                                 $this->Html->image('tb-desabilitar.png', array('class' => 'bt-desativa', 'alt' => __('Desabilitar'))), //le image
                                 array('controller' => 'Produtos', 'action' => 'disable', $produto['Produto']['id']), //le url
                                 array('escape' => false), //le escape
-                                __('Deseja desativar o produto  %s?', $produto['Produto']['nome'])
+                                __('Deseja ativar/desativar o produto  %s?', $produto['Produto']['nome'])
                             );
 
                             echo $this->Form->postLink(

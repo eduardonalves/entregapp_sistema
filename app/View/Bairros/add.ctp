@@ -152,7 +152,7 @@ table {margin-top: 10px; font-size:80%;}
 										  $this->Html->image('tb-desabilitar.png', array('class'=>'bt-tabela','alt' => __('Desabilitar'))), //le image
 										  array('controller'=>'bairros','action' => 'disable', $bairro['Bairro']['id']), //le url
 										  array('escape' => false), //le escape
-										  __('Deseja desabilitar o bairro  %s?', $bairro['Bairro']['bairro'])
+										  __('Deseja habilitar/desabilitar o bairro %s?', $bairro['Bairro']['bairro'])
 									);
 
 									echo $this->Form->postLink(
