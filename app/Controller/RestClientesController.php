@@ -365,8 +365,8 @@ public function loginmobile() {
 			$pontosRestantes=0;
 			$pontosGanhos=0;
 			if(empty($meusPontos)){	
-				$resto =  $value['Pedido']['valor'] % 16;
-				$pontos = ($value['Pedido']['valor'] - $resto) / 16;
+				$resto =  $value['Pedido']['valor'] % 25;
+				$pontos = ($value['Pedido']['valor'] - $resto) / 25;
 				$pontos = (int) $pontos;
 				$pontosRestantes =$pontos;
 				$pontosGanhos = $pontos;
@@ -386,8 +386,8 @@ public function loginmobile() {
 				$this->Ponto->save($dados);/**/
 			}else{
 				$saldoTotal =(float) $value['Pedido']['valor'] + (float) $meusPontos['Ponto']['saldo_credito'];
-				$resto =  $saldoTotal  % 16;
-				$pontos = ($saldoTotal - $resto) / 16;
+				$resto =  $saldoTotal  % 25;
+				$pontos = ($saldoTotal - $resto) / 25;
 				$pontosGanhos = (int) $pontos;
 				$pontos = (int) $pontos + (int) $meusPontos['Ponto']['pontos_ganhos'] ;
 
