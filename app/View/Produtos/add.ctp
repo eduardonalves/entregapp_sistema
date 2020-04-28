@@ -179,7 +179,7 @@ echo $this->Search->create('Produtos', array('class' => 'form-inline', 'type' =>
                         <td data-title="Preço"><?php echo 'R$ ' . number_format($produto['Produto']['preco_venda'], 2, ',', '2'); ?></td>
 
                         <td data-title="Foto">
-                            <div class="circulodivPequeno">
+                            <div class="">
                                 <?php
                                 if (isset($produto['Produto']['foto']) && $produto['Produto']['foto'] != '') {
                                 ?>
