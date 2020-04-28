@@ -555,6 +555,51 @@ class PedidosController extends AppController {
 
 	}
 
+
+	public function confirmarpedidolista($id = null) {
+		date_default_timezone_set("Brazil/East");
+		$this->layout ='ajaxresultadostatus';
+		if (!$this->Pedido->exists($id)) {
+			throw new NotFoundException(__('Invalid pedido'));
+		}
+		$resultados = array();
+		$Autorizacao = new AutorizacaosController;
+		$autTipo = 'confirmar';
+		$userid = $this->Session->read('Auth.User.id');
+		$userfuncao = $this->Session->read('Auth.User.funcao_id');
+		if(!$Autorizacao->setAutorizacao($autTipo,$userfuncao)){
+
+		}else{
+			if ($this->request->is(array('Ajax'))) {
+				$pedido=$this->Pedido->find('first', array('recursive' => -1,'conditions' => array('Pedido.id' => $id)));
+				if($pedido['Pedido']['status']=='Em Aberto'){
+					$this->Pedido->id= $id;
+					$this->Pedido->saveField('status', 'Confirmado');
+					$this->Pedido->saveField('user_id', $userid);
+					$this->loadModel('Atendimento');
+					$this->Atendimento->create();
+					$updateStatusAtendimento= array('id' => $pedido['Pedido']['atendimento_id'], 'status' => 'Confirmado');
+					$this->Atendimento->save($updateStatusAtendimento);
+					if($pedido['Pedido']['ptk'] !='' && $pedido['Pedido']['ptk'] !=null){
+						$title='Pedido Confirmado.';
+						$notification='Seu pedido foi recebido pela nossa equipe, vamos trabalhar para entregar o mais breve possível.';
+						$this->sendnotification($pedido['Pedido']['ptk'], $title, $notification, $pedido['Pedido']['atendimento_id']);	
+					}
+					
+					$this->Session->setFlash(__('A situação do pedido foi mudada para em confirmado com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
+					//$resultados= $this->Pedido->find('first', array('recursive' => -1,'conditions' => array('Pedido.id' => $id)));
+				}
+
+			}else{
+				$this->Session->setFlash(__('Houve um erro ao salvar o pedido. Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
+			}
+
+			
+
+		}
+		return $this->redirect( $this->referer() );
+	}
+
 	public function confirmarpreparo($id = null) {
 		date_default_timezone_set("Brazil/East");
 		$this->layout ='ajaxresultadostatus';

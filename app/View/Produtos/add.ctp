@@ -207,7 +207,7 @@ echo $this->Search->create('Produtos', array('class' => 'form-inline', 'type' =>
 
 
                             echo $this->html->image('tb-edit.png', array('data-id' => $produto['Produto']['id'], 'class' => 'bt-tabela editModal', 'data-id' => $produto['Produto']['id']));
-
+                            
                             echo $this->Form->postLink(
                                 $this->Html->image('tb-desabilitar.png', array('class' => 'bt-desativa', 'alt' => __('Desabilitar'))), //le image
                                 array('controller' => 'Produtos', 'action' => 'disable', $produto['Produto']['id']), //le url
