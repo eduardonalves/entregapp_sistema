@@ -1147,7 +1147,7 @@ public function index() {
 			'Pedido' => array(
 				'limit' => 20,
 				'conditions' => $this->Filter->getConditions(),
-				'order' => 'Pedido.id desc'
+				'order' => 'Pedido.id asc'
 			)
 		);
 
@@ -1340,7 +1340,7 @@ public function listarpedidos() {
 				'Pedido' => array(
 					'limit' => 20,
 					'conditions' => $this->Filter->getConditions(),
-					'order' => 'Pedido.id desc'
+					'order' => 'Pedido.id asc'
 				)
 			);
 
@@ -1496,6 +1496,7 @@ public function listarpedidos() {
 		foreach($pedido['Itensdepedido'] as $itens ){
 			$produto = $this->Produto->find('first', array('conditions' => array('Produto.id' => $itens['produto_id'])));
 			$pedido['Itensdepedido'][$i]['prodNome']= $produto['Produto']['nome'];
+			$pedido['Itensdepedido'][$i]['prodDescricao']= $produto['Produto']['descricao'];
 			$i++;
 		}
 
@@ -2378,6 +2379,7 @@ public function listarpedidos() {
 				$produto = $this->Produto->find('first', array('conditions' => array('Produto.id' => $itens['produto_id'])));
 				if(!empty($produto)){
 					$pedido['Itensdepedido'][$i]['prodNome']= $produto['Produto']['nome'];
+					$pedido['Itensdepedido'][$i]['prodDescricao']= $pedido['Itensdepedido'][$i]['prodNome']. ' - ' . $produto['Produto']['descricao'];
 					$pedido['Itensdepedido'][$i]['prodNome']=$pedido['Itensdepedido'][$i]['prodNome'].' '.$itens['obs_sis'];
 					$i++;
 				}

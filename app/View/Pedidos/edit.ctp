@@ -248,7 +248,7 @@
 								<tr>
 
 									<td data-title="Código"><?php echo $itensdepedido['produto_id']; ?></td>
-									<td data-title="Produto"><?php echo $itensdepedido['prodNome']; ?></td>
+									<td data-title="Produto" title="<?php echo $itensdepedido['prodDescricao']; ?>" alt="<?php echo $itensdepedido['prodDescricao']; ?>" ><?php echo $itensdepedido['prodNome']; ?></td>
 									<td data-title="Vl. Unit"> <?php echo 'R$ ' . number_format($itensdepedido['valor_unit'], 2, ',', '.'); ?></td>
 									<td data-title="Qtde"><?php echo $itensdepedido['qtde']; ?></td>
 									<td data-title="Valor Total"><?php echo 'R$ ' . number_format($itensdepedido['valor_total'], 2, ',', '.'); ?></td>
@@ -438,11 +438,11 @@ $(document).ready(function() {
 		cancelarpedido(idpedido);
 	});
 
-	myVar = setInterval(function(){verificaMensagem();}, 30000);
+	/*myVar = setInterval(function(){verificaMensagem();}, 30000);
 	setTimeout(function(){
 						var objDiv = document.getElementById("modalChatcontent");
 						objDiv.scrollTop = objDiv.scrollHeight;
-					}, 1000);
+					}, 1000);*/
 
 
 

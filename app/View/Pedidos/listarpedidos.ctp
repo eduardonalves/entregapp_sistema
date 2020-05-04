@@ -76,9 +76,9 @@
 						if($autorizacao['Autorizacao']['pedidos'] != 'n' && $autorizacao['Autorizacao']['pedidos'] != 'v'){
 							echo $this->Form->postLink(
 								$this->Html->image('tb-confirmar.png', array('class'=>'bt-tabela bt-entrega','alt' => __('Enviar'))), //le image
-								array('controller'=>'Pedidos','action' => 'confirmarenviolista', $pedido['Pedido']['id']), //le url
+								array('controller'=>'Pedidos','action' => 'confirmarpedidolista', $pedido['Pedido']['id']), //le url
 								array('escape' => false), //le escape
-								__('Mudar o status do pedido %s para em trânsito?', $pedido['Pedido']['id'])
+								__('Mudar o status do pedido %s para em confirmado?', $pedido['Pedido']['id'])
 						  );
 						}
 
