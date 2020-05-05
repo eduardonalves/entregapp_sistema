@@ -110,8 +110,24 @@
 								if($isCatalog==false)
 								{
 									echo "<br>";
-									echo $this->Form->input('tempo_atendimento',array('class' => 'input-large hora','label' => array('text' => 'Tempo de Atendimento', 'class' => 'labellarge hora')));
+									echo $this->Form->input('tempo_atendimento',array('class' => 'input-large hora','label' => array('text' => 'Tempo de Atendimento', 'class' => 'labellarge ')));
 								}
+
+								
+
+								if($isCatalog==false)
+								{
+									echo "<br>";
+									echo $this->Form->input('tempo_amarelo',array('class' => 'input-large ','label' => array('text' => 'Tempo (em min.) Farol Amarelo', 'class' => 'labellarge ')));
+								}
+
+								if($isCatalog==false)
+								{
+									echo "<br>";
+									echo $this->Form->input('tempo_vermelho',array('class' => 'input-large ','label' => array('text' => 'Tempo (em min.) Farol Vermelho', 'class' => 'labellarge ')));
+								}
+
+
 								?>
 								
 								

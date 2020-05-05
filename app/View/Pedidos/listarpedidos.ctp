@@ -45,9 +45,9 @@
 			<?php foreach ($pedidos as $pedido): ?>
 			<tr>
 
-				<td data-title="Código"><?php echo h($pedido['Pedido']['id']); ?>&nbsp;</td>
+				<td  class="<?php echo $pedido['Pedido']['farol']; ?>" data-title="Código"><?php echo h($pedido['Pedido']['id']); ?>&nbsp;</td>
 
-				<td data-title="Nome"><?php echo ($pedido['Pedido']['cliente_id'] !=1 ? $pedido['Cliente']['nome'] : $pedido['Pedido']['nomecadcliente']); ?>&nbsp;</td>
+				<td class="<?php echo $pedido['Pedido']['farol']; ?>"  data-title="Nome"><?php echo ($pedido['Pedido']['cliente_id'] !=1 ? $pedido['Cliente']['nome'] : $pedido['Pedido']['nomecadcliente']); ?>&nbsp;</td>
 				<?php
 					$dataAntiga = $pedido['Pedido']['data'];
 					$novaData = date("d/m/Y", strtotime($dataAntiga));
@@ -56,14 +56,14 @@
 				<?php $cliente_idAux=$pedido['Cliente']['id'];
 				?>
 
-				<td   data-title="Data" ><?php echo  $novaData; ?>&nbsp;</td>
-				<td data-title="Hora" ><?php echo h($pedido['Pedido']['hora_atendimento']); ?>&nbsp;</td>
+				<td class="<?php echo $pedido['Pedido']['farol']; ?>"   data-title="Data" ><?php echo  $novaData; ?>&nbsp;</td>
+				<td class="<?php echo $pedido['Pedido']['farol']; ?>" data-title="Hora" ><?php echo h($pedido['Pedido']['hora_atendimento']); ?>&nbsp;</td>
 				
-				<td data-title="Valor" ><?php echo 'R$ ' . number_format($pedido['Pedido']['valor'], 2, ',', '.'); ?>&nbsp;</td>
-				<td data-title="Status Pagamento"><?php echo h($pedido['Pedido']['status_pagamento']); ?>&nbsp;</td>
-				<td data-title="Entregador" <?php echo 'id="linhaEntregadorNome'.$pedido['Pedido']['id'].'"';?>><?php echo h($pedido['Entregador']['nome']); ?>&nbsp;</td>
-				<td   data-title="Status" <?php echo 'id="linhaPdStatus'.$pedido['Pedido']['id'].'"';?>><?php echo h($pedido['Pedido']['status']); ?>&nbsp; <?php if($pedido['Pedido']['status_novo']==1){ echo $this->Html->image('novo.jpg', array('id' => 'novoimg', 'class' => ' novoico', 'alt' => 'Novo', 'title' => 'Novo'));}?></td>
-				<td  data-title="Actions" >
+				<td class="<?php echo $pedido['Pedido']['farol']; ?>" data-title="Valor" ><?php echo 'R$ ' . number_format($pedido['Pedido']['valor'], 2, ',', '.'); ?>&nbsp;</td>
+				<td class="<?php echo $pedido['Pedido']['farol']; ?>" data-title="Status Pagamento"><?php echo h($pedido['Pedido']['status_pagamento']); ?>&nbsp;</td>
+				<td class="<?php echo $pedido['Pedido']['farol']; ?>"data-title="Entregador" <?php echo 'id="linhaEntregadorNome'.$pedido['Pedido']['id'].'"';?>><?php echo h($pedido['Entregador']['nome']); ?>&nbsp;</td>
+				<td  class="<?php echo $pedido['Pedido']['farol']; ?>" data-title="Status" <?php echo 'id="linhaPdStatus'.$pedido['Pedido']['id'].'"';?>><?php echo h($pedido['Pedido']['status']); ?>&nbsp; <?php if($pedido['Pedido']['status_novo']==1){ echo $this->Html->image('novo.jpg', array('id' => 'novoimg', 'class' => ' novoico', 'alt' => 'Novo', 'title' => 'Novo'));}?></td>
+				<td class="<?php echo $pedido['Pedido']['farol']; ?>"  data-title="Actions" >
 
 
 
@@ -120,5 +120,11 @@
 <style>
 .bt-entrega{
 	width: 30px !important;
+}
+.linhaAmarela{
+	background-color:#FFFF99 !important;
+}
+.linhaVermelha{
+	background-color:#FFA07A !important;
 }
 </style>
