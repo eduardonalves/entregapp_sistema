@@ -4,16 +4,18 @@
 				<thead class="cf">
 					<tr>
 						<th class="th-red">Total dos Pedidos</th>
-						<th class="th-red">Total Entregue </th>
-						<th class="th-red">Total Só Pedidos</th>
-						<th class="th-red">Total Só Entregas </th>
+						<th class="th-red">Total Salão</th>
+						<th class="th-red">Total Delivery </th>
+						
+						<th class="th-red">Total Taxa de Entrega </th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
 						<td  class="center-text" data-title="Total dos Pedidos" >R$ <?php echo number_format($totalPedidos, 2,',','.');?>&nbsp;</td>
+						<td   class="center-text" data-title="Total Só Pedidos " >R$ <?php $soEntregas = ($totalPedidosEntregue-$totalPedidosEntregue); echo number_format($soEntregas, 2,',','.');?>&nbsp;</td>
 						<td   class="center-text " data-title="Total Entregue " >R$ <?php echo number_format($totalPedidosEntregue, 2,',','.');?>&nbsp;</td>
-						<td   class="center-text" data-title="Total Só Pedidos " >R$ <?php $soEntregas = ($totalPedidosEntregue-$totalEntrega); echo number_format($soEntregas, 2,',','.');?>&nbsp;</td>
+						
 						<td   class="center-text" data-title="Total Só Entregas " >R$ <?php echo number_format($totalEntrega, 2,',','.');?>&nbsp;</td>
 					</tr>
 				</tbody>

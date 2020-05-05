@@ -229,6 +229,7 @@ class checkbfuncComponent extends Component
 
 		$signalColor='';
 		if($status != 'Cancelado' && $status != 'Finalizado' && $status != 'Entregue' && $status != 'Em Trânsito'){
+			
 			if($limitYellow <= $today){
 				$signalColor='linhaAmarela';
 			}

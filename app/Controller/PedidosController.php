@@ -1357,7 +1357,7 @@ class PedidosController extends AppController
 		$totalEntrega = 0;
 		
 		foreach ($pedidos as $key => $value) {
-
+			
 			if ($value['Pedido']['status'] != 'Cancelado') {
 				if ($value['Pedido']['status'] != 'Entregue') {
 					$contAberto = $contAberto + 1;
@@ -1365,7 +1365,7 @@ class PedidosController extends AppController
 				$totalPedidos += $value['Pedido']['valor'];
 			}
 
-			if ($value['Pedido']['status'] == 'Entregue') {
+			if ($value['Pedido']['cliente_id'] != '' && $value['Pedido']['cliente_id'] != 0) {
 				$totalPedidosEntregue += $value['Pedido']['valor'];
 				$totalEntrega += $value['Pedido']['entrega_valor'];
 				$contEntregue = $contEntregue + 1;
@@ -1375,7 +1375,8 @@ class PedidosController extends AppController
 				$prazoAmarelo = ($unicaFilial['Filial']['tempo_amarelo'] !='' && $unicaFilial['Filial']['tempo_amarelo'] != null ? $unicaFilial['Filial']['tempo_amarelo']: 20);
 				$prazoVermelho = ($unicaFilial['Filial']['tempo_vermelho'] !='' && $unicaFilial['Filial']['tempo_vermelho'] != null ? $unicaFilial['Filial']['tempo_vermelho']: 30); 
 			}
-			$dataHoraAtendimento= $value['Pedido']['data'].' '.$value['Pedido']['hora_atendimento'];
+			$dataHoraAtendimento= $value['Pedido']['data'];
+			$dataHoraAtendimento= ($value['Pedido']['hora_atendimento'] != null ? ' '.$value['Pedido']['hora_atendimento']: ' '. date('H:i:s'));
 			$pedidos[$key]['Pedido']['farol'] =$this->checkbfunc->getSignalColor($value['Pedido']['status'], $dataHoraAtendimento,$prazoAmarelo,$prazoVermelho);
 		}
 
@@ -1739,6 +1740,8 @@ class PedidosController extends AppController
 			$this->Pedido->create();
 
 			$this->request->data['Pedido']['data'] = date('Y-m-d');
+			$this->request->data['Pedido']['hora_atendimento'] =  date('H:i:s');
+			
 			$i = 0;
 
 			$total = 0;

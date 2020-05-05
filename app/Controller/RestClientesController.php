@@ -336,6 +336,8 @@ public function loginmobile() {
     	   }
 	public function processapontos($value='')
 	{
+		
+
 		$ultimopedido=array();	
 		$this->loadModel('Pedido');
 		$this->loadModel('Ponto');
@@ -402,9 +404,14 @@ public function loginmobile() {
 					'pontos_ganhos'=> $pontos
 				);
 				//$this->create();
-				$this->Ponto->save($dados);
+				$pontosRestantes = $meusPontos['Ponto']['pontos_ganhos'] - $meusPontos['Ponto']['pontos_gastos'];
+
+				if($pontosRestantes <= 20 ){
+					$this->Ponto->save($dados);
+				}
 				
-				$pontosRestantes = $meusPontos['Ponto']['pontos_ganhos'] - $meusPontos['Ponto']['pontos_gastos']; 
+				
+				 
 			}/**/
 			$this->Pedido->save(
 				array(
@@ -418,8 +425,11 @@ public function loginmobile() {
 			if(!empty($meuCliente)){
 				if($meuCliente['Cliente']['id'] !=''){
 					if($pontosGanhos > 0){
-						$this->Cliente->sendEmailPoints($value['Pedido']['cliente_id'], $pontosGanhos, $pontosRestantes );
-					}
+						if($pontosRestantes <= 20 ){
+							$this->Cliente->sendEmailPoints($value['Pedido']['cliente_id'], $pontosGanhos, $pontosRestantes );
+					
+						}
+					}	
 					
 					
 				}
