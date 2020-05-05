@@ -320,7 +320,7 @@ $senha = geraSenha(15, true, true, true);
 		if (empty($hasAssinatura)) {
 			$url = 'https://ws.sandbox.pagseguro.uol.com.br/v2/pre-approvals/request';
 			$data['email'] = 'eduardonalves@gmail.com';
-			$data['token'] = 'D7EFE5DED87440AE9A6ED636D439802E';
+			$data['token'] = '';
 			$data['currency'] = 'BRL';
 			$data['reference'] = '' . $_GET['ref'] . '';
 			$data['senderName'] = 'Eduardo Nascimento Alves';
@@ -1221,7 +1221,7 @@ $senha = geraSenha(15, true, true, true);
 			//if($resp =='OK'){
 			/*try {
 
-          $credentials = PagSeguroConfig::getAccountCredentials('eduardonalves@gmail.com','D7EFE5DED87440AE9A6ED636D439802E'); // getApplicationCredentials()
+          $credentials = PagSeguroConfig::getAccountCredentials('eduardonalves@gmail.com',''); // getApplicationCredentials()
           $sessionId = PagSeguroSessionService::getSession($credentials);
 
         } catch (PagSeguroServiceException $e) {
@@ -1391,7 +1391,7 @@ $senha = geraSenha(15, true, true, true);
 		//url produção https://ws.pagseguro.uol.com.br/v2/pre-approvals/cancel
 		$this->layout = 'ajaxaddpedido';
 		if (!empty($assinatura)) {
-			$token = 'D7EFE5DED87440AE9A6ED636D439802E';
+			$token = '';
 			$email = 'eduardonalves@gmail.com';
 			$transactionAssinatura = $assinatura['Assinatura']['codigo_pag'];
 
@@ -1420,9 +1420,9 @@ $senha = geraSenha(15, true, true, true);
 
 
 		PagSeguroConfig::setEmail('eduardonalves@gmail.com');
-		PagSeguroConfig::setToken('D7EFE5DED87440AE9A6ED636D439802E');
-		PagSeguroConfig::setAppId('app7667618852');
-		PagSeguroConfig::setAppKey('A2923A8C7070E8AEE423DF9F720E927D');
+		PagSeguroConfig::setToken('');
+		PagSeguroConfig::setAppId('');
+		PagSeguroConfig::setAppKey('');
 
 
 		$code = (isset($_POST['notificationCode']) && trim($_POST['notificationCode']) !== "" ?
@@ -1520,13 +1520,13 @@ $senha = geraSenha(15, true, true, true);
 
 
 		PagSeguroConfig::setEmail('eduardonalves@gmail.com');
-		PagSeguroConfig::setToken('D7EFE5DED87440AE9A6ED636D439802E');
-		PagSeguroConfig::setAppId('app7667618852');
-		PagSeguroConfig::setAppKey('A2923A8C7070E8AEE423DF9F720E927D');
+		PagSeguroConfig::setToken('');
+		PagSeguroConfig::setAppId('');
+		PagSeguroConfig::setAppKey('');
 
 
 
-		$credentials = new PagSeguroAccountCredentials("eduardonalves@gmail.com", "D7EFE5DED87440AE9A6ED636D439802E");
+		$credentials = new PagSeguroAccountCredentials("eduardonalves@gmail.com", "");
 
 
 		try {
@@ -1610,12 +1610,12 @@ $senha = geraSenha(15, true, true, true);
 	{
 
 		PagSeguroConfig::setEmail('eduardonalves@gmail.com');
-		PagSeguroConfig::setToken('D7EFE5DED87440AE9A6ED636D439802E');
-		PagSeguroConfig::setAppId('app7667618852');
-		PagSeguroConfig::setAppKey('A2923A8C7070E8AEE423DF9F720E927D');
+		PagSeguroConfig::setToken('');
+		PagSeguroConfig::setAppId('');
+		PagSeguroConfig::setAppKey('');
 
 		try {
-			$credentials = new PagSeguroAccountCredentials("eduardonalves@gmail.com", "D7EFE5DED87440AE9A6ED636D439802E");
+			$credentials = new PagSeguroAccountCredentials("eduardonalves@gmail.com", "");
 			$authorization = PagSeguroNotificationService::checkAuthorization($credentials, $notificationCode);
 		} catch (PagSeguroServiceException $e) {
 			die($e->getMessage());
@@ -1634,10 +1634,10 @@ $senha = geraSenha(15, true, true, true);
 	{
 
 		PagSeguroConfig::setEmail('eduardonalves@gmail.com');
-		PagSeguroConfig::setToken('D7EFE5DED87440AE9A6ED636D439802E');
-		PagSeguroConfig::setAppId('app7667618852');
-		PagSeguroConfig::setAppKey('A2923A8C7070E8AEE423DF9F720E927D');
-		$credentials = new PagSeguroAccountCredentials("eduardonalves@gmail.com", "D7EFE5DED87440AE9A6ED636D439802E");
+		PagSeguroConfig::setToken('');
+		PagSeguroConfig::setAppId('');
+		PagSeguroConfig::setAppKey('');
+		$credentials = new PagSeguroAccountCredentials("eduardonalves@gmail.com", "");
 
 		try {
 			$preApprovalObj = PagSeguroNotificationService::checkPreApproval($credentials, $preApprovalCode);
