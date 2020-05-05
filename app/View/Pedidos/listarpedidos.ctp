@@ -13,7 +13,7 @@
 				<tbody>
 					<tr>
 						<td  class="center-text" data-title="Total dos Pedidos" >R$ <?php echo number_format($totalPedidos, 2,',','.');?>&nbsp;</td>
-						<td   class="center-text" data-title="Total Só Pedidos " >R$ <?php $soEntregas = ($totalPedidosEntregue-$totalPedidosEntregue); echo number_format($soEntregas, 2,',','.');?>&nbsp;</td>
+						<td   class="center-text" data-title="Total Só Pedidos " >R$ <?php $soEntregas = ($totalPedidos-$totalPedidosEntregue); echo number_format($soEntregas, 2,',','.');?>&nbsp;</td>
 						<td   class="center-text " data-title="Total Entregue " >R$ <?php echo number_format($totalPedidosEntregue, 2,',','.');?>&nbsp;</td>
 						
 						<td   class="center-text" data-title="Total Só Entregas " >R$ <?php echo number_format($totalEntrega, 2,',','.');?>&nbsp;</td>
