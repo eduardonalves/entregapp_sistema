@@ -49,7 +49,7 @@
 
 				<td  class="<?php echo $pedido['Pedido']['farol']; ?>" data-title="Código"><?php echo h($pedido['Pedido']['id']); ?>&nbsp;</td>
 
-				<td class="<?php echo $pedido['Pedido']['farol']; ?>"  data-title="Nome"><?php echo ($pedido['Pedido']['cliente_id'] !=1 ? $pedido['Cliente']['nome'] : $pedido['Pedido']['nomecadcliente']); ?>&nbsp;</td>
+				<td class="<?php echo $pedido['Pedido']['farol']; ?>"  data-title="Nome"><?php echo ($pedido['Pedido']['cliente_id'] !=0 && $pedido['Pedido']['cliente_id'] !=1 ? $pedido['Cliente']['nome'] : $pedido['Pedido']['nomecadcliente']); ?>&nbsp;</td>
 				<?php
 					$dataAntiga = $pedido['Pedido']['data'];
 					$novaData = date("d/m/Y", strtotime($dataAntiga));

@@ -220,6 +220,11 @@ input#filterDataPedido-between{
 /*
   INICIO ADD NOVO PEDIDO
 */
+.tbl-qtd-bold{
+	font-weight: bold !important;
+	background-color: yellow !important;
+	font-size: 100% !important;
+}
 .bts-add{
 	height: 25px;
 	padding: 4px;
@@ -234,7 +239,7 @@ input#filterDataPedido-between{
 		color:#FFFFFF;
 
 	}
-table {margin-top: 10px; font-size:80%;}
+table {margin-top: 10px; font-size:90%;}
 
 
 

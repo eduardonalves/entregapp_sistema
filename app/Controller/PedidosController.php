@@ -570,7 +570,7 @@ class PedidosController extends AppController
 		$userfuncao = $this->Session->read('Auth.User.funcao_id');
 		if (!$Autorizacao->setAutorizacao($autTipo, $userfuncao)) {
 		} else {
-			if ($this->request->is(array('Ajax'))) {
+			if ($this->request->is(array('Post'))) {
 				$pedido = $this->Pedido->find('first', array('recursive' => -1, 'conditions' => array('Pedido.id' => $id)));
 				if ($pedido['Pedido']['status'] == 'Em Aberto') {
 					$this->Pedido->id = $id;
@@ -1358,6 +1358,12 @@ class PedidosController extends AppController
 		
 		foreach ($pedidos as $key => $value) {
 			
+			$identificacao='';
+			if(isset($value['Mesa'])){
+				$identificacao = ' / '.$value['Mesa']['identificacao']; 
+			}
+			
+			$pedidos[$key]['Pedido']['nomecadcliente'] = $pedidos[$key]['Pedido']['nomecadcliente'] .$identificacao;
 			if ($value['Pedido']['status'] != 'Cancelado') {
 				if ($value['Pedido']['status'] != 'Entregue') {
 					$contAberto = $contAberto + 1;

@@ -446,7 +446,13 @@ $senha = geraSenha(15, true, true, true);
 
 
 					$this->request->data['Pedido']['data'] = date('Y-m-d');
-					$this->request->data['Pedido']['status'] = "Em Aberto";
+					
+					if(!isset($this->request->data['Pedido']['atendente_id'])){
+						$this->request->data['Pedido']['status'] = "Em Aberto";
+					}else{
+						$this->request->data['Pedido']['status'] = "Confirmado";
+					}
+					
 
 					$this->request->data['Pedido']['status_pagamento'] = "Pendente";
 					$this->request->data['Pedido']['entrega_valor'] = $this->checkbfunc->converterMoedaToBD($this->request->data['Pedido']['entrega_valor']);
@@ -464,8 +470,19 @@ $senha = geraSenha(15, true, true, true);
 
 					//Verifico se o cliente está ativo
 					$this->loadModel('Cliente');
-					$clienteAtivo = $this->Cliente->find('first', array('recursive' => -1, 'conditions' => array('Cliente.id' => $this->request->data['Pedido']['cliente_id'], 'Cliente.ativo' => 1)));
-
+					$this->loadModel('Atendente');
+					
+					if(!isset($this->request->data['Pedido']['atendente_id'])){
+						$clienteAtivo = $this->Cliente->find('first', 
+						array('recursive' => -1, 'conditions' =>
+						 array('Cliente.id' => $this->request->data['Pedido']['cliente_id'], 
+						 'Cliente.ativo' => 1)));	
+					}else{
+						$clienteAtivo = $this->Atendente->find('first', array('recursive' => -1, 
+						'conditions' => array('Atendente.id' => $this->request->data['Pedido']['atendente_id'], 
+						'Atendente.ativo' => 1)));
+							
+					}
 
 
 					if ($respAux == 1) {
@@ -478,6 +495,7 @@ $senha = geraSenha(15, true, true, true);
 					} else {
 						$resp = 'NOK';
 					}
+					
 					if (empty($clienteAtivo)) {
 						$resp = 'NOK';
 						$ultimopedido = "erroUsuarioInativo";
@@ -508,8 +526,24 @@ $senha = geraSenha(15, true, true, true);
 									//fazer uma fun��o para pegar a lat e lng do estabelecimento
 									$lat = $empresa['Filial']['lat'];
 									$lng = $empresa['Filial']['lng'];
-									$dadosatendimento = array('ativo' => 1, 'usado' => 0, 'codigo' => $codigo, 'tipo' => 'EXTERNO', 'cliente_id' => $clt, 'lat' => $lat, 'lng' => $lng, 'hora' =>  date("H:i:s"), 'data' => date('Y-m-d'), 'empresa_id' => $this->request->data['Pedido']['empresa_id'], 'filial_id' => $this->request->data['Pedido']['filial_id']);
-
+									if(!isset($this->request->data['Pedido']['atendente_id'])){
+										$dadosatendimento = array('ativo' => 1, 'usado' => 0, 'codigo' => $codigo, 'tipo' => 'EXTERNO', 'cliente_id' => $clt, 'lat' => $lat, 'lng' => $lng, 'hora' =>  date("H:i:s"), 'data' => date('Y-m-d'), 'empresa_id' => $this->request->data['Pedido']['empresa_id'], 'filial_id' => $this->request->data['Pedido']['filial_id']);
+									}else{
+										$dadosatendimento = array(
+											'ativo' => 1, 
+											'usado' => 0, 
+											'codigo' => $codigo, 
+											'tipo' => 'EXTERNO-SISTEMA', 
+											'cliente_id' => $clt, 
+											'lat' => $lat, 'lng' => $lng, 
+											'hora' =>  date("H:i:s"), 
+											'data' => date('Y-m-d'), 
+											'empresa_id' => $this->request->data['Pedido']['empresa_id'], 
+											'filial_id' => $this->request->data['Pedido']['filial_id'],
+											'mesa_id'=> $this->request->data['Pedido']['mesa_id'],
+											
+										);
+									}
 									if ($this->Atendimento->save($dadosatendimento)) {
 										$ultimoAtend = $this->Atendimento->find('first', array('order' => array('Atendimento.id' => 'desc'), 'recursive' => 1));
 										$codigo = $ultimoAtend['Atendimento']['codigo'];
@@ -602,7 +636,9 @@ $senha = geraSenha(15, true, true, true);
 
 
 						$horaAtendimento =  date("H:i:s");
-
+						if(isset($this->request->data['Pedido']['atendente_id'])){
+							$this->request->data['Pedido']['hora_atendimento'] = $horaAtendimento;
+						}
 						$tempoVisualizacao = "00:01:00";
 						//$tempoFila = $this->calculaFilaProdutos();
 						$this->loadModel('Filial');
