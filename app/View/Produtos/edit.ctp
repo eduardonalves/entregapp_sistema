@@ -102,9 +102,9 @@
                         <?php
                         echo $this->Form->input('recompensa_tipo', array('options'=> array(
                                 ''=> 'Selecione',
-                                '1'=> 'Comum',
-                                '2'=> 'Consolação',
-                                '3'=> 'Rara',
+                                '1'=> 'Recompensa - Vitória',
+                                '2'=> 'Recompensa - Derrota',
+                                '3'=> 'Recompensa - Virória Rara',
                         ), 'label' => array('text' => 'Recompensa: ')));
                         ?>
                     </div>

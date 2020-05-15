@@ -146,10 +146,12 @@
 						
 						if(is_numeric($meuTroco)){
 							$troco= (float) $pedido['Pedido']['valor']- (float) $pedido['Pedido']['trocoresposta'];
+							//print_r($troco);
 							$troco= $troco * -1;
-							$troco = str_replace('.',',', $troco);
+							//$troco = str_replace('.',',', $troco);
 							$troco  = (float) $troco;
 							$meuTroco = (float) $meuTroco; 
+							
 							echo 'Levar troco para R$ '.  number_format($meuTroco, 2, ',', '.'). '- Valor do troco  R$'. number_format($troco, 2, ',', '.');
 						}else{
 							echo $pedido['Pedido']['trocoresposta'];
@@ -261,7 +263,8 @@
                 ?>
 								<tr>
 
-									<td data-title="Código"><?php echo $itensdepedido['produto_id']; ?></td>
+									<td data-title="Código"><?php echo $itensdepedido['produto_id']; 
+									?></td>
 									<td data-title="Produto" title="<?php echo $itensdepedido['prodDescricao']; ?>" alt="<?php echo $itensdepedido['prodDescricao']; ?>" ><?php echo $itensdepedido['prodNome']; ?></td>
 									<td data-title="Vl. Unit"> <?php echo 'R$ ' . number_format($itensdepedido['valor_unit'], 2, ',', '.'); ?></td>
 									<td data-title="Qtde" class="<?php echo ($itensdepedido['qtde'] > 1 ? 'tbl-qtd-bold':'');?>"><?php echo $itensdepedido['qtde']; ?></td>

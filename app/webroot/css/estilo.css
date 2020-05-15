@@ -139,6 +139,11 @@ html, body{
 
 
 /********** FORMULÁRIOS  **********/
+#obsPedido{
+	background-color: yellow ;
+	font-size: 119%;
+	font-weight: 600;
+}
 .input-default,
 .custom-combobox-input{
 	height: 32px !important;

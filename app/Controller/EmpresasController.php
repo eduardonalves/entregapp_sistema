@@ -139,15 +139,18 @@ class EmpresasController extends AppController {
 		$this->loadModel('Estado');
 		$this->loadModel('Cidad');
 		$this->loadModel('Bairro');
+		
 
 		$filial = $this->Filial->find('first', array('order' => array('Filial.id' => 'asc'), 'recursive' => -1,'conditions'=> array('Filial.id'=> $filial_id)));
 		$minhasCidade = $this->Cidad->find('first',array('recursive'=>-1, 'conditions'=> array('and'=> array( array('Cidad.id'=> $cidade ), array('Cidad.filial_id'=> $filial_id), array('Cidad.ativo'=>true )))));
 		$uf = $this->Estado->find('first',array('recursive'=>-1, 'conditions'=> array('and'=> array( array('Estado.id'=> $uf ), array('Estado.ativo'=>true )))));
+		
+		
 
 		if(empty($uf)){
 			return false;
 			exit;
-			debug($filial_id);
+			//debug($filial_id);
 
 		}
 		if($filial['Filial']['taxa_padrao'] ==true){
@@ -157,7 +160,7 @@ class EmpresasController extends AppController {
 			return $frete;
 
 		}else{
-
+			
 			if(!empty($minhasCidade)){
 
 				if($minhasCidade['Cidad']['cobertura_total']==true) {
@@ -165,8 +168,14 @@ class EmpresasController extends AppController {
 					$frete=$minhasCidade['Cidad']['valor'];
 					return $frete;
 				}else{
-					$meuBairro = $this->Bairro->find('first',array('recursive'=>-1, 'conditions'=> array('and'=> array( array('Bairro.id'=> $bairro ), array('Bairro.cidad_id'=> $minhasCidade['Cidad']['id']),array('Bairro.filial_id'=> $filial_id), array('Bairro.ativo'=>true )))));
-
+					$meuBairro = $this->Bairro->find('first',array(
+						'recursive'=>-1, 
+						'conditions'=> array(
+							'id'=> $bairro,
+							'ativo'=> 1
+							)
+						));
+					
 					if(!empty($meuBairro)){
 						//$frete=number_format($meuBairro['Bairro']['valor'],2,',','.');
 						$frete=$meuBairro['Bairro']['valor'];

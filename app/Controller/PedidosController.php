@@ -1384,6 +1384,8 @@ class PedidosController extends AppController
 			$dataHoraAtendimento= $value['Pedido']['data'];
 			$dataHoraAtendimento= ($value['Pedido']['hora_atendimento'] != null ? ' '.$value['Pedido']['hora_atendimento']: ' '. date('H:i:s'));
 			$pedidos[$key]['Pedido']['farol'] =$this->checkbfunc->getSignalColor($value['Pedido']['status'], $dataHoraAtendimento,$prazoAmarelo,$prazoVermelho);
+
+			
 		}
 
 

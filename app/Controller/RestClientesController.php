@@ -302,6 +302,33 @@ class RestClientesController extends AppController
 			'_serialize' => array('ultimopedido')
 		));
 	}
+
+	public function getfrete($id='')
+	{
+		$this->loadModel('Cliente');
+		$this->loadModel('Estado');
+		$this->loadModel('Cidad');
+		$this->loadModel('Bairro');
+
+		$this->request->data = $_GET;
+		
+		
+		$ultimocliente = $this->Cliente->find('first', array('conditions' => array('Cliente.id' => $this->request->data['id']), 'recursive' => -1));
+		
+	
+		$Empresa = new EmpresasController;
+		$frete=false;
+		if (!empty($ultimocliente)) {
+			
+			$frete = $Empresa->verificaValorFrete($this->request->data['fp'], $this->checkbfunc->removeDetritos($ultimocliente['Cliente']['bairro']), $this->checkbfunc->removeDetritos($ultimocliente['Cliente']['cidade']), $ultimocliente['Cliente']['uf']);
+		}
+		$this->set(array(
+			'frete' => $frete,
+			'_serialize' => array('frete')
+		));
+	
+	}
+	
 	public function getPromoDia()
 	{
 		header("Access-Control-Allow-Origin: *");
@@ -874,6 +901,7 @@ class RestClientesController extends AppController
 								'conditions' => array(
 									'Produto.recompensa' => 1,
 									'Produto.recompensa_tipo' => 2,
+									'Produto.ativo'=> 1,
 								)
 							)
 						);
@@ -899,6 +927,7 @@ class RestClientesController extends AppController
 								'conditions' => array(
 									'Produto.recompensa' => 1,
 									'Produto.recompensa_tipo' => 1,
+									'Produto.ativo'=> 1,
 								)
 							)
 						);
@@ -922,6 +951,7 @@ class RestClientesController extends AppController
 								'conditions' => array(
 									'Produto.recompensa' => 1,
 									'Produto.recompensa_tipo' => 3,
+									'Produto.ativo'=> 1,
 								)
 							)
 						);
@@ -1021,7 +1051,7 @@ class RestClientesController extends AppController
 		header("Access-Control-Allow-Origin: *");
 		$this->layout = 'liso';
 		$hoje = date("Y-m-d");
-		$dataValidade = date("Y-m-d", strtotime('+2 month' . $hoje));
+		$dataValidade = date("Y-m-d", strtotime('+1 month' . $hoje));
 
 		if (empty($this->request->data)) {
 
