@@ -58,9 +58,10 @@ class UsersController extends AppController {
 		$userid = $this->Session->read('Auth.User.id');
 		$userfuncao = $this->Session->read('Auth.User.funcao_id');
 		$minhasFiliais = $this->getFiliais($userid);
-		//$lojas = $this->getSelectFiliais($userid);
+		$lojas = $this->getSelectFiliais($userid);
+		
 		$this->loadModel('Filial');
-		$lojas=   $this->Filial->find('list', array('recursive'=>-1));
+		//$lojas=   $this->Filial->find('list', array('recursive'=>-1));
 
 		if(isset($this->request->data['filter']))
 		{
@@ -68,7 +69,7 @@ class UsersController extends AppController {
 			foreach($this->request->data['filter'] as $key=>$value)
 			{
 
-				//$this->request->data['filter']['empresa']=$this->Session->read('Auth.User.empresa_id');
+				$this->request->data['filter']['empresa']=$this->Session->read('Auth.User.empresa_id');
 
 
 
@@ -109,7 +110,7 @@ class UsersController extends AppController {
 
 			//$this->request->data['filter']['minhaslojas']=(string) $unicaFilial['Filial']['id']  ;
 
-			//$this->request->data['filter']['empresa']=$this->Session->read('Auth.User.empresa_id');
+			$this->request->data['filter']['empresa']=$this->Session->read('Auth.User.empresa_id');
 		}
 		$this->Paginator->settings = array(
 					'User' => array(
@@ -183,9 +184,15 @@ class UsersController extends AppController {
 		}
 		$this->loadModel('Filial');
 		$this->loadModel('Empresa');
-		$empresas=   $this->Empresa->find('list', array('recursive'=>-1));
-		$filiais=   $this->Filial->find('list', array('recursive'=>-1));
-		$funcaos = $this->User->Funcao->find('list');
+		$empresas=   $this->Empresa->find('list', array('recursive'=>-1, 'conditions'=> array(
+			'Empresa.id' => $this->Session->read('Auth.User.empresa_id')
+		)));
+		$filiais=   $this->Filial->find('list', array('recursive'=>-1, 'conditions'=> array(
+			'Filial.filial_id'=> $minhasFiliais
+		)));
+		$funcaos = $this->User->Funcao->find('list', array('conditions'=> array(
+			'Funcao.filial_id'=> $minhasFiliais
+		)));
 		$this->set(compact('funcaos', 'filiais','users','empresas'));
 	}
 
@@ -204,7 +211,10 @@ class UsersController extends AppController {
 		$autTipo = 'usuarios';
 		$userid = $this->Session->read('Auth.User.id');
 		$userfuncao = $this->Session->read('Auth.User.funcao_id');
+
+		$minhasFiliais = $this->getFiliais($userid);
 		$this->loadModel('Filial');
+
 
 		/*$selecionadas = $this->Filial->query('select f.id,f.nome FROM filials f inner JOIN
 					users_filials uf ON
@@ -214,13 +224,20 @@ class UsersController extends AppController {
 					WHERE uf.user_id=3');*/
 
 
-		$filiais=   $this->Filial->find('list', array('recursive'=>-1));
+		//$filiais=   $this->Filial->find('list', array('recursive'=>-1));
+		
+		//$empresas=   $this->Empresa->find('list', array('recursive'=>-1));
+
 		$this->loadModel('Empresa');
-		$empresas=   $this->Empresa->find('list', array('recursive'=>-1));
+
+		$empresas=   $this->Empresa->find('list', array('recursive'=>-1, 'conditions'=> array(
+			'Empresa.id' => $this->Session->read('Auth.User.empresa_id')
+		)));
+		$filiais=   $this->Filial->find('list', array('recursive'=>-1, 'conditions'=> array(
+			'Filial.filial_id'=> $minhasFiliais
+		)));
 
 		$selecionadas = $this->getFiliais($id);
-
-
 
 		if ($this->request->is(array('post', 'put'))) {
 
@@ -277,7 +294,7 @@ class UsersController extends AppController {
 		$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 		$this->request->data = $this->User->find('first', $options);
 	}
-		$funcaos = $this->User->Funcao->find('list');
+		$funcaos = $this->User->Funcao->find('list', array('conditions'=> array('Funcao.filial_id'=> $minhasFiliais)));
 		$this->set(compact('funcaos','filiais','selecionadas','empresas'));
 	}
 

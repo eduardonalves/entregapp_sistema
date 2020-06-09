@@ -172,13 +172,22 @@ class MesasController extends AppController {
 						foreach ($ultimopedido as $key => $value) {
 
 							
-							$ultimopedido[$key]['Pedidos'] = $this->Pedido->find('all',array('conditions'=> array('AND'=> array(array('Pedido.mesa_id'=> $value['Mesa']['id']),array('Pedido.status_finalizado' => false)))));
+							$ultimopedido[$key]['Pedidos'] = $this->Pedido->find('all',array('conditions'=> array('AND'=> array(
+								array('Pedido.mesa_id'=> $value['Mesa']['id']),
+								array('Pedido.status_finalizado' => false),
+								array('Pedido.filial_id' => $minhasFiliais),
+							))));
 							//debug($value['Mesa']['id']);
  							//die;
 							$ultimopedido[$key]['Mesa']['total_pedidos']=(count($ultimopedido[$key]['Pedidos']) > 0);
 							$countPedidosNaoPagos = $this->Pedido->find('count',array('recursive'=> -1,'conditions'=> array('AND'=> array(array('Pedido.mesa_id'=> $value['Mesa']['id']),array('Pedido.status_finalizado' => false), array('Pedido.status_pagamento' => 'PENDENTE')))));
 							$countPedidosPagos = $this->Pedido->find('count',array('recursive'=> -1,'conditions'=> array('AND'=> array(array('Pedido.mesa_id'=> $value['Mesa']['id']),array('Pedido.status_finalizado' => false), array('Pedido.status_pagamento' => 'OK')))));
-							$countTotalPedidosAberto = $this->Pedido->find('count',array('recursive'=> -1,'conditions'=> array('AND'=> array(array('Pedido.mesa_id'=> $value['Mesa']['id']),array('Pedido.status_finalizado' => false)))));
+							$countTotalPedidosAberto = $this->Pedido->find('count',array('recursive'=> -1,
+							'conditions'=> array('AND'=> array(
+								array('Pedido.mesa_id'=> $value['Mesa']['id']),
+								array('Pedido.status_finalizado' => false),
+								array('Pedido.filial_id' => $minhasFiliais),
+							))));
 
 							if($countTotalPedidosAberto > 0)
 							{
@@ -434,7 +443,19 @@ class MesasController extends AppController {
 				$this->loadModel('Pagamento');
 				$this->loadModel('Cliente');
 
-				$pedidos['Pedidos'] = $this->Pedido->find('all',array('conditions'=> array('AND'=> array(array('Pedido.mesa_id'=> $id),array('Pedido.status_finalizado' => false)))));
+				/*$pedidos['Pedidos'] = $this->Pedido->find('all',
+						array('conditions'=> 
+							array('AND'=> 
+								array(
+									array('Pedido.mesa_id'=> $id),
+									array('Pedido.status_finalizado' => 0)))));*/
+				$pedidos['Pedidos'] = $this->Pedido->find('all',array(
+					'conditions'=> array(
+						'Pedido.mesa_id'=> $id,
+						'Pedido.status_finalizado'=> 0,
+						'Pedido.filial_id' => $minhasFiliais,
+					)
+				));
 				
 				foreach ($pedidos['Pedidos'] as $key => $value)
 				{
@@ -738,8 +759,18 @@ class MesasController extends AppController {
 					$this->loadModel('Venda');
 					$mesa = $this->Mesa->find('first', array('recursive'=> -1, 'conditions'=> array('AND'=> array(array('Mesa.filial_id'=>$minhasFiliais), array('Mesa.id'=> $this->request->data['mesa_id'])))));
 
-					$pedidos = $this->Pedido->find('all', array('recursive'=> -1, 'conditions'=> array('AND'=> array(array('Pedido.filial_id'=>$minhasFiliais), array('Pedido.mesa_id'=> $this->request->data['mesa_id']), array('Pedido.status_finalizado'=> 0)))));
+					//$pedidos = $this->Pedido->find('all', array('recursive'=> -1, 'conditions'=> array('AND'=> array(array('Pedido.filial_id'=>$minhasFiliais), array('Pedido.mesa_id'=> $this->request->data['mesa_id']), array('Pedido.status_finalizado'=> 0)))));
+					$pedidos= $this->Pedido->find('all', array(
+						'recursive'=> -1,
+						'conditions'=> array(
+							'filial_id' => $minhasFiliais,
+							'mesa_id'=> $this->request->data['mesa_id'],
+							'status_finalizado'=> 0
+						)
+					));
 
+					
+				
 
 					$this->loadModel('Itensdepedido');
 					$this->loadModel('Vendasiten');
@@ -806,8 +837,15 @@ class MesasController extends AppController {
 
 				//	$resultToCheck = (double) $valorToCheck - (double) $valorCheckPagamento;
 				$checkPagamento = false;
-				$valorCheckPagamento = number_format($valorCheckPagamento,2, ".",",") ;
-				$valorToCheck = number_format($valorToCheck,2 ,".",",");
+
+				
+
+				//$valorCheckPagamento = number_format($valorCheckPagamento,2, ",",".") ;
+				//$valorToCheck = number_format($valorToCheck,2 ,",",".");
+				//echo "valorCheckPagamento ". $valorCheckPagamento;
+				//echo "- valorToCheck ". $valorToCheck; 
+				//die('aqui');
+
 				if((float) $valorCheckPagamento >= (float) $valorToCheck)
 				{
 					$checkPagamento = true;
@@ -817,9 +855,9 @@ class MesasController extends AppController {
 					$checkPagamento = false;
 				}
 
-				if( (float) $valorCheckPagamento==0 && (float) $valorToCheck==0){
+				/*if( (float) $valorCheckPagamento==0 && (float) $valorToCheck==0){
 					$checkPagamento = false;
-				}
+				}*/
 
 
 				if($checkPagamento == true && $isValidItens==false ){
@@ -862,9 +900,9 @@ class MesasController extends AppController {
 				}
 				
 				//Fim Validacao
-				
-				
-					if($checkPagamento == true &&  $isValidItens==true)
+					
+
+					if($checkPagamento == true)
 					{
 						$this->loadModel('Movimento');
 					 $movimento = $this->Movimento->find('first', array(
@@ -874,6 +912,7 @@ class MesasController extends AppController {
 								'status' => 'Aberto'
 							)
 						));
+					
 						if(empty($movimento)){
 							$movimento = $this->Movimento->find('first', array(
 	 							'recursive'=> -1,
@@ -925,6 +964,7 @@ class MesasController extends AppController {
 						$itensVenda = array();
 						$totalItens =0;
 
+						
 						foreach ($pedidos as $pedido)
 						{
 

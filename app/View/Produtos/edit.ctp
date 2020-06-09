@@ -35,14 +35,14 @@
                         echo $this->Form->input('nome', array('class' => 'input-default', 'label' => array('text' => 'Nome: ')));
                         ?>
                     </div>
-                    <div class="row">
+                    
                         <div class="form-group  form-group-lg col-md-4">
 
                             <?php
                             echo $this->Form->input('setore_id', array('class' => 'input-default', 'label' => array('text' => 'Setor: ')));
                             ?>
                         </div>
-                    </div>
+                    
                     <?php if ($isCatalog == false) : ?>
                         <div class="form-group  form-group-lg col-md-4">
                             <?php
@@ -55,25 +55,22 @@
                         echo $this->Form->input('preco_venda', array('class' => 'input-default', 'label' => array('text' => 'Preço-Venda: ')));
                         ?>
                     </div>
-                    <?php if ($isCatalog == false) : ?>
-                </div>
-                <div class="row">
-                <?php endif; ?>
-                <div class="form-group  form-group-lg col-md-4">
+                    <div class="form-group  form-group-lg col-md-4">
                     <?php
-                    echo $this->Form->input('categoria_id', array('type' => 'select', 'div' => false, 'class' => 'input-default ', 'label' => array('text' => 'Categoria: ', 'class' => 'control-label selectcake')));
-                    ?>
-                </div>
-
-                </div>
-
-                <div class="row">
-                    <div class="form-group  form-group-lg col-md-12">
-                        <?php
-                        echo $this->Form->input('descricao', array('id' => 'ProdutoDescricaoEdit', 'type' => 'textarea', 'rows' => '7', 'cols' => '50', 'class' => '', 'label' => array('text' => 'Descrição: ')));
+                        echo $this->Form->input('categoria_id', array('type' => 'select', 'div' => false, 'class' => 'input-default ', 'label' => array('text' => 'Categoria: ', 'class' => 'control-label selectcake')));
                         ?>
+                    
                     </div>
+
+                    
+                        <div class="form-group  form-group-lg col-md-12">
+                            <?php
+                            echo $this->Form->input('descricao', array('id' => 'ProdutoDescricaoEdit', 'type' => 'textarea', 'rows' => '7', 'cols' => '50', 'class' => '', 'label' => array('text' => 'Descrição: ')));
+                            ?>
+                        </div>
                 </div>
+                
+                
 
                 <div class="row">
                     <div class="form-group  form-group-lg col-md-2">
@@ -98,6 +95,16 @@
                         echo $this->Form->input('recompensa', array('class' => '', 'label' => array('text' => 'Recompensa: ', 'class' => 'labellarge')));
                         ?>
                     </div>
+                    <div class="form-group  form-group-lg <?php echo $tam; ?>"  style="width: 230px;">
+                        <?php
+                        echo $this->Form->input('show_app', array('class' => '', 'label' => array('text' => 'Mostrar no App Cliente: ', 'class' => 'labellarge')));
+                        ?>
+                    </div>
+                    <div class="form-group  form-group-lg <?php echo $tam; ?>"  style="width: 230px;">
+                        <?php
+                        echo $this->Form->input('show_store', array('class' => '', 'label' => array('text' => 'Mostrar no App Garçom: ', 'class' => 'labellarge')));
+                        ?>
+                    </div>
                     <div class="form-group  form-group-lg col-md-2" style="width: 230px !important;">
                         <?php
                         echo $this->Form->input('recompensa_tipo', array('options'=> array(
@@ -105,7 +112,7 @@
                                 '1'=> 'Recompensa - Vitória',
                                 '2'=> 'Recompensa - Derrota',
                                 '3'=> 'Recompensa - Virória Rara',
-                        ), 'label' => array('text' => 'Recompensa: ')));
+                        ), 'label' => array('text' => 'Recompensa: '),'class'=> 'input-default'));
                         ?>
                     </div>
                 </div>

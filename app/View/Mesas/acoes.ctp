@@ -587,12 +587,12 @@ $(document).ready(function() {
 
 	urlInicio2 = (urlInicio2=='localhost' ? 'http://localhost/entregapp_sistema/': urlInicio2);
 
-	urlInicio = (urlInicio=='develop.entregapp.com.br' ? 'http://develop.entregapp.com.br/Pgtopedidos/add': urlInicio);
-	urlInicio2 = (urlInicio2=='develop.entregapp.com.br' ? 'http://develop.entregapp.com.br/': urlInicio2);
+	urlInicio = (urlInicio=='sistema.rudo.com.br' ? 'http://sistema.rudo.com.br/Pgtopedidos/add': urlInicio);
+	urlInicio2 = (urlInicio2=='sistema.rudo.com.br' ? 'http://sistema.rudo.com.br/': urlInicio2);
 
 
-	urlInicio = (urlInicio=='sistema.entregapp.com.br' ? 'http://sistema.entregapp.com.br/Pgtopedidos/add': urlInicio);
-	urlInicio2 = (urlInicio2=='sistema.entregapp.com.br' ? 'http://sistema.entregapp.com.br/': urlInicio2);
+	urlInicio = (urlInicio=='sistema.rudo.com.br' ? 'http://sistema.rudo.com.br/Pgtopedidos/add': urlInicio);
+	urlInicio2 = (urlInicio2=='sistema.rudo.com.br' ? 'http://sistema.rudo.com.br/': urlInicio2);
 
 
 	console.log(urlInicio2);
@@ -648,12 +648,12 @@ $(document).ready(function() {
 
 				urlInicio2 = (urlInicio2=='localhost' ? 'http://localhost/entregapp_sistema/': urlInicio2);
 
-				urlInicio = (urlInicio=='develop.entregapp.com.br' ? 'http://develop.entregapp.com.br/Pgtopedidos/add': urlInicio);
-				urlInicio2 = (urlInicio2=='develop.entregapp.com.br' ? 'http://develop.entregapp.com.br/': urlInicio2);
+				urlInicio = (urlInicio=='sistema.rudo.com.br' ? 'http://sistema.rudo.com.br/Pgtopedidos/add': urlInicio);
+				urlInicio2 = (urlInicio2=='sistema.rudo.com.br' ? 'http://sistema.rudo.com.br/': urlInicio2);
 
 
-				urlInicio = (urlInicio=='sistema.entregapp.com.br' ? 'http://sistema.entregapp.com.br/Pgtopedidos/add': urlInicio);
-				urlInicio2 = (urlInicio2=='sistema.entregapp.com.br' ? 'http://sistema.entregapp.com.br/': urlInicio2);
+				urlInicio = (urlInicio=='sistema.rudo.com.br' ? 'http://sistema.rudo.com.br/Pgtopedidos/add': urlInicio);
+				urlInicio2 = (urlInicio2=='sistema.rudo.com.br' ? 'http://sistema.rudo.com.br/': urlInicio2);
 
 
 				$.ajax({
@@ -702,12 +702,12 @@ $(document).ready(function() {
 
 						urlInicio2 = (urlInicio2=='localhost' ? 'http://localhost/entregapp_sistema/': urlInicio2);
 
-						urlInicio = (urlInicio=='develop.entregapp.com.br' ? 'http://develop.entregapp.com.br/Pgtopedidos/add': urlInicio);
-						urlInicio2 = (urlInicio2=='develop.entregapp.com.br' ? 'http://develop.entregapp.com.br/': urlInicio2);
+						urlInicio = (urlInicio=='sistema.rudo.com.br' ? 'http://sistema.rudo.com.br/Pgtopedidos/add': urlInicio);
+						urlInicio2 = (urlInicio2=='sistema.rudo.com.br' ? 'http://sistema.rudo.com.br/': urlInicio2);
 
 
-						urlInicio = (urlInicio=='sistema.entregapp.com.br' ? 'http://sistema.entregapp.com.br/Pgtopedidos/add': urlInicio);
-						urlInicio2 = (urlInicio2=='sistema.entregapp.com.br' ? 'http://sistema.entregapp.com.br/': urlInicio2);
+						urlInicio = (urlInicio=='sistema.rudo.com.br' ? 'http://sistema.rudo.com.br/Pgtopedidos/add': urlInicio);
+						urlInicio2 = (urlInicio2=='sistema.rudo.com.br' ? 'http://sistema.rudo.com.br/': urlInicio2);
 
 
 						$.ajax({
@@ -803,12 +803,12 @@ $(document).ready(function() {
 
 		urlInicio2 = (urlInicio2=='localhost' ? 'http://localhost/entregapp_sistema/': urlInicio2);
 
-		urlInicio = (urlInicio=='develop.entregapp.com.br' ? 'http://develop.entregapp.com.br/Pgtopedidos/add': urlInicio);
-		urlInicio2 = (urlInicio2=='develop.entregapp.com.br' ? 'http://develop.entregapp.com.br/': urlInicio2);
+		urlInicio = (urlInicio=='sistema.rudo.com.br' ? 'http://sistema.rudo.com.br/Pgtopedidos/add': urlInicio);
+		urlInicio2 = (urlInicio2=='sistema.rudo.com.br' ? 'http://sistema.rudo.com.br/': urlInicio2);
 
 
-		urlInicio = (urlInicio=='sistema.entregapp.com.br' ? 'http://sistema.entregapp.com.br/Pgtopedidos/add': urlInicio);
-		urlInicio2 = (urlInicio2=='sistema.entregapp.com.br' ? 'http://sistema.entregapp.com.br/': urlInicio2);
+		urlInicio = (urlInicio=='sistema.rudo.com.br' ? 'http://sistema.rudo.com.br/Pgtopedidos/add': urlInicio);
+		urlInicio2 = (urlInicio2=='sistema.rudo.com.br' ? 'http://sistema.rudo.com.br/': urlInicio2);
 
 
 
@@ -1116,12 +1116,12 @@ $(document).ready(function() {
 
 					urlInicio2 = (urlInicio2=='localhost' ? 'http://localhost/entregapp_sistema/': urlInicio2);
 
-					urlInicio = (urlInicio=='develop.entregapp.com.br' ? 'http://develop.entregapp.com.br/Pgtopedidos/add': urlInicio);
-					urlInicio2 = (urlInicio2=='develop.entregapp.com.br' ? 'http://develop.entregapp.com.br/': urlInicio2);
+					urlInicio = (urlInicio=='sistema.rudo.com.br' ? 'http://sistema.rudo.com.br/Pgtopedidos/add': urlInicio);
+					urlInicio2 = (urlInicio2=='sistema.rudo.com.br' ? 'http://sistema.rudo.com.br/': urlInicio2);
 
 
-					urlInicio = (urlInicio=='sistema.entregapp.com.br' ? 'http://sistema.entregapp.com.br/Pgtopedidos/add': urlInicio);
-					urlInicio2 = (urlInicio2=='sistema.entregapp.com.br' ? 'http://sistema.entregapp.com.br/': urlInicio2);
+					urlInicio = (urlInicio=='sistema.rudo.com.br' ? 'http://sistema.rudo.com.br/Pgtopedidos/add': urlInicio);
+					urlInicio2 = (urlInicio2=='sistema.rudo.com.br' ? 'http://sistema.rudo.com.br/': urlInicio2);
 
 
 					$.ajax({
@@ -1141,7 +1141,7 @@ $(document).ready(function() {
 
 								});
 							}else{
-								alert("Houve um erro, a operação não foi realizada.");
+								alert("Houve um erro, a operação não foi realizada. Por favor, verifique se o valor do pagamento está igual ou superior a conta da mesa e após isso tente novamente!");
 							}
 						},
 						beforeSend: function(){

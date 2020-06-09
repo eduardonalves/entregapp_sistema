@@ -28,6 +28,7 @@ App::uses('AppController', 'Controller');
  * @package       app.Controller
  * @link http://book.cakephp.org/2.0/en/controllers/pages-controller.html
  */
+App::import('Controller', 'Autorizacaos');
 class PagesController extends AppController {
 
 /**
@@ -47,7 +48,7 @@ class PagesController extends AppController {
  */
 	public function display() {
 		$path = func_get_args();
-
+		
 		$count = count($path);
 		if (!$count) {
 			return $this->redirect('/');
@@ -63,7 +64,19 @@ class PagesController extends AppController {
 		if (!empty($path[$count - 1])) {
 			$title_for_layout = Inflector::humanize($path[$count - 1]);
 		}
-		$this->set(compact('page', 'subpage', 'title_for_layout'));
+
+		$Autorizacao = new AutorizacaosController;
+		$autTipo = 'relatorios';
+
+		$userfuncao = $this->Session->read('Auth.User.funcao_id');
+		$verRelatorio = false;
+		if ($Autorizacao->setAutorizacao($autTipo, $userfuncao)) {
+			$verRelatorio = true;
+		}
+
+		$this->set(compact('page', 'subpage', 'title_for_layout','verRelatorio'));
+
+		
 
 		try {
 			$this->render(implode('/', $path));

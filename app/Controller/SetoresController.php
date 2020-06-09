@@ -298,7 +298,7 @@ class SetoresController extends AppController {
 										'Cliente.id'=> $ultimopedido[$key]['Pedido']['cliente_id']
 									)));
 									if(!empty($cliente)){
-										$ultimopedido[$key]['Pedido']['mesa'] = $cliente['Cliente']['nome'].' / '. $cliente['Cliente']['username'];
+										$ultimopedido[$key]['Pedido']['mesa'] = $cliente['Cliente']['nome'].' / '. $cliente['Cliente']['username'] ." \n". $ultimopedido[$key]['Pedido']['logradouro'] . ' '. $ultimopedido[$key]['Pedido']['numero'] . ' '. $ultimopedido[$key]['Pedido']['bairro_nome']. ' - '. $ultimopedido[$key]['Pedido']['cidade_nome']. ' - '. $ultimopedido[$key]['Pedido']['estado_nome'];
 									}
 								}
 								$meuSetor = $this->Setore->find('first', array(

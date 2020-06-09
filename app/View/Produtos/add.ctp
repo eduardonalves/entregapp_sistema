@@ -53,14 +53,14 @@ echo $this->Search->create('Produtos', array('class' => 'form-inline', 'type' =>
                         echo $this->Form->input('nome', array('class' => 'input-default', 'label' => array('text' => 'Nome: ')));
                         ?>
                     </div>
-                    <div class="row">
+                    
                         <div class="form-group  form-group-lg col-md-4">
 
                             <?php
                             echo $this->Form->input('setore_id', array('class' => 'input-default', 'label' => array('text' => 'Setor: ')));
                             ?>
                         </div>
-                    </div>
+                    
                     <?php if ($isCatalog == false) : ?>
                         <div class="form-group  form-group-lg col-md-4">
                             <?php
@@ -73,10 +73,6 @@ echo $this->Search->create('Produtos', array('class' => 'form-inline', 'type' =>
                         echo $this->Form->input('preco_venda', array('class' => 'input-default', 'label' => array('text' => 'Preço-Venda: ')));
                         ?>
                     </div>
-                </div>
-
-
-                <div class="row">
                     <div class="form-group  form-group-lg col-md-4">
                         <?php
                         echo $this->Form->input('categoria_id', array('type' => 'select', 'div' => false, 'class' => 'input-default ', 'label' => array('text' => 'Categoria: ', 'class' => 'control-label selectcake')));
@@ -89,6 +85,8 @@ echo $this->Search->create('Produtos', array('class' => 'form-inline', 'type' =>
                     </div>
                 </div>
 
+
+                
                 <?php
                 if ($isCatalog == true) {
                     $tam = 'col-md-3';
@@ -112,6 +110,16 @@ echo $this->Search->create('Produtos', array('class' => 'form-inline', 'type' =>
                         echo $this->Form->input('recompensa', array('class' => '', 'label' => array('text' => 'recompensa: ', 'class' => 'labellarge')));
                         ?>
                     </div>
+                    <div class="form-group  form-group-lg <?php echo $tam; ?>"  style="width: 230px;">
+                        <?php
+                        echo $this->Form->input('show_app', array('class' => '', 'label' => array('text' => 'Mostrar no App Cliente: ', 'class' => 'labellarge')));
+                        ?>
+                    </div>
+                    <div class="form-group  form-group-lg <?php echo $tam; ?>"  style="width: 230px;">
+                        <?php
+                        echo $this->Form->input('show_store', array('class' => '', 'label' => array('text' => 'Mostrar no App Garçom: ', 'class' => 'labellarge')));
+                        ?>
+                    </div>
                     <div class="form-group  form-group-lg col-md-2" style="width: 230px !important;">
                         <?php
                         echo $this->Form->input('recompensa_tipo', array('options'=> array(
@@ -119,7 +127,7 @@ echo $this->Search->create('Produtos', array('class' => 'form-inline', 'type' =>
                                 '1'=> 'Comum',
                                 '2'=> 'Consolação',
                                 '3'=> 'Rara',
-                        ), 'label' => array('text' => 'Recompensa: ')));
+                        ), 'label' => array('text' => 'Recompensa: '),'class'=> 'input-default'));
                         ?>
                     </div>
 

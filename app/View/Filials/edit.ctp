@@ -118,6 +118,13 @@
 								if($isCatalog==false)
 								{
 									echo "<br>";
+									echo $this->Form->input('tempo_verde',array('class' => 'input-large ','label' => array('text' => 'Tempo (em min.) Farol Verde', 'class' => 'labellarge ')));
+								}
+
+
+								if($isCatalog==false)
+								{
+									echo "<br>";
 									echo $this->Form->input('tempo_amarelo',array('class' => 'input-large ','label' => array('text' => 'Tempo (em min.) Farol Amarelo', 'class' => 'labellarge ')));
 								}
 

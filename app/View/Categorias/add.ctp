@@ -38,6 +38,8 @@ table {margin-top: 10px; font-size:80%;}
 						echo $this->Form->input('nome',array('class' => 'input-large','label' => array('text' => 'Categoria', 'class' => 'labellarge')));
 						echo $this->Form->input('destaque',array('type'=>'checkbox','label' => array('text' => 'Destaque')));
 						echo $this->Form->input('ativo',array('type'=>'checkbox','label' => array('text' => 'Ativo')));
+						echo $this->Form->input('show_app',array('type'=>'checkbox','label' => array('text' => 'Mostrar no App Cliente')));
+						echo $this->Form->input('show_store',array('type'=>'checkbox','label' => array('text' => 'Mostrar no App Garçom')));
 						echo $this->Form->input('filial_id',array('type' => 'hidden'));
 						?>
 					</div>

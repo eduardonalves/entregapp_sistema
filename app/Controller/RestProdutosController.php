@@ -36,8 +36,22 @@ class RestProdutosController extends AppController
   public function prodsmobilebycat()
   {
     header("Access-Control-Allow-Origin: *");
-
-    $produtos = $this->Produto->find('all', array('recursive' => -1, 'order' => 'Produto.preco_venda ASC', 'conditions' => array('categoria_id' => $_GET['cat'], 'filial_id' => $_GET['fp'], 'ativo' => 1)));
+    if(isset($_GET['apg'])){
+      $produtos = $this->Produto->find('all', array('recursive' => -1, 'order' => 'Produto.preco_venda ASC', 'conditions' => array(
+        'categoria_id' => $_GET['cat'], 
+        'filial_id' => $_GET['fp'], 
+        'ativo' => 1,
+        'show_store'=> 1
+      )));
+    }else{
+      $produtos = $this->Produto->find('all', array('recursive' => -1, 'order' => 'Produto.preco_venda ASC', 'conditions' => array(
+        'categoria_id' => $_GET['cat'], 
+        'filial_id' => $_GET['fp'], 
+        'ativo' => 1,
+        'show_app'=> 1
+      )));
+    }
+    
     foreach ($produtos as $key => $value) {
       $produtos[$key]["Produto"]["preco_venda"] = number_format($produtos[$key]["Produto"]["preco_venda"], 2, ".", "");
       $produtos[$key]["Produto"]["id_sec"] = $key;

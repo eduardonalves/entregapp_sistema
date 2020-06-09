@@ -419,6 +419,7 @@ $senha = geraSenha(15, true, true, true);
 				$this->loadModel('Atendimento');
 				$this->loadModel('Itensdepedido');
 				$this->loadModel('Fechamento');
+				$this->loadModel('Filial');
 
 				$fechamentoObj = $this->Fechamento->find(
 					'first',
@@ -432,7 +433,9 @@ $senha = geraSenha(15, true, true, true);
 				);
 				$ultimopedido = "errolojafechada";
 
-				if (empty($fechamentoObj)) {
+				$minhaFilialAberta = $this->Filial->find('first', array('recursive' => -1, 'fields' => array('status_abertura', 'tempo_atendimento'), 'conditions' => array('Filial.id' => $this->request->data['Pedido']['filial_id'])));
+
+				if ($minhaFilialAberta['Filial']['status_abertura'] != 1) {
 					$ultimopedido = "errolojafechada";
 				} else {
 					$clt = $this->request->data['Pedido']['cliente_id'];
@@ -511,7 +514,7 @@ $senha = geraSenha(15, true, true, true);
 							$this->Atendimento->create();
 							$flag = "FALSE";
 							$this->loadModel('Empresa');
-							$this->loadModel('Filial');
+							
 							$empresa = $this->Filial->find('first', array('recursive' => -1, 'conditions' => array('Filial.id' => $this->request->data['Pedido']['filial_id'])));
 							while ($flag == "FALSE") {
 								//$codigo = date('Ymd');

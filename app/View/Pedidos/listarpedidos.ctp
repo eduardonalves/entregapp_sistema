@@ -123,6 +123,9 @@
 .bt-entrega{
 	width: 30px !important;
 }
+.linhaVerde{
+	background-color:#adff99 !important;
+}
 .linhaAmarela{
 	background-color:#FFFF99 !important;
 }

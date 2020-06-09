@@ -16,7 +16,9 @@
 						echo $this->Form->input('id');
 						echo $this->Form->input('nome',array('class' => 'input-default','label' => array('text' => 'Categoria:')));
 						echo $this->Form->input('destaque',array('type'=>'checkbox','label' => array('text' => 'Destaque')));
-							echo $this->Form->input('ativo',array('type'=>'checkbox','label' => array('text' => 'Ativo')));
+						echo $this->Form->input('ativo',array('type'=>'checkbox','label' => array('text' => 'Ativo')));
+						echo $this->Form->input('show_app',array('type'=>'checkbox','label' => array('text' => 'Mostrar no App Cliente')));
+						echo $this->Form->input('show_store',array('type'=>'checkbox','label' => array('text' => 'Mostrar no App Garçom')));
 						?>
 					</div>
 					<div class="form-group  form-group-lg">

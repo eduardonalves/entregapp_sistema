@@ -210,11 +210,11 @@ class checkbfuncComponent extends Component
 
 		return $var;
 	}
-	public function getSignalColor($status='',$dateTimeOrder= '',$minYellow=30, $minRed= 40){
+	public function getSignalColor($status='',$dateTimeOrder= '',$minGreen= 30,$minYellow=40, $minRed= 60){
 		
 		
 		$today =  date("Y-m-d H:i:s");
-
+		
 		$limitYellow = date($today, strtotime('+' . $minYellow . ' minute'));
 		$limitRed = date($dateTimeOrder, strtotime('+' . $minRed . ' minute'));
 
@@ -224,12 +224,26 @@ class checkbfuncComponent extends Component
 		$limitRedAux = strtotime(''.$dateTimeOrder.' + ' . $minRed . ' minute');
 		$limitRed =  date('Y-m-d H:i:s', $limitRedAux);
 
-	
 
+		$limitGreenAux = strtotime(''.$dateTimeOrder.' + ' . $minGreen . ' minute');
+		$limitGreen =  date('Y-m-d H:i:s', $limitGreenAux);
 
+		
 		$signalColor='';
+		//debug($today. 'today');
+		//debug($limitGreen . 'limitGreen' );
+		//debug($limitYellow. 'limitYellow');
+		//debug($limitRed . 'limitRed');
+
+		//debug($minGreen.' ' .$minYellow.' '  .$minRed);
+
+
 		if($status != 'Cancelado' && $status != 'Finalizado' && $status != 'Entregue' && $status != 'Em Trânsito'){
 			
+			if($limitGreen <= $today){
+				$signalColor='linhaVerde';
+			}
+
 			if($limitYellow <= $today){
 				$signalColor='linhaAmarela';
 			}
@@ -238,6 +252,80 @@ class checkbfuncComponent extends Component
 			}
 		}
 		
+		
 		return $signalColor;
+	}
+	function getmes($mes)
+	{
+		switch ($mes) {
+			case 1:
+				return 'Janeiro';
+				break;
+			case 2:
+				return 'Fevereiro';
+				break;
+			case 3:
+				return 'Março';
+				break;
+			case 4:
+				return 'Abril';
+				break;
+			case 5:
+				return 'Maio';
+				break;
+			case 6:
+				return 'Junho';
+				break;
+			case 7:
+				return 'Julho';
+				break;
+			case 8:
+				return 'Agosto';
+				break;
+			case 9:
+				return 'Setembro';
+				break;
+			case 10:
+				return 'Outubro';
+				break;
+			case 11:
+				return 'Novembro';
+				break;
+			case 7:
+				return 'Dezembro';
+				break;
+			default:
+				return 'N/A';
+				break;
+		}
+	}
+	function somaDataAUmPeriodo($data='', $periodo='' ){
+		
+		$newDate =date('Y-m-d');
+		if($data !='' && $periodo !=''){
+			switch ($periodo) {
+				case 1:
+					$newDateAux = strtotime(''.$data.' + 1 day');
+					$newDate =  date('Y-m-d', $newDateAux);
+					break;
+				case 2:
+					$newDateAux = strtotime(''.$data.' + 1 week');
+					$newDate =  date('Y-m-d', $newDateAux);
+					break;
+				case 3:
+					$newDateAux = strtotime(''.$data.' + 1 month');
+					$newDate =  date('Y-m-d', $newDateAux);
+					break;
+				case 4:
+					$newDateAux = strtotime(''.$data.' + 1 year');
+					$newDate =  date('Y-m-d', $newDateAux);
+					break;
+				default:
+					# code...
+					break;
+			}
+		}
+	
+		return $newDate;
 	}
 }

@@ -786,6 +786,7 @@ class PedidosController extends AppController
 
 				$this->Pedido->id = $id;
 				$this->Pedido->saveField('status', 'Entregue');
+				$this->Pedido->saveField('status_pagamento', 'OK');
 				$this->Pedido->saveField('statuspreparo', 0);
 				$this->Pedido->saveField('posicao_fila', 0);
 				$this->reordenafila();
@@ -804,20 +805,20 @@ class PedidosController extends AppController
 				$this->Atendimento->create();
 				$updateStatusAtendimento = array('id' => $pedido['Pedido']['atendimento_id'], 'status' => 'Entregue');
 				$this->Atendimento->save($updateStatusAtendimento);
-				
+
 
 				$User = new UsersController;
 				$userid = $this->Session->read('Auth.User.id');
 				$minhasFiliais = $User->getFiliais($userid);
-				
+
 				$unicaFilial = $this->Filial->find('first', array('recursive' => -1, 'conditions' => array('Filial.id' => $minhasFiliais)));
 
-				
+
 
 
 				if ($pedido['Pedido']['ptk'] != '' && $pedido['Pedido']['ptk'] != null) {
 					$title = 'Pedido Entregue.';
-					$notification = 'Seu pedido foi entregue, a equipe '.$unicaFilial['Filial']['nome'].' agradece a sua preferência.';
+					$notification = 'Seu pedido foi entregue, a equipe ' . $unicaFilial['Filial']['nome'] . ' agradece a sua preferência.';
 					$this->sendnotification($pedido['Pedido']['ptk'], $title, $notification, $pedido['Pedido']['atendimento_id']);
 				}
 
@@ -867,6 +868,7 @@ class PedidosController extends AppController
 				$this->Pedido->saveField('status', 'Entregue');
 				$this->Pedido->saveField('statuspreparo', 0);
 				$this->Pedido->saveField('posicao_fila', 0);
+				$this->Pedido->saveField('status_pagamento', 'OK');
 				$this->reordenafila();
 				$resultados = $this->Pedido->find('first', array('recursive' => -1, 'conditions' => array('Pedido.id' => $id)));
 
@@ -976,9 +978,9 @@ class PedidosController extends AppController
 						$this->loadModel('Atendimento');
 
 						$updateStatusAtendimento = array('id' => $resultados['Pedido']['atendimento_id'], 'status' => 'Cancelado');
-						$this->Atendimento->create();
+						//$this->Atendimento->create();
 						$this->Atendimento->save($updateStatusAtendimento);
-						$this->Pedido->create();
+						//$this->Pedido->create();
 						$updatePedido = array('id' => $id, 'motivocancela' => $this->request->data['Pedido']['motivocancela'], 'status' => 'Cancelado');
 						$this->Pedido->save($updatePedido);
 
@@ -1176,7 +1178,7 @@ class PedidosController extends AppController
 				if ($pedido['Pedido']['status'] != 'Entregue') {
 					$contAberto = $contAberto + 1;
 				}
-				$totalPedidos += $pedido['Pedido']['valor'];
+				
 			}
 
 			if ($pedido['Pedido']['status'] == 'Entregue') {
@@ -1184,10 +1186,11 @@ class PedidosController extends AppController
 				$totalEntrega += $pedido['Pedido']['entrega_valor'];
 				$contEntregue = $contEntregue + 1;
 			}
+			$totalPedidos += $pedido['Pedido']['valor'];
 		}
 
 
-		$this->mensagensativas();
+		//$this->mensagensativas();
 
 		//echo $contAberto;
 		//echo "<br/>";
@@ -1330,7 +1333,7 @@ class PedidosController extends AppController
 			$dataIncio  =  $this->request->data['filter']['dataPedido'];
 			$dataTermino = $this->request->data['filter']['dataPedido-between'];
 		}
-
+		
 		$this->Paginator->settings = array(
 			'Pedido' => array(
 				'limit' => 20,
@@ -1347,7 +1350,10 @@ class PedidosController extends AppController
 		// Define conditions
 		//$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
 
+		$pedidosAux = $this->Pedido->find('all', array('conditions' => array($this->Filter->getConditions()), 'recursive' => -1));
+		
 		$this->Pedido->find('all', array('conditions' => array($this->Filter->getConditions()), 'recursive' => 0));
+
 		$pedidos = $this->Paginator->paginate('Pedido');
 
 		$contAberto = 0;
@@ -1355,20 +1361,20 @@ class PedidosController extends AppController
 		$totalPedidosEntregue = 0;
 		$totalPedidos = 0;
 		$totalEntrega = 0;
-		
+
+		$totalpedidosalao=0;
+		$totalpedidoEntrega=0;
+
 		foreach ($pedidos as $key => $value) {
-			
-			$identificacao='';
-			if(isset($value['Mesa'])){
-				$identificacao = ' / '.$value['Mesa']['identificacao']; 
+
+			$identificacao = '';
+			if (isset($value['Mesa'])) {
+				$identificacao = ' / ' . $value['Mesa']['identificacao'];
 			}
-			
-			$pedidos[$key]['Pedido']['nomecadcliente'] = $pedidos[$key]['Pedido']['nomecadcliente'] .$identificacao;
-			if ($value['Pedido']['status'] != 'Cancelado') {
-				if ($value['Pedido']['status'] != 'Entregue') {
+
+			$pedidos[$key]['Pedido']['nomecadcliente'] = $pedidos[$key]['Pedido']['nomecadcliente'] . $identificacao;
+			if ($value['Pedido']['mesa_id'] != '' && $value['Pedido']['mesa_id'] != null ) {
 					$contAberto = $contAberto + 1;
-				}
-				$totalPedidos += $value['Pedido']['valor'];
 			}
 
 			if ($value['Pedido']['cliente_id'] != '' && $value['Pedido']['cliente_id'] != 0) {
@@ -1376,25 +1382,55 @@ class PedidosController extends AppController
 				$totalEntrega += $value['Pedido']['entrega_valor'];
 				$contEntregue = $contEntregue + 1;
 			}
-			if(!empty($unicaFilial)){
-				
-				$prazoAmarelo = ($unicaFilial['Filial']['tempo_amarelo'] !='' && $unicaFilial['Filial']['tempo_amarelo'] != null ? $unicaFilial['Filial']['tempo_amarelo']: 20);
-				$prazoVermelho = ($unicaFilial['Filial']['tempo_vermelho'] !='' && $unicaFilial['Filial']['tempo_vermelho'] != null ? $unicaFilial['Filial']['tempo_vermelho']: 30); 
-			}
-			$dataHoraAtendimento= $value['Pedido']['data'];
-			$dataHoraAtendimento= ($value['Pedido']['hora_atendimento'] != null ? ' '.$value['Pedido']['hora_atendimento']: ' '. date('H:i:s'));
-			$pedidos[$key]['Pedido']['farol'] =$this->checkbfunc->getSignalColor($value['Pedido']['status'], $dataHoraAtendimento,$prazoAmarelo,$prazoVermelho);
+			$totalPedidos += $value['Pedido']['valor'];
 
+			if (!empty($unicaFilial)) {
+
+				$prazoAmarelo = ($unicaFilial['Filial']['tempo_amarelo'] != '' && $unicaFilial['Filial']['tempo_amarelo'] != null ? $unicaFilial['Filial']['tempo_amarelo'] : 40);
+				$prazoVermelho = ($unicaFilial['Filial']['tempo_vermelho'] != '' && $unicaFilial['Filial']['tempo_vermelho'] != null ? $unicaFilial['Filial']['tempo_vermelho'] : 60);
+				$prazoVerde = ($unicaFilial['Filial']['tempo_verde'] != '' && $unicaFilial['Filial']['tempo_verde'] != null ? $unicaFilial['Filial']['tempo_verde'] : 30);
+			}
+			$dataAtende = $value['Pedido']['data'];
+			$dataHoraAtendimentoAux = ($value['Pedido']['hora_atendimento'] != null ? ' ' . $value['Pedido']['hora_atendimento'] : ' ' . date('H:i:s'));
+			$dataHoraAtendimento = $dataAtende .$dataHoraAtendimentoAux ;
+		
+			$pedidos[$key]['Pedido']['farol'] = $this->checkbfunc->getSignalColor($value['Pedido']['status'], $dataHoraAtendimento, $prazoVerde,$prazoAmarelo, $prazoVermelho);
+		}
+
+		$contAberto = 0;
+		$contEntregue = 0;
+		$totalPedidosEntregue = 0;
+		$totalPedidos = 0;
+		$totalEntrega = 0;
+		$totalpedidosalao=0;
+		$totalpedidoentrega=0;
+		foreach ($pedidosAux as $key => $value) {
+			
+			
+			if ($value['Pedido']['status'] != 'Entregue') {
+				$contAberto = $contAberto + 1;
+			}
+			if ($value['Pedido']['cliente_id'] != '' && $value['Pedido']['cliente_id'] != 0) {
+				$totalPedidosEntregue += $value['Pedido']['valor'];
+				$totalEntrega += $value['Pedido']['entrega_valor'];
+				$contEntregue = $contEntregue + 1;
+				$totalpedidoentrega += $value['Pedido']['valor'];
+			}
+			if($value['Pedido']['mesa_id'] != '' && $value['Pedido']['cliente_id'] != null && $value['Pedido']['cliente_id'] != 0){
+				$totalpedidosalao += $value['Pedido']['entrega_valor'];
+			}
+			$totalPedidos += $value['Pedido']['valor'];
+			
 			
 		}
 
-
-		$this->mensagensativas();
+		
+		//$this->mensagensativas();
 
 		//echo $contAberto;
 		//echo "<br/>";
 		//echo $contEntregue;
-		$this->set(compact('pedidos', 'contAberto', 'contEntregue', 'lojas', 'totalPedidos', 'totalPedidosEntregue', 'totalEntrega'));
+		$this->set(compact('pedidos','totalpedidosalao','totalpedidoentrega' ,'contAberto', 'contEntregue', 'lojas', 'totalPedidos', 'totalPedidosEntregue', 'totalEntrega'));
 	}
 
 	/**
@@ -1749,7 +1785,7 @@ class PedidosController extends AppController
 
 			$this->request->data['Pedido']['data'] = date('Y-m-d');
 			$this->request->data['Pedido']['hora_atendimento'] =  date('H:i:s');
-			
+
 			$i = 0;
 
 			$total = 0;
@@ -2658,4 +2694,598 @@ class PedidosController extends AppController
 		}
 		return $retorno;
 	}
+
+	public function getchartsales()
+	{
+		$User = new UsersController;
+		$userid = $this->Session->read('Auth.User.id');
+		$minhasFiliais = $User->getFiliais($userid);
+		$this->loadModel('Filial');
+		$unicaFilial = $this->Filial->find('first', array('recursive' => -1, 'conditions' => array('Filial.id' => $minhasFiliais)));
+
+		$this->layout = 'liso';
+		/*if (isset($_GET['loja'])) {
+			$loja = $_GET['loja'];
+			$novosPedidos = $this->Pedido->find('all', array('recursive' => -1, 'conditions' => array('AND' => array(array('Pedido.filial_id' => $loja), array('Pedido.status_novo' => 1), array('Pedido.filial_id' => $minhasFiliais)))));
+			$resultados = count($novosPedidos);
+		} else {
+			$resultados = 0;
+			//$loja=$this->request->data['filter']['minhaslojas'];
+		}*/
+
+		$meses = $this->Pedido->query(
+			"
+				Select
+					
+					extract(
+						month
+						from
+							data
+					) mes
+					
+				from
+					pedidos
+				where
+					extract(
+						year
+						from
+							data
+					) = extract(
+						year
+						from
+							CURDATE()
+					)
+					and (
+						status = 'Entregue'
+						OR status = 'Finalizado'
+					)
+					and filial_id = ".$unicaFilial['Filial']['id']."
+					and status <> 'Cancelado'
+				group by
+					extract(
+						month
+						from
+							data
+					)
+				order by
+					extract(
+						month
+						from
+							data
+					)
+				asc
+				
+			"
+		);
+		$labels = array();
+		if(!empty($meses)){
+			foreach ($meses as $key => $value) {
+				foreach ($value as $key2 => $value2) {
+					$nomeMes = $this->checkbfunc->getmes($value2['mes']);
+					array_push($labels ,$nomeMes);
+				}
+				
+			}
+		}
+		
+		
+
+		$dados = $this->Pedido->query(
+		"
+			Select
+			FLOOR(sum(valor)) total,
+				extract(
+					month
+					from
+						data
+				) mes,
+				extract(
+					year
+					from
+						data
+				) ano
+			from
+				pedidos
+			where
+				extract(
+					year
+					from
+						data
+				) = extract(
+					year
+					from
+						CURDATE()
+				)
+				and (
+					status = 'Entregue'
+					OR status = 'Finalizado'
+				)
+				and filial_id = ".$unicaFilial['Filial']['id']."
+				and status <> 'Cancelado'
+			group by
+				extract(
+					month
+					from
+						data
+				),
+				extract(
+					year
+					from
+						data
+				)
+			order by
+				extract(
+					month
+					from
+						data
+				)
+			asc
+			
+		"
+		);
+		$meusDados= array();
+		if(!empty($dados)){
+			foreach ($dados as $key => $value) {
+				foreach ($value as $key2=> $value2) {
+					//print_r($value2);
+					array_push($meusDados,$value2['total']);
+				}
+			}
+		}
+		$resultados = array(
+			'type'=> 'bar',
+			'data'=> array(
+				'labels' => $labels,
+				'datasets' => array(
+					array(
+						'label'=> 'Venda Mensal',
+					'data'=>  $meusDados,
+					'backgroundColor'=> array(
+						'#fcf876',
+						'#3797a4',
+						'#e4e4e4',
+						'#8ccbbe',
+						'#ff5200',
+						'#f37121',
+						'#f4ea8e',
+						'#d92027',
+						'#45046a',
+						'#b5076b',
+						'#f1ebbb',
+						'#6f0000'
+					),
+					'borderColor'=> array(
+						'#fcf876',
+						'#3797a4',
+						'#e4e4e4',
+						'#8ccbbe',
+						'#ff5200',
+						'#f37121',
+						'#f4ea8e',
+						'#d92027',
+						'#45046a',
+						'#b5076b',
+						'#f1ebbb',
+						'#6f0000'
+					),
+					'borderWidth'=> 1
+					)
+					
+				) 
+			),
+			'options'=> array(
+				'scales'=> array(
+					'yAxes'=> array(
+						array('ticks'=> array(
+							'beginAtZero'=> true
+						))
+					)
+				)
+			)
+		);
+		//die;
+		//number_format($pedido['Pedido']['valor'], 2, ',', '.')
+		//$resultados = array();
+		$this->set(array(
+			'resultados' => $resultados,
+			'_serialize' => array('resultados')
+		));
+	}
+
+	public function getchartproducts()
+	{
+		$User = new UsersController;
+		$userid = $this->Session->read('Auth.User.id');
+		$minhasFiliais = $User->getFiliais($userid);
+		$this->loadModel('Filial');
+		$unicaFilial = $this->Filial->find('first', array('recursive' => -1, 'conditions' => array('Filial.id' => $minhasFiliais)));
+
+		$this->layout = 'liso';
+		/*if (isset($_GET['loja'])) {
+			$loja = $_GET['loja'];
+			$novosPedidos = $this->Pedido->find('all', array('recursive' => -1, 'conditions' => array('AND' => array(array('Pedido.filial_id' => $loja), array('Pedido.status_novo' => 1), array('Pedido.filial_id' => $minhasFiliais)))));
+			$resultados = count($novosPedidos);
+		} else {
+			$resultados = 0;
+			//$loja=$this->request->data['filter']['minhaslojas'];
+		}*/
+
+		$pedidos = $this->Pedido->query(
+			"
+			SELECT 
+				pd.nome , COUNT(1) as total 
+			FROM 
+				itensdepedidos it 
+			inner join 
+			produtos pd
+
+			ON
+			it.produto_id= pd.id
+			INNER JOIN
+				pedidos p
+			ON p.id = it.pedido_id
+			where p.status <> 'Cancelado'
+			AND  (p.data between  DATE_FORMAT(NOW() ,'%Y-%m-01') AND NOW() )
+			and p.filial_id = ".$unicaFilial['Filial']['id']."
+			GROUP by pd.nome
+			order by COUNT(1) DESC limit 10
+				
+			"
+		);
+		$labels = array();
+		$meusDados= array();
+		foreach ($pedidos as $key => $value) {
+			foreach ($value as $key2 => $value2) {
+				if(isset($value2['nome'])){
+					array_push($labels, $value2['nome'] );
+				}
+				if(isset($value2['total'])){
+					array_push($meusDados, $value2['total'] );
+				}
+				
+			}
+		}
+		
+		
+		$resultados = array(
+			'type'=> 'doughnut',
+			'data'=> array(
+				'labels' => $labels,
+				'datasets' => array(
+					array(
+						'label'=> 'Top 10 Produtos Mais Vendidos',
+					'data'=>  $meusDados,
+					'backgroundColor'=> array(
+						'#fcf876',
+						'#3797a4',
+						'#e4e4e4',
+						'#8ccbbe',
+						'#ff5200',
+						'#f37121',
+						'#f4ea8e',
+						'#d92027',
+						'#45046a',
+						'#b5076b',
+						'#f1ebbb',
+						'#6f0000'
+					),
+					'borderColor'=> array(
+						'#fcf876',
+						'#3797a4',
+						'#e4e4e4',
+						'#8ccbbe',
+						'#ff5200',
+						'#f37121',
+						'#f4ea8e',
+						'#d92027',
+						'#45046a',
+						'#b5076b',
+						'#f1ebbb',
+						'#6f0000'
+					),
+					'borderWidth'=> 1
+					)
+					
+				) 
+			),
+			'options'=> array(
+				'scales'=> array(
+					'yAxes'=> array(
+						array('ticks'=> array(
+							'beginAtZero'=> true
+						))
+					)
+				)
+			)
+		);
+		//die;
+		//number_format($pedido['Pedido']['valor'], 2, ',', '.')
+		//$resultados = array();
+		$this->set(array(
+			'resultados' => $resultados,
+			'_serialize' => array('resultados')
+		));
+	}
+	public function getchartsalesbyweek()
+	{
+		$User = new UsersController;
+		$userid = $this->Session->read('Auth.User.id');
+		$minhasFiliais = $User->getFiliais($userid);
+		$this->loadModel('Filial');
+		$unicaFilial = $this->Filial->find('first', array('recursive' => -1, 'conditions' => array('Filial.id' => $minhasFiliais)));
+
+		$this->layout = 'liso';
+		/*if (isset($_GET['loja'])) {
+			$loja = $_GET['loja'];
+			$novosPedidos = $this->Pedido->find('all', array('recursive' => -1, 'conditions' => array('AND' => array(array('Pedido.filial_id' => $loja), array('Pedido.status_novo' => 1), array('Pedido.filial_id' => $minhasFiliais)))));
+			$resultados = count($novosPedidos);
+		} else {
+			$resultados = 0;
+			//$loja=$this->request->data['filter']['minhaslojas'];
+		}*/
+
+		$pedidos = $this->Pedido->query(
+			"
+			SELECT FLOOR(sum(valor)) as total, YEARWEEK(data) anosemana
+			FROM pedidos
+			where status <> 'Cancelado'
+						AND  (data between  DATE_FORMAT(NOW() ,'%Y-%m-01') AND NOW() )
+						and filial_id = ".$unicaFilial['Filial']['id']."
+			GROUP BY anosemana;
+			"
+		);
+		$labels = array();
+		$meusDados= array();
+		$contadorSemana =0;
+		foreach ($pedidos as $key => $value) {
+			foreach ($value as $key2 => $value2) {
+				
+		
+				if(isset($value2['anosemana'])){
+					$contadorSemana ++;
+					array_push($labels, $contadorSemana );
+				}
+				if(isset($value2['total'])){
+					array_push($meusDados, $value2['total'] );
+				}
+				
+			}
+		}
+		
+		
+		$resultados = array(
+			'type'=> 'line',
+			'data'=> array(
+				'labels' => $labels,
+				'datasets' => array(
+					array(
+						'label'=> 'Vendas por Semana',
+					'data'=>  $meusDados,
+					'backgroundColor'=> array(
+						'#fcf876',
+						'#3797a4',
+						'#e4e4e4',
+						'#8ccbbe',
+						'#ff5200',
+						'#f37121',
+						'#f4ea8e',
+						'#d92027',
+						'#45046a',
+						'#b5076b',
+						'#f1ebbb',
+						'#6f0000'
+					),
+					'borderColor'=> array(
+						'#fcf876',
+						'#3797a4',
+						'#e4e4e4',
+						'#8ccbbe',
+						'#ff5200',
+						'#f37121',
+						'#f4ea8e',
+						'#d92027',
+						'#45046a',
+						'#b5076b',
+						'#f1ebbb',
+						'#6f0000'
+					),
+					'borderWidth'=> 1
+					)
+					
+				) 
+			),
+			'options'=> array(
+				'scales'=> array(
+					'yAxes'=> array(
+						array('ticks'=> array(
+							'beginAtZero'=> true
+						))
+					)
+				)
+			)
+		);
+		//die;
+		//number_format($pedido['Pedido']['valor'], 2, ',', '.')
+		//$resultados = array();
+		$this->set(array(
+			'resultados' => $resultados,
+			'_serialize' => array('resultados')
+		));
+	}
+	public function getchartsalesbyday()
+	{
+		$User = new UsersController;
+		$userid = $this->Session->read('Auth.User.id');
+		$minhasFiliais = $User->getFiliais($userid);
+		$this->loadModel('Filial');
+		$unicaFilial = $this->Filial->find('first', array('recursive' => -1, 'conditions' => array('Filial.id' => $minhasFiliais)));
+
+		$this->layout = 'liso';
+		/*if (isset($_GET['loja'])) {
+			$loja = $_GET['loja'];
+			$novosPedidos = $this->Pedido->find('all', array('recursive' => -1, 'conditions' => array('AND' => array(array('Pedido.filial_id' => $loja), array('Pedido.status_novo' => 1), array('Pedido.filial_id' => $minhasFiliais)))));
+			$resultados = count($novosPedidos);
+		} else {
+			$resultados = 0;
+			//$loja=$this->request->data['filter']['minhaslojas'];
+		}*/
+
+		$pedidos = $this->Pedido->query(
+			"
+			SELECT
+				extract(
+					day
+					from
+						data
+				) dia,
+				FLOOR(SUM(valor)) as total
+			FROM
+				pedidos p
+			where
+				p.status <> 'Cancelado'
+				AND (
+					p.data between DATE_FORMAT(NOW(), '%Y-%m-01')
+					AND NOW()
+				)
+				and p.filial_id = ".$unicaFilial['Filial']['id']."
+			GROUP by
+				extract(
+					day
+					from
+						data
+				)
+			order by
+				extract(
+					day
+					from
+						data
+				) ASC
+			"
+		);
+		$labels = array();
+		$meusDados= array();
+		$contadorSemana =0;
+		foreach ($pedidos as $key => $value) {
+			foreach ($value as $key2 => $value2) {
+			
+				if(isset($value2['dia'])){
+					
+					array_push($labels, $value2['dia'] );
+				}
+				if(isset($value2['total'])){
+					array_push($meusDados, $value2['total'] );
+				}
+				
+			}
+		}
+		
+		
+		$resultados = array(
+			'type'=> 'line',
+			'data'=> array(
+				'labels' => $labels,
+				'datasets' => array(
+					array(
+						'label'=> 'Vendas por dia',
+					'data'=>  $meusDados,
+					'backgroundColor'=> array(
+						'#fcf876',
+						'#3797a4',
+						'#e4e4e4',
+						'#8ccbbe',
+						'#ff5200',
+						'#f37121',
+						'#f4ea8e',
+						'#d92027',
+						'#45046a',
+						'#b5076b',
+						'#f1ebbb',
+						'#6f0000',
+						'#fcf876',
+						'#3797a4',
+						'#e4e4e4',
+						'#8ccbbe',
+						'#ff5200',
+						'#f37121',
+						'#f4ea8e',
+						'#d92027',
+						'#45046a',
+						'#b5076b',
+						'#f1ebbb',
+						'#6f0000',
+						'#fcf876',
+						'#3797a4',
+						'#e4e4e4',
+						'#8ccbbe',
+						'#ff5200',
+						'#f37121',
+						'#f4ea8e',
+						'#d92027',
+						'#45046a',
+						'#b5076b',
+						'#f1ebbb',
+						'#6f0000',
+					),
+					'borderColor'=> array(
+						'#fcf876',
+						'#3797a4',
+						'#e4e4e4',
+						'#8ccbbe',
+						'#ff5200',
+						'#f37121',
+						'#f4ea8e',
+						'#d92027',
+						'#45046a',
+						'#b5076b',
+						'#f1ebbb',
+						'#6f0000',
+						'#fcf876',
+						'#3797a4',
+						'#e4e4e4',
+						'#8ccbbe',
+						'#ff5200',
+						'#f37121',
+						'#f4ea8e',
+						'#d92027',
+						'#45046a',
+						'#b5076b',
+						'#f1ebbb',
+						'#6f0000',
+						'#fcf876',
+						'#3797a4',
+						'#e4e4e4',
+						'#8ccbbe',
+						'#ff5200',
+						'#f37121',
+						'#f4ea8e',
+						'#d92027',
+						'#45046a',
+						'#b5076b',
+						'#f1ebbb',
+						'#6f0000'
+					),
+					'borderWidth'=> 1
+					)
+					
+				) 
+			),
+			'options'=> array(
+				'scales'=> array(
+					'yAxes'=> array(
+						array('ticks'=> array(
+							'beginAtZero'=> true
+						))
+					)
+				)
+			)
+		);
+		//die;
+		//number_format($pedido['Pedido']['valor'], 2, ',', '.')
+		//$resultados = array();
+		$this->set(array(
+			'resultados' => $resultados,
+			'_serialize' => array('resultados')
+		));
+	}
+	
 }

@@ -23,7 +23,7 @@ $cakeDescription = __d('entrega_app', 'EntragApp Delivery');
 <head>
 	<?php echo $this->Html->charset('UTF-8'); ?>
 	<title>
-		Rudo Aplicativo de entregas.
+		Rudo - Aplicativo de entregas.
 	</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC1Fq4149nqLAr86NBlDE0_01kgzOaV_Qg&amp;sensor=false"></script>
@@ -47,6 +47,8 @@ $cakeDescription = __d('entrega_app', 'EntragApp Delivery');
 		echo $this->Html->css('progressbar');
 		echo $this->Html->css('jquery-ui-1.10.1.custom');
 		echo $this->Html->css('jquery.ui.combogrid');
+
+		echo $this->Html->css('Chart.min');
 		echo $this->Html->css('estilo');
 		//echo $this->Html->css('sb-admin-2.min');
 		echo $this->Html->css('tabelas');
@@ -69,6 +71,7 @@ $cakeDescription = __d('entrega_app', 'EntragApp Delivery');
 		echo $this->Html->script('angular.min');
 
 		echo $this->Html->script('ui-bootstrap-tpls-0.10.0.min');
+		echo $this->Html->script('Chart.min');
 
 		echo $this->Html->script('funcao');
 		//echo $this->Html->script('sb-admin-2.min');
@@ -144,6 +147,7 @@ $cakeDescription = __d('entrega_app', 'EntragApp Delivery');
 					        
 								<?php if($isCatalog==false): ?>
 									<li><?php echo $this->Html->link(__('Pedidos'), '/Pedidos'); ?></li>
+									<li><?php echo $this->Html->link(__('Painel Inicial'), '/'); ?></li>
 									<li><?php echo $this->Html->link(__('Vendas'), '/Vendas'); ?></li>
 									<li><?php echo $this->Html->link(__('Salão'), '/mesas/salao'); ?></li>
 									<li><?php echo $this->Html->link(__('Solicitações p/ Fazer'), '/Setores/monitorar'); ?></li>
@@ -196,6 +200,16 @@ $cakeDescription = __d('entrega_app', 'EntragApp Delivery');
 <!--
 					            <li><?php //echo $this->Html->link(__('Mesas'), array('controller' => 'mesas', 'action' => 'add')); ?></li>
 -->
+					          </ul>
+							</li>
+							
+							<li class="dropdown">
+
+					          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <?php echo $this->Html->image('financeiro.png',array('class'=>'icon-menu')); ?>Financeiro<span class="caret"></span></a>
+					          <ul class="dropdown-menu" role="menu">
+					            <li><?php echo $this->Html->link(__('Controle de Despesas'), '/Despesas/add'); ?></li>
+								<li><?php echo $this->Html->link(__('Categorias de Despesas'), '/categoriasdespesas/add'); ?></li>
+	
 					          </ul>
 					        </li>
 

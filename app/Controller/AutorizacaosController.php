@@ -113,7 +113,7 @@ class AutorizacaosController extends AppController {
 
 		$this->loadModel('Autorizacao');
 		$autorizacao= $this->Autorizacao->find('first', array('recursive'=> -1, 'conditions'=> array('Autorizacao.funcao_id' => $userfuncao)));
-
+		
 		if($autorizacao['Autorizacao'][$acesso]=='n'){
 			return false;
 		}else{

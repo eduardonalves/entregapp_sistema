@@ -8,7 +8,20 @@ class RestCategoriasController extends AppController {
 
     public function catsmobile() {
         header("Access-Control-Allow-Origin: *");
-        $categorias = $this->Categoria->find('all',array('recursive'=> -1,'order'=> 'Categoria.destaque Desc ,Categoria.nome ASC', 'conditions'=> array('filial_id'=> $_GET['fp'], 'ativo' => 1 )));
+        if(isset($_GET['apg'])){
+          $categorias = $this->Categoria->find('all',array('recursive'=> -1,'order'=> 'Categoria.destaque Desc ,Categoria.nome ASC', 'conditions'=> array(
+            'filial_id'=> $_GET['fp'], 
+            'ativo' => 1,
+            'show_store'=> 1 
+          )));
+        }else{
+          $categorias = $this->Categoria->find('all',array('recursive'=> -1,'order'=> 'Categoria.destaque Desc ,Categoria.nome ASC', 'conditions'=> array(
+            'filial_id'=> $_GET['fp'], 
+            'ativo' => 1,
+            'show_app'=> 1 
+          )));
+        }
+        
         $this->set(array(
             'categorias' => $categorias,
             '_serialize' => array('categorias')

@@ -5,18 +5,18 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel"> Editar Pedidos</h4>
-        <?php if($pedido['Pedido']['nomecadcliente'] =='' || $pedido['Pedido']['atendente_id'] != ''):  ?>
+        <?php if($pedido['Pedido']['mesa_id'] ==0):  ?>
         <h5 class="h3content" style="display: none;"><span class="h3previsao">Previsão de Entrega</span><div id="counter"></div></h5>
       <?php endif; ?>
       </div>
       <div class="modal-body">
 			<?php echo $this->Form->create('Pedido',array('class' => 'form-inline centralizadoForm'));	?>
 
-				<?php echo $this->Form->input('id',array('readonly' => 'readonly','default'=> $pedido['Pedido']['id'],'type'=>'hidden','class' => 'input-large idView','id'=>'idView','label' => false));					?>
+				<?php echo $this->Form->input('id',array('readonly' => 'readonly','default'=> $pedido['Pedido']['id'],'type'=>'hidden','class' => 'input-default idView','id'=>'idView','label' => false));					?>
         <?php if($pedido['Pedido']['nomecadcliente'] !=''):  ?>
-          <?php echo $this->Form->input('nomecadcliente',array('default'=> $pedido['Pedido']['id'],'type'=>'text','class' => 'input-large nomecadcliente','id'=>'nomecadcliente','label' => 'Cliente:'));					?>
+          <?php echo $this->Form->input('nomecadcliente',array('default'=> $pedido['Pedido']['id'],'type'=>'text','class' => 'input-default nomecadcliente','id'=>'nomecadcliente','label' => 'Cliente:'));					?>
           <div class="form-group  form-group-lg">
-            <?php echo $this->Form->input('mesa_id',array('options'=> $mesas,'default'=> $pedido['Pedido']['mesa_id'],'type'=>'select','class' => 'input-large mesaView','id'=>'mesaView','label' => 'Mesa', 'div'=> false));?>
+            <?php echo $this->Form->input('mesa_id',array('options'=> $mesas,'default'=> $pedido['Pedido']['mesa_id'],'type'=>'select','class' => 'input-default mesaView','id'=>'mesaView','label' => 'Mesa','readonly' => 'readonly', 'div'=> false));?>
           </div>
         <?php else: ?>
 				<span class="modal-subtitulo"><h3><?php echo $pedido['Cliente']['nome'];?></h3></span>
@@ -37,7 +37,7 @@
 
 				<span class="modal-subtitulo"><h3>Pedido: <?php echo $pedido['Pedido']['id'];?></h3></span>
 				<h5 class="h5informacoes"><?php echo 'Data: '. $pedido['Pedido']['data'] . ' / Hora:'.$pedido['Pedido']['hora_atendimento'].' / Status: <span class="statusView">'.$pedido['Pedido']['status'] .'</span>'.' / Total: <span > R$ '. number_format($pedido['Pedido']['valor'], 2, ',', '.').'</span>';?></h5>
-      <?php if($pedido['Pedido']['nomecadcliente'] =='' || $pedido['Pedido']['atendente_id'] != ''):  ?>
+      <?php if($pedido['Pedido']['mesa_id'] ==0):  ?>
 			<div style="margin: 0 auto; width: 93%;">
 
 					<?php
@@ -239,10 +239,25 @@
 				<?php
 					}
 				?>
+
+				<?php
+
+				if($pedido['Pedido']['motivocancela'] !=''){
+
+
+				?>
+				<br>
+				<div class="form-group  form-group-lg">
+				<label>Motivo Cancelamento</label>
+				<p><span id="MotivoCancelamentoPedido"><?php echo h($pedido['Pedido']['motivocancela']); ?></span></p>
+				</div>
+				<?php
+				}
+				?>
 			</div>
 <!-- ########################################################################################## -->
 
-				<?php echo $this->Form->input('difhora',array('readonly' => 'readonly','default'=> $pedido['Pedido']['difhora'],'type'=>'hidden','class' => 'input-large difhoraView difhora','id'=>'difhoraView','label' => false));?>
+				<?php echo $this->Form->input('difhora',array('readonly' => 'readonly','default'=> $pedido['Pedido']['difhora'],'type'=>'hidden','class' => 'input-default difhoraView difhora','id'=>'difhoraView','label' => false));?>
 				<?php if (!empty($pedido['Itensdepedido'])): ?>
 					<div class="area-tabela" id="no-more-tables">
 						<table class="table-action col-md-12 table-bordered table-striped table-condensed cf" >
@@ -290,7 +305,7 @@
 				<?php endif; ?>
 				<?php echo $this->Form->end();?>
                                            <div style="clear:both;"></div>
-        <?php if($pedido['Pedido']['nomecadcliente'] =='' || $pedido['Pedido']['atendente_id'] != ''):  ?>
+        <?php if($pedido['Pedido']['mesa_id'] ==0):  ?>
         <div class="wrap-holder">
           <div class="checkout-wrap">
               <ul class="checkout-bar">
