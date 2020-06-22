@@ -479,7 +479,31 @@ $senha = geraSenha(15, true, true, true);
 						$clienteAtivo = $this->Cliente->find('first', 
 						array('recursive' => -1, 'conditions' =>
 						 array('Cliente.id' => $this->request->data['Pedido']['cliente_id'], 
-						 'Cliente.ativo' => 1)));	
+						 'Cliente.ativo' => 1)));
+						$this->loadModel('Estado');
+						$this->loadModel('Cidad');
+						$this->loadModel('Bairro');
+						if(!empty($clienteAtivo)){
+							$estadoAtivo = $this->Estado->find('first', array('recursive'=> -1, 'conditions'=> array(
+								'id'=> $clienteAtivo['Cliente']['uf'],
+								'ativo'=> 1,
+							)));
+
+							$cidadeAtivo = $this->Cidad->find('first', array('recursive'=> -1, 'conditions'=> array(
+								'id'=> $clienteAtivo['Cliente']['cidade'],
+								'ativo'=> 1,
+							)));
+
+							$bairroAtivo = $this->Bairro->find('first', array('recursive'=> -1, 'conditions'=> array(
+								'id'=> $clienteAtivo['Cliente']['bairro'],
+								'ativo'=> 1,
+							)));
+
+							if(empty($estadoAtivo) || empty($cidadeAtivo) ||  empty($bairroAtivo) ){
+								$clienteAtivo = array();
+							}
+						}
+						 
 					}else{
 						$clienteAtivo = $this->Atendente->find('first', array('recursive' => -1, 
 						'conditions' => array('Atendente.id' => $this->request->data['Pedido']['atendente_id'], 

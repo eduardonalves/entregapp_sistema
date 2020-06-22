@@ -85,14 +85,13 @@ class DespesasController extends AppController
 		}
 		$unicaFilial = $this->Filial->find('first', array('recursive' => -1, 'conditions' => array('Filial.id' => $minhasFiliais)));
 		$this->loadModel('Categoriasdespesa');
-		$categoriasdespesaAux = $this->Categoriasdespesa->find('list', array(
-			'recursive' => -1,
-			'conditions' => array(
-				'filial_id' => $minhasFiliais,
-				'ativo'=> 1
-			),
-			'order' => 'categoria asc'
-		));
+		$categoriasdespesaAux = array();
+		$categoriasdespesaAux[''] ='Todas';
+
+		$categoriasdespesaAux2 = array();
+		$categoriasdespesaAux2[''] ='Selecione';
+
+
 		$categoriasdespesa = $this->Categoriasdespesa->find('list', array(
 			'recursive' => -1,
 			'conditions' => array(
@@ -101,8 +100,14 @@ class DespesasController extends AppController
 			),
 			'order' => 'categoria asc'
 		));
-		array_unshift($categoriasdespesa, 'Selecione');
-		array_unshift($categoriasdespesaAux, array(''=>'Todas'));
+
+		foreach ($categoriasdespesa as $key => $value) {
+			$categoriasdespesaAux[$key]=$value;
+			$categoriasdespesaAux2[$key]=$value;
+		}
+		$categoriasdespesa =$categoriasdespesaAux2;
+		//array_unshift($categoriasdespesa, 'Selecione');
+		//array_unshift($categoriasdespesaAux, array(''=>'Todas'));
 
 		$this->Filter->addFilters(
 			array(
@@ -189,7 +194,8 @@ class DespesasController extends AppController
 			$dataTermino = $this->request->data['filter']['dataPedido-between'];
 		}
 		$despesas = $this->Despesa->find('all', array('conditions' => $this->Filter->getConditions(), 'recursive' => 0));
-
+		//debug($categoriasdespesa);
+		//die;
 		$totalEmAberto = 0;
 		$totalPago = 0;
 		$totalGeral = 0;
@@ -212,10 +218,13 @@ class DespesasController extends AppController
 
 			'order' => 'tipo asc'
 		));
-
-		
-		array_unshift($tiposrecorrencia, 'Selecione');
-
+		$tiposrecorrenciaAux =  array(); 
+		$tiposrecorrenciaAux['']='Selecione';
+		foreach ($tiposrecorrencia as $key2 => $value2) {
+			$tiposrecorrenciaAux[$key2]=$value2;
+		}
+		//array_unshift($tiposrecorrencia, 'Selecione');
+		$tiposrecorrencia=$tiposrecorrenciaAux;
 
 		$despesas = $this->Paginator->paginate('Despesa');
 
@@ -349,9 +358,21 @@ class DespesasController extends AppController
 
 				'order' => 'tipo asc'
 			));
+			$tiposrecorrenciaAux = array();
+			$tiposrecorrenciaAux[''] ='Selecione';
+			foreach ($tiposrecorrencia as $key2 => $value2) {
+				$tiposrecorrenciaAux[$key2]=$value2;
+			}
+			$tiposrecorrencia = $tiposrecorrenciaAux;
 
-			array_unshift($categoriasdespesa, 'Selecione');
-			array_unshift($tiposrecorrencia, 'Selecione');
+			$categoriasdespesaAeux = array();
+			$categoriasdespesaAeux[''] ='Selecione';
+			foreach ($categoriasdespesa as $key => $value) {
+				$categoriasdespesaAeux[$key]=$value;
+			}
+			$categoriasdespesa= $categoriasdespesaAeux;
+			//array_unshift($categoriasdespesa, 'Selecione');
+			
 			$this->set(compact('categoriasdespesa', 'tiposrecorrencia'));
 		}
 	}

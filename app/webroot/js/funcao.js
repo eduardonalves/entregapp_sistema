@@ -5,9 +5,35 @@ $(document).ready(function() {
 		$('.submit input').addClass('btn btn-success filtrar');
 	//$("html, body").niceScroll({cursorcolor:"#FF5C0A" });
 	$('#form-filter-results').addClass('form-inline');
-
-
-
+		/* Brazilian initialisation for the jQuery UI date picker plugin. */
+		/* Written by Leonildo Costa Silva (leocsilva@gmail.com). */
+		jQuery(function($){
+			$.datepicker.regional['pt-BR'] = {
+					closeText: 'Fechar',
+					prevText: '&#x3c;Anterior',
+					nextText: 'Pr&oacute;ximo&#x3e;',
+					currentText: 'Hoje',
+					monthNames: ['Janeiro','Fevereiro','Mar&ccedil;o','Abril','Maio','Junho',
+					'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+					monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun',
+					'Jul','Ago','Set','Out','Nov','Dez'],
+					dayNames: ['Domingo','Segunda-feira','Ter&ccedil;a-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sabado'],
+					dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sab'],
+					dayNamesMin: ['Dom','Seg','Ter','Qua','Qui','Sex','Sab'],
+					weekHeader: 'Sm',
+					dateFormat: 'dd/mm/yy',
+					firstDay: 0,
+					isRTL: false,
+					showMonthAfterYear: false,
+					yearSuffix: ''};
+			$.datepicker.setDefaults($.datepicker.regional['pt-BR']);
+		});
+	$('#filterDataPedido-between').addClass('data');
+	$('.data').datepicker({
+		format: 'dd/mm/yyyy',                
+		language: 'pt-br'
+	});
+	
 	$('body').on('click', '.viewpedido', function(event){
 		event.preventDefault();
 

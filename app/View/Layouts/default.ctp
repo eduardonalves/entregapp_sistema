@@ -205,7 +205,7 @@ $cakeDescription = __d('entrega_app', 'EntragApp Delivery');
 							
 							<li class="dropdown">
 
-					          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <?php echo $this->Html->image('financeiro.png',array('class'=>'icon-menu')); ?>Financeiro<span class="caret"></span></a>
+					          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <?php echo $this->Html->image('financeiro.png',array('class'=>'icon-menu','style="margin-top: -3px;')); ?>Financeiro<span class="caret"></span></a>
 					          <ul class="dropdown-menu" role="menu">
 					            <li><?php echo $this->Html->link(__('Controle de Despesas'), '/Despesas/add'); ?></li>
 								<li><?php echo $this->Html->link(__('Categorias de Despesas'), '/categoriasdespesas/add'); ?></li>

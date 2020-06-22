@@ -57,7 +57,7 @@
 					</div>
 					<div class="form-group  col-md-4">
 						<?php
-						echo $this->Form->input('data_vencimento', array('type' => 'text', 'class' => 'input-default', 'label' => array('text' => 'Vencimento')));
+						echo $this->Form->input('data_vencimento', array('type' => 'text', 'class' => 'input-default data','autocomplete'=>'off', 'label' => array('text' => 'Vencimento')));
 						?>
 					</div>
 					<div class="form-group col-md-12">
@@ -77,12 +77,12 @@
 					</div>
 					<div class="form-group  col-md-4 nonerecorrente">
 						<?php
-						echo $this->Form->input('data_prox_vencimento', array('type' => 'text', 'label' => array('text' => 'Próx. Vencimento', 'class' => 'label-large')));
+						echo $this->Form->input('data_prox_vencimento', array('type' => 'text', 'class'=>'data','autocomplete'=>'off','label' => array('text' => 'Próx. Vencimento','autocomplete'=>'off', 'class' => 'label-large')));
 						?>
 					</div>
 					<div class="form-group  col-md-4 nonerecorrente">
 						<?php
-						echo $this->Form->input('data_recorrente_processar', array('type' => 'text', 'label' => array('text' => 'Próx. data Criação', 'class' => 'label-large')));
+						echo $this->Form->input('data_recorrente_processar', array('type' => 'text','class'=>'data','autocomplete'=>'off', 'label' => array('text' => 'Próx. data Criação','autocomplete'=>'off' ,'class' => 'label-large')));
 						?>
 					</div>
 					<div class="form-group col-md-3">
@@ -355,8 +355,16 @@
 
 		$('body').on('click', '#DespesaRecorrente', function(event) {
 			
+			/*setTimeout(function(){
+				
+				$('.data').datepicker({
+					format: 'dd/mm/yyyy',                
+					language: 'pt-br'
+				});
+			},200);*/
 			if ($('#DespesaRecorrente').is(':checked')) {
 				$('.nonerecorrente').show();
+				
 			}else{
 				$('.nonerecorrente').hide();
 			}

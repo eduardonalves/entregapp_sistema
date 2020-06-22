@@ -1,11 +1,5 @@
 <style>
-	.modal-Funcao .modal-dialog {
-		width: 960px !important;
-	}
-
-	.modal-Funcao .modal-body {
-		max-height: 450px !important;
-	}
+	
 </style>
 <!-- Modal -->
 <div class="modal fade modal-grande modal-Funcao" id="modalLoaded" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -32,7 +26,7 @@
 					</div>
 					<div class="form-group  col-md-4">
 						<?php
-						echo $this->Form->input('data_vencimento', array('type' => 'text', 'class' => 'input-default', 'label' => array('text' => 'Vencimento')));
+						echo $this->Form->input('data_vencimento', array('type' => 'text', 'class' => 'input-default data','autocomplete'=>'off', 'label' => array('text' => 'Vencimento')));
 						?>
 					</div>
 					<div class="form-group col-md-12">
@@ -52,12 +46,12 @@
 					</div>
 					<div class="form-group  col-md-4 nonerecorrenteedit">
 						<?php
-						echo $this->Form->input('data_prox_vencimento', array('type' => 'text', 'label' => array('text' => 'Próx. Vencimento', 'class' => 'label-large')));
+						echo $this->Form->input('data_prox_vencimento', array('type' => 'text',  'class'=>'data','autocomplete'=>'off','label' => array('text' => 'Próx. Vencimento', 'class' => 'label-large')));
 						?>
 					</div>
 					<div class="form-group  col-md-4 nonerecorrenteedit">
 						<?php
-						echo $this->Form->input('data_recorrente_processar', array('type' => 'text', 'label' => array('text' => 'Próx. data Criação', 'class' => 'label-large')));
+						echo $this->Form->input('data_recorrente_processar', array('type' => 'text',  'class'=>'data','autocomplete'=>'off','label' => array('text' => 'Próx. data Criação', 'class' => 'label-large')));
 						?>
 					</div>
 					<div class="form-group col-md-3">
@@ -108,6 +102,10 @@
 			event.preventDefault();
 			$('#DespesaEditForm').submit();
 		});
+		$('.data').datepicker({
+					format: 'dd/mm/yyyy',                
+					language: 'pt-br'
+				});
 	});
 	setTimeout(function(){
 		if ($('#recorrenteEdit').is(':checked')) {
