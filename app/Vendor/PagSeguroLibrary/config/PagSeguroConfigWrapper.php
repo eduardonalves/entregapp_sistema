@@ -40,7 +40,7 @@ class PagSeguroConfigWrapper
     /**
      *
      */
-    const PAGSEGURO_TOKEN_SANDBOX = "D7EFE5DED87440AE9A6ED636D439802E";
+    const PAGSEGURO_TOKEN_SANDBOX = "token_sandbox";
     /**
      *
      */
@@ -56,7 +56,7 @@ class PagSeguroConfigWrapper
     /**
      *
      */
-    const PAGSEGURO_APP_KEY_SANDBOX = "A2923A8C7070E8AEE423DF9F720E927D";
+    const PAGSEGURO_APP_KEY_SANDBOX = "key_sandbox";
     /**
      * UTF-8, ISO-8859-1
      */
