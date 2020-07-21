@@ -131,7 +131,7 @@ table{
 								<td data-title="Coluna">{{data.Produto.setor}}</td>
 								<td data-title="Coluna">{{data.Pedido.mesa}}</td>
 								<td data-title="Coluna">{{data.Pedido.id}}</td>
-								<td data-title="Coluna">{{data.Produto.nome}}</td>
+								<td data-title="Coluna" title="{{data.Produto.descricao}}">{{data.Produto.nome}}</td>
 								<td data-title="Coluna">{{data.Itensdepedido.qtde}}</td>
 								<td data-title="Coluna">{{data.Itensdepedido.composto_nomeum}} {{data.Itensdepedido.composto_nomedois}} {{strip(data.Itensdepedido.obs_sis)}} {{data.Pedido.obs}} </td>
 								<td data-title="Coluna">
