@@ -67,7 +67,10 @@
 
 								if($isCatalog==false)
 								{
-									echo $this->Form->input('status_abertura',array('class' => 'input-large ', 'type' => 'checkbox', 'label' => array('text' => 'Situação Abertura','class'=>'labellarge' )));
+									echo $this->Form->input('status_abertura',array('class' => 'input-large ', 'type' => 'checkbox', 'label' => array('text' => 'Abrir Loja','class'=>'labellarge' )));
+									
+									echo $this->Form->input('totais_pesquisa',array('class' => 'input-large ', 'type' => 'checkbox', 'label' => array('text' => 'Mostrar Totais Pedido','class'=>'labellarge' )));
+
 									echo $this->Form->input('taxa_padrao',array( 'class' => 'input-large ','type' => 'checkbox', 'label' => array('text' => 'Taxa de Entrega Padrão?','class'=>'labellarge' )));
 									echo $this->Form->input('valor_padrao',array( 'class' => 'input-large ','type' => 'text', 'label' => array('text' => 'Valor de Entrega Padrão','class'=>'labellarge' )));
 									echo $this->Form->input('locais_especificos',array('class' => 'input-large ', 'type' => 'checkbox', 'label' => array('text' => 'Entregar apenas  nos lugares cadastrados?','class'=>'labellarge' )));

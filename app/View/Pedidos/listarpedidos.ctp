@@ -1,3 +1,13 @@
+<?php
+		if($unicaFilial['Filial']['status_abertura']==1):
+	?>	
+	<h4><div style="padding:10px; background-color:green; color:white; width: 200px; text-align:center;">Loja Aberta</div></h4>	
+		<?php else: ?>
+			<h4><div style="padding:10px; background-color:red; color:white; width: 200px; text-align:center;">Loja Fechada</div></h4>	
+	<?php endif; ?>
+	<?php
+		if($unicaFilial['Filial']['totais_pesquisa']==1):
+	?>
 	<section class="row-fluid">
 		<div class="area-tabela"  id="no-more-tables">
 			<table class="table-action col-md-12 table-bordered table-striped table-condensed cf" >
@@ -25,6 +35,9 @@
 		<br />
 
 	</section>
+		<?php endif; ?>
+	
+	
 	<div class="area-tabela"  id="no-more-tables">
 		<table class="table-action col-md-12 table-bordered table-striped table-condensed cf" >
 			<thead class="cf">

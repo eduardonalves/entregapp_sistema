@@ -1195,7 +1195,7 @@ class PedidosController extends AppController
 		//echo $contAberto;
 		//echo "<br/>";
 		//echo $contEntregue;
-		$this->set(compact('pedidos', 'contAberto', 'contEntregue', 'lojas', 'totalPedidos', 'totalPedidosEntregue', 'totalEntrega'));
+		$this->set(compact('unicaFilial','pedidos', 'contAberto', 'contEntregue', 'lojas', 'totalPedidos', 'totalPedidosEntregue', 'totalEntrega'));
 	}
 
 
@@ -1430,7 +1430,7 @@ class PedidosController extends AppController
 		//echo $contAberto;
 		//echo "<br/>";
 		//echo $contEntregue;
-		$this->set(compact('pedidos','totalpedidosalao','totalpedidoentrega' ,'contAberto', 'contEntregue', 'lojas', 'totalPedidos', 'totalPedidosEntregue', 'totalEntrega'));
+		$this->set(compact('unicaFilial','pedidos','totalpedidosalao','totalpedidoentrega' ,'contAberto', 'contEntregue', 'lojas', 'totalPedidos', 'totalPedidosEntregue', 'totalEntrega'));
 	}
 
 	/**
