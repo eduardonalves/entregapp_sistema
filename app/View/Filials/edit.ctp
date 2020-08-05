@@ -72,39 +72,73 @@
 									echo $this->Form->input('totais_pesquisa',array('class' => 'input-large ', 'type' => 'checkbox', 'label' => array('text' => 'Mostrar Totais Pedido','class'=>'labellarge' )));
 
 									echo $this->Form->input('taxa_padrao',array( 'class' => 'input-large ','type' => 'checkbox', 'label' => array('text' => 'Taxa de Entrega Padrão?','class'=>'labellarge' )));
+									echo '<br/>';
 									echo $this->Form->input('valor_padrao',array( 'class' => 'input-large ','type' => 'text', 'label' => array('text' => 'Valor de Entrega Padrão','class'=>'labellarge' )));
 									echo $this->Form->input('locais_especificos',array('class' => 'input-large ', 'type' => 'checkbox', 'label' => array('text' => 'Entregar apenas  nos lugares cadastrados?','class'=>'labellarge' )));
 
 
 
+									//echo '<br/>';
 
+									//echo $this->Form->input('hora_abertura',array('class' => 'input-large  hora', 'type' => 'text', 'label' => array('text' => 'Hora de Abertura','class'=>'labellarge' )));
 
-									echo $this->Form->input('hora_abertura',array('class' => 'input-large  hora', 'type' => 'text', 'label' => array('text' => 'Hora de Abertura','class'=>'labellarge' )));
-
-
-									echo $this->Form->input('hora_fechamento',array('class' => 'input-large hora ', 'type' => 'text', 'label' => array('text' => 'Hora do Fechamento','class'=>'labellarge' )));
-
-
-									echo $this->Form->input('abre_segunda',array('class' => 'input-large ', 'type' => 'checkbox', 'label' => array('text' => 'Abre Segunda','class'=>'labellarge' )));
-
-									echo $this->Form->input('abre_terca',array('class' => 'input-large ', 'type' => 'checkbox', 'label' => array('text' => 'Abre Terça','class'=>'labellarge' )));
-
-
-									echo $this->Form->input('abre_quarta',array('class' => 'input-large ', 'type' => 'checkbox', 'label' => array('text' => 'Abre Quarta','class'=>'labellarge' )));
+									//echo $this->Form->input('hora_fechamento',array('class' => 'input-large hora ', 'type' => 'text', 'label' => array('text' => 'Hora do Fechamento','class'=>'labellarge' )));
 
 
 									
 
+									echo '<br/>';
+									//segunda
+									echo $this->Form->input('abre_segunda',array('class' => 'input-large ', 'type' => 'checkbox', 'label' => array('text' => 'Abre segunda-feira','class'=>'labellarge' )));
+									echo '<br/>';
+									echo $this->Form->input('inicio_segunda',array('class' => 'input-large  hora', 'type' => 'text', 'label' => array('text' => 'Hora de Abertura','class'=>'labellarge' )));
+									echo $this->Form->input('fim_segunda',array('class' => 'input-large  hora', 'type' => 'text', 'label' => array('text' => 'Hora de Fechamento','class'=>'labellarge' )));
 
-									echo $this->Form->input('abre_quinta',array('class' => 'input-large ', 'type' => 'checkbox', 'label' => array('text' => 'Abre Quinta','class'=>'labellarge' )));
+
+									
+
+									//terca
+									echo $this->Form->input('abre_terca',array('class' => 'input-large ', 'type' => 'checkbox', 'label' => array('text' => 'Abre terça-feira','class'=>'labellarge' )));
+									echo '<br/>';
+									echo $this->Form->input('inicio_terca',array('class' => 'input-large  hora', 'type' => 'text', 'label' => array('text' => 'Hora de Abertura','class'=>'labellarge' )));
+									echo $this->Form->input('fim_terca',array('class' => 'input-large  hora', 'type' => 'text', 'label' => array('text' => 'Hora de Fechamento','class'=>'labellarge' )));
+
+									
+									//quarta
+									echo $this->Form->input('abre_quarta',array('class' => 'input-large ', 'type' => 'checkbox', 'label' => array('text' => 'Abre quarta-feira','class'=>'labellarge' )));								
+									echo '<br/>';
+									echo $this->Form->input('inicio_quarta',array('class' => 'input-large  hora', 'type' => 'text', 'label' => array('text' => 'Hora de Abertura','class'=>'labellarge' )));
+									echo $this->Form->input('fim_quarta',array('class' => 'input-large  hora', 'type' => 'text', 'label' => array('text' => 'Hora de Fechamento','class'=>'labellarge' )));
+
+									
+
+									
+									//quinta
+									echo $this->Form->input('abre_quinta',array('class' => 'input-large ', 'type' => 'checkbox', 'label' => array('text' => 'Abre quinta-feira','class'=>'labellarge' )));																	
+									echo '<br/>';
+									echo $this->Form->input('inicio_quinta',array('class' => 'input-large  hora', 'type' => 'text', 'label' => array('text' => 'Hora de Abertura','class'=>'labellarge' )));
+									echo $this->Form->input('fim_quinta',array('class' => 'input-large  hora', 'type' => 'text', 'label' => array('text' => 'Hora de Fechamento','class'=>'labellarge' )));
 
 
-									echo $this->Form->input('abre_sexta',array('class' => 'input-large ', 'type' => 'checkbox', 'label' => array('text' => 'Abre Sexta','class'=>'labellarge' )));
+									//sexta
+									echo $this->Form->input('abre_sexta',array('class' => 'input-large ', 'type' => 'checkbox', 'label' => array('text' => 'Abre sexta-feira','class'=>'labellarge' )));								
+									echo '<br/>';
+									echo $this->Form->input('inicio_sexta',array('class' => 'input-large  hora', 'type' => 'text', 'label' => array('text' => 'Hora de Abertura','class'=>'labellarge' )));
+									echo $this->Form->input('fim_sexta',array('class' => 'input-large  hora', 'type' => 'text', 'label' => array('text' => 'Hora de Fechamento','class'=>'labellarge' )));
 
-									echo $this->Form->input('abre_sabado',array('class' => 'input-large ', 'type' => 'checkbox', 'label' => array('text' => 'Abre Sábado','class'=>'labellarge' )));
 
+									//Sabado
+									echo $this->Form->input('abre_sabado',array('class' => 'input-large ', 'type' => 'checkbox', 'label' => array('text' => 'Abre sábado','class'=>'labellarge' )));								
+									echo '<br/>';
+									echo $this->Form->input('inicio_sabado',array('class' => 'input-large  hora', 'type' => 'text', 'label' => array('text' => 'Hora de Abertura','class'=>'labellarge' )));
+									echo $this->Form->input('fim_sabado',array('class' => 'input-large  hora', 'type' => 'text', 'label' => array('text' => 'Hora de Fechamento','class'=>'labellarge' )));
 
-									echo $this->Form->input('abre_domingo',array('class' => 'input-large ', 'type' => 'checkbox', 'label' => array('text' => 'Abre domingo','class'=>'labellarge' )));
+									//Domingo	
+									echo $this->Form->input('abre_domingo',array('class' => 'input-large ', 'type' => 'checkbox', 'label' => array('text' => 'Abre domingo','class'=>'labellarge' )));							
+									echo '<br/>';
+									echo $this->Form->input('inicio_domingo',array('class' => 'input-large  hora', 'type' => 'text', 'label' => array('text' => 'Hora de Abertura','class'=>'labellarge' )));
+									echo $this->Form->input('fim_domingo',array('class' => 'input-large  hora', 'type' => 'text', 'label' => array('text' => 'Hora de Fechamento','class'=>'labellarge' )));
+
 
 									
 
@@ -207,7 +241,7 @@ $(document).ready(function() {
 	</script>
 <style media="screen">
 	.labellarge {
-		    width: 215px !important;
+		    width: 100% !important;
 	}
 	input{
 		margin-bottom: 10px;

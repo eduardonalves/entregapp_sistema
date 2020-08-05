@@ -886,15 +886,31 @@ $senha = geraSenha(15, true, true, true);
 				$flagHoraFechar = false;
 				$indexTexto = 'abre_' . $diasemana[$numeroDaSemanda];
 				//echo $indexTexto;
-
-				$horaParaAbertura = date("Y-m-d H:i:s", strtotime($value['Filial']['hora_abertura']));
-
-				$horaParaFechamento = date("Y-m-d H:i:s", strtotime($value['Filial']['hora_fechamento']));
-
-				if ($horaParaFechamento <= $horaParaAbertura) {
+				$horaParaFechamento='';
+				$horaParaAbertura='';
+				
+				if(isset($value['Filial']['inicio_'.$diasemana[$numeroDaSemanda]]) ){
+					if($value['Filial']['inicio_'.$diasemana[$numeroDaSemanda]] !=''){
+						$horaParaAbertura = date("Y-m-d H:i:s", strtotime($value['Filial']['inicio_'.$diasemana[$numeroDaSemanda]]));
+					}
+					
+				}
+				
+				if(isset($value['Filial']['fim_'.$diasemana[$numeroDaSemanda]])){
+					if($value['Filial']['fim_'.$diasemana[$numeroDaSemanda]] != ''){
+						$horaParaFechamento = date("Y-m-d H:i:s", strtotime($value['Filial']['fim_'.$diasemana[$numeroDaSemanda]]));
+					}
+				}
+				
+				
+				$flagFecharPorErro=false;
+				if($horaParaFechamento == '' || $horaParaAbertura == ''){
+					$flagFecharPorErro=true;
+				}
+				if (($horaParaFechamento <= $horaParaAbertura) && $flagFecharPorErro== false ) {
 					$horaParaFechamento = date("Y-m-d  H:i:s", strtotime('+1 day' . $value['Filial']['hora_fechamento']));
 				}
-
+				
 				if ($value['Filial'][$indexTexto] == true) {
 
 
@@ -931,6 +947,11 @@ $senha = geraSenha(15, true, true, true);
 						$this->Filial->save($updateFilial);
 						$qtdAberturaseFechamentos = $qtdAberturaseFechamentos + 1;
 						//$this->Filial->save($updateFilial);
+					}
+					if($flagFecharPorErro==true){
+						$updateFilial = array('id' => $value['Filial']['id'], 'status_abertura' => 0);
+						$this->Filial->save($updateFilial);
+						$qtdAberturaseFechamentos = $qtdAberturaseFechamentos + 1;	
 					}
 				}
 			}
