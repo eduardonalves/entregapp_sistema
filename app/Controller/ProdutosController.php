@@ -158,7 +158,8 @@ class ProdutosController extends AppController {
 				'Produto' => array(
 					'limit' => 20,
 					'conditions' => $this->Filter->getConditions(),
-					'order' => 'Produto.nome asc'
+					'order' => 'Produto.nome asc',
+					'fields' => array('DISTINCT Produto.id', 'Produto.nome', 'Categoria.nome', 'Produto.preco_venda','Produto.foto','Produto.ativo'),
 				)
 			);
 
@@ -184,6 +185,10 @@ class ProdutosController extends AppController {
          $this->Produto->create(); // We have a new entry
 
          if($this->Produto->saveAll($this->request->data)){
+				$ultimoProduto = $this->Produto->find('first', array('recursive' => -1, 'conditions' => array('Produto.filial_id'=> $unicaFilial['Filial']['id']),'order' =>array('Produto.id' => 'DESC')));
+				
+				$this->atualizaAdicionais($this->request->data['ProdutosAdicional'], $ultimoProduto['Produto']['id']);
+				
 
          		$this->Session->setFlash(__('O produto foi salvo com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
         		return $this->redirect( $this->referer() );
@@ -204,8 +209,12 @@ class ProdutosController extends AppController {
 		$categorias = $this->Categoria->find('list', array('recursive'=> -1,'order' => array('Categoria.nome' => 'ASC') ,'conditions'=> array('AND'=> array(array('Categoria.filial_id'=> $minhasFiliais), array('Categoria.ativo'=> true)) )));
 		$this->loadModel('Setore');
 		$setores = $this->Setore->find('list', array('recursive'=> -1,'order' => array('Setore.setor' => 'ASC') ,'conditions'=> array('AND'=> array(array('Setore.filial_id'=> $minhasFiliais),array('Setore.ativo'=> true)) )));
+		
+		$this->loadModel('Adicional');
+		$adicionais = $this->Adicional->find('list', array('recursive'=> -1,'order' => array('Adicional.nome' => 'ASC') ,'conditions'=> array('AND'=> array(array('Adicional.filial_id'=> $minhasFiliais),array('Adicional.ativo'=> true),array('Adicional.adicional'=> true)) )));
+		
 
-		$this->set(compact('categorias','isCatalog', 'setores'));
+		$this->set(compact('categorias','isCatalog', 'setores','adicionais'));
 	}
 
 /**
@@ -247,8 +256,9 @@ class ProdutosController extends AppController {
 
 				if($this->Produto->saveAll($this->request->data))
 				{
-					 $this->Session->setFlash(__('O produto foi salvo com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
-					 return $this->redirect( $this->referer() );
+					$this->atualizaAdicionais($this->request->data['ProdutosAdicional'], $id);
+					$this->Session->setFlash(__('O produto foi salvo com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
+					return $this->redirect( $this->referer() );
 				}else
 				{
 					 $this->Session->setFlash(__('Erro ao salvar o produto . Por favor tente novamente'), 'default', array('class' => 'error-flash alert alert-danger'));
@@ -269,8 +279,12 @@ class ProdutosController extends AppController {
 			$categorias = $this->Categoria->find('list', array('recursive'=> -1,'order' => array('Categoria.nome' => 'ASC'), 'conditions'=> array('Categoria.filial_id'=> $minhasFiliais)));
 			$this->loadModel('Setore');
 			$setores = $this->Setore->find('list', array('recursive'=> -1,'order' => array('Setore.setor' => 'ASC') ,'conditions'=> array('AND'=> array(array('Setore.filial_id'=> $minhasFiliais),array('Setore.ativo'=> true)) )));
+			
+			$selecionadas = $this->getAdicionais($id);
+			$this->loadModel('Adicional');
+			$adicionais = $this->Adicional->find('list', array('recursive'=> -1,'order' => array('Adicional.nome' => 'ASC') ,'conditions'=> array('AND'=> array(array('Adicional.filial_id'=> $minhasFiliais),array('Adicional.ativo'=> true),array('Adicional.adicional'=> true)) )));
 
-			$this->set(compact('categorias','isCatalog','setores'));
+			$this->set(compact('categorias','isCatalog','setores','selecionadas','adicionais'));
 			$this->request->data = $this->Produto->find('first', $options);
 		}
 	}
@@ -516,5 +530,46 @@ class ProdutosController extends AppController {
 			return false;
 		}
 
+	}
+	
+	public function atualizaAdicionais(&$arrayAdicionais, &$produtoId){
+
+		$this->loadModel('ProdutosAdicional');
+		$this->ProdutosAdicional->deleteAll(array('ProdutosAdicional.produto_id' => $produtoId), false);
+
+		foreach ($arrayAdicionais as $arrayAdicional) {
+			if(!empty( $arrayAdicional)){
+				foreach ($arrayAdicional as $adicional) {
+					$this->ProdutosAdicional->create();
+					$saveArray = array(
+						'produto_id' =>$produtoId,
+						'adicional_id' => $adicional
+					);
+					
+					$this->ProdutosAdicional->save($saveArray);
+				}
+			}
+		}
+
+	}
+	public function getAdicionais(&$id ){
+		$this->loadModel('Adicional');
+		$selecionadasquery = $this->Adicional->query('select Adicional.id,Adicional.nome FROM produtos Adicional inner JOIN
+					produtos_adicionals pa ON
+					Adicional.id = pa.adicional_id
+					inner JOIN produtos p ON
+					p.id =pa.produto_id
+					WHERE pa.produto_id='.$id.'');
+		$selecionadas= array();
+
+		foreach ($selecionadasquery as $key=> $adicional) {
+
+
+			array_push($selecionadas, $adicional['Adicional']['id']);
+		}
+		if(empty($selecionadas)){
+			$selecionadas=array(0);
+		}
+		return  $selecionadas;
 	}
 }

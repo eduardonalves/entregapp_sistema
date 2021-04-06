@@ -32,6 +32,47 @@ class RestProdutosController extends AppController
       //$this->Cliente->save($clienteUp);
     }
   }
+	public function getAdicionais(&$id ){
+		$this->loadModel('Adicional');
+		$selecionadasquery = $this->Adicional->query('select Adicional.id,Adicional.nome FROM produtos Adicional inner JOIN
+					produtos_adicionals pa ON
+					Adicional.id = pa.adicional_id
+					inner JOIN produtos p ON
+					p.id =pa.produto_id
+					WHERE pa.produto_id='.$id.'');
+		$selecionadas= array();
+
+		foreach ($selecionadasquery as $key=> $adicional) {
+
+
+			array_push($selecionadas, $adicional['Adicional']['id']);
+		}
+		if(empty($selecionadas)){
+			$selecionadas=array(0);
+		}
+		return  $selecionadas;
+	}
+  public function prodsmobilebyadc()
+  {
+    header("Access-Control-Allow-Origin: *");
+	$idsAdicionais = $this->getAdicionais($_GET['p']);
+    $produtos = $this->Produto->find('all', array('recursive' => -1, 'order' => 'Produto.preco_venda ASC', 'conditions' => array(
+        'id' =>$idsAdicionais, 
+        'filial_id' => $_GET['fp'], 
+        'ativo' => 1,
+        'show_store'=> 1
+     )));
+    
+    foreach ($produtos as $key => $value) {
+      $produtos[$key]["Produto"]["preco_venda"] = number_format($produtos[$key]["Produto"]["preco_venda"], 2, ".", "");
+      $produtos[$key]["Produto"]["id_sec"] = $key;
+    }
+
+    $this->set(array(
+      'produtos' => $produtos,
+      '_serialize' => array('produtos')
+    ));
+  }
 
   public function prodsmobilebycat()
   {

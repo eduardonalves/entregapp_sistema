@@ -105,6 +105,16 @@
                         echo $this->Form->input('show_store', array('class' => '', 'label' => array('text' => 'Mostrar no App Garçom: ', 'class' => 'labellarge')));
                         ?>
                     </div>
+					 <div class="form-group  form-group-lg <?php echo $tam; ?>"  style="width: 230px;">
+                        <?php
+                        echo $this->Form->input('tem_adicional', array('class' => '', 'label' => array('text' => 'Tem adicional: ', 'class' => 'labellarge')));
+                        ?>
+                    </div>
+					 <div class="form-group  form-group-lg <?php echo $tam; ?>"  style="width: 230px;">
+                        <?php
+                        echo $this->Form->input('adicional', array('class' => '', 'label' => array('text' => 'É adicional: ', 'class' => 'labellarge')));
+                        ?>
+                    </div>
                     <div class="form-group  form-group-lg col-md-2" style="width: 230px !important;">
                         <?php
                         echo $this->Form->input('recompensa_tipo', array('options'=> array(
@@ -116,7 +126,27 @@
                         ?>
                     </div>
                 </div>
-
+				<br />
+				<br />
+				
+				<div class="form-group  form-group-lg">
+						<?php
+						// output all the checkboxes at once
+						        echo $this->Form->input(
+							  'ProdutosAdicional.adicional_id',
+							  array(
+							      'type' => 'select',
+							      'multiple' => true,
+							      'options' => $adicionais,
+							      'selected' => $selecionadas,
+								  'Class' => 'multi-select'
+							  )
+							);
+						?>
+				</div>
+				<label class="form-label select-label">Adicionais</label>
+				<br />
+				<br />
                 <div class="row">
                     <div class="form-group  form-group-lg col-md-3">
                         <?php

@@ -1,21 +1,27 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * Produto Model
+ * User Model
  *
- * @property Itensdepedido $Itensdepedido
+ * @property Funcao $Funcao
+ * @property Pedido $Pedido
  */
-class Produto extends AppModel {
+class Adicional extends AppModel {
 
 /**
  * Validation rules
  *
  * @var array
  */
+	public $useTable = 'produtos';
+	public $primaryKey = 'id';
+	public $name = 'Adicional';
 	public $displayField = 'nome';
 	public $actsAs = array(
                     'Containable',
                 );
+  	
+	
 	public $validate = array(
 		'nome' => array(
 			'notEmpty' => array(
@@ -49,42 +55,11 @@ class Produto extends AppModel {
 			),
 		),
 	);
-
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
-
 /**
- * hasMany associations
+ * belongsTo associations
  *
  * @var array
  */
-	public $hasMany = array(
-		'Itensdepedido' => array(
-			'className' => 'Itensdepedido',
-			'foreignKey' => 'produto_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),
-		'Tamanho' => array(
-			'className' => 'Tamanho',
-			'foreignKey' => 'produto_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => 'Tamanho.nome ASC',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),
-	);
 	public $belongsTo = array(
 		'Categoria' => array(
 			'className' => 'Categoria',
@@ -116,32 +91,33 @@ class Produto extends AppModel {
 		),
 	);
 
-	 public $hasAndBelongsToMany = array(
-                'Adicional' => array(
-                    'className' => 'Adicional',
+	public $hasAndBelongsToMany = array(
+                'Produto' => array(
+                    'className' => 'Produto',
                     'joinTable' => 'produtos_adicionals',
-                    'foreignKey' => 'produto_id',
-                    'associationForeignKey' => 'adicional_id',
+                    'foreignKey' => 'adicional_id',
+                    'associationForeignKey' => 'produto_id',
                     'unique' => 'keepExisting',
                 )
-     );
-		 
-               //'Hack' para HABTM
-              
-            var $hasOne = array(
-             
-              '_ProdutosAdicional' => array(
-                'className'  => 'ProdutosAdicional',
-                'foreignKey' => 'produto_id',
-                'fields'     => 'id'
-              ),
-              '_Adicional' => array(
-                'className'  => 'Adicional',
-                'foreignKey' => false,
-                'conditions' => '_Adicional.id = _ProdutosAdicional.adicional_id',
-                'fields'     => 'id'
-              ),
+            );
 
-            );/**/
+	var $hasOne = array(
+	  /**
+	   * 'Hack' para HABTM
+	   */
+	  '_ProdutosAdicional' => array(
+	    'className'  => 'ProdutosAdicional',
+	    'foreignKey' => 'adicional_id',
+	    'fields'     => 'id'
+	  ),
+	  '_Produto' => array(
+	    'className'  => 'Produto',
+	    'foreignKey' => false,
+	    'conditions' => '_Produto.id = _ProdutosAdicional.produto_id',
+	    'fields'	 => 'id'
+	  ),
+
+	);
+
 
 }

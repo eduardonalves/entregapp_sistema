@@ -120,6 +120,16 @@ echo $this->Search->create('Produtos', array('class' => 'form-inline', 'type' =>
                         echo $this->Form->input('show_store', array('class' => '', 'label' => array('text' => 'Mostrar no App Garçom: ', 'class' => 'labellarge')));
                         ?>
                     </div>
+					<div class="form-group  form-group-lg <?php echo $tam; ?>"  style="width: 230px;">
+                        <?php
+                        echo $this->Form->input('tem_adicional', array('class' => '', 'label' => array('text' => 'Tem Adicional: ', 'class' => 'labellarge')));
+                        ?>
+                    </div>
+					<div class="form-group  form-group-lg <?php echo $tam; ?>"  style="width: 230px;">
+                        <?php
+                        echo $this->Form->input('adicional', array('class' => '', 'label' => array('text' => 'É Adicional: ', 'class' => 'labellarge')));
+                        ?>
+                    </div>
                     <div class="form-group  form-group-lg col-md-2" style="width: 230px !important;">
                         <?php
                         echo $this->Form->input('recompensa_tipo', array('options'=> array(
@@ -132,6 +142,27 @@ echo $this->Search->create('Produtos', array('class' => 'form-inline', 'type' =>
                     </div>
 
                 </div>
+				<br />
+				
+				<div class="form-group  form-group-lg">
+					<?php
+					// output all the checkboxes at once
+							echo $this->Form->input(
+						  'ProdutosAdicional.adicional_id',
+						  array(
+							  'type' => 'select',
+							  'multiple' => true,
+							  'options' => $adicionais,
+							  'Class' => 'multi-select'
+
+						  )
+						);
+					?>
+				</div>
+				<label class="form-label select-label">Adicionais</label>
+				
+				<br />
+				
                 <div class="row">
                     <div class="form-group  form-group-lg col-md-4">
                         <?php
@@ -140,7 +171,7 @@ echo $this->Search->create('Produtos', array('class' => 'form-inline', 'type' =>
                     </div>
                 </div>
 
-
+				
 
                 <?php
                 echo $this->Form->input('filial_id', array('type' => 'hidden'));
@@ -315,6 +346,7 @@ echo $this->Search->create('Produtos', array('class' => 'form-inline', 'type' =>
 
             });
         });
+		
         $('body').on('click', '.viewModal', function(event) {
             event.preventDefault();
 
@@ -336,5 +368,6 @@ echo $this->Search->create('Produtos', array('class' => 'form-inline', 'type' =>
 
             });
         });
+		
     });
 </script>

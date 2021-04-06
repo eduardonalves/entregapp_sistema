@@ -69,7 +69,7 @@
 						?>
 					</div>
 
-					<div class="form-group  form-group-lg ">
+					<div class=" ">
 						<?php
 						// output all the checkboxes at once
 						        echo $this->Form->input(
