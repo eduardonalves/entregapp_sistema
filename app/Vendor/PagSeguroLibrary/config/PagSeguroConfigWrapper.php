@@ -31,7 +31,7 @@ class PagSeguroConfigWrapper
     /**
      *
      */
-    const PAGSEGURO_EMAIL = "eduardonalves@gmail.com";
+    const PAGSEGURO_EMAIL = "PAGSEGURO_EMAIL";
     /**
      *
      */
