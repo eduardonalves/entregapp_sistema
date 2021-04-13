@@ -28,7 +28,7 @@ class RestEntregadorsController extends AppController {
     $this->loadModel('Entregador');
 		$this->loadModel('Salt');
 		$this->layout ='ajaxaddpedido';
-		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 		$salt = $this->Salt->find('first', array('conditions' => array('Salt.id' => 1)));
 		$senha= $this->Auth->password($this->request->data['password']);
 		$usuario =$this->request->data['username'];

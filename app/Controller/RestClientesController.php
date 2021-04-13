@@ -29,7 +29,7 @@ class RestClientesController extends AppController
 		$this->loadModel('Pedido');
 		$this->loadModel('Salt');
 		$this->layout = 'ajaxaddpedido';
-		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 		$ultimopedido = array();
 		$salt = $this->Salt->find('first', array('conditions' => array('Salt.id' => 1)));
 
@@ -53,7 +53,7 @@ class RestClientesController extends AppController
 
 	public function notificationsmobile()
 	{
-		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 
 		$payload = array(
 			'to' => 'ExponentPushToken[bX7Y4IFGvKDXu-IIjN53dx]',
@@ -113,7 +113,7 @@ class RestClientesController extends AppController
 		$this->loadModel('Estado');
 		$this->loadModel('Bairro');
 		$this->layout = 'ajaxaddpedido';
-		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 
 		$salt = $this->Salt->find('first', array('conditions' => array('Salt.id' => 1)));
 		$senha = $this->Auth->password($this->request->data['password']);
@@ -305,6 +305,8 @@ class RestClientesController extends AppController
 
 	public function getfrete($id='')
 	{
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
+		
 		$this->loadModel('Cliente');
 		$this->loadModel('Estado');
 		$this->loadModel('Cidad');
@@ -331,7 +333,7 @@ class RestClientesController extends AppController
 	
 	public function getPromoDia()
 	{
-		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 		$filial_id = $_GET['fp'];
 		$ultimopedido = array();
 
@@ -617,7 +619,7 @@ class RestClientesController extends AppController
 	}
 	public function formtrocasenha()
 	{
-		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 		$this->layout = 'login';
 		if ($this->request->is('post')) {
 
@@ -667,7 +669,7 @@ class RestClientesController extends AppController
 	}
 	public function recuperarsenha($value = '')
 	{
-		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 		$cliente = $this->Cliente->find('first', array('recursive' => -1, 'conditions' => array('Cliente.username' => $this->request->data['clt'])));
 		if (!empty($cliente)) {
 			if ($this->Cliente->recoverpassword($cliente['Cliente']['id'])) {
@@ -692,7 +694,7 @@ class RestClientesController extends AppController
 	public function addmobile($value = '')
 	{
 
-		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 
 		if ($this->request->is('post')) {
 			$this->loadModel('Salt');
@@ -782,7 +784,7 @@ class RestClientesController extends AppController
 	public function validatoken($value = '')
 	{
 
-		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 		header('Content-Type: application/json');
 		$this->layout = 'liso';
 		$cliente = $_GET['clt'];
@@ -802,7 +804,7 @@ class RestClientesController extends AppController
 	}
 	public function verificasaldo($value = '')
 	{
-		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 
 		$saldo = 0;
 		if (empty($this->request->data)) {
@@ -847,7 +849,7 @@ class RestClientesController extends AppController
 	}
 	public function validajogos($value = '')
 	{
-		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 
 
 		if ($this->request->is('post', 'put', 'get')) {
@@ -1048,7 +1050,7 @@ class RestClientesController extends AppController
 	}
 	public function jogarjokenpo($value = '')
 	{
-		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 		$this->layout = 'liso';
 		$hoje = date("Y-m-d");
 		$dataValidade = date("Y-m-d", strtotime('+1 month' . $hoje));
@@ -1260,7 +1262,7 @@ class RestClientesController extends AppController
 	public function addFotosmobile()
 	{
 
-		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 
 		if ($this->request->is('post', 'put')) {
 			$this->loadModel('Salt');

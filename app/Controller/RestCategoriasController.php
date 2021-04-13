@@ -7,7 +7,7 @@ class RestCategoriasController extends AppController {
 
 
     public function catsmobile() {
-        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
         if(isset($_GET['apg'])){
           $categorias = $this->Categoria->find('all',array('recursive'=> -1,'order'=> 'Categoria.destaque Desc ,Categoria.nome ASC', 'conditions'=> array(
             'filial_id'=> $_GET['fp'], 
@@ -46,7 +46,7 @@ class RestCategoriasController extends AppController {
 	}
   public function validajogos()
   {
-    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
     header('Content-Type: application/json');
 
     $this->layout='liso';
@@ -226,7 +226,7 @@ class RestCategoriasController extends AppController {
       $this->loadModel('Filial');
       $this->loadModel('Categoria');
       $this->loadModel('Tamanho');
-			header("Access-Control-Allow-Origin: *");
+			header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
                                 $resultados= array();
 
 			$resultados =  $this->Categoria->find('all', array('recursive' => 1, 'order'=> 'Categoria.destaque Desc ,Categoria.nome ASC', 'conditions' => array('AND'=> array(array('Categoria.filial_id'=> $_GET['fp']), array('Categoria.ativo'=> 1)))));
@@ -344,7 +344,7 @@ class RestCategoriasController extends AppController {
     }
     public function viewMobile($value='')
     {
-      header("Access-Control-Allow-Origin: *");
+      header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
       $this->loadModel('Categoria');
       $this->loadModel('Tamanho');
 

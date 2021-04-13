@@ -7,7 +7,7 @@ class RestDespesasController extends AppController {
 
 
     public function processadespesa() {
-        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
         //$categorias = $this->Categoria->find('all',array('recursive'=> -1,'order'=> 'Categoria.destaque Desc ,Categoria.nome ASC', 'conditions'=> array('filial_id'=> $_GET['fp'], 'ativo' => 1 )));
         $despesas = $this->Despesa->find('all', array('recursive'=>-1,'conditions'=> array(
           'recorrente'=> 1,

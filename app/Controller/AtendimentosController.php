@@ -29,7 +29,7 @@ class AtendimentosController extends AppController {
 	
 	public function indexmobile() {
 	date_default_timezone_set("Brazil/East");
-	header("Access-Control-Allow-Origin: *");
+	header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 		$this->layout ='loadprodutos';
 		$cliente= $_GET['clt'];
 		$resultados = $this->Atendimento->find('all', array('recursive' => 1,'limit' => 5, 'order' => 'Atendimento.id DESC','conditions' => array('Atendimento.cliente_id' => $cliente)));
@@ -91,7 +91,7 @@ class AtendimentosController extends AppController {
 	public function viewmobile($id = null) {
 	date_default_timezone_set("Brazil/East");
 		$this->layout ='loadprodutos';
-		header("Access-Control-Allow-Origin: *");	
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");	
 		
 		
 		$this->loadModel('Pedido');
@@ -198,7 +198,7 @@ class AtendimentosController extends AppController {
 	
 	public function itensmobile($id = null) {
 	date_default_timezone_set("Brazil/East");
-		header("Access-Control-Allow-Origin: *");	
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");	
 		$this->layout ='loadprodutos';
 		$this->loadModel('Pedido');
 		$this->loadModel('Itensdepedido');
@@ -245,7 +245,7 @@ class AtendimentosController extends AppController {
 	
 	public function checaatendimento($id = null) {
 	date_default_timezone_set("Brazil/East");
-		header("Access-Control-Allow-Origin: *");	
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");	
 		$this->layout ='loadprodutos';
 		$resultados= array('resposta' => 'naoExiste');
 		

@@ -2661,7 +2661,7 @@ class PedidosController extends AppController
 
 
 		date_default_timezone_set("Brazil/East");
-		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 
 		$codigo = $_GET['cd'];
 		//$resultados = $this->Atendimento->find('all', array('recursive' => 1,'limit' => 5, 'order' => 'Atendimento.id DESC','conditions' => array('Atendimento.cliente_id' => $cliente)));

@@ -65,7 +65,7 @@ class RestAtendimentosController extends AppController {
 		$this->layout='liso';
 		$id = $_GET['a'];
 		date_default_timezone_set("Brazil/East");
-		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 		$resp="";
 		$clt =  $_GET['b'];
 		$token = $_GET['c'];
@@ -141,7 +141,7 @@ class RestAtendimentosController extends AppController {
 		$this->layout='liso';
 
 		date_default_timezone_set("Brazil/East");
-		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 		$resp="";
 		$clt =  $_GET['b'];
 		$token = $_GET['c'];
@@ -204,7 +204,7 @@ class RestAtendimentosController extends AppController {
 		$this->layout='liso';
 		$id = $_GET['a'];
 		date_default_timezone_set("Brazil/East");
-		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 		$resp="";
 		$clt =  $_GET['b'];
 		$token = $_GET['c'];
@@ -260,7 +260,7 @@ class RestAtendimentosController extends AppController {
 
 		$id = $_GET['a'];
 		date_default_timezone_set("Brazil/East");
-		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 		$resp="";
 		$clt =  $_GET['b'];
 		$token = $_GET['c'];
@@ -428,7 +428,7 @@ class RestAtendimentosController extends AppController {
   	public function posentregador($id = null) {
 		$this->layout='liso';
 		date_default_timezone_set("Brazil/East");
-		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 		$resp="";
 		$clt =  $_GET['b'];
 		$token = $_GET['c'];
@@ -618,7 +618,7 @@ class RestAtendimentosController extends AppController {
 	}
 	public function indexmobile () {
 		date_default_timezone_set("Brazil/East");
-		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 
 		$cliente= $_GET['clt'];
 		$limite = $_GET['limit'];
@@ -699,7 +699,7 @@ class RestAtendimentosController extends AppController {
 	public function itensmobile($id = null) {
 
 		date_default_timezone_set("Brazil/East");
-		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 		$id= $_GET['a'];
 		$this->layout ='loadprodutos';
 		$this->loadModel('Pedido');
@@ -773,7 +773,7 @@ class RestAtendimentosController extends AppController {
 	}
 	public function checaatendimento($id = null) {
 		date_default_timezone_set("Brazil/East");
-		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 		$id= $_GET['a'];
 		$resultados= array('resposta' => 'naoExiste');
 		$clt =  $_GET['b'];

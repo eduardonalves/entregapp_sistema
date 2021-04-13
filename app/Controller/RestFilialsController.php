@@ -12,7 +12,7 @@ class RestFilialsController extends AppController {
 		//$token =$_GET['b'];
 		//$resp =$this->checkToken($clt, $token);
 		//if($resp =='OK'){
-			header("Access-Control-Allow-Origin: *");
+			header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 			$resultados =  $this->Filial->find('all', array('recursive' => -1, 'conditions'=> array('Filial.empresa_id'=> $empresa)));
 			$this->set(array(
 				'resultados' => $resultados,

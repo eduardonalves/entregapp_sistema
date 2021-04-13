@@ -24,7 +24,7 @@ class RestMensagensController extends AppController {
 
 	public function addmobile() {
 
-		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 
 		if ($this->request->is('post')) {
 
@@ -50,7 +50,7 @@ class RestMensagensController extends AppController {
 
 	}
 	public function indexmobile() {
-		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 		$cliente_id = $_GET['clid'];
 
 		$clt =  $_GET['b'];
@@ -68,7 +68,7 @@ class RestMensagensController extends AppController {
 	}
 
 	public function viewmobile() {
-		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 		$cliente_id = $_GET['clid'];
 		$ultMsg = $_GET['ult'];
 

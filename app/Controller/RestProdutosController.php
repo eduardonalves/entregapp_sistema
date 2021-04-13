@@ -54,7 +54,7 @@ class RestProdutosController extends AppController
 	}
   public function prodsmobilebyadc()
   {
-    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 	$idsAdicionais = $this->getAdicionais($_GET['p']);
     $produtos = $this->Produto->find('all', array('recursive' => -1, 'order' => 'Produto.preco_venda ASC', 'conditions' => array(
         'id' =>$idsAdicionais, 
@@ -76,7 +76,7 @@ class RestProdutosController extends AppController
 
   public function prodsmobilebycat()
   {
-    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
     if(isset($_GET['apg'])){
       $produtos = $this->Produto->find('all', array('recursive' => -1, 'order' => 'Produto.preco_venda ASC', 'conditions' => array(
         'categoria_id' => $_GET['cat'], 
@@ -107,7 +107,7 @@ class RestProdutosController extends AppController
 
   public function prodsmobilebyrec()
   {
-    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
     $this->loadModel('Partida');
     $produtos = array();
     if (empty($this->request->data)) {
@@ -188,7 +188,7 @@ class RestProdutosController extends AppController
     $this->loadModel('Filial');
     $this->loadModel('Produto');
     $this->loadModel('Tamanho');
-    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
     $resultados = array();
 
     $resultados =  $this->Categoria->find('all', array('recursive' => 1, 'order' => 'Categoria.destaque Desc ,Categoria.nome ASC', 'conditions' => array('AND' => array(array('Categoria.filial_id' => $_GET['fp']), array('Categoria.ativo' => 1)))));
@@ -301,7 +301,7 @@ class RestProdutosController extends AppController
   }
   public function viewMobile($value = '')
   {
-    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
     $this->loadModel('Categoria');
     $this->loadModel('Tamanho');
 

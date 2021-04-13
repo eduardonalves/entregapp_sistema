@@ -7,7 +7,7 @@ class RestMesasController extends AppController {
 
 
     public function mesasmobile() {
-        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
         $mesas = $this->Mesa->find('all',array('recursive'=> -1, 'conditions'=> array('filial_id'=> $_GET['fp'] )));
         $this->set(array(
             'mesas' => $mesas,

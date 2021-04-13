@@ -126,7 +126,7 @@ $senha = geraSenha(15, true, true, true);
 
 
 		date_default_timezone_set("Brazil/East");
-		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 
 		//$codigo= $_GET['cd'];
 		//$resultados = $this->Atendimento->find('all', array('recursive' => 1,'limit' => 5, 'order' => 'Atendimento.id DESC','conditions' => array('Atendimento.cliente_id' => $cliente)));
@@ -226,7 +226,7 @@ $senha = geraSenha(15, true, true, true);
 	}
 	public function calculafrete()
 	{
-		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 		date_default_timezone_set("Brazil/East");
 		$this->loadModel('Filial');
 
@@ -242,7 +242,7 @@ $senha = geraSenha(15, true, true, true);
 	}
 	public function getLocalidadePedidos()
 	{
-		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 		date_default_timezone_set("Brazil/East");
 
 		$this->loadModel('Bairro');
@@ -286,7 +286,7 @@ $senha = geraSenha(15, true, true, true);
 
 	public function statusloja()
 	{
-		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 		date_default_timezone_set("Brazil/East");
 		$this->loadModel('Filial');
 		$resultados = array();
@@ -306,7 +306,7 @@ $senha = geraSenha(15, true, true, true);
 	}
 	public function pagseguromobile()
 	{
-		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 		date_default_timezone_set("Brazil/East");
 
 		$this->loadModel('Assinatura');
@@ -394,7 +394,7 @@ $senha = geraSenha(15, true, true, true);
 	}
 	public function addmobile($codigo = null)
 	{
-		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 		date_default_timezone_set("Brazil/East");
 
 
@@ -1110,7 +1110,7 @@ $senha = geraSenha(15, true, true, true);
 	}
 	public function calculaFilaProdutos()
 	{
-		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 		$this->loadModel('Produto');
 		$this->loadModel('Itensdepedido');
 		$this->Itensdepedido->virtualFields = array('totalprod' => 'SUM(Itensdepedido.qtde)');
@@ -1174,7 +1174,7 @@ $senha = geraSenha(15, true, true, true);
 
 	public function calculaFilaProduto(&$id)
 	{
-		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 		$this->loadModel('Produto');
 		$this->loadModel('Itensdepedido');
 		$this->Itensdepedido->virtualFields = array('totalprod' => 'SUM(Itensdepedido.qtde)');
@@ -1235,7 +1235,7 @@ $senha = geraSenha(15, true, true, true);
 
 	public function avalpedidomobile()
 	{
-		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 		date_default_timezone_set("Brazil/East");
 
 		if ($this->request->is('get')) {
@@ -1281,7 +1281,7 @@ $senha = geraSenha(15, true, true, true);
 	}
 	public function getSessionPag()
 	{
-		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 		date_default_timezone_set("Brazil/East");
 
 		if ($this->request->is('get')) {
@@ -1463,7 +1463,7 @@ $senha = geraSenha(15, true, true, true);
 	public function cancelarpagseguro()
 	{
 
-		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 		date_default_timezone_set("Brazil/East");
 		$this->loadModel('Assinatura');
 		$assinatura = $this->Assinatura->find('first', array(
@@ -1495,7 +1495,7 @@ $senha = geraSenha(15, true, true, true);
 	}
 	public function getnotifications()
 	{
-		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 		date_default_timezone_set("Brazil/East");
 
 		$this->loadModel('Filial');

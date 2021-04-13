@@ -28,7 +28,7 @@ class ProdutosController extends AppController {
 	}
 	public function prodsmobile() {
 		$this->loadModel('Categoria');
-		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 
 		$this->layout ='loadprodutos';
 
@@ -157,16 +157,22 @@ class ProdutosController extends AppController {
 		$this->Paginator->settings = array(
 				'Produto' => array(
 					'limit' => 20,
+					'maxLimit'=>20,
 					'conditions' => $this->Filter->getConditions(),
 					'order' => 'Produto.nome asc',
-					'fields' => array('DISTINCT Produto.id', 'Produto.nome', 'Categoria.nome', 'Produto.preco_venda','Produto.foto','Produto.ativo'),
+					'fields' => array('DISTINCT Produto.id', 'Produto.nome', 'Categoria.nome', 'Produto.preco_venda','Produto.foto','Produto.ativo')
 				)
 			);
 
+		
+		//$produtos = $this->Produto->find('all', array('conditions'=> $this->Filter->getConditions(), 'recursive' => -1));
+		//echo count($produtos);
+		//die;
+		$produtos = $this->Paginator->paginate('Produto');
 
-		$this->Produto->find('all', array('conditions'=> $this->Filter->getConditions(), 'recursive' => -1));
-		//$produtos = $this->Paginator->paginate('Produto');
-		$this->set('produtos', $this->Paginator->paginate());
+		$this->set(compact('produtos'));
+		
+		
 
 		if ($this->request->is('post')) {
 
