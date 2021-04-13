@@ -48,7 +48,7 @@ class PagSeguroConfigWrapper
     /**
      *
      */
-    const PAGSEGURO_APP_ID_SANDBOX = "app7667618852";
+    const PAGSEGURO_APP_ID_SANDBOX = "PAGSEGURO_APP_ID_SANDBOX";
     /**
      *
      */
