@@ -45,6 +45,7 @@ abstract class CacheEngine {
  * @return boolean True if the engine has been successfully initialized, false if not
  */
 	public function init($settings = array()) {
+		error_reporting(E_ALL ^ E_WARNING); 
 		$settings += $this->settings + array(
 			'prefix' => 'cake_',
 			'duration' => 3600,

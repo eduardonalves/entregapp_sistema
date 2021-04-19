@@ -78,6 +78,7 @@ class ProdutosController extends AppController {
  */
 	public function add() {
 		$this->loadModel('Filial');
+		
 		if(isset($_GET['loja'])){
 			$loja=$_GET['loja'];
 		}else{
@@ -92,6 +93,9 @@ class ProdutosController extends AppController {
 		$User = new UsersController;
 		$minhasFiliais = $User->getFiliais($userid);
 		$lojas = $User->getSelectFiliais($userid);
+
+		$this->loadModel('Categoria');
+		$categorias = $this->Categoria->find('list', array('recursive'=> -1,'order' => array('Categoria.nome' => 'ASC') ,'conditions'=> array('AND'=> array(array('Categoria.filial_id'=> $minhasFiliais), array('Categoria.ativo'=> true)) )));
 
 		if(!$Autorizacao->setAutorizacao($autTipo,$userfuncao)){
 			$this->Session->setFlash(__('Acesso Negado!'), 'default', array('class' => 'error-flash alert alert-danger'));
@@ -110,7 +114,11 @@ class ProdutosController extends AppController {
 
 			}
 		}
-
+		$categoriasAux = $categorias;
+		
+		$categoriasAux['']=" Todos";
+		asort($categoriasAux);
+		
 		$this->Filter->addFilters(
 	        array(
 	            'nome' => array(
@@ -120,6 +128,12 @@ class ProdutosController extends AppController {
 	                        'before' => '%', // optional
 	                        'after'  => '%'  // optional
 	                    )
+	                )
+	            ),
+				'categoria' => array(
+	                'Categoria.id' => array(
+	                    'operator' => '=',
+	                    'select'=> $categoriasAux
 	                )
 	            ),
 	            'codigo' => array(
@@ -158,22 +172,49 @@ class ProdutosController extends AppController {
 				'Produto' => array(
 					'limit' => 20,
 					'maxLimit'=>20,
+					'recursive'=> 0,
 					'conditions' => $this->Filter->getConditions(),
 					'order' => 'Produto.nome asc',
-					'fields' => array('DISTINCT Produto.id', 'Produto.nome', 'Categoria.nome', 'Produto.preco_venda','Produto.foto','Produto.ativo')
+					'fields' => array('DISTINCT Produto.id', 'Produto.nome','Categoria.id', 'Categoria.nome', 'Produto.preco_venda','Produto.foto','Produto.ativo')
 				)
-			);
-
+		);
 		
-		//$produtos = $this->Produto->find('all', array('conditions'=> $this->Filter->getConditions(), 'recursive' => -1));
-		//echo count($produtos);
-		//die;
+		
+		
+		
 		$produtos = $this->Paginator->paginate('Produto');
+		//Correção dos parâmetros da paginação dos Produtos - Início
+		$Todosprodutos = $this->Produto->find('all', array('conditions'=> $this->Filter->getConditions(), 'recursive' => 0));
+		$idsProdutos= array();
+		$ProdutosUnicos=array();
+		foreach ($Todosprodutos as $keyp => $valuep) {
+			if(!in_array($valuep['Produto']['id'],$idsProdutos)){
+				array_push($ProdutosUnicos,$valuep);
+				array_push($idsProdutos,$valuep['Produto']['id']);
+			}
+			
+		}
+		$totalProdutos= count($ProdutosUnicos);
+		$qtdPaginas= ceil(count($ProdutosUnicos) / $this->request->params['paging']['Produto']['limit'] );
+		$nextPage=($this->request->params['paging']['Produto']['page'] < $qtdPaginas ? true : false);
+		$this->request->params['paging']['Produto']['count'] = intval($totalProdutos);
+		$this->request->params['paging']['Produto']['pageCount']=intval($qtdPaginas);
+		$this->request->params['paging']['Produto']['nextPage']=$nextPage;
+		//Correção dos parâmetros da paginação - Fim
+
 
 		$this->set(compact('produtos'));
 		
 		
-
+		//$this->Produto->recursive = -1;
+		//$this->set('produtos', $this->Paginator->paginate());
+		
+		
+		
+		
+		
+		
+		
 		if ($this->request->is('post')) {
 
 
@@ -211,8 +252,7 @@ class ProdutosController extends AppController {
 
 		}
 		//$categorias = $this->Produto->Categoria->find('list');
-		$this->loadModel('Categoria');
-		$categorias = $this->Categoria->find('list', array('recursive'=> -1,'order' => array('Categoria.nome' => 'ASC') ,'conditions'=> array('AND'=> array(array('Categoria.filial_id'=> $minhasFiliais), array('Categoria.ativo'=> true)) )));
+		
 		$this->loadModel('Setore');
 		$setores = $this->Setore->find('list', array('recursive'=> -1,'order' => array('Setore.setor' => 'ASC') ,'conditions'=> array('AND'=> array(array('Setore.filial_id'=> $minhasFiliais),array('Setore.ativo'=> true)) )));
 		

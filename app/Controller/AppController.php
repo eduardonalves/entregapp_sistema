@@ -58,6 +58,7 @@ class AppController extends Controller {
     );
 
 	public function beforeFilter() {
+		
 		if ($this->Session->check('Config.language')) {
 			Configure::write('Config.language', 'por');
 				Configure::write('Config.language', $this->Session->read('Config.language'));

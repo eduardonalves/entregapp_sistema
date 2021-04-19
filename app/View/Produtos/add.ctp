@@ -25,6 +25,11 @@ echo $this->Search->create('Produtos', array('class' => 'form-inline', 'type' =>
 </div>
 <div class="form-group  form-group-lg">
     <?php
+    echo $this->Search->input('categoria', array('label' => 'Categoria:', 'class' => 'input-default',  'required' => 'false'));
+    ?>
+</div>
+<div class="form-group  form-group-lg">
+    <?php
     echo $this->Search->input('empresa', array('label' => false, 'class' => 'none', 'required' => 'false'));
 
     echo $this->Search->input('minhaslojas', array('label' => 'Loja', 'class' => 'filtroPedido input-default ', 'required' => 'false'));
