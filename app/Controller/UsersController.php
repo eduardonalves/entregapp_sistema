@@ -486,4 +486,83 @@ class UsersController extends AppController {
 		}
 
 	}
+
+	public function recuperarsenha($value = '')
+	{
+		$this->layout = 'login';
+		if ($this->request->is('post')) {
+			//$this->request->data['clt'];
+			
+			$user=$this->User->find('first', array('recursive' => -1, 'conditions' => array('User.username'=>$this->request->data['User']['username'])));
+			
+			if (!empty($user)) {
+				if ($this->User->recoverpassword($user['User']['id'])) {
+					$resposta = 'ok';
+				} else {
+					$resposta = 'sem email';
+				}
+			} else {
+				$resposta = 'sem email';
+			}
+
+			if ($resposta=='ok') {
+				$this->Session->setFlash(__('Um email foi enviado para a recuperação da sua senha.'));
+				return $this->redirect( $this->referer() );
+			} else {
+				$this->Session->setFlash(__('Houve um erro ao tentar recuperar a sua senha.'), 'default', array('class' => 'error-flash alert alert-danger'));
+				return $this->redirect( $this->referer() );
+			}
+		}
+		
+	}
+	public function formtrocasenha()
+	{
+		
+		$this->layout = 'login';
+		if ($this->request->is('post')) {
+
+			if (($this->request->data['Changesenha']['password'] == '' || $this->request->data['Changesenha']['confirmpassword'] == '') || ($this->request->data['Changesenha']['password'] != $this->request->data['Changesenha']['confirmpassword'])) {
+
+				//$this->Session->setFlash(__('Your message here.', true));
+				$this->Session->setFlash(__('Erro: As senhas digitadas não podem ser vazias e devem ser iguais.'), 'default', array('class' => 'error-flash alert alert-danger'));
+				$_GET['t'] = $this->request->data['Changesenha']['tk'];
+				//return $this->redirect( $this->referer() );
+				//die('aqui');
+			} else {
+				$this->loadModel('Token');
+				$token = $this->Token->find('first', array('recursive' => -1, 'conditions' => array('AND' => array(array('Token.ativo' => true), array('Token.token' => $this->request->data['Changesenha']['tk'])))));
+				$_GET['t'] = $this->request->data['Changesenha']['tk'];
+				if (!empty($token)) {
+					$dataToken = date("Y-m-d", strtotime($token['Token']['created']));
+					$today = date('Y-m-d');
+					if ($dataToken == $today) {
+						$dataToSaveToken = array(
+							'id' => $token['Token']['id'],
+							'ativo' => false,
+						);
+						$this->Token->save($dataToSaveToken);
+						$dataToSaveUser = array(
+							'id' => $token['Token']['user_id'],
+							'password' => $this->request->data['Changesenha']['password']
+						);
+						$dataToSaveToken = array(
+							'ativo' => false,
+							'user_id' => $token['Token']['user_id'],
+						);
+						$this->Token->updateAll($dataToSaveToken);
+						if ($this->User->save($dataToSaveUser)) {
+							$this->Session->setFlash(__('Sua senha foi redefinida com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
+							//return $this->redirect( $this->referer() );
+						} else {
+							$this->Session->setFlash(__('Erro não foi possível redefinir sua senha'), 'default', array('class' => 'error-flash alert alert-danger'));
+							//return $this->redirect( $this->referer() );
+						}
+					}
+				} else {
+					$this->Session->setFlash(__('Erro este link não é mais válido, entre no aplicativo solicite novamente uma redefinição de senha.'), 'default', array('class' => 'error-flash alert alert-danger'));
+					//return $this->redirect( $this->referer() );
+				}
+			}
+		}
+	}
 }

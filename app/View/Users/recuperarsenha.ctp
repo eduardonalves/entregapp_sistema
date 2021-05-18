@@ -96,9 +96,7 @@ p{text-align: center;}
 	body{background-size: auto;}
 	.centro{width: 80%;margin-top:100px;}
 }
-.forgot-link{
-	color: blue;
-}
+
 </style>
 
 <div class="centro">
@@ -112,15 +110,10 @@ p{text-align: center;}
 		echo $this->Session->flash('auth');
 
 		echo $this->Form->create('User');
-		   echo $this->Form->input('username',array('class' => 'input-login','label' => 'Email:'));
-		   echo $this->Form->input('password',array('class' => 'input-login','label' => 'Senha:'));
-		   echo $this->Form->submit('Entrar',array('class'=>'bt-login'));
-		echo $this->Form->end(); 
-		//$url=(SERVER_NAME == 'localhost') ? 'localhost/entregapp_sistema': SERVER_NAME ;
-		$url ='recuperarsenha';
-		echo  '<p>Esqueceu a senha? <a class="forgot-link" href="'.$url.'" target="_blank">Clique aqui!</a></p>';
-		?>
-		
+		   echo $this->Form->input('username',array('class' => 'input-login','label' => 'Digite seu Email:'));
+		   
+		   echo $this->Form->submit('Recuperar a Senha',array('class'=>'bt-login'));
+		echo $this->Form->end(); ?>
 </div>
 <div id="rodape">
 	<p>Rudo - @2020 Todos os direitos reservados -

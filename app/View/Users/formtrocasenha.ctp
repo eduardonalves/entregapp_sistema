@@ -1,15 +1,3 @@
-<?php
-	$this->response->header('Access-Control-Allow-Origin','*');
-	//$this->response->header('Access-Control-Allow-Methods','POST');
-	//$this->response->header('Access-Control-Allow-Headers','X-Requested-With');
-	//$this->response->header('Access-Control-Max-Age','172800');
-	//$this->response->type('json');
-	if(isset($users)){
-		$this->response->type('json');
-		echo json_encode($users);
-	}
-?>
-
 <style type="text/css" media="all">
 body{
 	background-image: url("../img/background.jpg");
@@ -43,12 +31,12 @@ p{text-align: center;}
 			min-height: 40px;
 		}
 			.logo-appedido img{
-				top: -189px;
-	    		left: -38px;
-	    		/* border-radius: 35%; */
-	    		height: 220px;
-	    		width: 220px;
-	    		position: absolute;
+				top: -90px;
+				left: 0;
+				/*border-radius: 35%;*/
+				height: 120px;
+				width: 120px;
+				position: absolute;
 			}
 
 		.input-login{
@@ -96,9 +84,7 @@ p{text-align: center;}
 	body{background-size: auto;}
 	.centro{width: 80%;margin-top:100px;}
 }
-.forgot-link{
-	color: blue;
-}
+
 </style>
 
 <div class="centro">
@@ -109,26 +95,55 @@ p{text-align: center;}
 		<?php echo $this->Session->flash(); ?>
 
 		<?php
+		if(isset($_GET['t']))
+		{
+			$token =  $_GET['t']; 
+		}else{
+			$token =  ''; 
+		}
 		echo $this->Session->flash('auth');
 
-		echo $this->Form->create('User');
-		   echo $this->Form->input('username',array('class' => 'input-login','label' => 'Email:'));
+		echo $this->Form->create('Changesenha',array('action'=> '/RestClientes/formtrocasenha','id'=>'formtrocasenha'));
 		   echo $this->Form->input('password',array('class' => 'input-login','label' => 'Senha:'));
-		   echo $this->Form->submit('Entrar',array('class'=>'bt-login'));
-		echo $this->Form->end(); 
-		//$url=(SERVER_NAME == 'localhost') ? 'localhost/entregapp_sistema': SERVER_NAME ;
-		$url ='recuperarsenha';
-		echo  '<p>Esqueceu a senha? <a class="forgot-link" href="'.$url.'" target="_blank">Clique aqui!</a></p>';
-		?>
-		
+		   echo $this->Form->input('confirmpassword',array('type'=>'password','class' => 'input-login','label' => 'Confirme a Senha:'));
+		 echo $this->Form->input('tk',array('type' => 'hidden','value'=> $token ));
+		   echo $this->Form->submit('Enviar',array('class'=>'bt-login'));
+		echo $this->Form->end(); ?>
 </div>
 <div id="rodape">
-	<p>Rudo - @2020 Todos os direitos reservados -
-		
+	<p>Appedido - @2015 Todos os direitos reservados -
+		<a href="#" target="_blank" rel="nofollow">Agência Kanguru</a>
 	</p>
 </div>
 
+<script type="text/javascript">
+$('document').ready(function(){
+	var urlInicio      = window.location.host;
+	if(urlInicio=="localhost" ){
+		urlAction= "/entregapp_sistema/RestClientes/formtrocasenha";	
+	}else{
+		urlAction= "/RestClientes/formtrocasenha";	
+	} 
+	$('#formtrocasenha').attr('action',urlAction);
+	//$('#ChangesenhaPassword').val(null);
+	//$('#ChangesenhaConfirmpassword').val(null);
+	/*$('#formtrocasenha').submit(function(event){
 
+		event.preventDefault();
+		valor1 = $('#ChangesenhaPassword').val();
+		valor2 = $('#ChangesenhaConfirmpassword').val();
+
+		if(valor1 != '' && (valor1 == valor2)){
+			
+				$('#formtrocasenha').submit();
+				
+			
+		}else{
+			alert('Aviso: As senhas digitadas não podem ser vaizas e não podem serdiferentes!');
+		}
+	});*/
+});
+</script>
 
 
 

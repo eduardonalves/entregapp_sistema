@@ -158,9 +158,11 @@ class RestFilialsController extends AppController {
 		$this->layout="liso";
 
 		$planos=$this->Pagseguro->find('all', array('recursive'=> -1));
+		//Quando for o Geek não valida
+		$hasPlan= array(1);
 		
 		foreach($planos as $key => $value){
-			
+			array_push($hasPlan,$value['Pagseguro']['filial_id']);
 			
 			//$url ='https://ws.sandbox.pagseguro.uol.com.br/pre-approvals/preApprovalCode/payment-orders??email='.EMAIL_PAG_SEGURO.'&token='.TOKEN_PAGSEGURO.'';
 			$url ='https://ws.sandbox.pagseguro.uol.com.br/pre-approvals/'.$value['Pagseguro']['code'].'/payment-orders?email='.EMAIL_PAG_SEGURO.'&token='.TOKEN_PAGSEGURO.'';
@@ -305,7 +307,14 @@ class RestFilialsController extends AppController {
 		
 	
 	
-
+		$filiais = $this->Filial->find('all', array('recursive'=> -1,'conditions' => array('Filial.id not in'=> $hasPlan)));
+		foreach ($filiais as $key => $value) {
+			$dataLimite = date('Y-m-d', strtotime($value['Filial']['created'] . ' +7 day'));
+			if(date('Y-m-d') > $dataLimite  || $value['Filial']['created']=='' ){
+				$this->_removeautorizacoes($key['Filial']['id'],$value['Filial']['empresa_id']);
+			}
+		}
+		
 		$resultados= array('resposta' =>'sucesso');
 		$this->set(array(
 			'resultados' => $resultados,

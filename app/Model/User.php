@@ -1,5 +1,7 @@
 <?php
 App::uses('AppModel', 'Model');
+App::uses('CakeEmail', 'Network/Email');
+App::uses('Token', 'Model');
 /**
  * User Model
  *
@@ -165,4 +167,92 @@ class User extends AppModel {
 	  ),
 
 	);
+
+	public function recoverpassword($user_id){
+		$user = $this->find('first',array('recursive'=> -1, 'conditions' => array('User.id'=> $user_id)));
+
+		if(!empty($user))
+		{
+			if ($user['User']['username'] != '' )
+			{
+				$prefixoAux = explode('@', $user['User']['username']);
+				$prefixo =(isset($prefixoAux[0]) ? $prefixoAux[0] : 'ENTR');
+
+
+				$meuToken=$prefixo.date('Ymdhisa').$this->geraSenha();
+				$url = $_SERVER['HTTP_HOST'];
+				//if($url !='10.0.2.2'){
+					
+					$tokenToSave = array(
+					'token' => $meuToken,
+					'user_id'=> $user_id,
+					'ativo'=> true
+				);
+				// load the Model
+
+				$Token = new Token();
+				try {
+					$Token->create();
+					$Token->save($tokenToSave);
+				} catch (Exception $e) {
+					print_r($e);
+					die;
+					return false;
+				}
+				// use the Model
+				
+				$mensagem =
+				"Segue abaixo o link para recuperar sua senha http://".$url."/RestClientes/formtrocasenha?t=".$meuToken."";
+
+				$Email = new CakeEmail();
+				$Email->from(array('sistema@rudo.com.br' => 'Rudo - Aplicativo de Entregas.'));
+				$Email->to($user['User']['username']);
+				$Email->subject('Recuperar Senha');
+
+				try {
+				 	if($Email->send($mensagem))
+					{
+						return true;
+					}else
+					{
+						return false;
+					}
+				 } catch (Exception $e) {
+				 	print_r($e);
+					die;
+				 } 
+				//}else{
+					//return true;
+				//}
+				
+				
+			}else
+			{
+				return false;
+			}
+		}
+
+
+	}
+	function geraSenha($tamanho = 8, $maiusculas = true, $numeros = true, $simbolos = false)
+	{
+		$lmin = 'abcdefghijklmnopqrstuvwxyz';
+		$lmai = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$num = '1234567890';
+		$simb = '!@#$%*-';
+		$retorno = '';
+		$caracteres = '';
+
+		$caracteres .= $lmin;
+		if ($maiusculas) $caracteres .= $lmai;
+		if ($numeros) $caracteres .= $num;
+		if ($simbolos) $caracteres .= $simb;
+
+		$len = strlen($caracteres);
+		for ($n = 1; $n <= $tamanho; $n++) {
+		$rand = mt_rand(1, $len);
+		$retorno .= $caracteres[$rand-1];
+		}
+		return $retorno;
+	}
 }
