@@ -87,7 +87,7 @@
 
 									
 
-									echo '<br/>';
+									/*echo '<br/>';
 									//segunda
 									echo $this->Form->input('abre_segunda',array('class' => 'input-large ', 'type' => 'checkbox', 'label' => array('text' => 'Abre segunda-feira','class'=>'labellarge' )));
 									echo '<br/>';
@@ -139,7 +139,7 @@
 									echo $this->Form->input('inicio_domingo',array('class' => 'input-large  hora', 'type' => 'text', 'label' => array('text' => 'Hora de Abertura','class'=>'labellarge' )));
 									echo $this->Form->input('fim_domingo',array('class' => 'input-large  hora', 'type' => 'text', 'label' => array('text' => 'Hora de Fechamento','class'=>'labellarge' )));
 
-
+									*/
 									
 
 

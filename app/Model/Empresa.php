@@ -19,6 +19,34 @@ class Empresa extends AppModel {
  *
  * @var array
  */
+    public $validate = array(
+        'nome' => array(
+            'notEmpty' => array(
+                'rule' => array('notEmpty')
+            ),
+        ),
+        'email' => array(
+            'notEmpty' => array(
+                'rule' => array('notEmpty')
+            ),
+        ),
+        'slug' => array(
+            'notEmpty' => array(
+                'rule' => array('notEmpty')
+            ),
+        ),
+        'password' => array(
+            'notEmpty' => array(
+                'rule' => array('notEmpty')
+            ),
+        ),
+        're_password' => array(
+            'notEmpty' => array(
+                'rule' => array('notEmpty')
+            ),
+        )
+        
+    );
     public $hasMany = array(
         'Atendimento' => array(
             'className' => 'Atendimento',

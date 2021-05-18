@@ -117,8 +117,13 @@ class AutorizacaosController extends AppController {
 		if($autorizacao['Autorizacao'][$acesso]=='n'){
 			return false;
 		}else{
-			return $autorizacao;
-			$this->set(compact('autorizacao'));
+			if($userfuncao != false){
+				return $autorizacao;
+				$this->set(compact('autorizacao'));
+			}else{
+				return false;
+			}
+			
 		}
 	}
 

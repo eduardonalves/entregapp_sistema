@@ -1032,6 +1032,9 @@ class PedidosController extends AppController
 		$lojas = $User->getSelectFiliais($userid);
 		$minhasFiliais = $User->getFiliais($userid);
 
+		//debug($minhasFiliais);
+		//die;
+
 
 		$userfuncao = $this->Session->read('Auth.User.funcao_id');
 		$this->loadModel('Filial');
@@ -1130,6 +1133,7 @@ class PedidosController extends AppController
 
 		$conditiosAux = $this->Filter->getConditions();
 
+		
 		$unicaFilial = $this->Filial->find('first', array('recursive' => -1, 'conditions' => array('Filial.id' => $minhasFiliais)));
 
 		if (empty($conditiosAux)) {
@@ -3287,5 +3291,52 @@ class PedidosController extends AppController
 			'_serialize' => array('resultados')
 		));
 	}
-	
+	public function fecharloja()
+	{
+		$this->loadModel('Filial');
+		$User = new UsersController;
+		$userid = $this->Session->read('Auth.User.id');
+		$minhasFiliais = $User->getFiliais($userid);
+		$this->loadModel('Filial');
+		$unicaFilial = $this->Filial->find('first', array('recursive' => -1, 'conditions' => array('Filial.id' => $minhasFiliais)));
+
+		if($this->Filial->save(
+			array(
+				'id'=> $unicaFilial['Filial']['id'],
+				'status_abertura'=>false,
+			)
+		)){
+			$this->Session->setFlash(__('A loja foi fechada com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
+		}else{
+			$this->Session->setFlash(__('Houve um erro ao fechar a loja!'), 'default', array('class' => 'error-flash alert alert-danger'));
+		}
+		
+		return $this->redirect($this->referer());
+		
+		
+	}
+	public function abrirloja()
+	{
+		$this->loadModel('Filial');
+		$User = new UsersController;
+		$userid = $this->Session->read('Auth.User.id');
+		$minhasFiliais = $User->getFiliais($userid);
+		$this->loadModel('Filial');
+		$unicaFilial = $this->Filial->find('first', array('recursive' => -1, 'conditions' => array('Filial.id' => $minhasFiliais)));
+
+		if($this->Filial->save(
+			array(
+				'id'=> $unicaFilial['Filial']['id'],
+				'status_abertura'=>true,
+			)
+		)){
+			$this->Session->setFlash(__('A loja foi aberta com sucesso.'), 'default', array('class' => 'success-flash alert alert-success'));
+		}else{
+			$this->Session->setFlash(__('Houve um erro ao abrir a loja!'), 'default', array('class' => 'error-flash alert alert-danger'));
+		}
+		
+		return $this->redirect($this->referer());
+		
+		
+	}
 }

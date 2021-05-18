@@ -67,6 +67,7 @@ class ClientesController extends AppController {
 		$autTipo = 'clientes';
 		$userid = $this->Session->read('Auth.User.id');
 		$userfuncao = $this->Session->read('Auth.User.funcao_id');
+		
 		if(!$Autorizacao->setAutorizacao($autTipo,$userfuncao)){
 			$this->Session->setFlash(__('Acesso Negado!'), 'default', array('class' => 'error-flash alert alert-danger'));
 			return $this->redirect( $this->referer() );

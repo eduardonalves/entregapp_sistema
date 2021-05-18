@@ -174,7 +174,7 @@ class ProdutosController extends AppController {
 					'maxLimit'=>20,
 					'recursive'=> 0,
 					'conditions' => $this->Filter->getConditions(),
-					'order' => 'Produto.nome asc',
+					'order' => 'Produto.preco_venda asc',
 					'fields' => array('DISTINCT Produto.id', 'Produto.nome','Categoria.id', 'Categoria.nome', 'Produto.preco_venda','Produto.foto','Produto.ativo')
 				)
 		);

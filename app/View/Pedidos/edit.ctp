@@ -159,6 +159,7 @@
 
 					 ?></span></p>
 				</div>
+				<?php if($pedido['Pedido']['retirada_loja'] != true) { ?>
 				<div class="form-group  form-group-lg col-md-4">
 					<label style="width: 200px;">Local de Entrega</label>
 					<p>
@@ -222,7 +223,11 @@
 						} ?>		
 					</p>
 				</div>
-				
+				<?php } else{ ?>
+					<div class="form-group  form-group-lg col-md-4">
+					<h4 style="color:red">Obs: O cliente irá retirar o pedido na loja.</h4>
+					</div>
+				<?php } ?>
       <?php endif;  ?>
       			
       			<?php

@@ -33,7 +33,7 @@ p{text-align: center;}
 	margin: auto;
 	margin-top: 13%;
 	margin-bottom: 100px;
-	text-align:center;
+	/*text-align:center;*/
 
 }
 	.logo-appedido{
@@ -92,14 +92,15 @@ p{text-align: center;}
 		padding: 15px;
 	}
 
-@media (max-width: 700px){
+/*@media (max-width: 700px){
 	body{background-size: auto;}
 	.centro{width: 80%;margin-top:100px;}
-}
+}*/
 
 </style>
 
 <div class="centro">
+	
 	<div class="logo-appedido">
 			<?php echo $this->Html->image('entregap-home.png'); ?>
 		</div>
@@ -108,15 +109,54 @@ p{text-align: center;}
 
 		<?php
 		echo $this->Session->flash('auth');
+		?>
 
-		echo $this->Form->create('User');
-		   echo $this->Form->input('username',array('class' => 'input-login','label' => 'Email:'));
-		   echo $this->Form->input('password',array('class' => 'input-login','label' => 'Senha:'));
-		   echo $this->Form->submit('Entrar',array('class'=>'bt-login'));
+		<?php
+			echo $this->Form->create('Empresa', array('class' => 'form-inline', 'type' => 'file'));
+		?>
+			<div class="span12">
+				<h5> Registro de Estabelecimentos</h5>
+			</div>
+			<div class="span3">
+				<?php
+
+				
+				echo $this->Form->input('nome',array('label' => 'Nome do Estabelecimento:','placeholder' =>'Digite o nome do estabelecimento'));
+				
+				?>
+			</div>
+			<div class="span3">
+				<?php
+				echo $this->Form->input('email',array('label' => 'Email:','placeholder' =>'seumail@email.com'));
+				?>
+			</div>
+			<div class="span3">
+				<?php
+				echo $this->Form->input('slug',array('label' => CARDAPIO_URL,'placeholder' =>'minhaempresa'));
+				?>
+			</div>
+			
+			<div class="span3">
+				<?php
+				echo $this->Form->input('password',array('label' => 'Senha:','placeholder' =>'Digite sua senha'));
+				?>
+			</div>
+			<div class="span3">
+				<?php
+				echo $this->Form->input('re_password',array('label' => 'Confirme sua Senha:', 'type' =>'password','placeholder' =>'Digite novamente sua senha'));
+				?>
+			</div>
+		
+		<?php
+		   
+		   
+		   
+		   echo $this->Form->submit('Registrar',array('class'=>'bt-login'));
 		echo $this->Form->end(); ?>
+	</div>	
 </div>
 <div id="rodape">
-	<p>Rudo - @2020 Todos os direitos reservados -
+	<p>Rudo - @2020 Todos os direitos reservados
 		
 	</p>
 </div>

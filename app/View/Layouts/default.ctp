@@ -232,8 +232,9 @@ $cakeDescription = __d('entrega_app', 'EntragApp Delivery');
 					             <li><?php echo $this->Html->link(__('Usuários'), '/Users/add'); ?> </li>
 			          			 <li><?php echo $this->Html->link(__('Funções'), '/Funcaos/add'); ?> </li>
 			          			 <?php } ?>
-			          			 <li><?php echo $this->Html->link(__('Loja'), '/Filials/add'); ?></li>
-			                     <li><?php echo $this->Html->link(__('Sair'), '/Users/logout'); ?></li>
+			          			<li><?php echo $this->Html->link(__('Loja'), '/Filials/add'); ?></li>
+								<li><?php echo $this->Html->link(__('Assinatura'), '/Empresas/minhaassinatura'); ?></li>
+			                    <li><?php echo $this->Html->link(__('Sair'), '/Users/logout'); ?></li>
 					          </ul>
 					        </li>
 					      </ul>

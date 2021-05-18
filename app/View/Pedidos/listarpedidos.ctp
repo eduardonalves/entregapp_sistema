@@ -1,9 +1,42 @@
-<?php
+
+	<?php
 		if($unicaFilial['Filial']['status_abertura']==1):
 	?>	
-	<h4><div style="padding:10px; background-color:green; color:white; width: 200px; text-align:center;">Loja Aberta</div></h4>	
-		<?php else: ?>
-			<h4><div style="padding:10px; background-color:red; color:white; width: 200px; text-align:center;">Loja Fechada</div></h4>	
+	<?php
+		echo $this->Html->link('Loja Aberta', 
+		array('action' => 'fecharloja'), 
+		array(
+			'bootstrap-type' => 'success',
+			'class' => 'btn btn-lg btn-primary  col-md-2 btn-green',
+			// transform link to a button
+			'rule' => 'button'
+		)
+	);
+	?>
+	<?php else: ?>
+		<?php
+		echo $this->Html->link('Loja Fechada', 
+		array('action' => 'abrirloja'), 
+		array(
+			'bootstrap-type' => 'success',
+			'class' => 'btn btn-lg btn-danger  col-md-2 btn-red',
+			// transform link to a button
+			'rule' => 'button'
+		)
+	);
+	?>
+	<?php endif; ?>
+	<div style="clear:both;"></div>
+
+	<?php
+		if($unicaFilial['Filial']['slug'] !=='' && $unicaFilial['Filial']['slug']!==null):
+	?>	
+	<br/>
+	Link de acesso ao menu: 
+	<a href="<?php echo CARDAPIO_URL.$unicaFilial['Filial']['slug'];?>" target="_blank"> 
+		<?php echo CARDAPIO_URL.$unicaFilial['Filial']['slug'];?>
+	</a>
+	<div style="clear:both;"></div>
 	<?php endif; ?>
 	<?php
 		if($unicaFilial['Filial']['totais_pesquisa']==1):
@@ -145,4 +178,23 @@
 .linhaVermelha{
 	background-color:#FFA07A !important;
 }
+.btn-green{
+	background-color:green !important;
+	border-color:green !important;
+}
+.btn-green:hover{
+	background-color:#009900 !important;
+	border-color:#009900 !important;
+}
+
+.btn-red{
+	background-color:red !important;
+	border-color:red !important;
+	
+}
+
+.btn-red:hover{
+	background-color:#ff4c4c !important;
+	border-color:#ff4c4c !important;
+}	
 </style>

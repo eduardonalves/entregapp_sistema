@@ -31,32 +31,32 @@ class PagSeguroConfigWrapper
     /**
      *
      */
-    const PAGSEGURO_EMAIL = "PAGSEGURO_EMAIL";
+    const PAGSEGURO_EMAIL = EMAIL_PAG_SEGURO;
     /**
      *
      */
     
-    const PAGSEGURO_TOKEN_PRODUCTION = "your_production_token";
+    const PAGSEGURO_TOKEN_PRODUCTION = TOKEN_PAGSEGURO;
     /**
      *
      */
-    const PAGSEGURO_TOKEN_SANDBOX = "token_sandbox";
+    const PAGSEGURO_TOKEN_SANDBOX = TOKEN_PAGSEGURO;
     /**
      *
      */
-    const PAGSEGURO_APP_ID_PRODUCTION = "your_production_application_id";
+    const PAGSEGURO_APP_ID_PRODUCTION = PAGSEGURO_APP_ID;
     /**
      *
      */
-    const PAGSEGURO_APP_ID_SANDBOX = "PAGSEGURO_APP_ID_SANDBOX";
+    const PAGSEGURO_APP_ID_SANDBOX = PAGSEGURO_APP_ID;
     /**
      *
      */
-    const PAGSEGURO_APP_KEY_PRODUCTION = "your_production_application_key";
+    const PAGSEGURO_APP_KEY_PRODUCTION = PAGSEGURO_APP_KEY;
     /**
      *
      */
-    const PAGSEGURO_APP_KEY_SANDBOX = "key_sandbox";
+    const PAGSEGURO_APP_KEY_SANDBOX = PAGSEGURO_APP_KEY;
     /**
      * UTF-8, ISO-8859-1
      */
