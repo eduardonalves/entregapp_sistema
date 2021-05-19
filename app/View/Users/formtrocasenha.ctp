@@ -111,7 +111,7 @@ p{text-align: center;}
 		echo $this->Form->end(); ?>
 </div>
 <div id="rodape">
-	<p>Appedido - @2015 Todos os direitos reservados -
+	<p>Rudo- @2015 Todos os direitos reservados -
 		<a href="#" target="_blank" rel="nofollow">Agência Kanguru</a>
 	</p>
 </div>

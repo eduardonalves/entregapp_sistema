@@ -402,13 +402,13 @@ $senha = geraSenha(15, true, true, true);
 
 
 		if ($this->request->is('post')) {
-
-
+			
+			
 			$this->loadModel('Salt');
 			if (!is_numeric($this->request->data['Pedido']['cliente_id'])) {
 				$this->request->data['Pedido']['cliente_id'] = 0;
 			}
-			$salt = $this->Salt->find('first', array('conditions' => array('Salt.id' => 1)));
+			$salt = $this->Salt->find('first', array('conditions' => array('Salt.filial_id' => $this->request->data['Pedido']['filial_id'])));
 			$codigo = "entrega";
 			if ($this->request->data['Pedido']['salt'] == $salt['Salt']['salt']) {
 

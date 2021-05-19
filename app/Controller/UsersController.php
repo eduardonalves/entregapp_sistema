@@ -338,13 +338,23 @@ class UsersController extends AppController {
 			if ($this->Auth->login()) {
 
 				$userId = $this->Session->read('Auth.User.id');
-				$isCatalog= $this->isCatalogModeOn($userId);
-				$isGraphic= $this->isGraphicModeOn($userId);
+				$activeUser=$this->User->find('first', array('recursive' => -1, 'conditions' => array(
+					'id'=>$userId ,
+					'ativo' =>1
+				)));
+				if(empty($activeUser)){
+					$this->Session->setFlash(__('Usuario não autorizado.'), 'default', array('class' => 'error-flash alert alert-danger'));
+					$this->logout();
+				}else{
+					$isCatalog= $this->isCatalogModeOn($userId);
+					$isGraphic= $this->isGraphicModeOn($userId);
 
-				$this->Session->write('catalogMode', $isCatalog );
-				$this->Session->write('graphicMode', $isGraphic );
+					$this->Session->write('catalogMode', $isCatalog );
+					$this->Session->write('graphicMode', $isGraphic );
 
-				$this->redirect($this->Auth->redirect());
+					$this->redirect($this->Auth->redirect());
+				}
+				
 
 			} elseif ((!$this->Auth->login()) && ($this->request->is('post'))) {
 
@@ -563,6 +573,43 @@ class UsersController extends AppController {
 					//return $this->redirect( $this->referer() );
 				}
 			}
+		}
+	}
+
+	public function ativacadastro()
+	{
+		
+		$this->layout = 'login';
+		$this->loadModel('Token');
+		$token = $this->Token->find('first', array('recursive' => -1, 'conditions' => array('AND' => array(array('Token.ativo' => true), array('Token.token' => $_GET['t'])))));
+		
+		if (!empty($token)) {
+			$dataToken = date("Y-m-d", strtotime($token['Token']['created']));
+			$today = date('Y-m-d');
+			$dataToSaveToken = array(
+				'id' => $token['Token']['id'],
+				'ativo' => false,
+			);
+			$this->Token->save($dataToSaveToken);
+			$dataToSaveUser = array(
+				'id' => $token['Token']['user_id'],
+				'ativo' => 1
+			);
+			$dataToSaveToken = array(
+				'ativo' => false,
+				'user_id' => $token['Token']['user_id'],
+			);
+			$this->Token->updateAll($dataToSaveToken);
+			if ($this->User->save($dataToSaveUser)) {
+				$this->Session->setFlash(__('Sucesso:Sua conta agora está ativa. Faça entre com seu emeil e senha!'), 'default', array('class' => 'success-flash alert alert-success'));
+				return $this->redirect(array('action' => 'login'));
+			} else {
+				$this->Session->setFlash(__('Erro: não foi possível encontrar sua conta'), 'default', array('class' => 'error-flash alert alert-danger'));
+				//return $this->redirect( $this->referer() );
+			}
+		} else {
+			$this->Session->setFlash(__('Erro: este link não é mais válido. Verifique se sua conta já está ativa!'), 'default', array('class' => 'error-flash alert alert-danger'));
+			//return $this->redirect( $this->referer() );
 		}
 	}
 }

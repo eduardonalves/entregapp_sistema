@@ -115,4 +115,4 @@ define('TOKEN_PAGSEGURO', '');
 define('EMAIL_PAG_SEGURO', '');
 define('PAGSEGURO_APP_KEY', '');
 define('PAGSEGURO_APP_ID', '');
-define('CARDAPIO_URL', '');
+define('CARDAPIO_URL', 'http://menu.rudo.com.br/');

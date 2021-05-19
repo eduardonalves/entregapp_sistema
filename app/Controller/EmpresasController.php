@@ -7,6 +7,7 @@ App::import(
 );
 App::uses('AppController', 'Controller');
 App::import('Controller', 'Users');
+App::uses('CakeEmail', 'Network/Email');
 /**
  * Empresas Controller
  *
@@ -330,7 +331,7 @@ class EmpresasController extends AppController
 				'status_empresa' => true,
 			);
 			$this->Empresa->save($dataEmpresa);
-			$ultimaEmpresa = $this->Empresa->find('first', array('conditions' => array('Empresa.nome' => $this->request->data['Empresa']['nome']), 'order' => array('Empresa.id' => 'desc'), 'recursive' => -1));
+			$ultimaEmpresa = $this->Empresa->find('first', array('order' => array('Empresa.id' => 'desc'), 'recursive' => -1));
 			//Cadastro da Filial
 			$this->loadModel('Filial');
 			$dataFilial = array(
@@ -383,7 +384,7 @@ class EmpresasController extends AppController
 				'username' => $this->request->data['Empresa']['email'],
 				'nome' => $this->request->data['Empresa']['nome'],
 				'password' => $this->request->data['Empresa']['password'],
-				'ativo' => 1,
+				'ativo' => 0,
 				'empresa_id' => $ultimaEmpresa['Empresa']['id'],
 				'funcao_id' => $ultimaFuncao['Funcao']['id']
 			);
@@ -430,8 +431,9 @@ class EmpresasController extends AppController
 				'filial_id' => $ultimaFilial['Filial']['id']
 			);
 			$this->UsersFilial->save($dataUsersFilial);
+			$this->User->enviaemaildeativacao($ultimoUser['User']['id']);
 			if ($this->Filial->save($updateFilial)) {
-				$this->Session->setFlash(__('Seu registro foi salvo com sucesso. Faça seu login com seu email e senha'), 'default', array('class' => 'success-flash alert alert-success'));
+				$this->Session->setFlash(__('Seu cadastro foi salvo com sucesso. Você receberá um email de ativação da sua conta.'), 'default', array('class' => 'success-flash alert alert-success'));
 
 				$this->redirect(array('controller' => 'users', 'action' => 'login'));
 			}

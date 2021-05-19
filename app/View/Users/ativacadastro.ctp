@@ -103,12 +103,7 @@ p{text-align: center;}
 		}
 		echo $this->Session->flash('auth');
 
-		echo $this->Form->create('Changesenha',array('action'=> '/RestClientes/formtrocasenha','id'=>'formtrocasenha'));
-		   echo $this->Form->input('password',array('class' => 'input-login','label' => 'Senha:'));
-		   echo $this->Form->input('confirmpassword',array('type'=>'password','class' => 'input-login','label' => 'Confirme a Senha:'));
-		 echo $this->Form->input('tk',array('type' => 'hidden','value'=> $token ));
-		   echo $this->Form->submit('Enviar',array('class'=>'bt-login'));
-		echo $this->Form->end(); ?>
+		 ?>
 </div>
 <div id="rodape">
 	<p>Rudo - @2015 Todos os direitos reservados -
@@ -118,7 +113,13 @@ p{text-align: center;}
 
 <script type="text/javascript">
 $('document').ready(function(){
-	$('#formtrocasenha').attr('action','/RestClientes/formtrocasenha');
+	var urlInicio      = window.location.host;
+	if(urlInicio=="localhost" ){
+		urlAction= "/entregapp_sistema/RestClientes/formtrocasenha";	
+	}else{
+		urlAction= "/RestClientes/formtrocasenha";	
+	} 
+	$('#formtrocasenha').attr('action',urlAction);
 	//$('#ChangesenhaPassword').val(null);
 	//$('#ChangesenhaConfirmpassword').val(null);
 	/*$('#formtrocasenha').submit(function(event){

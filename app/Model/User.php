@@ -202,7 +202,7 @@ class User extends AppModel {
 				// use the Model
 				
 				$mensagem =
-				"Segue abaixo o link para recuperar sua senha http://".$url."/RestClientes/formtrocasenha?t=".$meuToken."";
+				"Segue abaixo o link para recuperar sua senha http://".$url."/users/formtrocasenha?t=".$meuToken."";
 
 				$Email = new CakeEmail();
 				$Email->from(array('sistema@rudo.com.br' => 'Rudo - Aplicativo de Entregas.'));
@@ -234,6 +234,75 @@ class User extends AppModel {
 
 
 	}
+
+
+	public function enviaemaildeativacao($user_id){
+		$user = $this->find('first',array('recursive'=> -1, 'conditions' => array('User.id'=> $user_id)));
+
+		if(!empty($user))
+		{
+			if ($user['User']['username'] != '' )
+			{
+				$prefixoAux = explode('@', $user['User']['username']);
+				$prefixo =(isset($prefixoAux[0]) ? $prefixoAux[0] : 'ENTR');
+
+
+				$meuToken=$prefixo.date('Ymdhisa').$this->geraSenha();
+				$url = $_SERVER['HTTP_HOST'];
+				//if($url !='10.0.2.2'){
+					
+					$tokenToSave = array(
+					'token' => $meuToken,
+					'user_id'=> $user_id,
+					'ativo'=> true
+				);
+				// load the Model
+
+				$Token = new Token();
+				try {
+					$Token->create();
+					$Token->save($tokenToSave);
+				} catch (Exception $e) {
+					print_r($e);
+					die;
+					return false;
+				}
+				// use the Model
+				
+				$mensagem =
+				"Segue abaixo o link para ativar sua conta na plataforma Rudo http://".$url."/users/ativacadastro?t=".$meuToken."";
+
+				$Email = new CakeEmail();
+				$Email->from(array('sistema@rudo.com.br' => 'Rudo - Plataform de entregas.'));
+				$Email->to($user['User']['username']);
+				$Email->subject('Recuperar Senha');
+
+				try {
+				 	if($Email->send($mensagem))
+					{
+						return true;
+					}else
+					{
+						return false;
+					}
+				 } catch (Exception $e) {
+				 	print_r($e);
+					die;
+				 } 
+				//}else{
+					//return true;
+				//}
+				
+				
+			}else
+			{
+				return false;
+			}
+		}
+
+
+	}
+
 	function geraSenha($tamanho = 8, $maiusculas = true, $numeros = true, $simbolos = false)
 	{
 		$lmin = 'abcdefghijklmnopqrstuvwxyz';

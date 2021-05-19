@@ -70,9 +70,15 @@
 		<?php
 			if($autorizacao['Autorizacao']['pedidos'] != 'n' && $autorizacao['Autorizacao']['pedidos'] != 'v'){
 		?>
+		<?php
+			if($this->Session->read('Auth.User.empresa_id')==1){
+		?>
 		<div class="col-md-2" style="margin-top: 25px;">
 			<button type="button" class="btn btn-success addpedido pull-right" id="addpedido">Novo</button>
 		</div>
+		<?php
+			}
+		?>
 		<?php
 			}
 		?>

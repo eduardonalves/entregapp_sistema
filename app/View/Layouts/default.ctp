@@ -17,6 +17,7 @@
  */
 
 $cakeDescription = __d('entrega_app', 'EntragApp Delivery');
+
 ?>
 <?php echo $this->Html->docType('html5');?>
 <html>
@@ -148,6 +149,9 @@ $cakeDescription = __d('entrega_app', 'EntragApp Delivery');
 								<?php if($isCatalog==false): ?>
 									<li><?php echo $this->Html->link(__('Pedidos'), '/Pedidos'); ?></li>
 									<li><?php echo $this->Html->link(__('Painel Inicial'), '/'); ?></li>
+									<?php
+										if($this->Session->read('Auth.User.empresa_id')==1){
+									?>
 									<li><?php echo $this->Html->link(__('Vendas'), '/Vendas'); ?></li>
 									<li><?php echo $this->Html->link(__('Salão'), '/mesas/salao'); ?></li>
 									<li><?php echo $this->Html->link(__('Solicitações p/ Fazer'), '/Setores/monitorar'); ?></li>
@@ -165,6 +169,9 @@ $cakeDescription = __d('entrega_app', 'EntragApp Delivery');
 										  array('escape' => false), //le escape
 										  __('Deseja fechar o movimento?')
 									);?></li>
+									<?php
+										}
+									?>
 								<?php endif;?>
 <!--
 					            <li><?php //echo $this->Html->link(__('Mesas'), array('controller' => 'mesas', 'action' => 'add')); ?></li>
@@ -182,12 +189,16 @@ $cakeDescription = __d('entrega_app', 'EntragApp Delivery');
 												<li><?php echo $this->Html->link(__('Cupons de Desconto'), '/Cupons/add'); ?></li>
 											<?php endif;?>
 											<?php if($isCatalog==false): ?>
-												
+												<?php
+													if($this->Session->read('Auth.User.empresa_id')==1){
+												?>
 												<li><?php echo $this->Html->link(__('Atendentes'), '/Atendentes/add'); ?></li>
-					            <li><?php echo $this->Html->link(__('Entregadores'), '/Entregadors/add'); ?></li>
-											<li><?php echo $this->Html->link(__('Mesas / Cadastrar'), '/mesas/add'); ?></li>
+												<li><?php echo $this->Html->link(__('Mesas / Cadastrar'), '/mesas/add'); ?></li>
 												
-											<li><?php echo $this->Html->link(__('Setores'), '/Setores/add'); ?></li>
+												<li><?php echo $this->Html->link(__('Setores'), '/Setores/add'); ?></li>
+												<?php } else?>
+					            <li><?php echo $this->Html->link(__('Entregadores'), '/Entregadors/add'); ?></li>
+											
 											
 					            <li><?php echo $this->Html->link(__('Bairros para Entrega'), '/bairros/add'); ?></li>
 											<li><?php echo $this->Html->link(__('Cidades para Entrega'), '/cidads/add'); ?></li>
@@ -202,7 +213,9 @@ $cakeDescription = __d('entrega_app', 'EntragApp Delivery');
 -->
 					          </ul>
 							</li>
-							
+							<?php
+								if($this->Session->read('Auth.User.empresa_id')==1){
+							?>
 							<li class="dropdown">
 
 					          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <?php echo $this->Html->image('financeiro.png',array('class'=>'icon-menu','style="margin-top: -3px;')); ?>Financeiro<span class="caret"></span></a>
@@ -212,7 +225,9 @@ $cakeDescription = __d('entrega_app', 'EntragApp Delivery');
 	
 					          </ul>
 					        </li>
-
+							<?php
+								}
+							?>
 					      </ul>
 
 

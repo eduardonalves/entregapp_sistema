@@ -115,7 +115,7 @@ class RestClientesController extends AppController
 		$this->layout = 'ajaxaddpedido';
 		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 
-		$salt = $this->Salt->find('first', array('conditions' => array('Salt.id' => 1)));
+		$salt = $this->Salt->find('first', array('conditions' => array('Salt.filial_id' => $this->request->data['filial'])));
 		$senha = $this->Auth->password($this->request->data['password']);
 		$usuario = $this->request->data['username'];
 		$saltenviado = $this->request->data['salt'];
@@ -123,10 +123,10 @@ class RestClientesController extends AppController
 
 
 		if ($this->request->is('post')) {
-
+			
 			if ($this->request->data['salt'] == $salt['Salt']['salt']) {
 
-
+				
 				$ultimopedido = "inicio";
 				$isAtendente = false;
 				if (isset($this->request->data['atendente_id'])) {
@@ -137,6 +137,7 @@ class RestClientesController extends AppController
 
 				if ($isAtendente == false) {
 					$user = $this->Cliente->find('first', array('recursive' => -1, 'conditions' => array('AND' => array(array('Cliente.password' => $senha), array('Cliente.username' => $usuario)))));
+					
 				} else {
 					$this->loadModel('Atendente');
 					$user = $this->Atendente->find('first', array('recursive' => -1, 'conditions' => array('AND' => array(array('Atendente.password' => $senha), array('Atendente.username' => $usuario)))));
@@ -694,7 +695,7 @@ class RestClientesController extends AppController
 	public function addmobile($value = '')
 	{
 
-		header("Access-Control-Allow-Origin: *"); header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
+		header("Access-Control-Allow-Origin: *");
 
 		if ($this->request->is('post')) {
 			$this->loadModel('Salt');
