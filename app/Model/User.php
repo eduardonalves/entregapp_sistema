@@ -275,7 +275,7 @@ class User extends AppModel {
 				$Email = new CakeEmail();
 				$Email->from(array('sistema@rudo.com.br' => 'Rudo - Plataform de entregas.'));
 				$Email->to($user['User']['username']);
-				$Email->subject('Recuperar Senha');
+				$Email->subject('Ativação de Conta');
 
 				try {
 				 	if($Email->send($mensagem))

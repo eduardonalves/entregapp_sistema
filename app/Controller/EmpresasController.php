@@ -447,7 +447,7 @@ class EmpresasController extends AppController
 		
 		$this->layout = 'ajaxaddpedido';
 		
-		$url = 'https://ws.sandbox.pagseguro.uol.com.br/v2/pre-approvals/request';
+		$url = 'https://'.PAG_SEGURO_URL.'/v2/pre-approvals/request';
 		$data['email'] = EMAIL_PAG_SEGURO;
 		$data['token'] = TOKEN_PAGSEGURO;
 		$data['currency'] = 'BRL';
@@ -562,7 +562,8 @@ class EmpresasController extends AppController
 		$paymentRequest->setPreApprovalDetails("Assinatura mensal para o aplataforma Rudo no valor de R$ 29,90.");
 		$paymentRequest->setPreApprovalAmountPerPayment('29.90');
 		$paymentRequest->setSenderName($unicaFilial['Filial']['nome']);
-		$paymentRequest->setSenderEmail($unicaFilial['Filial']['email']);
+		$paymentRequest->setSenderEmail($this->Session->read('Auth.User.username'));
+	
 		//$paymentRequest->setPreApprovalMaxAmountPerPeriod('200.00');
 		$paymentRequest->setPreApprovalPeriod('Monthly');
 		//$paymentRequest->setPreApprovalMaxTotalAmount('2400.00');
@@ -629,7 +630,7 @@ class EmpresasController extends AppController
 			return $hasPagseguro;
 			//self::printPaymentUrl($code);
 		} catch (PagSeguroServiceException $e) {
-			//die($e->getMessage());
+			die($e->getMessage());
 			return array();
 		}
 	}
@@ -638,13 +639,13 @@ class EmpresasController extends AppController
 	
 	public function verificastatusdasassinaturas()
 	{
-		//$url = 'https://ws.sandbox.pagseguro.uol.com.br/pre-approvals?email='.EMAIL_PAG_SEGURO.'&token='.TOKEN_PAGSEGURO.'';
+		//$url = 'https://'.PAG_SEGURO_URL.'/pre-approvals?email='.EMAIL_PAG_SEGURO.'&token='.TOKEN_PAGSEGURO.'';
 		$hoje=date("Y-m-d");
 		$agora=date("H:i:s");
 		$ontem= $stop_date = date('Y-m-d', strtotime($hoje . ' -30 day'));
 
 		
-		$url ='https://ws.sandbox.pagseguro.uol.com.br/pre-approvals/?email='.EMAIL_PAG_SEGURO.'&token='.TOKEN_PAGSEGURO.'&initialDate='.$ontem.'T00:00&finalDate='.$hoje.'T'.$agora.'&page=1';
+		$url ='https://'.PAG_SEGURO_URL.'/pre-approvals/?email='.EMAIL_PAG_SEGURO.'&token='.TOKEN_PAGSEGURO.'&initialDate='.$ontem.'T00:00&finalDate='.$hoje.'T'.$agora.'&page=1';
 		
 		
 		$cURLConnection = curl_init();
@@ -706,7 +707,7 @@ class EmpresasController extends AppController
 				$ontem= $stop_date = date('Y-m-d', strtotime($hoje . ' -30 day'));
 
 				
-				$url ='https://ws.sandbox.pagseguro.uol.com.br/pre-approvals/?email='.EMAIL_PAG_SEGURO.'&token='.TOKEN_PAGSEGURO.'&initialDate='.$ontem.'T00:00&finalDate='.$hoje.'T'.$agora.'&page='.$i.'';
+				$url ='https://'.PAG_SEGURO_URL.'/pre-approvals/?email='.EMAIL_PAG_SEGURO.'&token='.TOKEN_PAGSEGURO.'&initialDate='.$ontem.'T00:00&finalDate='.$hoje.'T'.$agora.'&page='.$i.'';
 				
 				
 				$cURLConnection = curl_init();
@@ -818,7 +819,7 @@ class EmpresasController extends AppController
 		);
 
 		$soap_do = curl_init();
-		curl_setopt($soap_do, CURLOPT_URL, "https://ws.sandbox.pagseguro.uol.com.br/pre-approvals/request/?email=".EMAIL_PAG_SEGURO."&token=".TOKEN_PAGSEGURO."");
+		curl_setopt($soap_do, CURLOPT_URL, "https://".PAG_SEGURO_URL."/pre-approvals/request/?email=".EMAIL_PAG_SEGURO."&token=".TOKEN_PAGSEGURO."");
 		curl_setopt($soap_do, CURLOPT_CONNECTTIMEOUT, 10);
 		curl_setopt($soap_do, CURLOPT_TIMEOUT,        10);
 		curl_setopt($soap_do, CURLOPT_RETURNTRANSFER, true);
@@ -842,7 +843,7 @@ class EmpresasController extends AppController
 	}
 	public function criarautorizacaoteste()
 	{
-		$url =   "https://ws.sandbox.pagseguro.uol.com.br/sessions/sessions?email=".EMAIL_PAG_SEGURO."&token=".TOKEN_PAGSEGURO."";
+		$url =   "https://".PAG_SEGURO_URL."/sessions/sessions?email=".EMAIL_PAG_SEGURO."&token=".TOKEN_PAGSEGURO."";
 
 		//Utilizar o CURL para realizar a requisição ao PagSeguro
 		//http://br2.php.net/manual/pt_BR/function.curl-setopt.php
@@ -862,8 +863,8 @@ class EmpresasController extends AppController
 	}
 	public function criarassunaturateste()
 	{
-		//$url = 'https://ws.sandbox.pagseguro.uol.com.br/pre-approvals?email='.EMAIL_PAG_SEGURO.'&token='.TOKEN_PAGSEGURO.'';
-		$url ='https://ws.sandbox.pagseguro.uol.com.br/pre-approvals?email='.EMAIL_PAG_SEGURO.'&token='.TOKEN_PAGSEGURO.'';
+		//$url = 'https://'.PAG_SEGURO_URL.'/pre-approvals?email='.EMAIL_PAG_SEGURO.'&token='.TOKEN_PAGSEGURO.'';
+		$url ='https://'.PAG_SEGURO_URL.'/pre-approvals?email='.EMAIL_PAG_SEGURO.'&token='.TOKEN_PAGSEGURO.'';
 		//$data = array("first_name" => "First name","last_name" => "last name","email"=>"email@gmail.com","addresses" => array ("address1" => "some address" ,"city" => "city","country" => "CA", "first_name" =>  "Mother","last_name" =>  "Lastnameson","phone" => "555-1212", "province" => "ON", "zip" => "123 ABC" ) );
 		
 		$credentials = new PagSeguroAccountCredentials(

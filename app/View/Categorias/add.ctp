@@ -17,7 +17,9 @@ table {margin-top: 10px; font-size:80%;}
 .table-striped tbody tr:nth-child(even) td {
    background-color: #F9F9F9;
 }
-
+.label-large{
+width: 150px !important;
+}
 </style>
 <h2><?php echo __('Cadastro de Categoria'); ?></h2>
 	<!-- Modal -->
@@ -29,6 +31,7 @@ table {margin-top: 10px; font-size:80%;}
 	        <h4 class="modal-title" id="myModalLabel"> Cadastrar Categoria</h4>
 	      </div>
 	      <div class="modal-body">
+		
 	  		<div class="row-fluid">
 				<div >
 					<?php echo $this->Form->create('Categoria',array('class' => 'form-inline centralizadoForm', 'type' => 'file'));
@@ -38,8 +41,10 @@ table {margin-top: 10px; font-size:80%;}
 						echo $this->Form->input('nome',array('class' => 'input-large','label' => array('text' => 'Categoria', 'class' => 'labellarge')));
 						echo $this->Form->input('destaque',array('type'=>'checkbox','label' => array('text' => 'Destaque')));
 						echo $this->Form->input('ativo',array('type'=>'checkbox','label' => array('text' => 'Ativo')));
-						echo $this->Form->input('show_app',array('type'=>'checkbox','label' => array('text' => 'Mostrar no App Cliente')));
-						echo $this->Form->input('show_store',array('type'=>'checkbox','label' => array('text' => 'Mostrar no App Garçom')));
+						echo $this->Form->input('show_app',array('type'=>'checkbox','label' => array('text' => 'Mostrar no App','class'=>'label-large')));
+						if($this->Session->read('Auth.User.empresa_id')==1){
+							echo $this->Form->input('show_store',array('type'=>'checkbox','label' => array('text' => 'Mostrar no App Garçom')));
+						}
 						echo $this->Form->input('filial_id',array('type' => 'hidden'));
 						?>
 					</div>

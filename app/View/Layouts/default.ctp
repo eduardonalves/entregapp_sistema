@@ -182,7 +182,12 @@ $cakeDescription = __d('entrega_app', 'EntragApp Delivery');
 
 					          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <?php echo $this->Html->image('lista-cadastros.png',array('class'=>'icon-menu')); ?>Cadastros<span class="caret"></span></a>
 					          <ul class="dropdown-menu" role="menu">
+							  <?php
+									if($this->Session->read('Auth.User.empresa_id')==1){
+								?>
 					            <li><?php echo $this->Html->link(__('Clientes'), '/Clientes/add'); ?></li>
+								<?php }
+									?>
 											<li><?php echo $this->Html->link(__('Categorias'), '/Categorias/add'); ?></li>
 					            <li><?php echo $this->Html->link(__('Produtos'), '/Produtos/add'); ?></li>
 											<?php if($isCatalog==true): ?>

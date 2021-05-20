@@ -111,8 +111,10 @@ CakePlugin::load('FilterResults');
 define('SERVER_NAME', $_SERVER['SERVER_NAME']);
 CakePlugin::load('WebSocket');
 
+
 define('TOKEN_PAGSEGURO', '');
 define('EMAIL_PAG_SEGURO', '');
 define('PAGSEGURO_APP_KEY', '');
 define('PAGSEGURO_APP_ID', '');
-define('CARDAPIO_URL', 'http://menu.rudo.com.br/');
+define('CARDAPIO_URL', '');
+define('PAG_SEGURO_URL', '');

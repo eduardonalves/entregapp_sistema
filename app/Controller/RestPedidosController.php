@@ -318,7 +318,7 @@ $senha = geraSenha(15, true, true, true);
 		));
 		$this->layout = 'ajaxaddpedido';
 		if (empty($hasAssinatura)) {
-			$url = 'https://ws.sandbox.pagseguro.uol.com.br/v2/pre-approvals/request';
+			$url = 'https://'.PAG_SEGURO_URL.'/v2/pre-approvals/request';
 			$data['email'] = 'eduardonalves@gmail.com';
 			$data['token'] = '';
 			$data['currency'] = 'BRL';
@@ -1479,7 +1479,7 @@ $senha = geraSenha(15, true, true, true);
 			$email = 'eduardonalves@gmail.com';
 			$transactionAssinatura = $assinatura['Assinatura']['codigo_pag'];
 
-			$url = 'https://ws.sandbox.pagseguro.uol.com.br/v2/pre-approvals/cancel?email=' . $email . '&token=' . $token . '&transactionCode=' . $transactionAssinatura;
+			$url = 'https://'.PAG_SEGURO_URL.'/v2/pre-approvals/cancel?email=' . $email . '&token=' . $token . '&transactionCode=' . $transactionAssinatura;
 
 			$curl = curl_init($url);
 			curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);

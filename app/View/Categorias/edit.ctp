@@ -17,8 +17,10 @@
 						echo $this->Form->input('nome',array('class' => 'input-default','label' => array('text' => 'Categoria:')));
 						echo $this->Form->input('destaque',array('type'=>'checkbox','label' => array('text' => 'Destaque')));
 						echo $this->Form->input('ativo',array('type'=>'checkbox','label' => array('text' => 'Ativo')));
-						echo $this->Form->input('show_app',array('type'=>'checkbox','label' => array('text' => 'Mostrar no App Cliente')));
-						echo $this->Form->input('show_store',array('type'=>'checkbox','label' => array('text' => 'Mostrar no App Garçom')));
+						echo $this->Form->input('show_app',array('type'=>'checkbox','label' => array('text' => 'Mostrar no App','class'=>'label-large')));
+						if($this->Session->read('Auth.User.empresa_id')==1){
+							echo $this->Form->input('show_store',array('type'=>'checkbox','label' => array('text' => 'Mostrar no App Garçom')));
+						}
 						?>
 					</div>
 					<div class="form-group  form-group-lg">
@@ -46,3 +48,8 @@ $(document).ready(function() {
 	});
 });
 	</script>
+<style>
+.label-large{
+width: 150px !important;
+}
+</style>

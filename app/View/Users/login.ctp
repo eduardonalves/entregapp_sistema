@@ -116,9 +116,11 @@ p{text-align: center;}
 		   echo $this->Form->input('password',array('class' => 'input-login','label' => 'Senha:'));
 		   echo $this->Form->submit('Entrar',array('class'=>'bt-login'));
 		echo $this->Form->end(); 
-		//$url=(SERVER_NAME == 'localhost') ? 'localhost/entregapp_sistema': SERVER_NAME ;
+		$Newurl=(SERVER_NAME == 'localhost') ? '/entregapp_sistema': '';
+		$Newurl .= '/Empresas/meucadastro';
 		$url ='recuperarsenha';
 		echo  '<p>Esqueceu a senha? <a class="forgot-link" href="'.$url.'" target="_blank">Clique aqui!</a></p>';
+		echo  '<p>Não tem cadastro? <a class="forgot-link" href="'.$Newurl.'" target="_blank">Clique aqui!</a></p>';
 		?>
 		
 </div>

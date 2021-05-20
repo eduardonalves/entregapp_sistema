@@ -58,14 +58,21 @@ echo $this->Search->create('Produtos', array('class' => 'form-inline', 'type' =>
                         echo $this->Form->input('nome', array('class' => 'input-default', 'label' => array('text' => 'Nome: ')));
                         ?>
                     </div>
-                    
+						<?php
+							if($this->Session->read('Auth.User.empresa_id')==1){
+						?>
                         <div class="form-group  form-group-lg col-md-4">
 
                             <?php
-                            echo $this->Form->input('setore_id', array('class' => 'input-default', 'label' => array('text' => 'Setor: ')));
-                            ?>
+							
+								echo $this->Form->input('setore_id', array('class' => 'input-default', 'label' => array('text' => 'Setor: ')));
+							
+								?>
+							
                         </div>
-                    
+						<?php
+							}
+						?>
                     <?php if ($isCatalog == false) : ?>
                         <div class="form-group  form-group-lg col-md-4">
                             <?php
@@ -110,21 +117,33 @@ echo $this->Search->create('Produtos', array('class' => 'form-inline', 'type' =>
                         echo $this->Form->input('disponivel', array('class' => '', 'label' => array('text' => 'Disponível: ', 'class' => 'control-label')));
                         ?>
                     </div>
+					<?php
+						if($this->Session->read('Auth.User.empresa_id')==1){
+					?>
                      <div class="form-group  form-group-lg <?php echo $tam; ?>"  style="width: 230px;">
                         <?php
                         echo $this->Form->input('recompensa', array('class' => '', 'label' => array('text' => 'recompensa: ', 'class' => 'labellarge')));
                         ?>
                     </div>
+					<?php
+						}
+					?>
                     <div class="form-group  form-group-lg <?php echo $tam; ?>"  style="width: 230px;">
                         <?php
-                        echo $this->Form->input('show_app', array('class' => '', 'label' => array('text' => 'Mostrar no App Cliente: ', 'class' => 'labellarge')));
+                        echo $this->Form->input('show_app', array('class' => '', 'label' => array('text' => 'Mostrar no App: ', 'class' => 'labellarge')));
                         ?>
                     </div>
+					<?php
+							if($this->Session->read('Auth.User.empresa_id')==1){
+						?>
                     <div class="form-group  form-group-lg <?php echo $tam; ?>"  style="width: 230px;">
                         <?php
                         echo $this->Form->input('show_store', array('class' => '', 'label' => array('text' => 'Mostrar no App Garçom: ', 'class' => 'labellarge')));
                         ?>
                     </div>
+					<?php
+						}
+					?>
 					<div class="form-group  form-group-lg <?php echo $tam; ?>"  style="width: 230px;">
                         <?php
                         echo $this->Form->input('tem_adicional', array('class' => '', 'label' => array('text' => 'Tem Adicional: ', 'class' => 'labellarge')));
@@ -135,6 +154,9 @@ echo $this->Search->create('Produtos', array('class' => 'form-inline', 'type' =>
                         echo $this->Form->input('adicional', array('class' => '', 'label' => array('text' => 'É Adicional: ', 'class' => 'labellarge')));
                         ?>
                     </div>
+					<?php
+							if($this->Session->read('Auth.User.empresa_id')==1){
+						?>
                     <div class="form-group  form-group-lg col-md-2" style="width: 230px !important;">
                         <?php
                         echo $this->Form->input('recompensa_tipo', array('options'=> array(
@@ -145,6 +167,9 @@ echo $this->Search->create('Produtos', array('class' => 'form-inline', 'type' =>
                         ), 'label' => array('text' => 'Recompensa: '),'class'=> 'input-default'));
                         ?>
                     </div>
+					<?php
+						}
+					?>
 
                 </div>
 				<br />
