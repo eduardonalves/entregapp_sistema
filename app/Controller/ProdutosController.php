@@ -245,7 +245,7 @@ class ProdutosController extends AppController {
 
 			 }else
 			 {
-				 $this->Session->setFlash(__('Formato de imagem ou tamanho não permitido!'), 'default', array('class' => 'error-flash alert alert-danger'));
+				 $this->Session->setFlash(__('Formato de imagem ou tamanho não permitido (tamanho máximo 2Mb)!'), 'default', array('class' => 'error-flash alert alert-danger'));
  				return $this->redirect( $this->referer() );
 			 }
 
@@ -312,7 +312,7 @@ class ProdutosController extends AppController {
 				}
 			}else
 			{
-				$this->Session->setFlash(__('Formato de imagem não permitido!'), 'default', array('class' => 'error-flash alert alert-danger'));
+				$this->Session->setFlash(__('Formato ou tamanho de imagem não permitido (tamanho máximo 2Mb)!'), 'default', array('class' => 'error-flash alert alert-danger'));
 				return $this->redirect( $this->referer() );
 			}
 
@@ -345,6 +345,11 @@ class ProdutosController extends AppController {
 			if(isset($requestData['Produto'][$value]['error']) && $requestData['Produto'][$value]['error'] == 0)
 			{
 				$tipo = $requestData['Produto'][$value]['type'];
+				
+				if($requestData['Produto'][$value]['size'] >= 2000000){
+					return false;
+				}
+
 				if($tipo == 'image/jpeg' || $tipo == 'image/gif' || $tipo == 'image/png'  || $tipo == 'image/jpg' || $tipo == 'image/jpeg')
 				{
 

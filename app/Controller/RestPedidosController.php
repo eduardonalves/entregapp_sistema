@@ -319,7 +319,7 @@ $senha = geraSenha(15, true, true, true);
 		$this->layout = 'ajaxaddpedido';
 		if (empty($hasAssinatura)) {
 			$url = 'https://'.PAG_SEGURO_URL.'/v2/pre-approvals/request';
-			$data['email'] = 'eduardonalves@gmail.com';
+			$data['email'] = EMAIL_PAG_SEGURO;
 			$data['token'] = '';
 			$data['currency'] = 'BRL';
 			$data['reference'] = '' . $_GET['ref'] . '';
@@ -405,6 +405,24 @@ $senha = geraSenha(15, true, true, true);
 			
 			
 			$this->loadModel('Salt');
+			$this->loadModel('Pedido');
+			$lastorder=$this->Pedido->find('first', array('recursive' => -1, 'conditions' => array('Pedido.cliente_id' => $this->request->data['Pedido']['cliente_id'])));
+			
+			if(!empty($lastorder)){
+				$dateNow=date('Y-m-d H:i:s');
+			
+				$start_date = new DateTime($lastorder['Pedido']['created']);
+				$since_start = $start_date->diff(new DateTime($dateNow));
+				$resultados=array();
+
+				if($since_start->s < 5){
+					$this->request->data['Pedido']['salt']='errado';
+				}
+			
+			}
+			
+
+
 			if (!is_numeric($this->request->data['Pedido']['cliente_id'])) {
 				$this->request->data['Pedido']['cliente_id'] = 0;
 			}
@@ -1305,7 +1323,7 @@ $senha = geraSenha(15, true, true, true);
 			//if($resp =='OK'){
 			/*try {
 
-          $credentials = PagSeguroConfig::getAccountCredentials('eduardonalves@gmail.com',''); // getApplicationCredentials()
+          $credentials = PagSeguroConfig::getAccountCredentials(EMAIL_PAG_SEGURO,''); // getApplicationCredentials()
           $sessionId = PagSeguroSessionService::getSession($credentials);
 
         } catch (PagSeguroServiceException $e) {
@@ -1476,7 +1494,7 @@ $senha = geraSenha(15, true, true, true);
 		$this->layout = 'ajaxaddpedido';
 		if (!empty($assinatura)) {
 			$token = '';
-			$email = 'eduardonalves@gmail.com';
+			$email = EMAIL_PAG_SEGURO;
 			$transactionAssinatura = $assinatura['Assinatura']['codigo_pag'];
 
 			$url = 'https://'.PAG_SEGURO_URL.'/v2/pre-approvals/cancel?email=' . $email . '&token=' . $token . '&transactionCode=' . $transactionAssinatura;
@@ -1503,7 +1521,7 @@ $senha = geraSenha(15, true, true, true);
 		$this->loadModel('Pagamento');
 
 
-		PagSeguroConfig::setEmail('eduardonalves@gmail.com');
+		PagSeguroConfig::setEmail(EMAIL_PAG_SEGURO);
 		PagSeguroConfig::setToken('');
 		PagSeguroConfig::setAppId('');
 		PagSeguroConfig::setAppKey('');
@@ -1603,14 +1621,14 @@ $senha = geraSenha(15, true, true, true);
 	{
 
 
-		PagSeguroConfig::setEmail('eduardonalves@gmail.com');
+		PagSeguroConfig::setEmail(EMAIL_PAG_SEGURO);
 		PagSeguroConfig::setToken('');
 		PagSeguroConfig::setAppId('');
 		PagSeguroConfig::setAppKey('');
 
 
 
-		$credentials = new PagSeguroAccountCredentials("eduardonalves@gmail.com", "");
+		$credentials = new PagSeguroAccountCredentials(EMAIL_PAG_SEGURO, "");
 
 
 		try {
@@ -1693,13 +1711,13 @@ $senha = geraSenha(15, true, true, true);
 	private static function authorizationNotification($notificationCode)
 	{
 
-		PagSeguroConfig::setEmail('eduardonalves@gmail.com');
+		PagSeguroConfig::setEmail(EMAIL_PAG_SEGURO);
 		PagSeguroConfig::setToken('');
 		PagSeguroConfig::setAppId('');
 		PagSeguroConfig::setAppKey('');
 
 		try {
-			$credentials = new PagSeguroAccountCredentials("eduardonalves@gmail.com", "");
+			$credentials = new PagSeguroAccountCredentials(EMAIL_PAG_SEGURO, "");
 			$authorization = PagSeguroNotificationService::checkAuthorization($credentials, $notificationCode);
 		} catch (PagSeguroServiceException $e) {
 			die($e->getMessage());
@@ -1717,11 +1735,11 @@ $senha = geraSenha(15, true, true, true);
 	private static function preApprovalNotification($preApprovalCode)
 	{
 
-		PagSeguroConfig::setEmail('eduardonalves@gmail.com');
+		PagSeguroConfig::setEmail(EMAIL_PAG_SEGURO);
 		PagSeguroConfig::setToken('');
 		PagSeguroConfig::setAppId('');
 		PagSeguroConfig::setAppKey('');
-		$credentials = new PagSeguroAccountCredentials("eduardonalves@gmail.com", "");
+		$credentials = new PagSeguroAccountCredentials(EMAIL_PAG_SEGURO, "");
 
 		try {
 			$preApprovalObj = PagSeguroNotificationService::checkPreApproval($credentials, $preApprovalCode);

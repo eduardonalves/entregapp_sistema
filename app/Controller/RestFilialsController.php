@@ -330,6 +330,8 @@ class RestFilialsController extends AppController {
 	{
 		
 		$this->loadModel('User');
+		$this->loadModel('Filial');
+		$this->loadModel('Empresas');
 		$usuarios = $this->User->find('all', array('recursive'=> -1,'conditions' =>array(
 			'empresa_id'=>$empresa_id
 		)));
@@ -339,6 +341,17 @@ class RestFilialsController extends AppController {
 				'funcao_id'=>0
 			);
 			$this->User->save($userToSave);
+			$filiais=$this->Filial->find('all', array('recursive'=> -1, 'conditions'=> array('Filial.empresa_id'=> $value['User']['empresa_id'])));
+			if(!empty($filiais)){
+				foreach ($filiais as $key2 => $value2) {
+					$filialToSave= array(
+						'id'=> $value2['Filial']['id'],
+						'status_abertura' =>0
+					);
+					$this->Filial->save($filialToSave);
+				}
+			}
+			
 		}
 		
 		

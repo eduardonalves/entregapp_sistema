@@ -410,6 +410,7 @@ class UsersController extends AppController {
 		if(empty($selecionadas)){
 			$selecionadas=array(0);
 		}
+		
 		return  $selecionadas;
 	}
 

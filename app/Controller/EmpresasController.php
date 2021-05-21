@@ -432,6 +432,7 @@ class EmpresasController extends AppController
 			);
 			$this->UsersFilial->save($dataUsersFilial);
 			$this->User->enviaemaildeativacao($ultimoUser['User']['id']);
+			$this->User->enviaemaildecadastro($ultimoUser['User']['id']);
 			if ($this->Filial->save($updateFilial)) {
 				$this->Session->setFlash(__('Seu cadastro foi salvo com sucesso. Você receberá um email de ativação da sua conta.'), 'default', array('class' => 'success-flash alert alert-success'));
 
@@ -538,7 +539,9 @@ class EmpresasController extends AppController
 		$this->set(compact('hasPagseguro'));
 		
 	}
-
+	public function meusuporte()
+	{
+	}
 	
 	public function _gerabotaoPagseguro()
 	{

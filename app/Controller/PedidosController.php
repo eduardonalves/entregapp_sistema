@@ -3299,7 +3299,7 @@ class PedidosController extends AppController
 		$minhasFiliais = $User->getFiliais($userid);
 		$this->loadModel('Filial');
 		$unicaFilial = $this->Filial->find('first', array('recursive' => -1, 'conditions' => array('Filial.id' => $minhasFiliais)));
-
+		
 		if($this->Filial->save(
 			array(
 				'id'=> $unicaFilial['Filial']['id'],
@@ -3323,7 +3323,7 @@ class PedidosController extends AppController
 		$minhasFiliais = $User->getFiliais($userid);
 		$this->loadModel('Filial');
 		$unicaFilial = $this->Filial->find('first', array('recursive' => -1, 'conditions' => array('Filial.id' => $minhasFiliais)));
-
+		
 		if($this->Filial->save(
 			array(
 				'id'=> $unicaFilial['Filial']['id'],

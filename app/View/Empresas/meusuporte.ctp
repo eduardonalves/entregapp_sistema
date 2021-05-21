@@ -127,60 +127,17 @@ echo $this->Session->flash('auth');
 			//print_r($hasPagseguro);
 			//die;
 		?>
-		<?php
 		
-			if($hasPagseguro['Pagseguro']['status'] != 'ACTIVE'){
-		?>
-		<h2>Assine já!</h2>
+		<h2>Suporte</h2>
 	
 		<p>
-			Assine o plano padrão da plataforma Rudo por apenas R$ 29,90 por mês e aproveite a toda a plataforma sem preocupação.
+			Contatos do nosso suporte técnico.
+			<br /> Whatsapp: 21 97322-0773 
+			<br /> E-mail: suporte@rudo.com.br
 		</p>
 		
-		<div class="divpagseguro">
-			
-			<?php
-				echo $this->Html->link(
-					$this->Html->image('/img/pagsegurobtn.jpg',array('height' => '100', 'width' => '200')),
-					$hasPagseguro['Pagseguro']['checkouturl'],
-					 array('escape' => false,'target' => '_blank')
-				);
-			?>
-			<!-- INICIO FORMULARIO BOTAO PAGSEGURO: NAO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
-			<!--<form action="https://pagseguro.uol.com.br/pre-approvals/request.html" method="post">
-				<input type="hidden" name="code" value="D812A8038484878224C7BFB19469B1EB" />
-				<input type="hidden" name="iot" value="button" />
-				<input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/assinaturas/209x48-assinar-assina.gif" name="submit" alt="Pague com PagSeguro - É rápido, grátis e seguro!" width="209" height="48" />
-			</form>-->
-			<!-- FINAL FORMULARIO BOTAO PAGSEGURO -->
-		</div>
-		<?php
-			}else{
-
-			
-		?>
-			<h2>Deseja cancelar seu plano?</h2>
-	
-				<p>
-					Para cancelar seu plano clique imagem abaixo!
- 				</p>
-				<div class="divpagseguro">
-					
-					<?php
-						echo $this->Html->link(
-							$this->Html->image('/img/pag-segurologo.png',array('height' => '100', 'width' => '200')),
-							$hasPagseguro['Pagseguro']['cancelurl'],
-							array('escape' => false,'target' => '_blank')
-						);
-					?>
-				
-				</div>
-		<?php
-			}
 		
-		//echo $this->Form->input('nome',array('label' => 'Nome do Estabelecimento:'));
 		
-		?>	
 </div>
 
 

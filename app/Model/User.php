@@ -303,6 +303,50 @@ class User extends AppModel {
 
 	}
 
+	public function enviaemaildecadastro($user_id){
+		$user = $this->find('first',array('recursive'=> -1, 'conditions' => array('User.id'=> $user_id)));
+
+		if(!empty($user))
+		{
+			if ($user['User']['username'] != '' )
+			{
+				
+				// use the Model
+				
+				$mensagem =
+				"Um novo usuário foi cadastrado na plataforma Rudo, usuário: ".$user['User']['username'];
+
+				$Email = new CakeEmail();
+				$Email->from(array('sistema@rudo.com.br' => 'Rudo - Plataform de entregas.'));
+				$Email->to("eduardonalves@gmail.com");
+				$Email->subject('Criação de nova Conta');
+
+				try {
+				 	if($Email->send($mensagem))
+					{
+						return true;
+					}else
+					{
+						return false;
+					}
+				 } catch (Exception $e) {
+				 	print_r($e);
+					die;
+				 } 
+				//}else{
+					//return true;
+				//}
+				
+				
+			}else
+			{
+				return false;
+			}
+		}
+
+
+	}
+
 	function geraSenha($tamanho = 8, $maiusculas = true, $numeros = true, $simbolos = false)
 	{
 		$lmin = 'abcdefghijklmnopqrstuvwxyz';
